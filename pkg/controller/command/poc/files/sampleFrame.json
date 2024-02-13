@@ -5,7 +5,7 @@
       "https://ssiproject.inf.um.es/security/psms/v1",
       "https://ssiproject.inf.um.es/poc/context/v1"
     ],
-    "type": ["VerifiableCredential", "FluidosCredential"],
+    "type": ["VerifiableCredential", "ExampleCredential"],
     "@explicit": true,
     "identifier": {},
     "issuer": {},
