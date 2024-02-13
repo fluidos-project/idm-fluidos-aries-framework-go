@@ -1,0 +1,40 @@
+#
+# Copyright IBM Corp, SecureKey Technologies Inc. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+version: '2'
+
+services:
+
+  holder:
+    container_name: holder-swagger
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON=/specs/openapi-${DEVICE_API_HOST}.yml
+      - BASE_URL=/openapi
+    ports:
+      - 8089:8080
+    volumes:
+      - ./specs:/specs
+    networks:
+      - test
+
+  issuer:
+    container_name: issuer-swagger
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON=/specs/openapi-${ISSUER_API_HOST}.yml
+      - BASE_URL=/openapi
+    ports:
+      - 9089:8080
+    volumes:
+      - ./specs:/specs
+    networks:
+      - test
+
+ 
+networks:
+  test:
+    name: fabric_test
+

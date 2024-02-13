@@ -1,0 +1,100 @@
+
+version: '3.9'
+
+services:
+
+  holder:
+    container_name: holder
+    image: ${AGENT_REST_IMAGE}:${AGENT_REST_IMAGE_TAG}
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      - ARIESD_API_HOST=${HOLDER_HOST}:${HOLDER_API_PORT}
+      - ARIESD_INBOUND_HOST=${HTTP_SCHEME}@${HOLDER_HOST}:${HOLDER_INBOUND_PORT}
+      - ARIESD_INBOUND_HOST_EXTERNAL=${HTTP_SCHEME}@https://holder:${HOLDER_INBOUND_PORT}
+      - ARIESD_WEBHOOK_URL=http://${HOLDER_WEBHOOK_CONTAINER_NAME}:${HOLDER_WEBHOOK_PORT}
+      - ARIESD_DEFAULT_LABEL=holder-agent
+      - ARIESD_DATABASE_TYPE=leveldb
+      - ARIESD_DATABASE_PREFIX=holder
+      - ARIESD_DATABASE_TIMEOUT=60
+      - ARIESD_HTTP_RESOLVER=${HTTP_DID_RESOLVER}
+      - ARIESD_CONTEXT_PROVIDER_URL=${CONTEXT_PROVIDER_URL}
+      - ARIESD_MEDIA_TYPE_PROFILES=${DEFAULT_MEDIA_TYPE_PROFILES}
+      - ARIESD_KEY_TYPE=${DEFAULT_KEY_TYPE}
+      - ARIESD_KEY_AGREEMENT_TYPE=${DEFAULT_KEY_AGREEMENT_TYPE}
+      - TLS_CERT_FILE=/etc/tls/ec-pubCert.pem
+      - TLS_KEY_FILE=/etc/tls/ec-key.pem
+
+    ports:
+      - ${HOLDER_INBOUND_PORT}:${HOLDER_INBOUND_PORT}
+      - ${HOLDER_API_PORT}:${HOLDER_API_PORT}
+      - ${HOLDER_DEBUG_PORT}:${HOLDER_DEBUG_PORT}
+    entrypoint: ""
+#    command:  /bin/sh -c "cp /etc/tls/* /usr/local/share/ca-certificates/;update-ca-certificates; aries-agent-rest start --log-level DEBUG" GRPC SERVER
+    command:  /bin/sh -c "cp /etc/tls/* /usr/local/share/ca-certificates/;update-ca-certificates; dlv --listen=:${HOLDER_DEBUG_PORT} --headless=true --api-version=2 --log=true --log-output=debugger,debuglineerr,gdbwire,lldbout,rpc --accept-multiclient exec /usr/local/bin/aries-agent-rest --continue -- start --log-level DEBUG" GRPC SERVER --security-opt="apparmor=unconfined" --cap-add=SYS_PTRACE
+    networks:
+      - test
+    depends_on:
+      - file-server.example.com
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ../keys/tls:/etc/tls
+
+
+  issuer:
+    container_name: issuer
+    image: ${AGENT_REST_IMAGE}:${AGENT_REST_IMAGE_TAG}
+    environment:
+      - ARIESD_API_HOST=${ISSUER_HOST}:${ISSUER_API_PORT}
+      - ARIESD_INBOUND_HOST=${HTTP_SCHEME}@${ISSUER_HOST}:${ISSUER_INBOUND_PORT}
+      - ARIESD_INBOUND_HOST_EXTERNAL=${HTTP_SCHEME}@https://issuer:${ISSUER_INBOUND_PORT}
+      - ARIESD_WEBHOOK_URL=http://${ISSUER_WEBHOOK_CONTAINER_NAME}:${ISSUER_WEBHOOK_PORT}
+      - ARIESD_DATABASE_TYPE=leveldb
+      - ARIESD_DATABASE_PREFIX=issuer
+      - ARIESD_DATABASE_TIMEOUT=60
+      - ARIESD_DEFAULT_LABEL=issuer-agent
+      - ARIESD_HTTP_RESOLVER=${HTTP_DID_RESOLVER}
+      - ARIESD_CONTEXT_PROVIDER_URL=${CONTEXT_PROVIDER_URL}
+      - ARIESD_MEDIA_TYPE_PROFILES=${DEFAULT_MEDIA_TYPE_PROFILES}
+      - ARIESD_KEY_TYPE=${DEFAULT_KEY_TYPE}
+      - ARIESD_KEY_AGREEMENT_TYPE=${DEFAULT_KEY_AGREEMENT_TYPE}
+      - TLS_CERT_FILE=/etc/tls/ec-pubCert.pem
+      - TLS_KEY_FILE=/etc/tls/ec-key.pem
+      - ARIESD_RFC0593_AUTO_EXECUTE=true
+    
+    ports:
+      - ${ISSUER_INBOUND_PORT}:${ISSUER_INBOUND_PORT}
+      - ${ISSUER_API_PORT}:${ISSUER_API_PORT}
+      - ${ISSUER_DEBUG_PORT}:${ISSUER_DEBUG_PORT}
+    entrypoint: ""
+#    command:  /bin/sh -c "cp /etc/tls/* /usr/local/share/ca-certificates/;update-ca-certificates; aries-agent-rest start" GRPC SERVER
+    command:  /bin/sh -c "cp /etc/tls/* /usr/local/share/ca-certificates/;update-ca-certificates; dlv --listen=:${ISSUER_DEBUG_PORT} --headless=true --api-version=2 --log=true --log-output=debugger,debuglineerr,gdbwire,lldbout,rpc --accept-multiclient exec /usr/local/bin/aries-agent-rest --continue -- start --log-level DEBUG" GRPC SERVER --security-opt="apparmor=unconfined" --cap-add=SYS_PTRACE
+    networks:
+      - test
+    depends_on:
+      - file-server.example.com
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    volumes:
+      - ../keys/tls:/etc/tls
+      
+  file-server.example.com: # file server for hosting static resources (e.g. JSON-LD contexts)
+      container_name: file-server.example.com
+      image: halverneus/static-file-server:latest
+      environment:
+        - PORT=9099
+        - FOLDER=/data
+        - TLS_CERT=/etc/tls/ec-pubCert.pem
+        - TLS_KEY=/etc/tls/ec-key.pem
+      ports:
+        - "9099:9099"
+      volumes:
+        - ./data:/data
+        - ../keys/tls:/etc/tls
+      networks:
+        - test
+
+networks:
+  test:
+    name: fabric_test

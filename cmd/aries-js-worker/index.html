@@ -1,0 +1,247 @@
+<!--
+Copyright SecureKey Technologies Inc. All Rights Reserved.
+
+SPDX-License-Identifier: Apache-2.0
+ -->
+
+<!--
+This is a test page for developers to test WASM integration.
+-->
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <script src="dist/web/aries.js"></script>
+    <script>
+        var aries
+        var stopNotifier
+
+        async function startAries() {
+            if (aries) {
+                console.error("aries is already initialized")
+                document.querySelector("#output").value = "aries is already initialized"
+                return
+            }
+
+            const request = document.querySelector("#opts").value
+
+            aries = await new Aries.Framework(JSON.parse(request))
+
+            document.querySelector("#output").value = "aries started"
+        }
+
+        function destroyAries() {
+            if (!aries) {
+                console.error("aries not initialized")
+                document.querySelector("#output").value = "aries not initialized"
+                return
+            }
+
+            const response = aries.destroy()
+            aries = null
+
+            document.querySelector("#output").value = JSON.stringify(response)
+        }
+
+        async function handleOperationInput() {
+            if (!aries) {
+                console.error("aries not initialized")
+                document.querySelector("#output").value = "aries not initialized"
+                return
+            }
+
+            const request = document.querySelector("#input").value
+            const operation = document.querySelector("#operation").value
+            const method = document.querySelector("#method").value
+
+            const response = await aries[operation][method](request)
+            document.querySelector("#output").value = JSON.stringify(response)
+        }
+
+        function startTopicNotifier() {
+            var topics
+            if (document.querySelector("#notifier").value) {
+                topics = document.querySelector("#notifier").value.split(",")
+            } else {
+                topics = []
+            }
+
+            stopNotifier =  aries.startNotifier(pushToMsgPanel, topics)
+            document.querySelector("#output").value = "notifier started"
+        }
+
+        function pushToMsgPanel(val) {
+            console.log("incoming msg :", val.id, val.topic, val.payload)
+
+            var table = document.getElementById("msg-table");
+            var row = table.insertRow(1);
+
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+
+            cell1.innerHTML = val.id;
+            cell2.innerHTML =  val.topic;
+            cell3.innerHTML = JSON.stringify(val.payload);
+        }
+
+        function stopTopicNotifier() {
+            if (stopNotifier) {
+                stopNotifier()
+            }
+        }
+
+        function changeSource(src) {
+            //stop existing worker before switching
+            if (aries) {
+                destroyAries()
+            }
+
+            var head= document.getElementsByTagName('head')[0];
+            var script= document.createElement('script');
+            script.src= `dist/${src}/aries.js`;
+            head.appendChild(script);
+
+            const mode = (src == "rest") ? "REST" : "WASM"
+            document.getElementById("mode-label").innerHTML = `Running in ${mode} mode`
+
+            if (src == "rest"){
+                document.getElementById("opts").innerHTML = `{"assetsPath": "/dist/assets", "agent-rest-url": "http://localhost:8082", "agent-rest-wshook":"ws://localhost:8082/ws", "agent-rest-token":"arjswrkr001", "media-type-profiles": ["didcomm/aip2;env=rfc19"]}`
+            } else {
+                document.getElementById("opts").innerHTML = `{"assetsPath": "/dist/assets", "agent-default-label":"dem-js-agent","http-resolver-url":[],"auto-accept":true,"outbound-transport":["ws","http"],"transport-return-route":"all","log-level":"debug", "db-namespace":"demoagent", "media-type-profiles": ["didcomm/aip2;env=rfc19"]}`
+            }
+        }
+
+
+    </script>
+</head>
+<body>
+<div>
+    <fieldset>
+        <legend id="mode-label" style="font-size: medium;font-weight: bold">Running in WASM Mode...</legend>
+    <button onClick="changeSource('rest')" style="font-size: large">Switch to REST version</button>
+    <button onClick="changeSource('web')" style="font-size: large">Switch to WASM version</button>
+    </fieldset>
+</div>
+<div>
+    <table>
+        <tr>
+            <td width="50%" valign="top">
+                <fieldset>
+                    <legend style="font-size: x-large;font-weight: bold">Aries Agent</legend>
+                    <table>
+                        <tr>
+                            <td colspan="2">
+                                <div>Start Options :</div>
+                                <textarea id="opts" rows="5" cols="100">{"assetsPath": "/dist/assets", "agent-default-label":"dem-js-agent","http-resolver-url":[],"auto-accept":true,"outbound-transport":["ws","http"],"transport-return-route":"all","log-level":"debug", "db-namespace":"demoagent", "media-type-profiles": ["didcomm/aip2;env=rfc19"]}
+                    </textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="start-button" onClick="startAries()">StartAgent</button>
+                                <button id="stop-button" onClick="destroyAries()">StopAgent</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="font-size: small;">(Enter comma separated topics below, leave it empty to
+                                    subscribe to all topics.)
+                                </div>
+                                <input type="text" id="notifier" value="" size="50"></input>
+                                <button onClick="startTopicNotifier()">Start Notifier</button>
+                                <button onClick="stopTopicNotifier()">Stop Notifier</button>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </td>
+            <td rowspan="2" valign="top">
+
+                <fieldset style="width: 100%;height: 100%;">
+                    <legend style="font-size: x-large;font-weight: bold">Message Center</legend>
+                    <div style="overflow:scroll; height:600px">
+                    <table width="100%" id="msg-table" cellspacing="5px" style="table-layout: fixed;word-wrap: break-word;text-align:left;">
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Topic
+                            </th>
+                            <th>
+                                Message
+                            </th>
+                        </tr>
+                    </table>
+                    </div>
+                </fieldset>
+            </td>
+            </tr>
+
+        <tr>
+            <td>
+                <fieldset>
+                    <legend style="font-size: x-large;font-weight: bold">Aries Agent Command Controller</legend>
+                    <table cellspacing="10px">
+                        <tr>
+                            <td>
+                                <label for="operation">Operation: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="operation" value="didexchange" size="75"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label for="method">Method: </label>
+                            </td>
+                            <td>
+                                <input type="text" id="method" value="createInvitation" size="50"></input>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <label for="input">Request: </label>
+                            </td>
+                            <td>
+                                <textarea id="input" rows="15" cols="100">{}</textarea>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                <button onClick="handleOperationInput()">Execute</button>
+                            </td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+            </td>
+
+        </tr>
+
+    </table>
+</div>
+<hr/>
+<div style="height: 10%">
+    <label for="output" style="font-size: large;font-weight: bold">Response: </label>
+    <output id="output" style="color: green;"></output>
+</div>
+<hr/>
+<br>
+<div id="error-div" style="visibility: hidden;color:red;font-size: x-large;">
+    <label for="error">Error: </label>
+    <output id="error"></output>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,125 @@
+{     
+  "@context": {
+    "@version": 1.1,
+    "id": "@id",
+    "type": "@type",
+    "PsmsBlsSignature2022": {
+      "@id": "https://ssiproject.inf.um.es/security#PsmsBlsSignature2022",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "challenge": "https://w3id.org/security#challenge",
+        "created": {
+          "@id": "http://purl.org/dc/terms/created",
+          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "domain": "https://w3id.org/security#domain",
+        "proofValue": "https://w3id.org/security#proofValue",
+        "nonce": "https://w3id.org/security#nonce",
+        "proofPurpose": {
+          "@id": "https://w3id.org/security#proofPurpose",
+          "@type": "@vocab",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "assertionMethod": {
+              "@id": "https://w3id.org/security#assertionMethod",
+              "@type": "@id",
+              "@container": "@set"
+            },
+            "authentication": {
+              "@id": "https://w3id.org/security#authenticationMethod",
+              "@type": "@id",
+              "@container": "@set"
+            }
+          }
+        },
+        "verificationMethod": {
+          "@id": "https://w3id.org/security#verificationMethod",
+          "@type": "@id"
+        }
+      }
+    },
+    "PsmsBlsSignatureProof2022": {
+      "@id": "https://ssiproject.inf.um.es/security#PsmsBlsSignatureProof2022",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+
+        "challenge": "https://w3id.org/security#challenge",
+        "created": {
+          "@id": "http://purl.org/dc/terms/created",
+          "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+        },
+        "domain": "https://w3id.org/security#domain",
+        "nonce": "https://w3id.org/security#nonce",
+        "proofPurpose": {
+          "@id": "https://w3id.org/security#proofPurpose",
+          "@type": "@vocab",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "sec": "https://w3id.org/security#",
+            "assertionMethod": {
+              "@id": "https://w3id.org/security#assertionMethod",
+              "@type": "@id",
+              "@container": "@set"
+            },
+            "authentication": {
+              "@id": "https://w3id.org/security#authenticationMethod",
+              "@type": "@id",
+              "@container": "@set"
+            }
+          }
+        },
+        "proofValue": "https://w3id.org/security#proofValue",
+        "verificationMethod": {
+          "@id": "https://w3id.org/security#verificationMethod",
+          "@type": "@id"
+        }
+      }
+    },
+    "Bls12381G1Key2022":{
+      "@id": "https://ssiproject.inf.um.es/security#Bls12381G1Key2022",
+      "@context": {
+        "id": "@id",
+        "type": "@type",
+        "controller": "https://ssiproject.inf.um.es/security#controller",
+        "publicKeyBase58": {
+          "@id": "https://w3id.org/security#publicKeyBase58"
+        },
+        "nattributes": "https://ssiproject.inf.um.es/security#nattributes",
+        "aggregatedKeys":  "https://ssiproject.inf.um.es/security#aggregatedKeys",
+        "publicKeyJwk": {
+          "@id": "https://w3id.org/security#publicKeyJwk",
+          "@type": "@json"
+        }
+      }
+    },
+    "Bls12381G2Key2022": {
+        "@id": "https://ssiproject.inf.um.es/security#Bls12381G2Key2022",
+        "@context": {
+          "id": "@id",
+          "type": "@type",
+          "controller": "https://ssiproject.inf.um.es/security#controller",
+          "publicKeyBase58": {
+            "@id": "https://w3id.org/security#publicKeyBase58"
+          },
+          "nattributes": "https://ssiproject.inf.um.es/security#nattributes",
+          "aggregatedKeys":  "https://ssiproject.inf.um.es/security#aggregatedKeys",
+          "publicKeyJwk": {
+            "@id": "https://w3id.org/security#publicKeyJwk",
+            "@type": "@json"
+          }
+        }
+    }
+  }
+}

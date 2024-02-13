@@ -1,0 +1,11 @@
+#
+# Copyright SecureKey Technologies Inc. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+ARG ALPINE_VER
+
+
+FROM alpine:${ALPINE_VER} as base-compilation
+RUN apk add --no-cache cmake make gcc g++ python3;

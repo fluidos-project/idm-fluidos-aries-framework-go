@@ -1,0 +1,11 @@
+<http://purl.org/dc/terms/created>"2020-10-07T16:38:09Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+http://schema.org/birthDate "1958-07-17"^^<http://www.w3.org/2001/XMLSchema#dateTime> .
+http://schema.org/familyName "SMITH" .
+http://schema.org/gender "Male" .
+http://schema.org/givenName "JOHN" .
+http://schema.org/image <data:image/png;base64,iVBORw0KGgokJggg==> .
+https://w3id.org/citizenship#birthCountry "Bahamas" .
+https://w3id.org/citizenship#commuterClassification "C1" .
+https://w3id.org/citizenship#lprCategory "C09" .
+https://w3id.org/citizenship#lprNumber "999-999-999" .
+https://w3id.org/citizenship#residentSince "2015-01-01"^^<http://www.w3.org/2001/XMLSchema#dateTime> .

@@ -1,0 +1,35 @@
+{
+   "@context":[
+      "https://www.w3.org/2018/credentials/v1",
+      "https://w3id.org/citizenship/v1",
+      "https://ssiproject.inf.um.es/security/psms/v1"
+   ],
+   "credentialSubject":{
+      "givenName":"JOHN",
+      "id":"did:example:b34ca6cd37bbf23",
+      "type":[
+         "Person",
+         "PermanentResident"
+      ]
+   },
+   "description":"Government of Example Permanent Resident Card.",
+   "expirationDate":"2029-12-03T12:19:52Z",
+   "id":"https://issuer.oidp.uscis.gov/credentials/83627465",
+   "issuanceDate":"2019-12-03T12:19:52Z",
+   "issuer":"did:key:zUC724vuGvHpnCGFG1qqpXb81SiBLu3KLSqVzenwEZNPoY35i2Bscb8DLaVwHvRFs6F2NkNNXRcPWvqnPDUd9ukdjLkjZd3u9zzL4wDZDUpkPAatLDGLEYVo8kkAzuAKJQMr7N2",
+   "name":"Permanent Resident Card",
+   "proof":[
+      {
+         "created":"2023-04-04T09:51:39.222650081+02:00",
+         "nonce":"G/hn9Ca9bIWZpJGlhnr/41r8RB0OO0TLChZASr3QJVztdri/JzS8Zf/xWJT5jW78zlM=",
+         "proofPurpose":"assertionMethod",
+         "proofValue":"AAIJAgQHG46/tbJImwduuT1OzH0NKkqayc2P9yqyuCpnq1f0ZgRhB08oYgSy8CYPGRlzZLgOphiQa1SMeW8DMRbkuVuwDuPgol7AF1y8OrE6J8Mtbow42WJNIKEWFoyHZgCibUIY8gvV/kE2AJiz4lDPtDyYCi4cmoFOssATA+wIAEul6VOr+TEgniFBdZy+wuC++rYYN0f2C1UEUPDJPWPYMHppHH/z9Irp6cnjnJUiwNT++XiV5dudxpqjoggx2A58LPcEGS0Qc6sMmB/Tv0Y7Pjeso034fRa+DlCp+FuZVuSsUkhLs+xlpV3+oXvkZVsOeCjUGGneifkh4yYMd2qfA8cvbUKLtaIf17WK20OD4P4EMel/BTwkLpYUedfNjW/CE4zsBDy2CQhlnD1gk5dxQ/N3JpNYHrnZgCBCNjA6AYnHu8qk/008zp3G2xzKuT3yLytUFEXORHyLtZlvaUeNi0lsgkJaNAKw90dL6cFgORuNOq5cHgLEt+G/zbtK+ROzts5llT+8p/vFAbHXr7ghsty3VbxPFZWIE87Tzo1DX2XD+wpHRLLMnzdaUr/rI/VFAGkhAAAAAAAAAAAAAAAAAAAAADs4wRZZI7bCyqbhVXbeDnXeN6y5sea/wsSBeDwy8EpZAAAAAAAAAAAAAAAAAAAAAD9Cb8DdS/p3zibf3D90njTJ1dmXlbL6uFOJz98mewtdAAAAAAAAAAAAAAAAAAAAAG9PMKLigdT3FGZPRv53xVh0ORw5yHaLm6AB8nW+f/61AAAAAAAAAAAAAAAAAAAAAEzO56hQsQ+czDoTecSKQhyIh4gnaBQ2F1uW0GTkrDDE",
+         "type":"PsmsBlsSignatureProof2022",
+         "verificationMethod":"did:key:zDMtBTaoXUP4ihRsH4Lsqhv7MeCK9hUGj1TLghzoSTSBtqZTwDA9VFZwZsJFiANTGGLq3ZCunLfc89YfS3ehVp41zbGhsgbGpnuScjQTae462mkqc1mrkzXhQr5ZjnA4qfKwagHvVhZrcozZyt1amGaDWcUmYouxfhbUPWbPMWmY7nfrizJYHT97ggCvA4WnbRyTgiDi6fRg16tqRYfXCcaKyCqFM3m82i84ffcnGdxCjFZFpB3gC6JbCCCh9A8L98X75Tw2zHuifeLZwUtQY1QyhLrqcjQEBzEnEFre53p8Z1oNC1D5bBy7Y5yHtK7R2DTzsgegDHgfYSoxkt4m964BBA7S57VXgAWV7tbNSQjJtPBeQqayArAX5kGg6NF6vo8xgvpm6W2eVhMne65bZ3EA3uqCct7tm9K5iVpVzA1xuu5N9uWdSuzqiWZJQ127qGpoBqDhYFbvME5sKpqbqkaA744wNPSbfVaG425atF935CxZ2MFEXMwkkjvQ65Si9zMxqZ2rBcNAJYb9MnLqxgMvYRcJxrQjKoYLSuzKDHvNkkJgAoCwEaK33cXPsQRqNytGEcM2Mo4adAZBJAv2bBMMMYGU6XzWMzk4p9nPpCFq9QucR4192ooKyZ4twD4y8tw6XwbSqLGFmVT7bPVq1eEHd3sPxmiq4YNj7wpeCD4RqpV1TY1tyqNxjWEmPB4HDYNMHj7mGDvD1Tayh2dLUPdcuVvqs7B1ta6ezs3aJAW3tLbhe9um9MdgDxBGYEMxMDWtrKR3Q8WHsYNLESgivews3s5SxhFSjsA#zDMtBTaoXUP4ihRsH4Lsqhv7MeCK9hUGj1TLghzoSTSBtqZTwDA9VFZwZsJFiANTGGLq3ZCunLfc89YfS3ehVp41zbGhsgbGpnuScjQTae462mkqc1mrkzXhQr5ZjnA4qfKwagHvVhZrcozZyt1amGaDWcUmYouxfhbUPWbPMWmY7nfrizJYHT97ggCvA4WnbRyTgiDi6fRg16tqRYfXCcaKyCqFM3m82i84ffcnGdxCjFZFpB3gC6JbCCCh9A8L98X75Tw2zHuifeLZwUtQY1QyhLrqcjQEBzEnEFre53p8Z1oNC1D5bBy7Y5yHtK7R2DTzsgegDHgfYSoxkt4m964BBA7S57VXgAWV7tbNSQjJtPBeQqayArAX5kGg6NF6vo8xgvpm6W2eVhMne65bZ3EA3uqCct7tm9K5iVpVzA1xuu5N9uWdSuzqiWZJQ127qGpoBqDhYFbvME5sKpqbqkaA744wNPSbfVaG425atF935CxZ2MFEXMwkkjvQ65Si9zMxqZ2rBcNAJYb9MnLqxgMvYRcJxrQjKoYLSuzKDHvNkkJgAoCwEaK33cXPsQRqNytGEcM2Mo4adAZBJAv2bBMMMYGU6XzWMzk4p9nPpCFq9QucR4192ooKyZ4twD4y8tw6XwbSqLGFmVT7bPVq1eEHd3sPxmiq4YNj7wpeCD4RqpV1TY1tyqNxjWEmPB4HDYNMHj7mGDvD1Tayh2dLUPdcuVvqs7B1ta6ezs3aJAW3tLbhe9um9MdgDxBGYEMxMDWtrKR3Q8WHsYNLESgivews3s5SxhFSjsA"
+      }
+   ],
+   "type":[
+      "PermanentResidentCard",
+      "VerifiableCredential"
+   ]
+}

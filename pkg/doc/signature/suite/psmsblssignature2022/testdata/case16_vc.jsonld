@@ -1,0 +1,41 @@
+{
+   "@context":[
+      "https://www.w3.org/2018/credentials/v1",
+      "https://w3id.org/citizenship/v1",
+      "https://ssiproject.inf.um.es/security/psms/v1"
+   ],
+   "credentialSubject":{
+      "birthCountry":"Bahamas",
+      "birthDate":"1958-07-17",
+      "commuterClassification":"C1",
+      "familyName":"SMITH",
+      "gender":"Male",
+      "givenName":"JOHN",
+      "id":"did:example:b34ca6cd37bbf23",
+      "image":"data:image/png;base64,iVBORw0KGgo...kJggg==",
+      "lprCategory":"C09",
+      "lprNumber":"999-999-999",
+      "residentSince":"2015-01-01",
+      "type":[
+         "PermanentResident",
+         "Person"
+      ]
+   },
+   "description":"Government of Example Permanent Resident Card.",
+   "expirationDate":"2029-12-03T12:19:52Z",
+   "id":"https://issuer.oidp.uscis.gov/credentials/83627465",
+   "issuanceDate":"2019-12-03T12:19:52Z",
+   "issuer":"did:key:zUC724vuGvHpnCGFG1qqpXb81SiBLu3KLSqVzenwEZNPoY35i2Bscb8DLaVwHvRFs6F2NkNNXRcPWvqnPDUd9ukdjLkjZd3u9zzL4wDZDUpkPAatLDGLEYVo8kkAzuAKJQMr7N2",
+   "name":"Permanent Resident Card",
+   "proof":{
+      "created":"2023-04-13T11:56:29.516867757+02:00",
+      "proofPurpose":"assertionMethod",
+      "proofValue":"BAaJzkPYA52SuOizzgJD8uz5iAAPXztv4U5WZcH9FxekS3AZBya7SNPm_ciIZFM-hRHjjb05C7Y8ilUN8jyALMp7WvXQZiRYreATByz22DgmOxBWyO8fOO5id5x0e0LtnRmwgAuSp5B82MNLxqVC5t_rJVvZCxxp3nf-fMRon7os5KsQWm8s4uNElYm6qwZSyxjS6CWfluQmufoD5j1N6yzKhwLE348QYZDOe2iC8Ca7w_SwbiznAmH1cpUgV4PDYAQIen0xKOqfqvZfKrWQ3oKY6tyO-30aSnnBVASZEHnZS-cDjqsSggfi5IeslyQ7p8IF-7keNZvhPaGoBatwLMLoInILTjR9yoaOn-wnFBh9tLay-_HZHq5rGTLLrNZsiW8Ugy5SU3EAtkTwvfY5oQk-19JEuMY1OO9llpw-m1Cs6sCirEGoDrMoSGNW0mg0UbcKU69zZTeuwWtuEfkH5elXIQkZ8SiRyvR5S1UqF-sZdf4N2siUozuf_g_KNuU_cANgw9c06-r3y5aEOpWOSGCu3y2OI0vKOv_9PMRIJmIyNCXoaSWlzdFWZb_Jwp596po",
+      "type":"PsmsBlsSignature2022",
+      "verificationMethod":"did:key:zfqLqehvuxrf1XdH5oWoZqT7gXP3Qm48aJAAGohMDuGvzLs9GnFAiEtBjd9s646TNPAWcXHd41mj3nCu12V5i24oTojBRj5GcPbdYfghYesXdc4UmvwZcgzFDBuNuoZ9pDGgHSwyDN15UFHcy3mN7fhxB9nDcA21G6Gxt4d94QCfXREsuQLSAumgaGKLfQrRTQmgTpuGzYNrpMxVFvhciL7FMBtPPCWVvcE4DxaqusCaoZeZUaa571Hv46SgDjbvsM2CEAE7HxhDyRwNK6v65cHK3ktRqPkrryWaWRZTipG6ZEbJomnUDpi8cicTwLor7HWAt7mXnUAVLXknTQLqW6qaHuNSdvAkz4ifXUHJPyRVdF2jpkxazHF8Za72hBdBCCn85KAtKxjK4jnGVP6iELYSdAytg8tqaP4DoSp6duf4rLH6a4uqVyHBhgnhaWFC439UDVVyajRXJYjhbSopYK2eu33FVNFCpbNH5Y4kKXG6g2obQbGwUAw6q5AESzztcUj76PLQjo3gfDASx8nS4RBHYpapgvHtrU9AGKGNHRYrKjxT79qVN1sNykoWRYXM5czc4VMmhf5BhjeBfNegZzS9Keo43c8vLuhQWwdpt4jwE21N3V5ZfWhVZchaJjd9TCo8i5gc4ay8GpCfHj9ShgTZeBCxPvAPxqPNw5aq1x3xpuFuhzAkfkXMFj3r66Mh3pqFGW7erFbdntfGPw22BcV7L9TNgoVUiJ2Rr6SFRLtmqYyAvJ6hBPpmXoJQdNQ7qTqvsDUEW5zZBsWasZ7JdmkzDsGo7tKoPbRZ2aiPr1EmEMLxYuNRVp9zvzATi9GFnEoUsBCgaXyjGNQeNsP58dtqfuKkehS9zKjXFhCdcD39mtchm2BasG8QQiveHWAsyyraoXy7kfow7zEh4fTwMQbkKVeCAvvWDqZ74sYvHiSaHuQVYhXeWPrB9ZurwoRAiBuFqwqEDv2twYKmuCpamrUdxHSawAgB8cWjNvmssYEpYheLQPnyy2AFF56YmtFG4E5oxhgeqHmTcXQUA2RfWNiZJDWJw59Bn6BDNcpbwE7h9J1duCSpo1J76Y97riCpqnAjJMa3hMM9kLHcvb23stw8et3VzKezkqCYsdXhm8pz3471HQNkFQ5D1id3mvkpDecr6aVoABfQPu9ArV43FwXh1ffhbcU9yEeKR4jvhqrj2qWod5w9iS866PxMxqvbdBq3YFCBoSavq1avNxKx4AKP2KJm3ymQE6Jo9AGtgEniMkqQW9yy8MZbRpPzRpt28w9wSzJmbECeKkJ6BfyW6Fxb5yQbRQjMMyXLjw7FDQe7oHAPwYhm9raWrCuJmADFvfyguoD3Tk1bG5hvqMenqVVPGBYBApUrT74HVpx65AJ7yZwY1tFyAGvjCqy6fbisf4FU6n33gbAY7JUBV592dcZu31WFDuDp5afiDqUcTWoTpHySKU1XcmHuzBvVHdhkuCfTY5f2RmpdeLTVkE3Nisx5ePimhEekvD2psPD9CWW7HGu5w4FGwoz3q16VvURxRAKKDK3oucCLFcH4iaB8ETDFqJuF7jRFCJL96UJJj49twqpn3uQoJpC8YxUXkJ5piQZAsTpkcAsxTk9j5SV4iRqTp447E4XKmZmeFdQrStxA6dFeMRatkD7nGMzNVj3WoiN4vmfyphYq2Qw9JCEimZ7NdEUL14NdBsPs6F674hZ7ZhCtDsk2R9VkaK7Uv1bYj3#zfqLqehvuxrf1XdH5oWoZqT7gXP3Qm48aJAAGohMDuGvzLs9GnFAiEtBjd9s646TNPAWcXHd41mj3nCu12V5i24oTojBRj5GcPbdYfghYesXdc4UmvwZcgzFDBuNuoZ9pDGgHSwyDN15UFHcy3mN7fhxB9nDcA21G6Gxt4d94QCfXREsuQLSAumgaGKLfQrRTQmgTpuGzYNrpMxVFvhciL7FMBtPPCWVvcE4DxaqusCaoZeZUaa571Hv46SgDjbvsM2CEAE7HxhDyRwNK6v65cHK3ktRqPkrryWaWRZTipG6ZEbJomnUDpi8cicTwLor7HWAt7mXnUAVLXknTQLqW6qaHuNSdvAkz4ifXUHJPyRVdF2jpkxazHF8Za72hBdBCCn85KAtKxjK4jnGVP6iELYSdAytg8tqaP4DoSp6duf4rLH6a4uqVyHBhgnhaWFC439UDVVyajRXJYjhbSopYK2eu33FVNFCpbNH5Y4kKXG6g2obQbGwUAw6q5AESzztcUj76PLQjo3gfDASx8nS4RBHYpapgvHtrU9AGKGNHRYrKjxT79qVN1sNykoWRYXM5czc4VMmhf5BhjeBfNegZzS9Keo43c8vLuhQWwdpt4jwE21N3V5ZfWhVZchaJjd9TCo8i5gc4ay8GpCfHj9ShgTZeBCxPvAPxqPNw5aq1x3xpuFuhzAkfkXMFj3r66Mh3pqFGW7erFbdntfGPw22BcV7L9TNgoVUiJ2Rr6SFRLtmqYyAvJ6hBPpmXoJQdNQ7qTqvsDUEW5zZBsWasZ7JdmkzDsGo7tKoPbRZ2aiPr1EmEMLxYuNRVp9zvzATi9GFnEoUsBCgaXyjGNQeNsP58dtqfuKkehS9zKjXFhCdcD39mtchm2BasG8QQiveHWAsyyraoXy7kfow7zEh4fTwMQbkKVeCAvvWDqZ74sYvHiSaHuQVYhXeWPrB9ZurwoRAiBuFqwqEDv2twYKmuCpamrUdxHSawAgB8cWjNvmssYEpYheLQPnyy2AFF56YmtFG4E5oxhgeqHmTcXQUA2RfWNiZJDWJw59Bn6BDNcpbwE7h9J1duCSpo1J76Y97riCpqnAjJMa3hMM9kLHcvb23stw8et3VzKezkqCYsdXhm8pz3471HQNkFQ5D1id3mvkpDecr6aVoABfQPu9ArV43FwXh1ffhbcU9yEeKR4jvhqrj2qWod5w9iS866PxMxqvbdBq3YFCBoSavq1avNxKx4AKP2KJm3ymQE6Jo9AGtgEniMkqQW9yy8MZbRpPzRpt28w9wSzJmbECeKkJ6BfyW6Fxb5yQbRQjMMyXLjw7FDQe7oHAPwYhm9raWrCuJmADFvfyguoD3Tk1bG5hvqMenqVVPGBYBApUrT74HVpx65AJ7yZwY1tFyAGvjCqy6fbisf4FU6n33gbAY7JUBV592dcZu31WFDuDp5afiDqUcTWoTpHySKU1XcmHuzBvVHdhkuCfTY5f2RmpdeLTVkE3Nisx5ePimhEekvD2psPD9CWW7HGu5w4FGwoz3q16VvURxRAKKDK3oucCLFcH4iaB8ETDFqJuF7jRFCJL96UJJj49twqpn3uQoJpC8YxUXkJ5piQZAsTpkcAsxTk9j5SV4iRqTp447E4XKmZmeFdQrStxA6dFeMRatkD7nGMzNVj3WoiN4vmfyphYq2Qw9JCEimZ7NdEUL14NdBsPs6F674hZ7ZhCtDsk2R9VkaK7Uv1bYj3"
+   },
+   "type":[
+      "VerifiableCredential",
+      "PermanentResidentCard"
+   ]
+}

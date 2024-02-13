@@ -1,0 +1,15 @@
+# ignore files generated on run-openapi-demo
+
+pkg/wallet/contents_test.go
+test/bdd/fixtures/demo/openapi/specs/*
+test/bdd/fixtures/keys/tls/*
+test/bdd/pkg/ldcontext/testdata/odrl.jsonld
+cmd/aries-agent-rest/go.mod
+cmd/aries-agent-rest/go.sum
+
+pkg/crypto/primitive/psms12381g1pub/clib/libdpabc_psms_bundled.a
+build
+
+test/bdd/fixtures/agent-rest/data/connection-profile.json
+modules/fabric-samples/
+.vscode/
