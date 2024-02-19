@@ -9,4 +9,8 @@ var (
 	ExampleRawVC []byte
 	//go:embed sampleFrame.json
 	SampleFramePsms []byte
+	//go:embed sampleFrameFrame.json
+	SampleFramePsmsFrame []byte
+	//go:embed sampleFrameFrameOther.json
+	SampleFramePsmsFrameOther []byte
 )

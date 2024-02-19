@@ -206,7 +206,7 @@ type ContentQueryRequest struct {
 // ContentQueryResponse response for wallet content query.
 type ContentQueryResponse struct {
 	// response presentation(s) containing query results.
-	Results []*verifiable.Presentation `json:"results"`
+	Results []*verifiable.Presentation `json:"results,omitempty"`
 }
 
 // SignJWTRequest is request model for signing a JWT using wallet.

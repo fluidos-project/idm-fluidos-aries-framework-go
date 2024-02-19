@@ -565,7 +565,7 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 		err = o.vcwalletcommand.Close(&l2, reader)
 	}()
 	//Get stored credential from Id
-	var credID = request.CredId
+	//var credID = request.CredId
 	reader, err = getReader(&vcwalletc.GetContentRequest{
 		ContentID:   request.CredId,
 		ContentType: wallet.Credential,
@@ -668,51 +668,51 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 
 
 	//rawVcBytes, err := vcRaw.MarshalJSON()
-	var frameDocPsms map[string]interface{}
-	json.Unmarshal(files.SampleFramePsms, &frameDocPsms)
-
+	//var frameDocPsms map[string]interface{}
+	//json.Unmarshal(files.SampleFramePsmsFrame, &frameDocPsms)
 
 	
 	//reqforquery
 	//var sampleNonce      = "nonceForZkProof"
 	reader, err = getReader(&vcwalletc.ContentQueryRequest{
-		WalletAuth:   vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-		Query: &wallet.QueryParams{
-			Type: "queryByFrame",
-			Query: []json.RawMessage{
-				reason: "reason",
-				frame: frameDocPsms,
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Query: []*wallet.QueryParams{
+				{
+					Type:  "QueryByFrame",
+					Query: []json.RawMessage{files.SampleFramePsmsFrame},
+				},
 			},
-		},
 	})
-	
-
 
 
 	var queryResponse bytes.Buffer
-	dervcerr := o.vcwalletcommand.Query(&queryResponse, reader)
-
-
-	if dervcerr != nil {
-		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", dervcerr))
+	queryErr := o.vcwalletcommand.Query(&queryResponse, reader)
+	if queryErr != nil {
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", queryErr))
 	}
-	var derivedParsedResponse vcwalletc.DeriveResponse
-	err = json.NewDecoder(&queryResponse).Decode(&derivedParsedResponse)
+
+
+	//var vpstr = queryResponse.String()
+
+	//var finalVP, finalVPError = json.MarshalIndent(vpstr, "", "    ")
+
+	var queryParsedResponse vcwalletc.ContentQueryResponse
+	err = json.NewDecoder(&queryResponse).Decode(&queryParsedResponse)
 	if err != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
 	}
-	var vCred, vCredError = derivedParsedResponse.Credential.MarshalJSON()
+	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, string(queryResponse.Bytes()))
 
-	command.WriteNillableResponse(rw, &GenerateVPResult{vCred}, logger)
-	if vCredError != nil {
-		logger.Errorf("unable to send error response, %s", vCredError)
-	}
+	//var vP , vPError = queryParsedResponse.Results[0].MarshalJSON()
+
+	command.WriteNillableResponse(rw, &GenerateVPResult{queryParsedResponse.Results}, logger)
+	
+	// if vPError != nil {
+	// 	logger.Errorf("unable to send error response, %s", vPError)
+	// }
+	
 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "success")
 	
-    
-
-
-
 
 
 

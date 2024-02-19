@@ -1,0 +1,19 @@
+{
+  "frame": {
+    "@context": [
+      "https://www.w3.org/2018/credentials/v1",
+      "https://www.w3.org/2018/credentials/examples/v1",
+      "https://ssiproject.inf.um.es/security/psms/v1",
+      "https://ssiproject.inf.um.es/poc/context/v1"
+    ],
+    "type": ["VerifiableCredential", "ExampleCredential"],
+    "@explicit": true,
+    "identifier": {},
+    "issuer": {},
+    "issuanceDate": {},
+    "credentialSubject": {
+      "@explicit": true,
+      "holderRole": {}
+    }
+  }
+}

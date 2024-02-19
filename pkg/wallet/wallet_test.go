@@ -972,7 +972,7 @@ func TestWallet_Query(t *testing.T) {
 	// query by frame
 	queryByFrame := []byte(sampleQueryByFrame)
 
-	queryByFramePsms := []byte(sampleQueryByFramePsms)
+	queryByFramePsms  := []byte(sampleQueryByFramePsms)
 
 	t.Run("test wallet queries", func(t *testing.T) {
 		tests := []struct {

@@ -2,6 +2,7 @@ package poc
 
 import (
 	"encoding/json"
+	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 )
 
 // Model for puf authentication program output
@@ -65,7 +66,7 @@ type GenerateVPArgs struct {
 
 // Model for GenerateVP method output
 type GenerateVPResult struct {
-	Credential json.RawMessage `json:"credential,omitempty"` //TODO UMU: Change to  maybe For now we present a complete credential?
+	Results []*verifiable.Presentation `json:"results"`
 }
 
 // Model for AcceptEnrolment method input
