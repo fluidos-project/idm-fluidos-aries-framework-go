@@ -1620,10 +1620,10 @@ func (vc *Credential) raw() (*rawCredential, error) {
 }
 
 func typesToRaw(types []string) interface{} {
-	if len(types) == 1 {
-		// as string
-		return types[0]
-	}
+	// if len(types) == 1 {
+	// 	// as string
+	// 	return types[0]
+	// }
 	// as string array
 	return types
 }

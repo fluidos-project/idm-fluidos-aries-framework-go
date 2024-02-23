@@ -67,6 +67,12 @@ type GenerateVPArgs struct {
 // Model for GenerateVP method output
 type GenerateVPResult struct {
 	Results []*verifiable.Presentation `json:"results"`
+	
+}
+
+type GenerateVPResultCustom struct {
+	Results []*json.RawMessage `json:"results,omitempty"`
+	
 }
 
 // Model for AcceptEnrolment method input

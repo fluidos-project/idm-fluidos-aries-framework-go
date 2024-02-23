@@ -209,6 +209,11 @@ type ContentQueryResponse struct {
 	Results []*verifiable.Presentation `json:"results,omitempty"`
 }
 
+type CustomContentQueryResponse struct {
+  // response presentation(s) containing query results.
+  Results []*json.RawMessage `json:"results,omitempty"`
+}
+
 // SignJWTRequest is request model for signing a JWT using wallet.
 type SignJWTRequest struct {
 	WalletAuth

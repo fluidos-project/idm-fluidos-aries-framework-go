@@ -588,78 +588,6 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 
 
 
-	/*
-	PARAMETROS PARA DERIVE DE vcwalletcommand
-	{
-  "auth": "string",
-  "frame": {
-    "additionalProp1": {},
-    "additionalProp2": {},
-    "additionalProp3": {}
-  },
-  "nonce": "string",
-  "rawCredential": {},
-  "storedCredentialID": "string",
-  "userID": "string"
-}
-	*/
-
-	/*
-	//FOR CREDENTIALS WITH ZKPROOF 
-	var vcRaw = parsedResponse.Content
-	//vc, err := verifiable.ParseCredential(parsedResponse.Content)
-	if err != nil {
-		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("failed to decode stored credential: %w", err))
-	}
-
-
-
-
-	rawVcBytes, err := vcRaw.MarshalJSON()
-	var frameDocPsms map[string]interface{}
-	json.Unmarshal(files.SampleFramePsms, &frameDocPsms)
-
-
-	
-		//reqforderive
-	var sampleNonce      = "nonceForZkProof"
-	reader, err = getReader(&vcwalletc.DeriveRequest{
-		WalletAuth:   vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-		DeriveOptions: &wallet.DeriveOptions{
-					Nonce: sampleNonce,
-					Frame: frameDocPsms,
-		},
-		StoredCredentialID: credID,
-		RawCredential: rawVcBytes,
-
-	})
-	
-
-
-
-	var deriveResponse bytes.Buffer
-	dervcerr := o.vcwalletcommand.Derive(&deriveResponse, reader)
-
-
-	if dervcerr != nil {
-		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", dervcerr))
-	}
-	var derivedParsedResponse vcwalletc.DeriveResponse
-	err = json.NewDecoder(&deriveResponse).Decode(&derivedParsedResponse)
-	if err != nil {
-		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
-	}
-	var vCred, vCredError = derivedParsedResponse.Credential.MarshalJSON()
-
-	command.WriteNillableResponse(rw, &GenerateVPResult{vCred}, logger)
-	if vCredError != nil {
-		logger.Errorf("unable to send error response, %s", vCredError)
-	}
-	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "success")
-	*/
-    
-	//FOR QUERY VCWALLET
-	//var vcRaw = parsedResponse.Content
 	if err != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("failed to decode stored credential: %w", err))
 	}
@@ -692,24 +620,23 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	}
 
 
-	//var vpstr = queryResponse.String()
+	//La string de la respuesta esta bien
+	//logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "Verifiable Presentation before unmarshall: "+queryResponse.String())
 
-	//var finalVP, finalVPError = json.MarshalIndent(vpstr, "", "    ")
 
-	var queryParsedResponse vcwalletc.ContentQueryResponse
-	err = json.NewDecoder(&queryResponse).Decode(&queryParsedResponse)
+
+	//DONDE ESTA FALLANDO
+	var queryParsedResponse vcwalletc.CustomContentQueryResponse
+
+	err = json.Unmarshal(queryResponse.Bytes(), &queryParsedResponse)
 	if err != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
 	}
-	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, string(queryResponse.Bytes()))
+	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "Verifiable Presentation result response without unmarshall: "+queryResponse.String())
 
-	//var vP , vPError = queryParsedResponse.Results[0].MarshalJSON()
 
-	command.WriteNillableResponse(rw, &GenerateVPResult{queryParsedResponse.Results}, logger)
 	
-	// if vPError != nil {
-	// 	logger.Errorf("unable to send error response, %s", vPError)
-	// }
+	command.WriteNillableResponse(rw, &GenerateVPResultCustom{queryParsedResponse.Results}, logger)
 	
 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "success")
 	
@@ -785,7 +712,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to decode verify response: %w", err))
 	}
 	var result string
-	if response.Verified == false {
+	if !response.Verified{
 		result = "not verified"
 		//return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to verify credential: %s", response.Error))
 		logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
