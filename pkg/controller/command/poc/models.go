@@ -62,7 +62,9 @@ type IdProof struct {
 // Model for GenerateVP method input
 type GenerateVPArgs struct {
 	CredId string `json:"credId,omitempty"` //TODO UMU: How do we decide which credential is gonna be presented?
+	Frame []json.RawMessage `json:"frame,omitempty"`
 }
+
 
 // Model for GenerateVP method output
 type GenerateVPResult struct {

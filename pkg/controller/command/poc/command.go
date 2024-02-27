@@ -14,7 +14,7 @@ import (
 	"time"
 
 	"github.com/hyperledger/aries-framework-go/pkg/common/log"
-	"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc/files"
+	//"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc/files"
 	"github.com/hyperledger/aries-framework-go/pkg/controller/command"
 	vcwalletc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vcwallet"
 	vdrc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vdr"
@@ -444,85 +444,6 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 }
 
 
-/*
-
-func BenchmarkDeriveZkDisclosure(b *testing.B) {
-	print("CAREFUL, TEST if VERIFY IS USED INSIDE ZKDERIVEPROOF TO CHECK FOR PARAMETER ERRORS\n")
-	wallet, token := createOpenWallet(b, sampleUser)
-
-	did := addKeyToWallet(base58Key_5, token, b, w.PsmsBlsSignature2022)
-
-	proofRepr := verifiable.SignatureProofValue
-	proofOpts := &w.ProofOptions{
-		Controller:          did,
-		ProofType:           w.PsmsBlsSignature2022,
-		ProofRepresentation: &proofRepr,
-	}
-	vc, err := wallet.Issue(token, files.ExampleRawVC, proofOpts)
-	require.NoError(b, err)
-	rawVcBytes, err := vc.MarshalJSON()
-	require.NoError(b, err)
-	var frameDocPsms map[string]interface{}
-	require.NoError(b, json.Unmarshal(files.SampleFramePsms, &frameDocPsms))
-
-	defer wallet.Close()
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		dervc, err := wallet.Derive(token, w.FromRawCredential(rawVcBytes), &w.DeriveOptions{
-			Nonce: sampleNonce,
-			Frame: frameDocPsms,
-		})
-		require.NoError(b, err)
-		require.NotEmpty(b, dervc)
-		a, _ := dervc.MarshalJSON()
-		fmt.Println(string(a))
-		//verifyPSMSProof(dervc.Proofs, b)
-	}
-}
-
-func BenchmarkVerifyZkDisclosure(b *testing.B) {
-	wallet, token := createOpenWallet(b, sampleUser)
-
-	did := addKeyToWallet(base58Key_5, token, b, w.PsmsBlsSignature2022)
-
-	proofRepr := verifiable.SignatureProofValue
-	proofOpts := &w.ProofOptions{
-		Controller:          did,
-		ProofType:           w.PsmsBlsSignature2022,
-		ProofRepresentation: &proofRepr,
-	}
-	vc, err := wallet.Issue(token, files.ExampleRawVC, proofOpts)
-	require.NoError(b, err)
-	rawVcBytes, err := vc.MarshalJSON()
-	require.NoError(b, err)
-	var frameDocPsms map[string]interface{}
-	require.NoError(b, json.Unmarshal(files.SampleFramePsms, &frameDocPsms))
-	dervc, err := wallet.Derive(token, w.FromRawCredential(rawVcBytes), &w.DeriveOptions{
-		Nonce: sampleNonce,
-		Frame: frameDocPsms,
-	})
-	require.NoError(b, err)
-	require.NotEmpty(b, dervc)
-	rawDerVcBytes, err := dervc.MarshalJSON()
-	require.NoError(b, err)
-	wallet.Close()
-	wallet2, token2 := createOpenWallet(b, sampleUser2)
-	require.NoError(b, err)
-	defer wallet2.Close()
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		res, err := wallet2.Verify(token2, w.WithRawCredentialToVerify(rawDerVcBytes))
-		require.Equal(b, res, true)
-		require.NoError(b, err)
-	}
-}
-
-
-
-
-
-
-*/
 // GenerateVP Device generates VPresentation (or VCredential for now) for an authorization process
 func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	//TODO UMU For now we use ContentId, but we should do it through query or similar and might even be simpler
@@ -535,6 +456,10 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
 	}
 	if request.CredId == "" {
+		logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, errEmptyUrl)
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyUrl))
+	}
+	if request.Frame == nil {
 		logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, errEmptyUrl)
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyUrl))
 	}
@@ -592,26 +517,31 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("failed to decode stored credential: %w", err))
 	}
 
+	
 
-
-
-	//rawVcBytes, err := vcRaw.MarshalJSON()
-	//var frameDocPsms map[string]interface{}
-	//json.Unmarshal(files.SampleFramePsmsFrame, &frameDocPsms)
 
 	
-	//reqforquery
-	//var sampleNonce      = "nonceForZkProof"
+	
+
+	// reader, err = getReader(&vcwalletc.ContentQueryRequest{
+	// 	WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+	// 	Query: []*wallet.QueryParams{
+	// 			{
+	// 				Type:  "QueryByFrame",
+	// 				Query: []json.RawMessage{files.SampleFramePsmsFrame},
+	// 			},
+	// 		},
+	// })
+
 	reader, err = getReader(&vcwalletc.ContentQueryRequest{
-		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-		Query: []*wallet.QueryParams{
+	WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+	Query: []*wallet.QueryParams{
 				{
 					Type:  "QueryByFrame",
-					Query: []json.RawMessage{files.SampleFramePsmsFrame},
+					Query: request.Frame,
 				},
 			},
 	})
-
 
 	var queryResponse bytes.Buffer
 	queryErr := o.vcwalletcommand.Query(&queryResponse, reader)
@@ -619,13 +549,6 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", queryErr))
 	}
 
-
-	//La string de la respuesta esta bien
-	//logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "Verifiable Presentation before unmarshall: "+queryResponse.String())
-
-
-
-	//DONDE ESTA FALLANDO
 	var queryParsedResponse vcwalletc.CustomContentQueryResponse
 
 	err = json.Unmarshal(queryResponse.Bytes(), &queryParsedResponse)
@@ -640,8 +563,6 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	
 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "success")
 	
-
-
 
 	return nil
 }
