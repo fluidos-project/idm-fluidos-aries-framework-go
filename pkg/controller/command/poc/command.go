@@ -459,10 +459,10 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 		logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, errEmptyUrl)
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyUrl))
 	}
-	if request.Frame == nil {
-		logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, errEmptyUrl)
-		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyUrl))
-	}
+	// if request.Frame.data == nil {
+	// 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, errEmptyUrl)
+	// 	return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyUrl))
+	// }
 	//Open wallet
 	var l bytes.Buffer
 	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
@@ -509,36 +509,27 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
 	}
 
-	
-
 
 
 	if err != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("failed to decode stored credential: %w", err))
 	}
 
-	
+	//treatment for selective disclosure frame (query by frame)
+	var rawMessages []json.RawMessage
+	frameBytes, err := json.Marshal(request.QueryByFrame)
+	if err != nil {
+		fmt.Println("Error marshaling Frame:", err)
+	}
+	rawMessages = append(rawMessages, json.RawMessage(frameBytes))
 
-
-	
-	
-
-	// reader, err = getReader(&vcwalletc.ContentQueryRequest{
-	// 	WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-	// 	Query: []*wallet.QueryParams{
-	// 			{
-	// 				Type:  "QueryByFrame",
-	// 				Query: []json.RawMessage{files.SampleFramePsmsFrame},
-	// 			},
-	// 		},
-	// })
 
 	reader, err = getReader(&vcwalletc.ContentQueryRequest{
 	WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
 	Query: []*wallet.QueryParams{
 				{
 					Type:  "QueryByFrame",
-					Query: request.Frame,
+					Query: rawMessages,
 				},
 			},
 	})
@@ -546,14 +537,14 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	var queryResponse bytes.Buffer
 	queryErr := o.vcwalletcommand.Query(&queryResponse, reader)
 	if queryErr != nil {
-		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", queryErr))
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("query response not working: %w", queryErr))
 	}
 
 	var queryParsedResponse vcwalletc.CustomContentQueryResponse
 
 	err = json.Unmarshal(queryResponse.Bytes(), &queryParsedResponse)
 	if err != nil {
-		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("unmarshal not working: %w", err))
 	}
 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "Verifiable Presentation result response without unmarshall: "+queryResponse.String())
 

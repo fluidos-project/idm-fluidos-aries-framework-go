@@ -14,7 +14,7 @@ type PufAuthResult struct {
 	X   string `json:"x,omitempty"`
 }
 
-// Model for newDID method input
+//rModel for newDID method input
 type NewDIDArgs struct {
 	Keys []KeyTypePurpose `json:"keys,omitempty"`
 	Name string           `json:"name,omitempty"`
@@ -26,6 +26,8 @@ type TestingCallResult struct {
 type NewDIDResult struct {
 	DIDDoc json.RawMessage `json:"didDoc,omitempty"`
 }
+
+
 
 // Model keytype/purpose pair
 type KeyTypePurpose struct {
@@ -62,15 +64,51 @@ type IdProof struct {
 // Model for GenerateVP method input
 type GenerateVPArgs struct {
 	CredId string `json:"credId,omitempty"` //TODO UMU: How do we decide which credential is gonna be presented?
-	Frame []json.RawMessage `json:"frame,omitempty"`
+	QueryByFrame QueryByFrame `json:"querybyframe,omitempty"`
 }
 
+
+type RequestBodyVP struct {
+	CredId string `json:"credId,omitempty"`
+	Frame FrameFluidos `json:"querybyframe,omitempty"`
+}
+
+
+type QueryByFrame struct {
+    Frame FrameFluidos `json:"frame,omitempty"`
+}
+
+// type FrameFluidos struct {
+// 	Context           []string `json:"@context,omitempty"`
+// 	Type              []string `json:"type,omitempty"`
+// 	Explicit          bool     `json:"@explicit,omitempty"`
+// 	Identifier        struct{} `json:"identifier,omitempty"`
+// 	Issuer            struct{} `json:"issuer,omitempty"`
+// 	IssuanceDate      struct{} `json:"issuanceDate,omitempty"`
+// 	CredentialSubject struct {
+// 		Explicit   bool     `json:"@explicit,omitempty"`
+// 		HolderRole struct{} `json:"holderRole,omitempty"`
+// 	} `json:"credentialSubject,omitempty"`
+// }
+
+type FrameFluidos struct {
+	Context           []string `json:"@context,omitempty"`
+	Type              []string `json:"type,omitempty"`
+	Explicit          bool     `json:"@explicit,omitempty"`
+	Identifier        struct{} `json:"identifier,omitempty"`
+	Issuer            struct{} `json:"issuer,omitempty"`
+	IssuanceDate      struct{} `json:"issuanceDate,omitempty"`
+	CredentialSubject map[string]interface{} `json:"credentialSubject,omitempty"`
+}
 
 // Model for GenerateVP method output
 type GenerateVPResult struct {
 	Results []*verifiable.Presentation `json:"results"`
 	
 }
+
+
+
 
 type GenerateVPResultCustom struct {
 	Results []*json.RawMessage `json:"results,omitempty"`
