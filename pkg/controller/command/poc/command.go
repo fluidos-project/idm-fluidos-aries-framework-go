@@ -606,7 +606,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	bytearray := []byte(replaceAll)
 	reader, err = getReader(&vcwalletc.VerifyRequest{ // TODO UMU: This should be ProveRequest?
 		WalletAuth:    vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-		RawCredential: bytearray,
+		Presentation: bytearray,
 	})
 	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "what am i verifying? "+replaceAll)
 
