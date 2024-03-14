@@ -105,6 +105,8 @@ func New(vdrcommand *vdrc.Command, vcwalletcommand *vcwalletc.Command) (*Command
 	uid := randStringBytesMaskImprSrcUnsafe(n, src)
 	pass := randStringBytesMaskImprSrcUnsafe(n, src)
 
+	logutil.LogInfo(logger,"poc","New", "uid: "+uid+" pass: "+pass)
+
 	var l bytes.Buffer
 	reader, err := getReader(&vcwalletc.CreateOrUpdateProfileRequest{
 		UserID:             uid,
