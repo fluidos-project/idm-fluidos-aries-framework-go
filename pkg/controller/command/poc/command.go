@@ -12,6 +12,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"runtime"
 
 	"github.com/hyperledger/aries-framework-go/pkg/common/log"
 	//"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc/files"
@@ -92,6 +93,12 @@ type Command struct {
 	idProofValidators []IdProofValidator
 }
 
+
+	var doenrolmentMem = uint64(0)
+	var generateVPMem = uint64(0)
+	var verifyMem = uint64(0)
+
+
 // New returns new poc client controller command instance.
 func New(vdrcommand *vdrc.Command, vcwalletcommand *vcwalletc.Command) (*Command, error) {
 	var idProofValidators []IdProofValidator
@@ -104,6 +111,7 @@ func New(vdrcommand *vdrc.Command, vcwalletcommand *vcwalletc.Command) (*Command
 	n := 12
 	uid := randStringBytesMaskImprSrcUnsafe(n, src)
 	pass := randStringBytesMaskImprSrcUnsafe(n, src)
+
 
 	logutil.LogInfo(logger,"poc","New", "uid: "+uid+" pass: "+pass)
 
@@ -139,24 +147,31 @@ func (o *Command) GetHandlers() []command.Handler {
 	}
 }
 
-// NewDID Generate and register DID for a set of new keys
+// testing call for memory usage
 func (o *Command) TestingCall(rw io.Writer, req io.Reader) command.Error {
 
-
-
-
-
 	//command.WriteNillableResponse(rw, &NewDIDResult{DIDDoc: parsedResponse.DID}, logger)
-	logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "success")
 
 
 	//var err = o.vdrcommand.GetDID(&getResponse, reader)
-	var request TestingCallResult
-	err := json.NewDecoder(req).Decode(&request)
-	if err != nil {
-		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to get DID: "+err.Error())
-		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("retrieve did doc error: %w", err))
+	// var request TestingCallResult
+	// err := json.NewDecoder(req).Decode(&request)
+	// if err != nil {
+	// 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to get DID: "+err.Error())
+	// 	return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("retrieve did doc error: %w", err))
+	// }
+
+	logutil.LogInfo(logger, CommandName, TestingCallMethod, "doenrolmentMem: "+strconv.FormatUint(doenrolmentMem, 10))
+	logutil.LogInfo(logger, CommandName, TestingCallMethod, "generateVPMem: "+strconv.FormatUint(generateVPMem, 10))
+	logutil.LogInfo(logger, CommandName, TestingCallMethod, "verifyMem: "+strconv.FormatUint(verifyMem, 10))
+	testingCallResult := TestingCallResult{
+		DoenrolmentMem: doenrolmentMem,
+		GenerateVPMem: generateVPMem,
+		VerifyMem: verifyMem,
 	}
+	logutil.LogInfo(logger, CommandName, TestingCallMethod, "example : "+ strconv.FormatUint(testingCallResult.DoenrolmentMem, 10))
+	command.WriteNillableResponse(rw, &TestingCallResult{DoenrolmentMem: doenrolmentMem,GenerateVPMem: generateVPMem, VerifyMem: verifyMem}, logger)
+	logutil.LogInfo(logger, CommandName, TestingCallMethod, "success")
 	return nil
 }
 
@@ -329,6 +344,19 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 
 
 
+func getSignedProof()(string) {
+	randomString , err := generateRandomString(15)
+	if err != nil {
+		fmt.Println("Error generating random string:", err)
+		return ""
+	}
+
+
+	
+
+	return randomString
+}
+
 
 // DoDeviceEnrolment Device completes an enrolment process against an issuer
 func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
@@ -345,10 +373,11 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyUrl))
 	}
 
-	if request.TheirDID == "" {
-		logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, errEmptyDID)
-		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyDID))
-	}
+	//theirDID is not mandatory anymore
+	// if request.TheirDID == "" {
+	// 	logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, errEmptyDID)
+	// 	return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyDID))
+	// }
 
 	if request.IdProofs == nil {
 		logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, errEmptyIdProofs)
@@ -356,6 +385,10 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 	}
 
 	identityProods := request.IdProofs
+
+
+
+
 
 	// Do a post for AcceptEnrolmentResult to specified url
 	acceptEnrolmentRequest := AcceptEnrolmentArgs{IdProofs: identityProods}
@@ -370,6 +403,9 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 	resp, err := http.Post(request.Url+"/fluidos/idm/acceptEnrolment", "application/json", bytes.NewBuffer(jsonBody))
 
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	doenrolmentMem = m.Sys
 
 	if err != nil {
 		logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "could not complete AcceptEnrolment POST request")
@@ -541,6 +577,11 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	if queryErr != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("query response not working: %w", queryErr))
 	}
+	
+
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	generateVPMem = m.Sys
 
 	var queryParsedResponse vcwalletc.CustomContentQueryResponse
 
@@ -618,6 +659,9 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	}
 	var l2 bytes.Buffer
 	err = o.vcwalletcommand.Verify(&l2, reader)
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	verifyMem = m.Sys
 	if err != nil {
 		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to verify credential: %w", err))
 	}

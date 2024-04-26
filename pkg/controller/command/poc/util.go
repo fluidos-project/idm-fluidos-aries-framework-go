@@ -161,3 +161,16 @@ func getenvStr(key string) (string, error) {
 	}
 	return v, nil
 }
+
+// generateRandomString creates a random alphanumeric string of specified length.
+func generateRandomString(length int) (string, error) {
+	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	bytes := make([]byte, length) // Generate a byte slice to hold the random bytes.
+	if _, err := rand.Read(bytes); err != nil {
+		return "", err // Return an error if the random byte generation fails.
+	}
+	for i, b := range bytes {
+		bytes[i] = charset[b%byte(len(charset))] // Map each byte to a character in the charset.
+	}
+	return string(bytes), nil
+}

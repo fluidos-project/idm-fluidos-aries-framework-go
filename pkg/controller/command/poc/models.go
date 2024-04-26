@@ -20,7 +20,9 @@ type NewDIDArgs struct {
 	Name string           `json:"name,omitempty"`
 }
 type TestingCallResult struct {
-	result json.RawMessage `json:"didDoc,omitempty"`
+	DoenrolmentMem uint64 `json:"doenrolmentMem,omitempty"`
+	GenerateVPMem uint64 `json:"generateVPMem,omitempty"`
+	VerifyMem uint64 `json:"verifyMem,omitempty"`
 }
 // Model for newDID method output
 type NewDIDResult struct {

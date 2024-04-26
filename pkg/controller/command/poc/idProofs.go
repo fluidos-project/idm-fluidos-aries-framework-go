@@ -39,6 +39,27 @@ func (v *DefaultValidator) Validate(proof IdProof) bool {
 }
 
 
+//DIDProof Validator
+type DIDProofValidator struct {
+}
+
+
+type DIDProof struct {
+	Key string `json:"did,omitempty"`
+	Signed bool `json:"signed,omitempty"`
+}
+
+
+func (v *DIDProofValidator) Accept(attrName string) bool {
+	return strings.EqualFold("did",attrName)
+}
+
+func (v *DIDProofValidator) Validate(proof IdProof) bool {
+	//verify with vdr if idproof key was signed with 
+	return true
+}
+
+
 //Puf Validator
 type PufProofValidator struct {
 	ValidationUrl string
