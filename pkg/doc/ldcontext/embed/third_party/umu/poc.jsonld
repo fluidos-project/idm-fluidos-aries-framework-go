@@ -18,6 +18,7 @@
       "holderEmail": "ex:holderEmail",  
       "ou": "ex:ou",
       "physicalAddress": "ex:physicalAddress",
+      "DID":"ex:DID",
       "macAddress": "ex:macAddress",
       "registrationDate": "ex:registrationDate",
       "orgIdentifier": "ex:orgIdentifier",

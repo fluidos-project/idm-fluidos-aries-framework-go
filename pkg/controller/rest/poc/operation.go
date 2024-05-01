@@ -10,10 +10,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc"
+	poc"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc"
 	vcwalletc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vcwallet"
 	vdrc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vdr"
-
 	"github.com/hyperledger/aries-framework-go/pkg/controller/internal/cmdutil"
 	"github.com/hyperledger/aries-framework-go/pkg/controller/rest"
 )
@@ -28,6 +27,8 @@ const (
 	VerifyCredentialPath      = PocOperationID + "/verifyCredential"
 	TestingCallPath     	  = PocOperationID + "/testingCall"
 )
+
+
 
 // Operation contains basic common operations provided by controller REST API.
 type Operation struct {

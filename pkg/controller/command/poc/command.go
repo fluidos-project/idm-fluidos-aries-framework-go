@@ -75,7 +75,7 @@ const (
 
 // provider contains dependencies for the vdr controller command operations
 // and is typically created by using aries.Context().
-type provider interface {
+type Provider interface {
 	StorageProvider() storage.Provider
 	VDRegistry() vdr.Registry
 	Crypto() crypto.Crypto
@@ -90,7 +90,10 @@ type Command struct {
 	walletuid       string
 	walletpass      string
 	currentDID      string //TODO UMU For retrieval of device DIDdoc, think about better implementation
+	currentKeyPair  vcwalletc.CreateKeyPairResponse
 	idProofValidators []IdProofValidator
+	ctx            Provider
+	
 }
 
 
@@ -98,6 +101,8 @@ type Command struct {
 	var generateVPMem = uint64(0)
 	var verifyMem = uint64(0)
 
+
+	
 
 // New returns new poc client controller command instance.
 func New(vdrcommand *vdrc.Command, vcwalletcommand *vcwalletc.Command) (*Command, error) {
@@ -279,6 +284,7 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 		case "Authentication":
 			doc.Authentication = append(doc.Authentication, did.Verification{VerificationMethod: verificationMethod,
 				Relationship: did.Authentication})
+			o.currentKeyPair = parsedResponse
 		case "CapabilityDelegation":
 			doc.CapabilityDelegation = append(doc.CapabilityDelegation, did.Verification{VerificationMethod: verificationMethod,
 				Relationship: did.CapabilityDelegation})
@@ -288,6 +294,7 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 		default: //If nothing we assume authentication
 			doc.Authentication = append(doc.AssertionMethod, did.Verification{VerificationMethod: verificationMethod,
 				Relationship: did.Authentication})
+			o.currentKeyPair = parsedResponse
 		}
 	}
 	now := time.Now()
@@ -339,24 +346,129 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 	// finished
 	command.WriteNillableResponse(rw, &NewDIDResult{DIDDoc: parsedResponse.DID}, logger)
 	logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "success")
+	//testing
+	o.signJWT(token)
 	return nil
 }
 
 
 
-func getSignedProof()(string) {
+
+func (o * Command) getSignedProof()(string) {
 	randomString , err := generateRandomString(15)
 	if err != nil {
 		fmt.Println("Error generating random string:", err)
 		return ""
 	}
 
+	//Get DID/DIDDoc for specifying key, issuer...
+	// reader, err := getReader(&vdrc.IDArg{
+	// 	ID: o.currentDID,
+	// })
+	// var getResponse bytes.Buffer
+	// err = o.vdrcommand.GetDID(&getResponse, reader)
+	// if err != nil {
+	// 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to get DID: "+err.Error())
+	// }
+	// var parsedDoc vdrc.Document
+	// err = json.NewDecoder(&getResponse).Decode(&parsedDoc)
+	// if err != nil {
+	// 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to decode DID Document: "+err.Error())
+	// }
+	// didDoc, err := did.ParseDocument(parsedDoc.DID)
+	// if err != nil {
+	// 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to parse DID Document: "+err.Error())
+	// }
+	// fmt.Println("DID:", didDoc.ID)
 
-	
 
+	message := []byte(randomString)
+
+	cryptoService := o.ctx.Crypto()
+	// Sign a random string
+	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "keypairKEYID "+o.currentKeyPair.KeyID)
+	signature, err := cryptoService.Sign(message, o.currentKeyPair.KeyID)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to sign message: "+err.Error())
+	}
+
+	fmt.Println("Signature:", signature)
+
+	// Verify the signature
+	valid := cryptoService.Verify(signature,message, o.currentKeyPair.PublicKey)
+	if valid == nil {
+		fmt.Println("Signature verification successful!")
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "Signature verification successful!")
+	} else {
+		fmt.Println("Signature verification failed.")
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "Signature verification failed.")
+	}
 	return randomString
 }
 
+func (o * Command) signJWT(token string)(string) {
+	randomString , err := generateRandomString(15)
+	if err != nil {
+		fmt.Println("Error generating random string:", err)
+		return ""
+	}
+	 
+	request := vcwalletc.SignJWTRequest{
+        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+        Headers: nil,
+        Claims: map[string]interface{}{
+            "attrName":   "DID",
+			"attrValue": o.currentDID,
+        },
+        KID: o.currentDID+"#"+o.currentKeyPair.KeyID,
+    }
+
+	reqData, err := json.Marshal(request)
+    if err != nil {
+        logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to marshal request: "+err.Error())
+    }
+    req := bytes.NewReader(reqData)
+	// Capture the output
+    var signBuf bytes.Buffer
+
+    // Sign the JWT
+    if err := o.vcwalletcommand.SignJWT(&signBuf, req); err != nil {
+        logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to sign JWT: "+err.Error())
+    }
+
+
+	var jwtResponse vcwalletc.SignJWTResponse
+
+	err = json.Unmarshal(signBuf.Bytes(), &jwtResponse)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to unmarshal JWT: "+err.Error())
+	}
+
+
+
+
+   	signedJWT := jwtResponse.JWT
+    fmt.Println("Signed JWT:", signedJWT)
+
+
+	// Verify JWT
+    verifyReq := &vcwalletc.VerifyJWTRequest{
+        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+        JWT: signedJWT,
+    }
+
+    verifyReqBytes, _ := json.Marshal(verifyReq)
+    verifyReqReader := bytes.NewReader(verifyReqBytes)
+    var verifyBuf bytes.Buffer
+
+    err = o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
+    if err != nil {
+        logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to verify JWT: "+err.Error())
+    }
+    fmt.Println("Verification result:", verifyBuf.String())
+
+	return randomString
+}
 
 // DoDeviceEnrolment Device completes an enrolment process against an issuer
 func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
