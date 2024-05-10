@@ -33,6 +33,19 @@ services:
     networks:
       - test
 
+  third:
+    container_name: third-swagger
+    image: swaggerapi/swagger-ui
+    environment:
+      - SWAGGER_JSON=/specs/openapi-${THIRD_API_HOST}.yml
+      - BASE_URL=/openapi
+    ports:
+      - 7089:8080
+    volumes:
+      - ./specs:/specs
+    networks:
+      - test
+
  
 networks:
   test:

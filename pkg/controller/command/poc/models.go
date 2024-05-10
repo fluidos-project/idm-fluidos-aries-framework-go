@@ -138,3 +138,12 @@ type VerifyCredentialResult struct {
 
 	Error string `json:"error,omitempty"`
 }
+
+type GetTrustedIssuerListResult struct	{
+	TrustedIssuers []TrustedIssuer `json:"trustedIssuers,omitempty"`
+}
+
+type TrustedIssuer struct {
+	DID string `json:"did,omitempty"`
+	IssuerUrl string `json:"issuerUrl,omitempty"`
+}

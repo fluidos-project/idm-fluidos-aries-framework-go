@@ -13,6 +13,8 @@
       "phone": "ex:phone",
       "holderRole": "ex:holderRole",
       "fluidosRole": "ex:fluidosRole",
+      "association": "ex:association",
+      "deviceType": "ex:deviceType",
       "fluidosID": "ex:fluidosID",
       "holderAddress": "ex:holderAddress",
       "holderEmail": "ex:holderEmail",  

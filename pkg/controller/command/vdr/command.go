@@ -39,6 +39,9 @@ const (
 
 	// CreateDIDErrorCode for create did error.
 	CreateDIDErrorCode
+
+	//GetTrustedIssuerListCode
+	GetTrustedIssuerListCode
 )
 
 // constants for the VDR controller's methods.
@@ -52,6 +55,7 @@ const (
 	GetDIDCommandMethod     = "GetDID"
 	ResolveDIDCommandMethod = "ResolveDID"
 	CreateDIDCommandMethod  = "CreateDID"
+	GetTrustedIssuerList = "GetTrustedIssuerList"
 
 	// error messages.
 	errEmptyDIDName   = "name is mandatory"
@@ -96,6 +100,7 @@ func (o *Command) GetHandlers() []command.Handler {
 		cmdutil.NewCommandHandler(CommandName, GetDIDsCommandMethod, o.GetDIDRecords),
 		cmdutil.NewCommandHandler(CommandName, ResolveDIDCommandMethod, o.ResolveDID),
 		cmdutil.NewCommandHandler(CommandName, CreateDIDCommandMethod, o.CreateDID),
+		cmdutil.NewCommandHandler(CommandName, GetTrustedIssuerList, o.GetTrustedIssuerList),
 	}
 }
 
@@ -283,5 +288,10 @@ func (o *Command) GetDIDRecords(rw io.Writer, req io.Reader) command.Error {
 
 	logutil.LogDebug(logger, CommandName, GetDIDsCommandMethod, "success")
 
+	return nil
+}
+
+// GetTrustedIssuerList retrieves the trusted issuer list.
+func (o *Command) GetTrustedIssuerList(rw io.Writer, req io.Reader) command.Error {
 	return nil
 }

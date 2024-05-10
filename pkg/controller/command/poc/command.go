@@ -44,6 +44,7 @@ const (
 	VerifyCredentialRequestErrorCode
 	AcceptEnrolmentRequestErrorCode
 	TestingCallRequestErrorCode
+	GetTrustedIssuerListrRequestErrorCode
 )
 
 // constants for the VDR controller's methods.
@@ -56,8 +57,9 @@ const (
 	DoDeviceEnrolmentCommandMethod = "DoDeviceEnrolment"
 	GenerateVPCommandMethod        = "GenerateVP"
 	AcceptEnrolmentCommandMethod   = "AcceptEnrolment"
-	VerifyCredentialCommandMethod  = "ValidateVP" // TODO UMU: remove TESTING
+	VerifyCredentialCommandMethod  = "ValidateVP" 
 	TestingCallMethod		       = "TestingCall"
+	GetTrustedIssuerListMethod     = "GetTrustedIssuerList"
 	// error messages.
 	errEmptyNewDID   = "keys is mandatory"
 	errEmptyUrl      = "url is mandatory"
@@ -149,6 +151,8 @@ func (o *Command) GetHandlers() []command.Handler {
 		cmdutil.NewCommandHandler(CommandName, GenerateVPCommandMethod, o.GenerateVP),
 		cmdutil.NewCommandHandler(CommandName, AcceptEnrolmentCommandMethod, o.AcceptEnrolment),
 		cmdutil.NewCommandHandler(CommandName, TestingCallMethod, o.TestingCall),
+		cmdutil.NewCommandHandler(CommandName, VerifyCredentialCommandMethod, o.VerifyCredential),
+		cmdutil.NewCommandHandler(CommandName, GetTrustedIssuerListMethod, o.GetTrustedIssuerList),
 	}
 }
 
@@ -353,65 +357,7 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 
 
 
-
-func (o * Command) getSignedProof()(string) {
-	randomString , err := generateRandomString(15)
-	if err != nil {
-		fmt.Println("Error generating random string:", err)
-		return ""
-	}
-
-	//Get DID/DIDDoc for specifying key, issuer...
-	// reader, err := getReader(&vdrc.IDArg{
-	// 	ID: o.currentDID,
-	// })
-	// var getResponse bytes.Buffer
-	// err = o.vdrcommand.GetDID(&getResponse, reader)
-	// if err != nil {
-	// 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to get DID: "+err.Error())
-	// }
-	// var parsedDoc vdrc.Document
-	// err = json.NewDecoder(&getResponse).Decode(&parsedDoc)
-	// if err != nil {
-	// 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to decode DID Document: "+err.Error())
-	// }
-	// didDoc, err := did.ParseDocument(parsedDoc.DID)
-	// if err != nil {
-	// 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to parse DID Document: "+err.Error())
-	// }
-	// fmt.Println("DID:", didDoc.ID)
-
-
-	message := []byte(randomString)
-
-	cryptoService := o.ctx.Crypto()
-	// Sign a random string
-	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "keypairKEYID "+o.currentKeyPair.KeyID)
-	signature, err := cryptoService.Sign(message, o.currentKeyPair.KeyID)
-	if err != nil {
-		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to sign message: "+err.Error())
-	}
-
-	fmt.Println("Signature:", signature)
-
-	// Verify the signature
-	valid := cryptoService.Verify(signature,message, o.currentKeyPair.PublicKey)
-	if valid == nil {
-		fmt.Println("Signature verification successful!")
-		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "Signature verification successful!")
-	} else {
-		fmt.Println("Signature verification failed.")
-		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "Signature verification failed.")
-	}
-	return randomString
-}
-
-func (o * Command) signJWT(token string)(string) {
-	randomString , err := generateRandomString(15)
-	if err != nil {
-		fmt.Println("Error generating random string:", err)
-		return ""
-	}
+func (o * Command) signJWT(token string) {
 	 
 	request := vcwalletc.SignJWTRequest{
         WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
@@ -425,7 +371,7 @@ func (o * Command) signJWT(token string)(string) {
 
 	reqData, err := json.Marshal(request)
     if err != nil {
-        logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to marshal request: "+err.Error())
+        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
     }
     req := bytes.NewReader(reqData)
 	// Capture the output
@@ -433,7 +379,7 @@ func (o * Command) signJWT(token string)(string) {
 
     // Sign the JWT
     if err := o.vcwalletcommand.SignJWT(&signBuf, req); err != nil {
-        logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to sign JWT: "+err.Error())
+        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
     }
 
 
@@ -441,7 +387,7 @@ func (o * Command) signJWT(token string)(string) {
 
 	err = json.Unmarshal(signBuf.Bytes(), &jwtResponse)
 	if err != nil {
-		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to unmarshal JWT: "+err.Error())
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
 	}
 
 
@@ -463,11 +409,9 @@ func (o * Command) signJWT(token string)(string) {
 
     err = o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
     if err != nil {
-        logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to verify JWT: "+err.Error())
+        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to verify JWT: "+err.Error())
     }
     fmt.Println("Verification result:", verifyBuf.String())
-
-	return randomString
 }
 
 // DoDeviceEnrolment Device completes an enrolment process against an issuer
@@ -926,5 +870,24 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 	//Return result
 	command.WriteNillableResponse(rw, &parsedResponse, logger)
 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "success")
+	return nil
+}
+
+// GetTrustedIssuerList returns the list of trusted issuers, mocked for nowq
+func (o *Command) GetTrustedIssuerList(rw io.Writer, req io.Reader) command.Error {
+	//TODO UMU: Implement
+	trustedIssuer := TrustedIssuer{
+		DID : "did:fabric:zxdkpwDnu7ixBidF_I8sgMI6Q4St0t90HY-_JmlHZFI",
+		IssuerUrl : "https://issuer:9082",
+	}
+	var trustedIssuerList []TrustedIssuer
+	trustedIssuerList = append(trustedIssuerList, trustedIssuer)
+
+	var trustedIssuerListResponse = GetTrustedIssuerListResult{
+		TrustedIssuers: trustedIssuerList,
+
+	}
+
+	command.WriteNillableResponse(rw, &trustedIssuerListResponse, logger)
 	return nil
 }

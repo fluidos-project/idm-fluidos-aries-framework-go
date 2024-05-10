@@ -26,6 +26,7 @@ const (
 	AcceptDeviceEnrolmentPath = PocOperationID + "/acceptEnrolment"
 	VerifyCredentialPath      = PocOperationID + "/verifyCredential"
 	TestingCallPath     	  = PocOperationID + "/testingCall"
+	GetTrustedIssuerListPath  = PocOperationID + "/trustedIssuers"
 )
 
 
@@ -66,6 +67,7 @@ func (o *Operation) registerHandler() {
 		cmdutil.NewHTTPHandler(AcceptDeviceEnrolmentPath, http.MethodPost, o.AcceptDeviceEnrolment),
 		cmdutil.NewHTTPHandler(VerifyCredentialPath, http.MethodPost, o.VerifyCredential),
 		cmdutil.NewHTTPHandler(TestingCallPath, http.MethodPost, o.TestingCall),
+		cmdutil.NewHTTPHandler(GetTrustedIssuerListPath, http.MethodGet, o.GetTrustedIssuerList),
 	}
 }
 
@@ -129,4 +131,15 @@ func (o *Operation) VerifyCredential(rw http.ResponseWriter, req *http.Request) 
 
 func (o *Operation) TestingCall(rw http.ResponseWriter, req *http.Request) {
 	rest.Execute(o.command.TestingCall, rw, req.Body)
+}
+
+// GetTrustedIssuerList swagger:route GET /poc/trustedIssuers poc GetTrustedIssuerListReq
+//
+// Get the list of trusted issuers
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) GetTrustedIssuerList(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.GetTrustedIssuerList, rw, req.Body)
 }
