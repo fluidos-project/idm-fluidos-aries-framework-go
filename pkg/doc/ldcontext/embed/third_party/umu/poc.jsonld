@@ -15,6 +15,7 @@
       "fluidosRole": "ex:fluidosRole",
       "association": "ex:association",
       "deviceType": "ex:deviceType",
+      "deviceName": "ex:deviceName",
       "fluidosID": "ex:fluidosID",
       "holderAddress": "ex:holderAddress",
       "holderEmail": "ex:holderEmail",  
@@ -32,7 +33,9 @@
       "state": "ex:state",
       "province": "ex:province",
       "country": "ex:country",
-      "dn": "ex:dn"
+      "dn": "ex:dn",
+      "flavourList": "ex:flavourList",
+      "aggregator": "ex:aggregator"
     }
   ]
 }

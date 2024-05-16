@@ -56,6 +56,7 @@ const (
 	NewDIDCommandMethod            = "NewDID"
 	DoDeviceEnrolmentCommandMethod = "DoDeviceEnrolment"
 	GenerateVPCommandMethod        = "GenerateVP"
+	GetVCredentialCommandMethod    = "GetVCredential"
 	AcceptEnrolmentCommandMethod   = "AcceptEnrolment"
 	VerifyCredentialCommandMethod  = "ValidateVP" 
 	TestingCallMethod		       = "TestingCall"
@@ -65,6 +66,8 @@ const (
 	errEmptyUrl      = "url is mandatory"
 	errEmptyDID      = "theirDid is mandatory"
 	errEmptyIdProofs = "idProofs is mandatory"
+	erremptyCredId   = "credId is mandatory"
+	errEmptyQueryByFrame    = "querybyframe is mandatory"
 
 	// log constants.
 	didID = "did"
@@ -237,6 +240,18 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 			logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "invalid key type")
 			return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("invalid key type"))
 		}
+		//parse number of keypurpose.keytype.Attrs for increment in 1
+		if(len(keyPurpose.KeyType.Attrs)> 0){
+			nAttrs := keyPurpose.KeyType.Attrs[0]
+			nAug,err := strconv.Atoi(nAttrs)
+			if err != nil {
+				logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "parse number of key purpose key type attrs error")
+				return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("parse number of key purpose key type attrs error: %w", err))
+			}
+			nAug = nAug + 1
+			newAttrNumber := strconv.Itoa(nAug)
+			keyPurpose.KeyType.Attrs[0] = newAttrNumber
+		}
 		reader, err = getReader(&vcwalletc.CreateKeyPairRequest{
 			KeyType:    kt,
 			WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
@@ -351,13 +366,12 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 	command.WriteNillableResponse(rw, &NewDIDResult{DIDDoc: parsedResponse.DID}, logger)
 	logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "success")
 	//testing
-	o.signJWT(token)
 	return nil
 }
 
 
 
-func (o * Command) signJWT(token string) {
+func (o *Command) signJWT(token string) string {
 	 
 	request := vcwalletc.SignJWTRequest{
         WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
@@ -396,9 +410,29 @@ func (o * Command) signJWT(token string) {
    	signedJWT := jwtResponse.JWT
     fmt.Println("Signed JWT:", signedJWT)
 
+	// Verify JWT
+    // verifyReq := &vcwalletc.VerifyJWTRequest{
+    //     WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+    //     JWT: signedJWT,
+    // }
+
+    // verifyReqBytes, _ := json.Marshal(verifyReq)
+    // verifyReqReader := bytes.NewReader(verifyReqBytes)
+    // var verifyBuf bytes.Buffer
+
+    // err = o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
+    // if err != nil {
+    //     logutil.LogInfo(logger, CommandName, "SignJWT", "failed to verify JWT: "+err.Error())
+    // }
+    // fmt.Println("Verification result:", verifyBuf.String())
+	return signedJWT
+}
+
+//verifyJWT
+func (o * Command) verifyJWT(token string, signedJWT string) bool {
 
 	// Verify JWT
-    verifyReq := &vcwalletc.VerifyJWTRequest{
+	verifyReq := &vcwalletc.VerifyJWTRequest{
         WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
         JWT: signedJWT,
     }
@@ -407,12 +441,25 @@ func (o * Command) signJWT(token string) {
     verifyReqReader := bytes.NewReader(verifyReqBytes)
     var verifyBuf bytes.Buffer
 
-    err = o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
+    err := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
     if err != nil {
         logutil.LogInfo(logger, CommandName, "SignJWT", "failed to verify JWT: "+err.Error())
     }
     fmt.Println("Verification result:", verifyBuf.String())
+	//wrapp verifyBuf in VerifyJWTResponse
+
+		var jwtVerifyResponse vcwalletc.VerifyJWTResponse
+
+	errResp := json.Unmarshal(verifyBuf.Bytes(), &jwtVerifyResponse)
+	if errResp != nil {
+		logutil.LogInfo(logger, CommandName, "VerifyJWT", "failed to unmarshal JWT Verify Response: "+err.Error())
+	}
+
+   	isVerified := jwtVerifyResponse.Verified
+    return isVerified
+
 }
+
 
 // DoDeviceEnrolment Device completes an enrolment process against an issuer
 func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
@@ -442,9 +489,41 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 
 	identityProods := request.IdProofs
 
+	//add current did to idProofs and sign with DID proofData with signJWT function
+
+	//Open wallet
+	var l bytes.Buffer
+	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
+		UserID:             o.walletuid,
+		LocalKMSPassphrase: o.walletpass,
+	})
+	if err != nil {
+		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	err = o.vcwalletcommand.Open(&l, reader)
+	if err != nil {
+		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	token := getUnlockToken(l)
+	if token == "" {
+		logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "could not get unlock token (empty token)")
+		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
+	}
+	//Defer close wallet
+	defer func() {
+		var l2 bytes.Buffer
+		reader, err = getReader(&vcwalletc.LockWalletRequest{
+			UserID: o.walletuid,
+		})
+		err = o.vcwalletcommand.Close(&l2, reader)
+		//TODO UMU See how to treat errors in this case
+	}()
 
 
 
+	//proofData := o.signJWT(token)
+	//proofDataBytes := json.RawMessage(proofData)
+	identityProods = append(identityProods, IdProof{AttrName: "DID", AttrValue: o.currentDID})
 
 	// Do a post for AcceptEnrolmentResult to specified url
 	acceptEnrolmentRequest := AcceptEnrolmentArgs{IdProofs: identityProods}
@@ -478,33 +557,7 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("credential issuance was not completed: %s", res))
 	}
 
-	//Open wallet
-	var l bytes.Buffer
-	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
-		UserID:             o.walletuid,
-		LocalKMSPassphrase: o.walletpass,
-	})
-	if err != nil {
-		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
-	}
-	err = o.vcwalletcommand.Open(&l, reader)
-	if err != nil {
-		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
-	}
-	token := getUnlockToken(l)
-	if token == "" {
-		logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "could not get unlock token (empty token)")
-		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
-	}
-	//Defer close wallet
-	defer func() {
-		var l2 bytes.Buffer
-		reader, err = getReader(&vcwalletc.LockWalletRequest{
-			UserID: o.walletuid,
-		})
-		err = o.vcwalletcommand.Close(&l2, reader)
-		//TODO UMU See how to treat errors in this case
-	}()
+	
 	//Store cred in wallet
 	serialCred, err := res.Credential.MarshalJSON()
 
@@ -538,6 +591,73 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 }
 
 
+func (o *Command) GetVCredential(rw io.Writer, req io.Reader) command.Error{
+	var request GetVCredentialArgs
+	err := json.NewDecoder(req).Decode(&request)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, GetVCredentialCommandMethod, err.Error())
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
+	}
+	if request.CredId == "" {
+		logutil.LogInfo(logger, CommandName, GetVCredentialCommandMethod, erremptyCredId)
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(erremptyCredId ))
+	}
+	//Open wallet
+	var l bytes.Buffer
+	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
+		UserID:             o.walletuid,
+		LocalKMSPassphrase: o.walletpass,
+	})
+	if err != nil {
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	err = o.vcwalletcommand.Open(&l, reader)
+	if err != nil {
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	token := getUnlockToken(l)
+	if token == "" {
+		logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "failed to get unlock token (empty token)")
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
+	}
+	//Defer close wallet
+	defer func() {
+		var l2 bytes.Buffer
+		reader, err = getReader(&vcwalletc.LockWalletRequest{
+			UserID: o.walletuid,
+		})
+		err = o.vcwalletcommand.Close(&l2, reader)
+	}()
+	//Get stored credential from Id
+	//var credID = request.CredId
+	reader, err = getReader(&vcwalletc.GetContentRequest{
+		ContentID:   request.CredId,
+		ContentType: wallet.Credential,
+		WalletAuth:  vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+	})
+
+
+	var getResponse bytes.Buffer
+	err = o.vcwalletcommand.Get(&getResponse, reader)
+	if err != nil {
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
+	}
+	var parsedResponse vcwalletc.GetContentResponse
+	err = json.NewDecoder(&getResponse).Decode(&parsedResponse)
+	if err != nil {
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
+	}
+
+
+
+	if err != nil {
+		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("failed to decode stored credential: %w", err))
+	}
+
+	command.WriteNillableResponse(rw, &GetVCredentialResult{parsedResponse.Content}, logger)
+	return nil
+}
+
 // GenerateVP Device generates VPresentation (or VCredential for now) for an authorization process
 func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	//TODO UMU For now we use ContentId, but we should do it through query or similar and might even be simpler
@@ -549,14 +669,15 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 		logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, err.Error())
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
 	}
-	if request.CredId == "" {
-		logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, errEmptyUrl)
-		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyUrl))
-	}
-	// if request.Frame.data == nil {
+	// if request.CredId == "" {
 	// 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, errEmptyUrl)
-	// 	return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyUrl))
+	// 	return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(erremptyCredId))
 	// }
+	// if request.QueryByFrame == nil {
+	// 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, errEmptyUrl)
+	// 	return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyQueryByFrame))
+	// }
+
 	//Open wallet
 	var l bytes.Buffer
 	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
@@ -873,7 +994,7 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 	return nil
 }
 
-// GetTrustedIssuerList returns the list of trusted issuers, mocked for nowq
+// GetTrustedIssuerList returns the list of trusted issuers, mocked for now
 func (o *Command) GetTrustedIssuerList(rw io.Writer, req io.Reader) command.Error {
 	//TODO UMU: Implement
 	trustedIssuer := TrustedIssuer{

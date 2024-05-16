@@ -69,6 +69,10 @@ type GenerateVPArgs struct {
 	QueryByFrame QueryByFrame `json:"querybyframe,omitempty"`
 }
 
+// Model for GetVCredential method input
+type GetVCredentialArgs struct {
+	CredId string `json:"credId,omitempty"`
+}
 
 type RequestBodyVP struct {
 	CredId string `json:"credId,omitempty"`
@@ -115,6 +119,10 @@ type GenerateVPResult struct {
 type GenerateVPResultCustom struct {
 	Results []*json.RawMessage `json:"results,omitempty"`
 	
+}
+
+type GetVCredentialResult struct {
+	Credential json.RawMessage `json:"credential,omitempty"`
 }
 
 // Model for AcceptEnrolment method input
