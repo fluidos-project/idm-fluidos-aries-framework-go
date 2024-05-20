@@ -9,11 +9,19 @@
       "schema": "https://schema.org/",
       "FluidosCredential": "ex:Credential",
       "holderName": "ex:holderName",
+      "name": "ex:name",
+      "phone": "ex:phone",
       "holderRole": "ex:holderRole",
+      "fluidosRole": "ex:fluidosRole",
+      "association": "ex:association",
+      "deviceType": "ex:deviceType",
+      "deviceName": "ex:deviceName",
+      "fluidosID": "ex:fluidosID",
       "holderAddress": "ex:holderAddress",
       "holderEmail": "ex:holderEmail",  
       "ou": "ex:ou",
       "physicalAddress": "ex:physicalAddress",
+      "DID":"ex:DID",
       "macAddress": "ex:macAddress",
       "registrationDate": "ex:registrationDate",
       "orgIdentifier": "ex:orgIdentifier",
@@ -25,7 +33,9 @@
       "state": "ex:state",
       "province": "ex:province",
       "country": "ex:country",
-      "dn": "ex:dn"
+      "dn": "ex:dn",
+      "flavourList": "ex:flavourList",
+      "aggregator": "ex:aggregator"
     }
   ]
 }

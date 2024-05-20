@@ -20,7 +20,9 @@ type NewDIDArgs struct {
 	Name string           `json:"name,omitempty"`
 }
 type TestingCallResult struct {
-	result json.RawMessage `json:"didDoc,omitempty"`
+	DoenrolmentMem uint64 `json:"doenrolmentMem,omitempty"`
+	GenerateVPMem uint64 `json:"generateVPMem,omitempty"`
+	VerifyMem uint64 `json:"verifyMem,omitempty"`
 }
 // Model for newDID method output
 type NewDIDResult struct {
@@ -67,6 +69,10 @@ type GenerateVPArgs struct {
 	QueryByFrame QueryByFrame `json:"querybyframe,omitempty"`
 }
 
+// Model for GetVCredential method input
+type GetVCredentialArgs struct {
+	CredId string `json:"credId,omitempty"`
+}
 
 type RequestBodyVP struct {
 	CredId string `json:"credId,omitempty"`
@@ -115,6 +121,10 @@ type GenerateVPResultCustom struct {
 	
 }
 
+type GetVCredentialResult struct {
+	Credential json.RawMessage `json:"credential,omitempty"`
+}
+
 // Model for AcceptEnrolment method input
 type AcceptEnrolmentArgs struct {
 	IdProofs []IdProof `json:"idProofs,omitempty"`
@@ -135,4 +145,13 @@ type VerifyCredentialResult struct {
 	Result bool `json:"result,omitempty"`
 
 	Error string `json:"error,omitempty"`
+}
+
+type GetTrustedIssuerListResult struct	{
+	TrustedIssuers []TrustedIssuer `json:"trustedIssuers,omitempty"`
+}
+
+type TrustedIssuer struct {
+	DID string `json:"did,omitempty"`
+	IssuerUrl string `json:"issuerUrl,omitempty"`
 }

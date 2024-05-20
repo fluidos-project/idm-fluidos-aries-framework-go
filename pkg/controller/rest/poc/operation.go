@@ -10,10 +10,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc"
+	poc"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc"
 	vcwalletc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vcwallet"
 	vdrc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vdr"
-
 	"github.com/hyperledger/aries-framework-go/pkg/controller/internal/cmdutil"
 	"github.com/hyperledger/aries-framework-go/pkg/controller/rest"
 )
@@ -27,7 +26,10 @@ const (
 	AcceptDeviceEnrolmentPath = PocOperationID + "/acceptEnrolment"
 	VerifyCredentialPath      = PocOperationID + "/verifyCredential"
 	TestingCallPath     	  = PocOperationID + "/testingCall"
+	GetTrustedIssuerListPath  = PocOperationID + "/trustedIssuers"
 )
+
+
 
 // Operation contains basic common operations provided by controller REST API.
 type Operation struct {
@@ -65,10 +67,11 @@ func (o *Operation) registerHandler() {
 		cmdutil.NewHTTPHandler(AcceptDeviceEnrolmentPath, http.MethodPost, o.AcceptDeviceEnrolment),
 		cmdutil.NewHTTPHandler(VerifyCredentialPath, http.MethodPost, o.VerifyCredential),
 		cmdutil.NewHTTPHandler(TestingCallPath, http.MethodPost, o.TestingCall),
+		cmdutil.NewHTTPHandler(GetTrustedIssuerListPath, http.MethodGet, o.GetTrustedIssuerList),
 	}
 }
 
-// NewDID swagger:route POST /poc/newDID poc newDIDReq
+// NewDID swagger:route POST /fluidos/idm/generateDID poc newDIDReq
 //
 // Create DID with keys/purposes as specified in request
 //
@@ -79,7 +82,7 @@ func (o *Operation) NewDID(rw http.ResponseWriter, req *http.Request) {
 	rest.Execute(o.command.NewDID, rw, req.Body)
 }
 
-// DoDeviceEnrolment swagger:route POST /poc/doDeviceEnrolment poc DoDeviceEnrolmentReq
+// DoEnrolment swagger:route POST /fluidos/idm/doEnrolment poc DoDeviceEnrolmentReq
 //
 // Do an enrolment process against the issuer, obtaining a new credential
 //
@@ -90,7 +93,7 @@ func (o *Operation) DoDeviceEnrolment(rw http.ResponseWriter, req *http.Request)
 	rest.Execute(o.command.DoDeviceEnrolment, rw, req.Body)
 }
 
-// GenerateVp swagger:route POST /poc/generateVp poc GenerateVpReq
+// GenerateVp swagger:route POST /fluidos/idm/generateVp poc GenerateVpReq
 //
 // Generate a VPresentation (for now VCredential?) for an authorization process
 //
@@ -101,7 +104,7 @@ func (o *Operation) GenerateVp(rw http.ResponseWriter, req *http.Request) {
 	rest.Execute(o.command.GenerateVP, rw, req.Body)
 }
 
-// AcceptDeviceEnrolment swagger:route POST /poc/acceptDeviceEnrolment poc AcceptDeviceEnrolmentReq
+// AcceptDeviceEnrolment swagger:route POST /fluidos/idm/acceptEnrolment poc AcceptDeviceEnrolmentReq
 //
 // Accepts enrolment requests, and if successful generates a Verifiable Credential for the enrolled device
 //
@@ -112,7 +115,7 @@ func (o *Operation) AcceptDeviceEnrolment(rw http.ResponseWriter, req *http.Requ
 	rest.Execute(o.command.AcceptEnrolment, rw, req.Body)
 }
 
-// VerifyCredential swagger:route POST /poc/VerifyCredential poc VerifyCredentialReq
+// VerifyCredential swagger:route POST /fluidos/idm/VerifyCredential poc VerifyCredentialReq
 //
 // Verify a Verifiable Credential, returns boolean of the verification result
 //
@@ -128,4 +131,15 @@ func (o *Operation) VerifyCredential(rw http.ResponseWriter, req *http.Request) 
 
 func (o *Operation) TestingCall(rw http.ResponseWriter, req *http.Request) {
 	rest.Execute(o.command.TestingCall, rw, req.Body)
+}
+
+// GetTrustedIssuerList swagger:route GET /fluidos/idm/trustedIssuers poc GetTrustedIssuerListReq
+//
+// Get the list of trusted issuers
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) GetTrustedIssuerList(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.GetTrustedIssuerList, rw, req.Body)
 }
