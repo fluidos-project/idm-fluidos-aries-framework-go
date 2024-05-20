@@ -73,11 +73,11 @@ Open a browser and go to http://localhost:8089/openapi or http://localhost:9089/
 ### FLUIDOS iDM POC Calls
 
 ```
-/poc/VerifyCredential
-/poc/acceptDeviceEnrolment
-/poc/doDeviceEnrolment
-/poc/generateVp
-/poc/newDID
+/fluidos/idm/VerifyCredential
+/fluidos/idm/acceptDeviceEnrolment
+/fluidos/idm/doDeviceEnrolment
+/fluidos/idm/generateVp
+/fluidos/idm/newDID
 ```
 
 
