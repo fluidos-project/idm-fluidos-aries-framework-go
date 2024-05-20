@@ -9,6 +9,14 @@ Aries Agent with modification for:
 - iDM-poc for FLUIDOS
 
 ## Requisites
+
+- Go(last check with version 1.19.8)
+
+```
+apt-get install go
+```
+
+
 - Docker-compose 1.28.5+
 
 ```
