@@ -24,6 +24,14 @@ type SignJWTContentResult struct {
 	SignedJWTContent string `json:"signedJWTContent,omitempty"`
 }
 
+type VerifyJWTContentArgs struct {
+	JWT string `json:"jwt,omitempty"`
+}
+
+type verifyJWTContentResult struct {
+	Verified bool `json:"verified,omitempty"`
+}
+
 type NewDIDArgs struct {
 	Keys []KeyTypePurpose `json:"keys,omitempty"`
 	Name string           `json:"name,omitempty"`
