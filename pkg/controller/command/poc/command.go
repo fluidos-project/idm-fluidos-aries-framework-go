@@ -409,22 +409,6 @@ func (o *Command) signJWT(token string) string {
 
    	signedJWT := jwtResponse.JWT
     fmt.Println("Signed JWT:", signedJWT)
-
-	// Verify JWT
-    // verifyReq := &vcwalletc.VerifyJWTRequest{
-    //     WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-    //     JWT: signedJWT,
-    // }
-
-    // verifyReqBytes, _ := json.Marshal(verifyReq)
-    // verifyReqReader := bytes.NewReader(verifyReqBytes)
-    // var verifyBuf bytes.Buffer
-
-    // err = o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
-    // if err != nil {
-    //     logutil.LogInfo(logger, CommandName, "SignJWT", "failed to verify JWT: "+err.Error())
-    // }
-    // fmt.Println("Verification result:", verifyBuf.String())
 	return signedJWT
 }
 
@@ -448,7 +432,7 @@ func (o * Command) verifyJWT(token string, signedJWT string) bool {
     fmt.Println("Verification result:", verifyBuf.String())
 	//wrapp verifyBuf in VerifyJWTResponse
 
-		var jwtVerifyResponse vcwalletc.VerifyJWTResponse
+	var jwtVerifyResponse vcwalletc.VerifyJWTResponse
 
 	errResp := json.Unmarshal(verifyBuf.Bytes(), &jwtVerifyResponse)
 	if errResp != nil {
