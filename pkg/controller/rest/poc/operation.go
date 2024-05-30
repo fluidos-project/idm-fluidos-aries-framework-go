@@ -28,6 +28,7 @@ const (
 	TestingCallPath     	  = FluidosOperationID + "/testingCall"
 	GetTrustedIssuerListPath  = FluidosOperationID + "/trustedIssuers"
 	GetVCredentialPath        = FluidosOperationID + "/getVCredential"
+	SignJWTContentPath        = FluidosOperationID + "/signJWTContent"
 )
 
 
@@ -70,6 +71,7 @@ func (o *Operation) registerHandler() {
 		cmdutil.NewHTTPHandler(TestingCallPath, http.MethodPost, o.TestingCall),
 		cmdutil.NewHTTPHandler(GetTrustedIssuerListPath, http.MethodGet, o.GetTrustedIssuerList),
 		cmdutil.NewHTTPHandler(GetVCredentialPath, http.MethodPost, o.GetVCredential),
+		cmdutil.NewHTTPHandler(SignJWTContentPath, http.MethodPost, o.SignJWTContent),
 	}
 }
 
@@ -157,3 +159,16 @@ func (o *Operation) GetTrustedIssuerList(rw http.ResponseWriter, req *http.Reque
 func (o *Operation) GetVCredential(rw http.ResponseWriter, req *http.Request) {
 	rest.Execute(o.command.GetVCredential, rw, req.Body)
 }
+
+// SignJWTContent swagger:route POST /fluidos/idm/signJWTContent poc SignJWTContentReq
+//
+// Sign the content of a JWT
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) SignJWTContent(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.SignJWTContent, rw, req.Body)
+}
+
+

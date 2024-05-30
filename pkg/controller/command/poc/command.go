@@ -45,6 +45,7 @@ const (
 	AcceptEnrolmentRequestErrorCode
 	TestingCallRequestErrorCode
 	GetTrustedIssuerListrRequestErrorCode
+	SignJWTContentErrorCode
 )
 
 // constants for the VDR controller's methods.
@@ -61,6 +62,7 @@ const (
 	VerifyCredentialCommandMethod  = "ValidateVP" 
 	TestingCallMethod		       = "TestingCall"
 	GetTrustedIssuerListMethod     = "GetTrustedIssuerList"
+	SignJWTContentCommandMethod	= "SignJWTContent"
 	// error messages.
 	errEmptyNewDID   = "keys is mandatory"
 	errEmptyUrl      = "url is mandatory"
@@ -68,6 +70,7 @@ const (
 	errEmptyIdProofs = "idProofs is mandatory"
 	erremptyCredId   = "credId is mandatory"
 	errEmptyQueryByFrame    = "querybyframe is mandatory"
+	errEmptyContent = "Content is mandatory"
 
 	// log constants.
 	didID = "did"
@@ -366,6 +369,96 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 	command.WriteNillableResponse(rw, &NewDIDResult{DIDDoc: parsedResponse.DID}, logger)
 	logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "success")
 	//testing
+	return nil
+}
+
+
+func (o *Command) SignJWTContent(rw io.Writer, req io.Reader) command.Error{
+	var request SignJWTContentArgs
+
+	err := json.NewDecoder(req).Decode(&request)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, SignJWTContentCommandMethod, err.Error())
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
+	}
+
+	if request.Content == nil {
+		logutil.LogInfo(logger, CommandName, SignJWTContentCommandMethod, errEmptyContent)
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyContent))
+	}
+
+	//Open wallet
+	var l bytes.Buffer
+	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
+		UserID:             o.walletuid,
+		LocalKMSPassphrase: o.walletpass,
+	})
+	if err != nil {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	err = o.vcwalletcommand.Open(&l, reader)
+	if err != nil {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	token := getUnlockToken(l)
+	if token == "" {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
+	}
+	//Defer close wallet
+	defer func() {
+		var l2 bytes.Buffer
+		reader, err = getReader(&vcwalletc.LockWalletRequest{
+			UserID: o.walletuid,
+		})
+		err = o.vcwalletcommand.Close(&l2, reader)
+		//TODO UMU See how to treat errors in this case
+	}()
+
+	var content map[string]interface{}
+
+    // Unmarshal the json.RawMessage into the map
+    errUnmarshal := json.Unmarshal(request.Content, &content)
+    if errUnmarshal != nil {
+        fmt.Println("Error unmarshalling json.RawMessage:", err)
+		return command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("error unmarshalling json.RawMessage: %w", err))
+    }
+
+	reqJWT := vcwalletc.SignJWTRequest{
+        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+        Headers: nil,
+        Claims: content,
+        KID: o.currentDID+"#"+o.currentKeyPair.KeyID,
+    }
+
+	reqData, err := json.Marshal(reqJWT)
+    if err != nil {
+        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
+    }
+    requestFormatted:= bytes.NewReader(reqData)
+	// Capture the output
+    var signBuf bytes.Buffer
+
+    // Sign the JWT
+    if err := o.vcwalletcommand.SignJWT(&signBuf, requestFormatted); err != nil {
+        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
+    }
+
+
+	var jwtResponse vcwalletc.SignJWTResponse
+
+	err = json.Unmarshal(signBuf.Bytes(), &jwtResponse)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
+	}
+
+
+
+
+   	signedJWT := jwtResponse.JWT
+    fmt.Println("Signed JWT:", signedJWT)
+	//Write the signedJWT as response
+	command.WriteNillableResponse(rw, &SignJWTContentResult{SignedJWTContent: signedJWT}, logger)
+
 	return nil
 }
 

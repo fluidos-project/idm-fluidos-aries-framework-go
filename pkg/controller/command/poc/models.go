@@ -15,6 +15,15 @@ type PufAuthResult struct {
 }
 
 //rModel for newDID method input
+
+type SignJWTContentArgs struct {
+	Content json.RawMessage `json:"content,omitempty"`
+}
+
+type SignJWTContentResult struct {
+	SignedJWTContent string `json:"signedJWTContent,omitempty"`
+}
+
 type NewDIDArgs struct {
 	Keys []KeyTypePurpose `json:"keys,omitempty"`
 	Name string           `json:"name,omitempty"`
