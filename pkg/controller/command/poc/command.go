@@ -63,6 +63,7 @@ const (
 	TestingCallMethod		       = "TestingCall"
 	GetTrustedIssuerListMethod     = "GetTrustedIssuerList"
 	SignJWTContentCommandMethod	= "SignJWTContent"
+	VerifyJWTContentCommandMethod	= "VerifyJWTContent"
 	// error messages.
 	errEmptyNewDID   = "keys is mandatory"
 	errEmptyUrl      = "url is mandatory"
@@ -71,6 +72,7 @@ const (
 	erremptyCredId   = "credId is mandatory"
 	errEmptyQueryByFrame    = "querybyframe is mandatory"
 	errEmptyContent = "Content is mandatory"
+	errEmptyJWT	= "JWT is mandatory"
 
 	// log constants.
 	didID = "did"
@@ -460,6 +462,81 @@ func (o *Command) SignJWTContent(rw io.Writer, req io.Reader) command.Error{
 	command.WriteNillableResponse(rw, &SignJWTContentResult{SignedJWTContent: signedJWT}, logger)
 
 	return nil
+}
+
+
+func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
+	
+	var request VerifyJWTContentArgs
+
+	err := json.NewDecoder(req).Decode(&request)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, err.Error())
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
+	}
+
+	if request.JWT == "" {
+		logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, errEmptyContent)
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyJWT))
+	}
+
+	//Open wallet
+	var l bytes.Buffer
+	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
+		UserID:             o.walletuid,
+		LocalKMSPassphrase: o.walletpass,
+	})
+	if err != nil {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	err = o.vcwalletcommand.Open(&l, reader)
+	if err != nil {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	token := getUnlockToken(l)
+	if token == "" {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
+	}
+	//Defer close wallet
+	defer func() {
+		var l2 bytes.Buffer
+		reader, err = getReader(&vcwalletc.LockWalletRequest{
+			UserID: o.walletuid,
+		})
+		err = o.vcwalletcommand.Close(&l2, reader)
+		//TODO UMU See how to treat errors in this case
+	}()
+
+
+	// Verify JWT
+	verifyReq := &vcwalletc.VerifyJWTRequest{
+        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+        JWT: request.JWT,
+    }
+
+    verifyReqBytes, _ := json.Marshal(verifyReq)
+    verifyReqReader := bytes.NewReader(verifyReqBytes)
+    var verifyBuf bytes.Buffer
+
+    errVerify := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
+    if errVerify != nil {
+        logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+err.Error())
+    }
+    fmt.Println("Verification result:", verifyBuf.String())
+	//wrapp verifyBuf in VerifyJWTResponse
+
+	var jwtVerifyResponse vcwalletc.VerifyJWTResponse
+
+	errResp := json.Unmarshal(verifyBuf.Bytes(), &jwtVerifyResponse)
+	if errResp != nil {
+		logutil.LogInfo(logger, CommandName, "VerifyJWT", "failed to unmarshal JWT Verify Response: "+err.Error())
+	}
+
+	//write the verifyjwtresponse as response
+	command.WriteNillableResponse(rw, jwtVerifyResponse, logger)
+
+    return nil
+
 }
 
 

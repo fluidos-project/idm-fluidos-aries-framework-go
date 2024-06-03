@@ -29,6 +29,7 @@ const (
 	GetTrustedIssuerListPath  = FluidosOperationID + "/trustedIssuers"
 	GetVCredentialPath        = FluidosOperationID + "/getVCredential"
 	SignJWTContentPath        = FluidosOperationID + "/signJWTContent"
+	VerifyJWTContentPath      = FluidosOperationID + "/verifyJWTContent"
 )
 
 
@@ -72,6 +73,7 @@ func (o *Operation) registerHandler() {
 		cmdutil.NewHTTPHandler(GetTrustedIssuerListPath, http.MethodGet, o.GetTrustedIssuerList),
 		cmdutil.NewHTTPHandler(GetVCredentialPath, http.MethodPost, o.GetVCredential),
 		cmdutil.NewHTTPHandler(SignJWTContentPath, http.MethodPost, o.SignJWTContent),
+		cmdutil.NewHTTPHandler(VerifyJWTContentPath, http.MethodPost, o.VerifyJWTContent),
 	}
 }
 
@@ -169,6 +171,17 @@ func (o *Operation) GetVCredential(rw http.ResponseWriter, req *http.Request) {
 //        200: documentRes
 func (o *Operation) SignJWTContent(rw http.ResponseWriter, req *http.Request) {
 	rest.Execute(o.command.SignJWTContent, rw, req.Body)
+}
+
+// VerifyJWTContent swagger:route POST /fluidos/idm/verifyJWTContent poc VerifyJWTContentReq
+//
+// Verify the content of a JWT
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) VerifyJWTContent(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.VerifyJWTContent, rw, req.Body)
 }
 
 
