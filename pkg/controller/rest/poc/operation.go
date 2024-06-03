@@ -19,14 +19,17 @@ import (
 
 // constants for the VDR operations.
 const (
-	PocOperationID            = "/fluidos/idm"
-	NewDIDPath                = PocOperationID + "/generateDID"
-	DoDeviceEnrolmentPath     = PocOperationID + "/doEnrolment"
-	GenerateVpPath            = PocOperationID + "/generateVP"
-	AcceptDeviceEnrolmentPath = PocOperationID + "/acceptEnrolment"
-	VerifyCredentialPath      = PocOperationID + "/verifyCredential"
-	TestingCallPath     	  = PocOperationID + "/testingCall"
-	GetTrustedIssuerListPath  = PocOperationID + "/trustedIssuers"
+	FluidosOperationID            = "/fluidos/idm"
+	NewDIDPath                = FluidosOperationID + "/generateDID"
+	DoDeviceEnrolmentPath     = FluidosOperationID + "/doEnrolment"
+	GenerateVpPath            = FluidosOperationID + "/generateVP"
+	AcceptDeviceEnrolmentPath = FluidosOperationID + "/acceptEnrolment"
+	VerifyCredentialPath      = FluidosOperationID + "/verifyCredential"
+	TestingCallPath     	  = FluidosOperationID + "/testingCall"
+	GetTrustedIssuerListPath  = FluidosOperationID + "/trustedIssuers"
+	GetVCredentialPath        = FluidosOperationID + "/getVCredential"
+	SignJWTContentPath        = FluidosOperationID + "/signJWTContent"
+	VerifyJWTContentPath      = FluidosOperationID + "/verifyJWTContent"
 )
 
 
@@ -68,6 +71,9 @@ func (o *Operation) registerHandler() {
 		cmdutil.NewHTTPHandler(VerifyCredentialPath, http.MethodPost, o.VerifyCredential),
 		cmdutil.NewHTTPHandler(TestingCallPath, http.MethodPost, o.TestingCall),
 		cmdutil.NewHTTPHandler(GetTrustedIssuerListPath, http.MethodGet, o.GetTrustedIssuerList),
+		cmdutil.NewHTTPHandler(GetVCredentialPath, http.MethodPost, o.GetVCredential),
+		cmdutil.NewHTTPHandler(SignJWTContentPath, http.MethodPost, o.SignJWTContent),
+		cmdutil.NewHTTPHandler(VerifyJWTContentPath, http.MethodPost, o.VerifyJWTContent),
 	}
 }
 
@@ -143,3 +149,39 @@ func (o *Operation) TestingCall(rw http.ResponseWriter, req *http.Request) {
 func (o *Operation) GetTrustedIssuerList(rw http.ResponseWriter, req *http.Request) {
 	rest.Execute(o.command.GetTrustedIssuerList, rw, req.Body)
 }
+
+
+// GetVCredential swagger:route POST /fluidos/idm/getVCredential poc GetVCredentialReq
+//
+// Get a Verifiable Credential
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) GetVCredential(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.GetVCredential, rw, req.Body)
+}
+
+// SignJWTContent swagger:route POST /fluidos/idm/signJWTContent poc SignJWTContentReq
+//
+// Sign the content of a JWT
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) SignJWTContent(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.SignJWTContent, rw, req.Body)
+}
+
+// VerifyJWTContent swagger:route POST /fluidos/idm/verifyJWTContent poc VerifyJWTContentReq
+//
+// Verify the content of a JWT
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) VerifyJWTContent(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.VerifyJWTContent, rw, req.Body)
+}
+
+
