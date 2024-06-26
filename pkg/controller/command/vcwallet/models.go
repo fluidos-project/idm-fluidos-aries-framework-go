@@ -248,6 +248,11 @@ type VerifyJWTResponse struct {
 	Error string `json:"error,omitempty"`
 }
 
+type verifyContractSignatureResponse struct {
+	Verified bool `json:"verified"`
+	Error    string `json:"error,omitempty"`
+}
+
 // IssueRequest is request model for issuing credential from wallet.
 type IssueRequest struct {
 	WalletAuth

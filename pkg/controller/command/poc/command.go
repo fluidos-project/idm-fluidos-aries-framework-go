@@ -28,6 +28,7 @@ import (
 	"github.com/hyperledger/aries-framework-go/pkg/wallet"
 	"github.com/hyperledger/aries-framework-go/spi/storage"
 	"github.com/piprate/json-gold/ld"
+
 )
 
 var (
@@ -46,6 +47,9 @@ const (
 	TestingCallRequestErrorCode
 	GetTrustedIssuerListrRequestErrorCode
 	SignJWTContentErrorCode
+	VerifyJWTContentErrorCode
+	SignContractErrorCode
+	VerifyContractSignatureErrorCode
 )
 
 // constants for the VDR controller's methods.
@@ -64,6 +68,9 @@ const (
 	GetTrustedIssuerListMethod     = "GetTrustedIssuerList"
 	SignJWTContentCommandMethod	= "SignJWTContent"
 	VerifyJWTContentCommandMethod	= "VerifyJWTContent"
+	SignContractCommandMethod		= "SignContract"
+	VerifyContractSignatureCommandMethod   = "VerifyContractSignature"
+
 	// error messages.
 	errEmptyNewDID   = "keys is mandatory"
 	errEmptyUrl      = "url is mandatory"
@@ -463,6 +470,290 @@ func (o *Command) SignJWTContent(rw io.Writer, req io.Reader) command.Error{
 
 	return nil
 }
+
+
+
+func isJWT(token string) bool {
+	parts := strings.Split(token, ".")
+	if len(parts) != 3 {
+		return false
+	}
+
+	for _, part := range parts {
+		if _, err := base64.RawURLEncoding.DecodeString(part); err != nil {
+			return false
+		}
+	}
+
+	return true
+}
+
+func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
+	var request SignContractArgs
+
+	err := json.NewDecoder(req).Decode(&request)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, SignContractCommandMethod, err.Error())
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
+	}
+
+	if request.Contract == nil {
+		logutil.LogInfo(logger, CommandName, SignContractCommandMethod, errEmptyContent)
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyContent))
+	}
+
+	//Open wallet
+	var l bytes.Buffer
+	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
+		UserID:             o.walletuid,
+		LocalKMSPassphrase: o.walletpass,
+	})
+	if err != nil {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	err = o.vcwalletcommand.Open(&l, reader)
+	if err != nil {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	token := getUnlockToken(l)
+	if token == "" {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
+	}
+	//Defer close wallet
+	defer func() {
+		var l2 bytes.Buffer
+		reader, err = getReader(&vcwalletc.LockWalletRequest{
+			UserID: o.walletuid,
+		})
+		err = o.vcwalletcommand.Close(&l2, reader)
+		//TODO UMU See how to treat errors in this case
+	}()
+
+	var contract map[string]interface{}
+
+    // Unmarshal the json.RawMessage into the map
+    errUnmarshal := json.Unmarshal(request.Contract, &contract)
+    if errUnmarshal != nil {
+        fmt.Println("Error unmarshalling json.RawMessage:", err)
+		return command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("error unmarshalling json.RawMessage: %w", err))
+    }
+
+	reqJWT := vcwalletc.SignJWTRequest{
+        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+        Headers: nil,
+        Claims: contract,
+        KID: o.currentDID+"#"+o.currentKeyPair.KeyID,
+    }
+
+	reqData, err := json.Marshal(reqJWT)
+    if err != nil {
+        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
+    }
+    requestFormatted:= bytes.NewReader(reqData)
+	// Capture the output
+    var signBuf bytes.Buffer
+
+    // Sign the JWT
+    if err := o.vcwalletcommand.SignJWT(&signBuf, requestFormatted); err != nil {
+        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
+    }
+
+
+	var jwtResponse vcwalletc.SignJWTResponse
+
+	err = json.Unmarshal(signBuf.Bytes(), &jwtResponse)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
+	}
+
+   	signedJWT := jwtResponse.JWT
+    fmt.Println("Signed JWT:", signedJWT)
+	//Write the signedJWT as response
+	command.WriteNillableResponse(rw, &SignJWTContentResult{SignedJWTContent: signedJWT}, logger)
+
+	return nil
+}
+
+
+
+func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.Error {
+	
+	var request VerifyContractSignatureArgs
+
+	err := json.NewDecoder(req).Decode(&request)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, VerifyContractSignatureCommandMethod, err.Error())
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
+	}
+
+	if request.Contract == "" {
+		logutil.LogInfo(logger, CommandName, VerifyContractSignatureCommandMethod, errEmptyContent)
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyJWT))
+	}
+
+	//Open wallet
+	var l bytes.Buffer
+	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
+		UserID:             o.walletuid,
+		LocalKMSPassphrase: o.walletpass,
+	})
+	if err != nil {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	err = o.vcwalletcommand.Open(&l, reader)
+	if err != nil {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	token := getUnlockToken(l)
+	if token == "" {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
+	}
+	//Defer close wallet
+	defer func() {
+		var l2 bytes.Buffer
+		reader, err = getReader(&vcwalletc.LockWalletRequest{
+			UserID: o.walletuid,
+		})
+		err = o.vcwalletcommand.Close(&l2, reader)
+		//TODO UMU See how to treat errors in this case
+	}()
+
+
+	var signatures []JWTSignature
+	var finalPayload map[string]interface{}
+
+	//First decode JWT
+	currentJWT := request.Contract
+	for {
+		decoded, err := decodeJWT(currentJWT)
+		if err != nil {
+			logutil.LogInfo(logger, CommandName, VerifyContractSignatureCommandMethod, "failed to decode JWT: "+err.Error())
+			return nil
+		}
+
+		// Collect signature identifiers (example using 'kid' for key ID)
+		if kid, ok := decoded.Header["kid"].(string); ok {
+
+			// Verify the JWT signature
+			jwtVerifyResponse := o.verifyContract(token, request.Contract)
+			signatures = append(signatures, JWTSignature{
+				Did:      kid,
+				Verified: jwtVerifyResponse.Verified,
+			})
+		}
+
+		// Determine if the payload is another JWT
+		if nestedJWT, ok := decoded.Payload["data"].(string); ok && strings.Count(nestedJWT, ".") == 2 {
+			currentJWT = nestedJWT // Move to the next JWT
+			continue
+		}
+
+		// Not another JWT, assume final contract payload
+		finalPayload = decoded.Payload
+		
+		break
+	}
+
+	response := map[string]interface{}{
+		"signatures":      signatures,
+		"verified":        true,
+		"contractContent": finalPayload,
+	}
+
+
+
+	responseData, _ := json.Marshal(response)
+	//rw.Write(responseData)
+	// Verify JWT
+	//jwtVerifyResponse := o.verifyContract(token, request.Contract)
+	
+
+	//write the verifyjwtresponse as response
+	command.WriteNillableResponse(rw, responseData, logger)
+
+    return nil
+
+}
+
+
+
+func decodeJWT(tokenString string) (*decodeJWTResult, error) {
+	parts := strings.Split(tokenString, ".")
+	if len(parts) != 3 {
+		return nil, fmt.Errorf("invalid JWT: expected 3 parts but got %d", len(parts))
+	}
+
+	headerJSON, err := decodeBase64(parts[0])
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode header: %w", err)
+	}
+	payloadJSON, err := decodeBase64(parts[1])
+	if err != nil {
+		return nil, fmt.Errorf("failed to decode payload: %w", err)
+	}
+
+	var header map[string]interface{}
+	var payload map[string]interface{}
+	if err := json.Unmarshal([]byte(headerJSON), &header); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal header: %w", err)
+	}
+	if err := json.Unmarshal([]byte(payloadJSON), &payload); err != nil {
+		return nil, fmt.Errorf("failed to unmarshal payload: %w", err)
+	}
+
+	return &decodeJWTResult{
+		Header:  header,
+		Payload: payload,
+	}, nil
+}
+// decodeBase64 decodes a base64 URL encoded string.
+func decodeBase64(s string) (string, error) {
+	s = strings.ReplaceAll(s, "-", "+") // Convert URL-safe base64 to regular
+	s = strings.ReplaceAll(s, "_", "/")
+	switch len(s) % 4 {
+	case 2:
+		s += "=="
+	case 3:
+		s += "="
+	}
+	data, err := base64.StdEncoding.DecodeString(s)
+	if err != nil {
+		return "", err
+	}
+	return string(data), nil
+}
+
+
+
+func (o * Command) verifyContract(token string, signedJWT string) vcwalletc.VerifyJWTResponse {
+	// Verify JWT
+	verifyReq := &vcwalletc.VerifyJWTRequest{
+        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+        JWT: signedJWT,
+    }
+
+    verifyReqBytes, _ := json.Marshal(verifyReq)
+    verifyReqReader := bytes.NewReader(verifyReqBytes)
+    var verifyBuf bytes.Buffer
+
+    errVerify := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
+    if errVerify != nil {
+        logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+errVerify.Error())
+    }
+    fmt.Println("Verification result:", verifyBuf.String())
+	//wrapp verifyBuf in VerifyJWTResponse
+
+	var jwtVerifyResponse vcwalletc.VerifyJWTResponse
+
+	errResp := json.Unmarshal(verifyBuf.Bytes(), &jwtVerifyResponse)
+	if errResp != nil {
+		logutil.LogInfo(logger, CommandName, "VerifyJWT", "failed to unmarshal JWT Verify Response: "+errResp.Error())
+	}
+
+	return jwtVerifyResponse
+}
+
+
 
 
 func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {

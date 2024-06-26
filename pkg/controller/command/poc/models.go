@@ -16,6 +16,15 @@ type PufAuthResult struct {
 
 //rModel for newDID method input
 
+
+type SignContractArgs struct {
+	Contract json.RawMessage `json:"contract,omitempty"`
+}
+
+type VerifyContractArgs struct {
+	Contract json.RawMessage `json:"contract,omitempty"`
+}
+
 type SignJWTContentArgs struct {
 	Content json.RawMessage `json:"content,omitempty"`
 }
@@ -26,6 +35,10 @@ type SignJWTContentResult struct {
 
 type VerifyJWTContentArgs struct {
 	JWT string `json:"jwt,omitempty"`
+}
+
+type VerifyContractSignatureArgs struct {
+	Contract string `json:"contract,omitempty"`
 }
 
 type verifyJWTContentResult struct {
@@ -171,4 +184,13 @@ type GetTrustedIssuerListResult struct	{
 type TrustedIssuer struct {
 	DID string `json:"did,omitempty"`
 	IssuerUrl string `json:"issuerUrl,omitempty"`
+}
+type decodeJWTResult struct {
+	Header  map[string]interface{}
+	Payload map[string]interface{}
+}
+
+type JWTSignature struct {
+	Did string `json:"did,omitempty"`
+	Verified bool `json:"verified,omitempty"`
 }

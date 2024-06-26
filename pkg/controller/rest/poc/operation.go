@@ -30,6 +30,8 @@ const (
 	GetVCredentialPath        = FluidosOperationID + "/getVCredential"
 	SignJWTContentPath        = FluidosOperationID + "/signJWTContent"
 	VerifyJWTContentPath      = FluidosOperationID + "/verifyJWTContent"
+	SignContractPath          = FluidosOperationID + "/signContract"
+	VerifyContractPath        = FluidosOperationID + "/verifyContractSignature"
 )
 
 
@@ -184,4 +186,26 @@ func (o *Operation) VerifyJWTContent(rw http.ResponseWriter, req *http.Request) 
 	rest.Execute(o.command.VerifyJWTContent, rw, req.Body)
 }
 
+
+// SignContract swagger:route POST /fluidos/idm/signContract poc SignContractReq
+//
+// Sign a contract
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) SignContract(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.SignContract, rw, req.Body)
+}
+
+// VerifyContractSignature swagger:route POST /fluidos/idm/verifyContractSignature poc VerifyContractSignatureReq
+//
+// Verify the signature or nested signatures of a contract
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) VerifyContractSignature(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.VerifyContractSignature, rw, req.Body)
+}
 

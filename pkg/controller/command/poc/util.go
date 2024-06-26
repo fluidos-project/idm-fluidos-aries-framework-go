@@ -10,7 +10,6 @@ import (
 	"math/rand"
 	"strings"
 	"unsafe"
-
 	vcwalletc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vcwallet"
 	vdrc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vdr"
 	"github.com/hyperledger/aries-framework-go/pkg/doc/jose/jwk"
@@ -174,3 +173,6 @@ func generateRandomString(length int) (string, error) {
 	}
 	return string(bytes), nil
 }
+
+
+
