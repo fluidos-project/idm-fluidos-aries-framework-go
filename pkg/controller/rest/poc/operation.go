@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"net/http"
 
-	poc"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc"
+	poc "github.com/hyperledger/aries-framework-go/pkg/controller/command/poc"
 	vcwalletc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vcwallet"
 	vdrc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vdr"
 	"github.com/hyperledger/aries-framework-go/pkg/controller/internal/cmdutil"
@@ -31,7 +31,7 @@ const (
 	SignJWTContentPath        = FluidosOperationID + "/signJWTContent"
 	VerifyJWTContentPath      = FluidosOperationID + "/verifyJWTContent"
 	SignContractPath          = FluidosOperationID + "/signContract"
-	VerifyContractPath        = FluidosOperationID + "/verifyContractSignature"
+	VerifyContractPath        = FluidosOperationID + "/verifyContract"
 )
 
 
@@ -76,6 +76,8 @@ func (o *Operation) registerHandler() {
 		cmdutil.NewHTTPHandler(GetVCredentialPath, http.MethodPost, o.GetVCredential),
 		cmdutil.NewHTTPHandler(SignJWTContentPath, http.MethodPost, o.SignJWTContent),
 		cmdutil.NewHTTPHandler(VerifyJWTContentPath, http.MethodPost, o.VerifyJWTContent),
+		cmdutil.NewHTTPHandler(SignContractPath, http.MethodPost, o.SignContract),
+		cmdutil.NewHTTPHandler(VerifyContractPath, http.MethodPost, o.VerifyContractSignature),
 	}
 }
 

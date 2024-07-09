@@ -2,17 +2,17 @@ package poc
 
 import (
 	"bytes"
+	"crypto/tls"
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"io"
 	"math/rand"
 	"net/http"
-	"crypto/tls"
+	"runtime"
 	"strconv"
 	"strings"
 	"time"
-	"runtime"
 
 	"github.com/hyperledger/aries-framework-go/pkg/common/log"
 	//"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc/files"
@@ -28,7 +28,6 @@ import (
 	"github.com/hyperledger/aries-framework-go/pkg/wallet"
 	"github.com/hyperledger/aries-framework-go/spi/storage"
 	"github.com/piprate/json-gold/ld"
-
 )
 
 var (
@@ -80,6 +79,8 @@ const (
 	errEmptyQueryByFrame    = "querybyframe is mandatory"
 	errEmptyContent = "Content is mandatory"
 	errEmptyJWT	= "JWT is mandatory"
+	errEmptyContract = "Contract is mandatory"
+	errEmptyContractJWT = "Empty contract: you have to provide a contract in json format or jwt format"
 
 	// log constants.
 	didID = "did"
@@ -497,9 +498,14 @@ func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
 	}
 
-	if request.Contract == nil {
+	if request.Contract == nil && request.ContractJWT == "" {
 		logutil.LogInfo(logger, CommandName, SignContractCommandMethod, errEmptyContent)
-		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyContent))
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("Empty contract: you have to provide a contract in json format or jwt format")) 
+	}
+
+	if request.Contract != nil && request.ContractJWT != ""{
+		logutil.LogInfo(logger, CommandName, SignContractCommandMethod, "Contract and ContractJWT are both provided, only one should be provided")
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("Contract and ContractJWT are both provided, only one should be provided"))
 	}
 
 	//Open wallet
@@ -531,12 +537,24 @@ func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
 
 	var contract map[string]interface{}
 
-    // Unmarshal the json.RawMessage into the map
-    errUnmarshal := json.Unmarshal(request.Contract, &contract)
-    if errUnmarshal != nil {
-        fmt.Println("Error unmarshalling json.RawMessage:", err)
-		return command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("error unmarshalling json.RawMessage: %w", err))
-    }
+	
+	errUnmarshal := json.Unmarshal(request.Contract, &contract)
+		if errUnmarshal != nil {
+			fmt.Println("Error unmarshalling json.RawMessage:", err)
+			return command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("error unmarshalling json.RawMessage: %w", err))
+		}
+
+
+	contractJSON, err := json.Marshal(contract)
+	if err != nil {
+		fmt.Println("Error marshalling map to JSON:", err)
+	}
+
+	// Convert byte array to string
+	contractStr := string(contractJSON)
+	logutil.LogInfo(logger, CommandName, SignContractCommandMethod, "ContractMARSHALLEDASDFASDFAS: "+contractStr)
+
+
 
 	reqJWT := vcwalletc.SignJWTRequest{
         WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
@@ -566,10 +584,10 @@ func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
 		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
 	}
 
-   	signedJWT := jwtResponse.JWT
-    fmt.Println("Signed JWT:", signedJWT)
+   	signedContract := jwtResponse.JWT
+    fmt.Println("Signed JWT:", signedContract)
 	//Write the signedJWT as response
-	command.WriteNillableResponse(rw, &SignJWTContentResult{SignedJWTContent: signedJWT}, logger)
+	command.WriteNillableResponse(rw, &SignContractResult{SignedContract: signedContract}, logger)
 
 	return nil
 }
@@ -588,7 +606,7 @@ func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.
 
 	if request.Contract == "" {
 		logutil.LogInfo(logger, CommandName, VerifyContractSignatureCommandMethod, errEmptyContent)
-		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyJWT))
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyContract))
 	}
 
 	//Open wallet
@@ -642,9 +660,8 @@ func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.
 			})
 		}
 
-		// Determine if the payload is another JWT
-		if nestedJWT, ok := decoded.Payload["data"].(string); ok && strings.Count(nestedJWT, ".") == 2 {
-			currentJWT = nestedJWT // Move to the next JWT
+		if jwtContract, ok := decoded.Payload["JWTContract"].(string); ok && strings.Count(jwtContract, ".") == 2 {
+			currentJWT = jwtContract // Move to the next JWT
 			continue
 		}
 
@@ -654,22 +671,17 @@ func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.
 		break
 	}
 
-	response := map[string]interface{}{
-		"signatures":      signatures,
-		"verified":        true,
-		"contractContent": finalPayload,
+
+	//Check if all signatures are verified and construct the Verified property
+	allVerified := true
+	for _, signature := range signatures {
+		if !signature.Verified {
+			allVerified = false
+			break
+		}
 	}
-
-
-
-	responseData, _ := json.Marshal(response)
-	//rw.Write(responseData)
-	// Verify JWT
-	//jwtVerifyResponse := o.verifyContract(token, request.Contract)
-	
-
-	//write the verifyjwtresponse as response
-	command.WriteNillableResponse(rw, responseData, logger)
+	// Construct the response as VerifyContractSignatureResult
+	command.WriteNillableResponse(rw, &VerifyContractSignatureResult{Signatures: signatures, Verified: allVerified, ContractContent: finalPayload}, logger)
 
     return nil
 

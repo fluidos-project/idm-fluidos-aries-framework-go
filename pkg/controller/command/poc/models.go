@@ -2,6 +2,7 @@ package poc
 
 import (
 	"encoding/json"
+
 	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 )
 
@@ -19,6 +20,7 @@ type PufAuthResult struct {
 
 type SignContractArgs struct {
 	Contract json.RawMessage `json:"contract,omitempty"`
+	ContractJWT string `json:"contractJWT,omitempty"`
 }
 
 type VerifyContractArgs struct {
@@ -31,6 +33,17 @@ type SignJWTContentArgs struct {
 
 type SignJWTContentResult struct {
 	SignedJWTContent string `json:"signedJWTContent,omitempty"`
+}
+
+type SignContractResult struct {
+	SignedContract string `json:"signedContract,omitempty"`
+}
+
+type VerifyContractSignatureResult struct {
+	Verified bool `json:"verified,omitempty"`
+	Signatures []JWTSignature `json:"signatures,omitempty"`
+	ContractContent map[string]interface{} `json:"contractContent,omitempty"`
+
 }
 
 type VerifyJWTContentArgs struct {
