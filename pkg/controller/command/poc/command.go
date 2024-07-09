@@ -681,7 +681,7 @@ func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.
 		}
 	}
 	// Construct the response as VerifyContractSignatureResult
-	command.WriteNillableResponse(rw, &VerifyContractSignatureResult{Signatures: signatures, Verified: allVerified, ContractContent: finalPayload}, logger)
+	command.WriteNillableResponse(rw, &VerifyContractSignatureResult{Signatures: signatures, VerifiedChain: allVerified, ContractContent: finalPayload}, logger)
 
     return nil
 

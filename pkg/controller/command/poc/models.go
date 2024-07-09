@@ -40,7 +40,7 @@ type SignContractResult struct {
 }
 
 type VerifyContractSignatureResult struct {
-	Verified bool `json:"verified,omitempty"`
+	VerifiedChain bool `json:"verifiedChain,omitempty"`
 	Signatures []JWTSignature `json:"signatures,omitempty"`
 	ContractContent map[string]interface{} `json:"contractContent,omitempty"`
 
