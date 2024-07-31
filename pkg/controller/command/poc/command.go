@@ -653,6 +653,7 @@ func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.
 		if kid, ok := decoded.Header["kid"].(string); ok {
 
 			// Verify the JWT signature
+			//we have to verify if Verified of Error present in the response
 			jwtVerifyResponse := o.verifyContract(token, request.Contract)
 			signatures = append(signatures, JWTSignature{
 				Did:      kid,
