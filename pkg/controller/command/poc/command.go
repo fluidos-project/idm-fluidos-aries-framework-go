@@ -878,9 +878,6 @@ func (o *Command) signJWT(token string) string {
 		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
 	}
 
-
-
-
    	signedJWT := jwtResponse.JWT
     fmt.Println("Signed JWT:", signedJWT)
 	return signedJWT
@@ -945,7 +942,7 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyIdProofs))
 	}
 
-	identityProods := request.IdProofs
+	identityProofs := request.IdProofs
 
 	//add current did to idProofs and sign with DID proofData with signJWT function
 
@@ -981,10 +978,10 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 
 	//proofData := o.signJWT(token)
 	//proofDataBytes := json.RawMessage(proofData)
-	identityProods = append(identityProods, IdProof{AttrName: "DID", AttrValue: o.currentDID})
+	identityProofs = append(identityProofs, IdProof{AttrName: "DID", AttrValue: o.currentDID})
 
 	// Do a post for AcceptEnrolmentResult to specified url
-	acceptEnrolmentRequest := AcceptEnrolmentArgs{IdProofs: identityProods}
+	acceptEnrolmentRequest := AcceptEnrolmentArgs{IdProofs: identityProofs}
 	jsonBody, err := json.Marshal(acceptEnrolmentRequest)
 
 	if err != nil {
