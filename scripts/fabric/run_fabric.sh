@@ -10,6 +10,14 @@ bash network.sh deployCC -ccn sacc -ccp ../chaincode/sacc/ -ccv 1 -ccl go
 
 echo "Desplegado e instalado Hyperledger Fabric, desplegado canal \"mychannel\" y desplegado smartcontract \"sacc\""
 
+bash network.sh deployCC -ccn fluidosAccessHist -ccp ../chaincode/fluidosAccess-historical -ccv 1 -ccl go
+
+echo "Desplegado e instalado Hyperledger Fabric, desplegado smartcontract \"fluidosAccessHist\" en el canal \"mychannel\""
+
+bash network.sh deployCC -ccn xacml -ccp ../chaincode/xacml -ccv 1 -ccl go
+
+echo "Desplegado e instalado Hyperledger Fabric, desplegado smartcontract \"xacml\" en el canal \"mychannel\""
+
 privpath=./organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore
 certpath=./organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts
 
