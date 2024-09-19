@@ -103,7 +103,7 @@ type DoDeviceEnrolmentResult struct {
 type IdProof struct {
 	AttrName  string          `json:"attrName,omitempty"`
 	AttrValue interface{}     `json:"attrValue,omitempty"`
-	ProofData json.RawMessage `json:"proofData,omitempty"`
+	ProofData string `json:"proofData,omitempty"`
 }
 
 // Model for GenerateVP method input

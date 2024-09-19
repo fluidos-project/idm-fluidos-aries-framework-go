@@ -696,6 +696,7 @@ func decodeJWT(tokenString string) (*decodeJWTResult, error) {
 		return nil, fmt.Errorf("invalid JWT: expected 3 parts but got %d", len(parts))
 	}
 
+	// Decode header and payload
 	headerJSON, err := decodeBase64(parts[0])
 	if err != nil {
 		return nil, fmt.Errorf("failed to decode header: %w", err)
@@ -705,6 +706,7 @@ func decodeJWT(tokenString string) (*decodeJWTResult, error) {
 		return nil, fmt.Errorf("failed to decode payload: %w", err)
 	}
 
+	// Unmarshal JSON for both header and payload
 	var header map[string]interface{}
 	var payload map[string]interface{}
 	if err := json.Unmarshal([]byte(headerJSON), &header); err != nil {
@@ -720,20 +722,28 @@ func decodeJWT(tokenString string) (*decodeJWTResult, error) {
 	}, nil
 }
 // decodeBase64 decodes a base64 URL encoded string.
-func decodeBase64(s string) (string, error) {
-	s = strings.ReplaceAll(s, "-", "+") // Convert URL-safe base64 to regular
-	s = strings.ReplaceAll(s, "_", "/")
-	switch len(s) % 4 {
-	case 2:
-		s += "=="
-	case 3:
-		s += "="
-	}
-	data, err := base64.StdEncoding.DecodeString(s)
+// func decodeBase64(s string) (string, error) {
+// 	s = strings.ReplaceAll(s, "-", "+") // Convert URL-safe base64 to regular
+// 	s = strings.ReplaceAll(s, "_", "/")
+// 	switch len(s) % 4 {
+// 	case 2:
+// 		s += "=="
+// 	case 3:
+// 		s += "="
+// 	}
+// 	data, err := base64.StdEncoding.DecodeString(s)
+// 	if err != nil {
+// 		return "", err
+// 	}
+// 	return string(data), nil
+// }
+
+func decodeBase64(input string) (string, error) {
+	decodedBytes, err := base64.RawURLEncoding.DecodeString(input)
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("base64 decode failed: %w", err)
 	}
-	return string(data), nil
+	return string(decodedBytes), nil
 }
 
 
@@ -826,7 +836,14 @@ func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
     if errVerify != nil {
         logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+err.Error())
     }
-    fmt.Println("Verification result:", verifyBuf.String())
+    
+	//show jwt content decoding
+	decoded, err := decodeJWT(request.JWT)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to decode JWT: "+err.Error())
+		return nil
+	}
+	fmt.Println("Verification result:", verifyBuf.String()+" ")
 	//wrapp verifyBuf in VerifyJWTResponse
 
 	var jwtVerifyResponse vcwalletc.VerifyJWTResponse
@@ -835,6 +852,8 @@ func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
 	if errResp != nil {
 		logutil.LogInfo(logger, CommandName, "VerifyJWT", "failed to unmarshal JWT Verify Response: "+err.Error())
 	}
+
+	jwtVerifyResponse.Payload = decoded.Payload
 
 	//write the verifyjwtresponse as response
 	command.WriteNillableResponse(rw, jwtVerifyResponse, logger)
@@ -845,7 +864,7 @@ func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
 
 
 
-func (o *Command) signJWT(token string) string {
+func (o *Command) signJWTProofData(token string) string {
 	 
 	request := vcwalletc.SignJWTRequest{
         WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
@@ -884,7 +903,7 @@ func (o *Command) signJWT(token string) string {
 }
 
 //verifyJWT
-func (o * Command) verifyJWT(token string, signedJWT string) bool {
+func (o *Command) verifyJWT(token string, signedJWT string) vcwalletc.VerifyJWTResponse {
 
 	// Verify JWT
 	verifyReq := &vcwalletc.VerifyJWTRequest{
@@ -910,9 +929,7 @@ func (o * Command) verifyJWT(token string, signedJWT string) bool {
 		logutil.LogInfo(logger, CommandName, "VerifyJWT", "failed to unmarshal JWT Verify Response: "+err.Error())
 	}
 
-   	isVerified := jwtVerifyResponse.Verified
-    return isVerified
-
+    return jwtVerifyResponse
 }
 
 
@@ -975,10 +992,11 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 	}()
 
 
-
-	//proofData := o.signJWT(token)
-	//proofDataBytes := json.RawMessage(proofData)
-	identityProofs = append(identityProofs, IdProof{AttrName: "DID", AttrValue: o.currentDID})
+	//Sign with DID
+	proofData := o.signJWTProofData(token)
+	
+	identityProofs = append(identityProofs, IdProof{AttrName: "DID", AttrValue: o.currentDID, ProofData: proofData})
+	//identityProofs = append(identityProofs, IdProof{AttrName: "DID", AttrValue: o.currentDID})
 
 	// Do a post for AcceptEnrolmentResult to specified url
 	acceptEnrolmentRequest := AcceptEnrolmentArgs{IdProofs: identityProofs}
@@ -988,6 +1006,8 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 		logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "could not generate request body")
 		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("could not generate request body: %w", err))
 	}
+	//print jsonbody for logs
+	logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "IDPROOFS REQUEST CREDENTIAL", string(jsonBody))
 
 	//testing https insecure(for poc at the moment)
 	http.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
@@ -1355,6 +1375,60 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 		})
 		err = o.vcwalletcommand.Close(&l2, reader)
 	}()
+
+
+
+	//get the DID proofData of the DID field in the IdProofs
+	var requesterDID string
+	var proofData string
+	for _, idProof := range request.IdProofs {
+		if idProof.AttrName == "DID" {
+			proofData = idProof.ProofData
+			requesterDID = idProof.AttrValue.(string)
+			break
+		}
+	}
+	
+
+	//decode payload
+	decoded, err := decodeJWT(proofData)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to decode JWT: "+err.Error())
+		return nil
+	}
+
+
+	//Verify jwt
+	verification := o.verifyJWT(token, proofData)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to verify JWT content: "+err.Error())
+		return nil
+	}
+	//if requester did and payload proofdata did are different return error 
+	//print all did
+	DIDinJWT, okValue := decoded.Payload["attrValue"].(string)
+	//use ok value
+	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "DID in JWT: "+DIDinJWT+" okValue: "+strconv.FormatBool(okValue))
+	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "requester DID: "+requesterDID)
+	if requesterDID != DIDinJWT {
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "requester DID and proofData DID are different")
+		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("requester DID and proofData DID are different"))
+	}
+	//check if verification is successful
+	//if not return error
+	if !verification.Verified {
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "JWT verification failed")
+		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("JWT verification failed"))
+	}
+	
+
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "could not generate request body")
+		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("could not generate request body: %w", err))
+	}
+	
+
+
 	//Initialize credential for issuance
 	baseCredString := "{\"@context\":[\"https://www.w3.org/2018/credentials/v1\",\"https://www.w3.org/2018/credentials/examples/v1\",\"https://ssiproject.inf.um.es/security/psms/v1\",\"https://ssiproject.inf.um.es/poc/context/v1\"],\"type\":[\"VerifiableCredential\",\"FluidosCredential\"]}"
 	var baseCred map[string]interface{}
