@@ -108,6 +108,7 @@ type Command struct {
 	walletuid       string
 	walletpass      string
 	currentDID      string //TODO UMU For retrieval of device DIDdoc, think about better implementation
+	currentDIDName  string
 	currentKeyPair  vcwalletc.CreateKeyPairResponse
 	idProofValidators []IdProofValidator
 	ctx            Provider
@@ -203,6 +204,7 @@ func (o *Command) TestingCall(rw io.Writer, req io.Reader) command.Error {
 
 // NewDID Generate and register DID for a set of new keys
 func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
+	
 	var request NewDIDArgs
 
 	err := json.NewDecoder(req).Decode(&request)
@@ -214,6 +216,10 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 	if request.Keys == nil || !checkAuthKeyPresent(request.Keys) {
 		logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, errEmptyNewDID)
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(errEmptyNewDID))
+	}
+	//Check if there is an active DID with the same name
+	if o.currentDIDName == request.Name {
+		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("DID with the same name already exists"))
 	}
 
 	doc := did.Doc{}
@@ -357,12 +363,9 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 		logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "failed to decode DID Document: "+err.Error())
 		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("did creation response error: %w", err))
 	}
-	o.currentDID = getDID(parsedResponse)
-	if o.currentDID == "" {
-		logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "get did error: (empty did)")
-		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("failed to parse id for future retrieval of document: %w", err))
-	}
+
 	//Save DID
+	//print current did log
 	var l11 bytes.Buffer
 	reader, err = getReader(&vdrc.DIDArgs{
 		Document: parsedResponse,
@@ -374,7 +377,16 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 	err = o.vdrcommand.SaveDID(&l11, reader)
 	if err != nil {
 		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("save did error: %w", err))
+	}else{
+		o.currentDID = getDID(parsedResponse)
+		o.currentDIDName = request.Name
+		logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "current did after: "+o.currentDID)
+		if o.currentDID == "" {
+			logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "get did error: (empty did)")
+			return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("failed to parse id for future retrieval of document: %w", err))
+		}
 	}
+	
 	// finished
 	command.WriteNillableResponse(rw, &NewDIDResult{DIDDoc: parsedResponse.DID}, logger)
 	logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "success")
