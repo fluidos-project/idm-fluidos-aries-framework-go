@@ -308,6 +308,7 @@ clean-build:
 	@rm -Rf $(ARIES_AGENT_MOBILE_PATH)/build
 	@rm -Rf ./test/bdd/db
 	@rm -Rf ./test/bdd/*.log
+	# Remove the line that deletes the fabric folder
 
 .PHONY: clean-fixtures
 clean-fixtures:

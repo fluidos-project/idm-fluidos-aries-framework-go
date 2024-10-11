@@ -1006,7 +1006,9 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 
 	//Sign with DID
 	proofData := o.signJWTProofData(token)
-	
+	//log intercept of request to add proofdata in DID attribute
+	logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "DID: "+o.currentDID)
+	logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "proofData: "+proofData)
 	identityProofs = append(identityProofs, IdProof{AttrName: "DID", AttrValue: o.currentDID, ProofData: proofData})
 	//identityProofs = append(identityProofs, IdProof{AttrName: "DID", AttrValue: o.currentDID})
 
@@ -1422,6 +1424,7 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 	//use ok value
 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "DID in JWT: "+DIDinJWT+" okValue: "+strconv.FormatBool(okValue))
 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "requester DID: "+requesterDID)
+	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "Success: Correct check and Verification of JWT PoofData")
 	if requesterDID != DIDinJWT {
 		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "requester DID and proofData DID are different")
 		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("requester DID and proofData DID are different"))
@@ -1432,6 +1435,9 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "JWT verification failed")
 		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("JWT verification failed"))
 	}
+	//log for verification successful with info and did request is the same in the proofData
+	
+	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "JWT verification through DLT successful")	
 	
 
 	if err != nil {
