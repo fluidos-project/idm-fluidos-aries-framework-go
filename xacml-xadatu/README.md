@@ -57,7 +57,9 @@ Review the contain of [XACML_DATA/PAPConfigData/SujectIdTypes.json](./XACML_DATA
 
 ## Configuration .env and docker-compose.yml files
 
-Review the contain of [.env](./.env) and [docker-compose.yml](./docker-compose.yml) to configure the execution. Focusing on [.env](./.env) file, which contains the environment variables of the different elements.
+Review the contain of [.env](./.env) and [docker-compose.yml](./docker-compose.yml) to configure the execution. Focusing on [.env](./.env) file, which contains the environment variables of the different elements. 
+
+Replace ``<restapi-ip>`` with the `ÌP`` where the REST API server is deployed
 
 # Installation / Execution.
 
