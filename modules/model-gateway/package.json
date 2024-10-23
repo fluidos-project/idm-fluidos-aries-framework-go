@@ -1,0 +1,15 @@
+{
+  "name": "model-gateway",
+  "version": "1.0.0",
+  "description": "Fabric gateway for model treatment",
+  "main": "api.js",
+  "scripts": {
+    "start": "node api.js"
+  },
+  "dependencies": {
+    "fabric-network": "^2.2.11",
+    "fabric-ca-client": "^2.2.11",
+    "express": "^4.17.1",
+    "body-parser": "^1.19.0"
+  }
+}

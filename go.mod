@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-module github.com/hyperledger/aries-framework-go
+module github.com/hyperledger/fabric-samples/chaincode/model-treatment
 
 // TODO (#2815): Remove circular dependency between the main module and component/storage/edv
 
@@ -63,6 +63,9 @@ require (
 	github.com/jackc/pgx/v4 v4.11.0 // indirect
 	github.com/jackc/puddle v1.1.3 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
+	github.com/prometheus/client_golang v1.3.0 // indirect
+	github.com/prometheus/client_model v0.1.0 // indirect
+	github.com/prometheus/common v0.7.0 // indirect
 	github.com/syndtr/goleveldb v1.0.0 // indirect
 	github.com/valyala/fastjson v1.6.3 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
@@ -70,6 +73,7 @@ require (
 	github.com/xdg-go/stringprep v1.0.2 // indirect
 	github.com/youmark/pkcs8 v0.0.0-20181117223130-1be2e3e5546d // indirect
 	go.mongodb.org/mongo-driver v1.8.0 // indirect
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 )
 

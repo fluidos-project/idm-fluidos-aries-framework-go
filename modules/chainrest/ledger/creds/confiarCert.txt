@@ -1,0 +1,2 @@
+keytool -importcert -file tlsca.org1.example.com-cert.pem -alias tlsca.org1.example.com -keystore ..\trustKeystore.jks -storepass mimurcia
+keytool -importcert -file tlsca.example.com-cert.pem -alias tlsca.example.com -keystore ..\trustKeystore.jks -storepass mimurcia

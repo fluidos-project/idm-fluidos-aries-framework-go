@@ -1,0 +1,1220 @@
+{
+    "lasttimestamp": "2021-11-05T10:02:41.908Z",
+    "entities": [
+        {
+            "id": "unknown",
+            "attributes": []
+        },
+        {
+            "id": "MG0101E20018500010",
+            "attributes": [
+                {
+                    "id": "analogInput_614c61bebc1aef45e36216a5",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c61bebc1aef1fad6216a8",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c61bebc1aef58366216ab",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "id": "MG0101E20018500011",
+            "attributes": [
+                {
+                    "id": "analogInput_614c61dbbc1aef79756216b3",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c61dbbc1aef00a66216b6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c61dbbc1aefd06a6216b9",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "id": "IoTConnector:00028",
+            "attributes": [
+                {
+                    "id": "analogInput_614c6227bc1aefe5156216d6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6227bc1aef0f786216d9",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6227bc1aef48586216dc",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6227bc1aef54166216df",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6227bc1aefcc6f6216e5",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6227bc1aef3e876216e8",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6227bc1aef60336216eb",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6227bc1aeff3636216ee",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc6fe8562c06ed3f16cb2",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc6fe8562c0430af16cb5",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c05cfcf16cb8",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c0553df16cbb",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c0aba3f16cbe",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c00973f16cc1",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c09d96f16cc4",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c0785cf16cc7",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c03a19f16cca",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c09bcdf16ccd",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c099a5f16cd0",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c00ce1f16cd3",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc7868562c05674f16cd6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "id": "IoTConnector:00027",
+            "attributes": [
+                {
+                    "id": "analogInput_614c6767bc1aef4fbf6216f6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefe8c66216f9",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefde666216fc",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef31726216ff",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef6c7f621705",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef5014621708",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefd6fc62170b",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef599462170e",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef5909621711",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef2ba3621714",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef7c74621717",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef356662171a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef49eb621720",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef5a09621723",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef7670621726",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef67a7621729",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef048462172c",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef325162172f",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefb4c6621732",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef4ed0621735",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef0d8062173b",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef05bd62173e",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefc36f621741",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef1a28621744",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef7af1621747",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef504e62174a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef8ad762174d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefcad2621750",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefb30d621756",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefa8b0621759",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefbeae62175c",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefe92862175f",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef7916621777",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef524062177a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef149d62177d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef40ce621780",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef4773621786",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef6f44621789",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefd03262178c",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef13ec62178f",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef1f64621792",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef52b1621795",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef8ae8621798",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef84d262179b",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef7f0e6217a1",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefd5ea6217a4",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef6f6a6217a7",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefaaa56217aa",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef55926217ad",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef58886217b0",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aef0f086217b3",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aeff2da6217b6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6767bc1aefa5846217bc",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4e7d6217bf",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef3da86217c2",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef61876217c5",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef03946217c8",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef1c566217cb",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef30cf6217ce",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef40696217d1",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+
+                {
+                    "id": "analogInput_614c6768bc1aef185a6217d7",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef15f76217da",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef46cc6217dd",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aeff6956217e0",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef3c566217e3",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef62606217e6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef9faa6217e9",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4d726217ec",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef23ea6217ef",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4d936217f2",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4c896217f5",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4c9a6217f8",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef0dee6217fb",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef5dff6217fe",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefc39c621801",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef2ca4621804",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef2eac621807",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef355562180a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefc71262180d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef49c0621810",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef5d76621813",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef60f8621816",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef52ad621819",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4a9462181c",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef907162181f",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef78b6621822",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef7556621825",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefd615621828",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefefc662182b",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef1bd662182e",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef74ca621831",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef80c0621834",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefbe24621837",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef9aeb62183a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef309e62183d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4e21621840",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefd693621843",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef215a621846",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef42e0621849",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefad5962184c",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef51b062184f",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef0f2c621852",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef50fd621855",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef3af7621858",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef8fd662185b",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef92bc62185e",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef0c4c621861",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefe22b621864",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefc2c1621867",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef33e962186a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef6cbb62186d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefcfac621870",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef3248621873",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefcc6e621876",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef7262621879",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefbcc362187c",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef362262187f",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef41a9621882",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef2c30621885",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefa6e3621888",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef916b62188b",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aeff78262188e",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef7206621891",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef2b04621894",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef5022621897",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef10d662189a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aeff1d262189d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefd8096218a0",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef44ff6218a3",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef5b6b6218a6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef1ec46218a9",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef23516218ac",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefd1206218af",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefa2a06218b2",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef1fc16218b5",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef5ff56218b8",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef08106218bb",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef84686218be",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef84d06218c1",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef25a46218c4",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aeff16d6218c7",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef90a86218ca",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4b806218cd",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef59206218d0",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef24e16218d3",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef78fb6218d6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef817f6218d9",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef40626218dc",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef393f6218df",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef696f6218e2",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefc24f6218e5",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef713c6218e8",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef6c696218eb",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aeff6a96218ee",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef3ff06218f1",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aefa9116218f4",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef3aab6218f7",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef4cfe6218fa",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614c6768bc1aef719f6218fd",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc3b98562c0f3a2f16c91",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc3b98562c0366bf16c94",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc3b98562c0172ef16c97",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc3b98562c047f6f16c9a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc3b98562c0e679f16c9d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc3b98562c068fff16ca0",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_614cc3b98562c084ebf16ca3",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc3e98562c06e6cf16ca6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc3e98562c007eaf16ca9",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc3e98562c0d804f16cac",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "digitalInput_614cc3e98562c065f3f16caf",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                }
+            ]
+        },
+        {
+            "id": "ConsumosPorCamaras",
+            "attributes": [
+                {
+                    "id": "analogInput_61551006c6b8eccad60ecc54",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ecaf220ecc57",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ecfed00ecc5a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec8f210ecc5d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec29040ecc60",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec2e160ecc63",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ecf8360ecc66",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8eceeab0ecc69",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec22390ecc6c",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec24510ecc6f",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ece70a0ecc72",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec4d200ecc75",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec22bc0ecc78",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec5c760ecc7b",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec0a960ecc7e",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ecf7f70ecc81",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec39100ecc84",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec34420ecc87",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec014e0ecc8a",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ecd7120ecc8d",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec9f070ecc90",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec26910ecc93",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec37cd0ecc96",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec96b20ecc99",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ec7e5e0ecc9c",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551006c6b8ecb9dd0ecc9f",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec13ad0ecca2",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec203b0ecca5",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec24700ecca8",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec6c280eccab",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec62c90eccae",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ecc68d0eccb1",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec2f640eccb4",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ecda510eccb7",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec67f90eccba",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec56240eccbd",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8eca9be0eccc0",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ecc6a10eccc3",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8ec9ff20eccc6",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                },
+                {
+                    "id": "analogInput_61551007c6b8eca2400eccc9",
+                    "description": "",
+                    "lasttimestamp": "2021-11-01T00:00:00.000Z"
+                }
+            ]
+        }
+    ]
+}
