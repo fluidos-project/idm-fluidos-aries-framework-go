@@ -1,0 +1,635 @@
+2024-02-05 12:45:14,502 [Thread-2    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 12:45:14,503 [Thread-2    ] [INFO ]  Detected new domain 'prueba'.
+2024-02-05 12:45:14,503 [Thread-2    ] [INFO ]  XACML Policies (prueba) changed: 2024-02-05 11:06:44.057499
+2024-02-05 12:45:14,505 [Thread-2    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-05 12:45:14,506 [Thread-2    ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 12:45:14,506 [Thread-2    ] [INFO ]  Total(ms) request: 3
+2024-02-05 13:03:45,126 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-05 13:03:40.754646
+2024-02-05 13:03:45,127 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-05 13:04:45,186 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-05 13:04:24.990676
+2024-02-05 13:04:45,188 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-05 13:04:45,966 [Thread-3    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:04:45,966 [Thread-3    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-05 13:04:45,966 [Thread-3    ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:04:45,966 [Thread-3    ] [INFO ]  Total(ms) request: 1
+2024-02-05 13:04:46,799 [Thread-4    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:04:46,799 [Thread-4    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-05 13:04:46,799 [Thread-4    ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:04:46,799 [Thread-4    ] [INFO ]  Total(ms) request: 1
+2024-02-05 13:05:12,324 [Thread-5    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:05:12,324 [Thread-5    ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource2' }
+2024-02-05 13:05:12,324 [Thread-5    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-05 13:05:12,324 [Thread-5    ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:05:12,324 [Thread-5    ] [INFO ]  Total(ms) request: 1
+2024-02-05 13:05:45,247 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-05 13:05:43.950776
+2024-02-05 13:05:45,248 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-05 13:06:05,988 [Thread-6    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:06:05,988 [Thread-6    ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource2' }
+2024-02-05 13:06:05,988 [Thread-6    ] [INFO ]  POST Response: VERDICT: Deny.
+2024-02-05 13:06:05,988 [Thread-6    ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:06:05,988 [Thread-6    ] [INFO ]  Total(ms) request: 1
+2024-02-05 13:06:07,795 [Thread-7    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:06:07,796 [Thread-7    ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource2' }
+2024-02-05 13:06:07,796 [Thread-7    ] [INFO ]  POST Response: VERDICT: Deny.
+2024-02-05 13:06:07,796 [Thread-7    ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:06:07,796 [Thread-7    ] [INFO ]  Total(ms) request: 0
+2024-02-05 13:06:08,470 [Thread-8    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:06:08,470 [Thread-8    ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource2' }
+2024-02-05 13:06:08,470 [Thread-8    ] [INFO ]  POST Response: VERDICT: Deny.
+2024-02-05 13:06:08,471 [Thread-8    ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:06:08,471 [Thread-8    ] [INFO ]  Total(ms) request: 0
+2024-02-05 13:06:15,666 [Thread-9    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:06:15,666 [Thread-9    ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource3' }
+2024-02-05 13:06:15,666 [Thread-9    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-05 13:06:15,666 [Thread-9    ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:06:15,666 [Thread-9    ] [INFO ]  Total(ms) request: 1
+2024-02-05 13:06:25,816 [Thread-10   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:06:25,816 [Thread-10   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource2' }
+2024-02-05 13:06:25,816 [Thread-10   ] [INFO ]  POST Response: VERDICT: Deny.
+2024-02-05 13:06:25,816 [Thread-10   ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:06:25,816 [Thread-10   ] [INFO ]  Total(ms) request: 1
+2024-02-05 13:06:33,404 [Thread-11   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:06:33,405 [Thread-11   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-05 13:06:33,405 [Thread-11   ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:06:33,405 [Thread-11   ] [INFO ]  Total(ms) request: 0
+2024-02-05 13:06:34,305 [Thread-12   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-05 13:06:34,305 [Thread-12   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-05 13:06:34,305 [Thread-12   ] [INFO ]  Response issued: Communication is closed.
+2024-02-05 13:06:34,306 [Thread-12   ] [INFO ]  Total(ms) request: 0
+2024-02-06 10:22:43,447 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-06 10:22:20.014994
+2024-02-06 10:22:43,452 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-06 13:21:03,846 [Thread-13   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-06 13:21:03,847 [Thread-13   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-06 13:21:03,847 [Thread-13   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 13:21:03,847 [Thread-13   ] [INFO ]  Total(ms) request: 2
+2024-02-06 13:21:07,690 [Thread-14   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-06 13:21:07,691 [Thread-14   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-06 13:21:07,692 [Thread-14   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 13:21:07,692 [Thread-14   ] [INFO ]  Total(ms) request: 1
+2024-02-06 13:21:08,480 [Thread-15   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-06 13:21:08,481 [Thread-15   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-06 13:21:08,481 [Thread-15   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 13:21:08,481 [Thread-15   ] [INFO ]  Total(ms) request: 2
+2024-02-06 13:39:25,337 [Thread-16   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-06 13:39:25,339 [Thread-16   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-06 13:39:25,339 [Thread-16   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 13:39:25,339 [Thread-16   ] [INFO ]  Total(ms) request: 2
+2024-02-06 13:47:28,068 [Thread-17   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-06 13:47:28,069 [Thread-17   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-06 13:47:28,070 [Thread-17   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 13:47:28,070 [Thread-17   ] [INFO ]  Total(ms) request: 2
+2024-02-06 14:00:46,476 [Thread-18   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-06 14:00:46,477 [Thread-18   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-06 14:00:46,478 [Thread-18   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 14:00:46,478 [Thread-18   ] [INFO ]  Total(ms) request: 2
+2024-02-06 14:00:52,176 [Thread-19   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.28.0.1)... 
+2024-02-06 14:00:52,178 [Thread-19   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'fcid', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-06 14:00:52,178 [Thread-19   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-06 14:00:52,178 [Thread-19   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 14:00:52,179 [Thread-19   ] [INFO ]  Total(ms) request: 2
+2024-02-06 14:00:52,182 [Thread-20   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.28.0.1)... 
+2024-02-06 14:00:52,183 [Thread-20   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-06 14:00:52,183 [Thread-20   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-06 14:00:52,184 [Thread-20   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 14:00:52,184 [Thread-20   ] [INFO ]  Total(ms) request: 2
+2024-02-06 14:00:52,187 [Thread-21   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.28.0.1)... 
+2024-02-06 14:00:52,188 [Thread-21   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': '6aea2de6-7d97-47cd-99e9-30f19cdf098c', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-06 14:00:52,188 [Thread-21   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-06 14:00:52,189 [Thread-21   ] [INFO ]  Response issued: Communication is closed.
+2024-02-06 14:00:52,189 [Thread-21   ] [INFO ]  Total(ms) request: 1
+2024-02-07 10:50:36,122 [Thread-1    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 10:50:36,125 [Thread-1    ] [INFO ]  Detected new domain 'prueba'.
+2024-02-07 10:50:36,125 [Thread-1    ] [INFO ]  XACML Policies (prueba) changed: 2024-02-06 10:22:20.014994
+2024-02-07 10:50:36,128 [Thread-1    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 10:50:36,128 [Thread-1    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 10:50:36,128 [Thread-1    ] [INFO ]  Total(ms) request: 4
+2024-02-07 10:50:50,090 [Thread-2    ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 10:50:50,092 [Thread-2    ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'fcid', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 10:50:50,092 [Thread-2    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 10:50:50,092 [Thread-2    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 10:50:50,093 [Thread-2    ] [INFO ]  Total(ms) request: 3
+2024-02-07 10:50:50,096 [Thread-3    ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 10:50:50,097 [Thread-3    ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 10:50:50,097 [Thread-3    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 10:50:50,098 [Thread-3    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 10:50:50,098 [Thread-3    ] [INFO ]  Total(ms) request: 2
+2024-02-07 10:50:50,102 [Thread-4    ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 10:50:50,103 [Thread-4    ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': '6aea2de6-7d97-47cd-99e9-30f19cdf098c', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 10:50:50,103 [Thread-4    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 10:50:50,104 [Thread-4    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 10:50:50,104 [Thread-4    ] [INFO ]  Total(ms) request: 3
+2024-02-07 10:52:24,619 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 10:51:51.031435
+2024-02-07 10:52:24,620 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-07 10:55:20,345 [Thread-5    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 10:55:20,345 [Thread-5    ] [INFO ]  There are not defined policies.
+2024-02-07 10:55:20,345 [Thread-5    ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource1' }
+2024-02-07 10:55:20,345 [Thread-5    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 10:55:20,345 [Thread-5    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 10:55:20,346 [Thread-5    ] [INFO ]  Total(ms) request: 1
+2024-02-07 10:55:24,798 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 10:54:45.376423
+2024-02-07 10:55:24,799 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-07 10:55:44,718 [Thread-6    ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 10:55:44,719 [Thread-6    ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'fcid', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 10:55:44,720 [Thread-6    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 10:55:44,720 [Thread-6    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 10:55:44,720 [Thread-6    ] [INFO ]  Total(ms) request: 2
+2024-02-07 10:55:44,724 [Thread-7    ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 10:55:44,725 [Thread-7    ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 10:55:44,725 [Thread-7    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 10:55:44,726 [Thread-7    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 10:55:44,726 [Thread-7    ] [INFO ]  Total(ms) request: 1
+2024-02-07 10:55:44,729 [Thread-8    ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 10:55:44,730 [Thread-8    ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': '6aea2de6-7d97-47cd-99e9-30f19cdf098c', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 10:55:44,730 [Thread-8    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 10:55:44,731 [Thread-8    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 10:55:44,731 [Thread-8    ] [INFO ]  Total(ms) request: 2
+2024-02-07 11:07:13,413 [Thread-9    ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:07:13,413 [Thread-9    ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource1' }
+2024-02-07 11:07:13,413 [Thread-9    ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:07:13,413 [Thread-9    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:07:13,413 [Thread-9    ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:07:22,228 [Thread-10   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 11:07:22,229 [Thread-10   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'fcid', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 11:07:22,229 [Thread-10   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:07:22,230 [Thread-10   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:07:22,230 [Thread-10   ] [INFO ]  Total(ms) request: 2
+2024-02-07 11:07:22,233 [Thread-11   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 11:07:22,234 [Thread-11   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 11:07:22,235 [Thread-11   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:07:22,235 [Thread-11   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:07:22,235 [Thread-11   ] [INFO ]  Total(ms) request: 2
+2024-02-07 11:07:22,239 [Thread-12   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 11:07:22,240 [Thread-12   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': '6aea2de6-7d97-47cd-99e9-30f19cdf098c', 'Resource': 'https://smart2b.odins.es:1027/ngsi-ld/v1/entities/urn:ngsi-ld:Service:ARA-ThorLangesAlle-.*/attrs' }
+2024-02-07 11:07:22,240 [Thread-12   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:07:22,241 [Thread-12   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:07:22,241 [Thread-12   ] [INFO ]  Total(ms) request: 2
+2024-02-07 11:10:21,427 [Thread-13   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:10:21,427 [Thread-13   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource1' }
+2024-02-07 11:10:21,427 [Thread-13   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:10:21,427 [Thread-13   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:10:21,427 [Thread-13   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:14:25,774 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 11:13:41.785414
+2024-02-07 11:14:25,775 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-07 11:14:26,612 [Thread-14   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:14:26,612 [Thread-14   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource1' }
+2024-02-07 11:14:26,612 [Thread-14   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:14:26,612 [Thread-14   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:14:26,612 [Thread-14   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:14:27,771 [Thread-15   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:14:27,771 [Thread-15   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'prueba', 'Resource': 'http:/resource1' }
+2024-02-07 11:14:27,771 [Thread-15   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:14:27,771 [Thread-15   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:14:27,771 [Thread-15   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:15:46,963 [Thread-16   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:15:46,964 [Thread-16   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:15:46,964 [Thread-16   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:15:46,964 [Thread-16   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:15:46,964 [Thread-16   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:15:48,529 [Thread-17   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:15:48,530 [Thread-17   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:15:48,530 [Thread-17   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:15:48,530 [Thread-17   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:15:48,530 [Thread-17   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:16:07,178 [Thread-18   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:16:07,179 [Thread-18   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:16:07,179 [Thread-18   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:16:07,179 [Thread-18   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:16:07,179 [Thread-18   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:16:07,890 [Thread-19   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:16:07,890 [Thread-19   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:16:07,890 [Thread-19   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:16:07,890 [Thread-19   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:16:07,890 [Thread-19   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:16:08,438 [Thread-20   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:16:08,439 [Thread-20   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:16:08,439 [Thread-20   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:16:08,439 [Thread-20   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:16:08,439 [Thread-20   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:16:25,894 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 11:16:19.435135
+2024-02-07 11:16:25,896 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-07 11:18:20,662 [Thread-21   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:20,663 [Thread-21   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:18:20,663 [Thread-21   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:20,663 [Thread-21   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:18:21,769 [Thread-22   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:21,770 [Thread-22   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:18:21,770 [Thread-22   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:21,770 [Thread-22   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:18:22,402 [Thread-23   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:22,402 [Thread-23   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:18:22,403 [Thread-23   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:22,403 [Thread-23   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:18:23,021 [Thread-24   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:23,021 [Thread-24   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:18:23,021 [Thread-24   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:23,021 [Thread-24   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:18:26,014 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 11:17:50.556079
+2024-02-07 11:18:26,015 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-07 11:18:42,744 [Thread-25   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:42,745 [Thread-25   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:18:42,745 [Thread-25   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:18:42,745 [Thread-25   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:42,745 [Thread-25   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:18:43,751 [Thread-26   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:43,752 [Thread-26   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:18:43,752 [Thread-26   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:18:43,752 [Thread-26   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:43,752 [Thread-26   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:18:44,407 [Thread-27   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:44,407 [Thread-27   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:18:44,407 [Thread-27   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:18:44,407 [Thread-27   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:44,407 [Thread-27   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:18:45,045 [Thread-28   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:45,045 [Thread-28   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:18:45,045 [Thread-28   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:18:45,046 [Thread-28   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:45,046 [Thread-28   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:18:45,681 [Thread-29   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:45,681 [Thread-29   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:18:45,681 [Thread-29   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:18:45,682 [Thread-29   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:45,682 [Thread-29   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:18:46,545 [Thread-30   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:46,545 [Thread-30   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:18:46,545 [Thread-30   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:18:46,546 [Thread-30   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:46,546 [Thread-30   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:18:47,255 [Thread-31   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:18:47,255 [Thread-31   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:18:47,255 [Thread-31   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:18:47,255 [Thread-31   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:18:47,255 [Thread-31   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:19:03,491 [Thread-32   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:03,491 [Thread-32   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:03,491 [Thread-32   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:03,491 [Thread-32   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:03,491 [Thread-32   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:19:04,395 [Thread-33   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:04,395 [Thread-33   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:04,395 [Thread-33   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:04,395 [Thread-33   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:04,396 [Thread-33   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:19:08,792 [Thread-34   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:08,792 [Thread-34   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:08,793 [Thread-34   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:08,793 [Thread-34   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:08,793 [Thread-34   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:19:09,547 [Thread-35   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:09,547 [Thread-35   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:09,547 [Thread-35   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:09,547 [Thread-35   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:09,547 [Thread-35   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:19:10,145 [Thread-36   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:10,145 [Thread-36   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:10,145 [Thread-36   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:10,145 [Thread-36   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:10,146 [Thread-36   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:19:10,647 [Thread-37   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:10,648 [Thread-37   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:10,648 [Thread-37   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:10,648 [Thread-37   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:10,648 [Thread-37   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:19:11,099 [Thread-38   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:11,099 [Thread-38   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:11,099 [Thread-38   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:11,099 [Thread-38   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:11,099 [Thread-38   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:19:11,703 [Thread-39   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:11,703 [Thread-39   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:11,703 [Thread-39   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:11,703 [Thread-39   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:11,704 [Thread-39   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:19:12,269 [Thread-40   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:12,269 [Thread-40   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:12,269 [Thread-40   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:12,270 [Thread-40   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:12,270 [Thread-40   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:19:13,314 [Thread-41   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:13,314 [Thread-41   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:13,314 [Thread-41   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:13,314 [Thread-41   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:13,314 [Thread-41   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:19:14,445 [Thread-42   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:19:14,445 [Thread-42   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:19:14,445 [Thread-42   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:19:14,445 [Thread-42   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:19:14,445 [Thread-42   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:20:21,058 [Thread-43   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:20:21,059 [Thread-43   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:20:21,059 [Thread-43   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:20:21,059 [Thread-43   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:20:21,059 [Thread-43   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:20:21,859 [Thread-44   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:20:21,860 [Thread-44   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:20:21,860 [Thread-44   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:20:21,860 [Thread-44   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:20:21,860 [Thread-44   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:20:22,501 [Thread-45   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:20:22,501 [Thread-45   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:20:22,501 [Thread-45   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:20:22,502 [Thread-45   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:20:22,502 [Thread-45   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:20:23,091 [Thread-46   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:20:23,092 [Thread-46   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:20:23,092 [Thread-46   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:20:23,092 [Thread-46   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:20:23,092 [Thread-46   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:20:23,861 [Thread-47   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:20:23,861 [Thread-47   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:20:23,861 [Thread-47   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:20:23,861 [Thread-47   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:20:23,862 [Thread-47   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:20:24,399 [Thread-48   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:20:24,399 [Thread-48   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:20:24,399 [Thread-48   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:20:24,400 [Thread-48   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:20:24,400 [Thread-48   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:21:13,883 [Thread-49   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:21:13,883 [Thread-49   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:21:13,883 [Thread-49   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:21:13,883 [Thread-49   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:21:13,883 [Thread-49   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:21:14,604 [Thread-50   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:21:14,604 [Thread-50   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:21:14,604 [Thread-50   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:21:14,605 [Thread-50   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:21:14,605 [Thread-50   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:21:15,205 [Thread-51   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:21:15,205 [Thread-51   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:21:15,205 [Thread-51   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:21:15,205 [Thread-51   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:21:15,205 [Thread-51   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:21:26,178 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 11:21:01.749968
+2024-02-07 11:21:26,179 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-07 11:22:08,052 [Thread-52   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:22:08,053 [Thread-52   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:22:08,053 [Thread-52   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:22:08,053 [Thread-52   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:22:08,053 [Thread-52   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:22:08,769 [Thread-53   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:22:08,769 [Thread-53   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:22:08,769 [Thread-53   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:22:08,769 [Thread-53   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:22:08,769 [Thread-53   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:22:09,209 [Thread-54   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:22:09,209 [Thread-54   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:22:09,209 [Thread-54   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:22:09,209 [Thread-54   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:22:09,210 [Thread-54   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:22,682 [Thread-55   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:22,682 [Thread-55   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:23:22,682 [Thread-55   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:23:22,682 [Thread-55   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:22,682 [Thread-55   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:23,385 [Thread-56   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:23,385 [Thread-56   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:23:23,385 [Thread-56   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:23:23,385 [Thread-56   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:23,385 [Thread-56   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:24,020 [Thread-57   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:24,020 [Thread-57   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:23:24,020 [Thread-57   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:23:24,020 [Thread-57   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:24,020 [Thread-57   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:25,582 [Thread-58   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:25,582 [Thread-58   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:23:25,582 [Thread-58   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:23:25,582 [Thread-58   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:25,582 [Thread-58   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:25,920 [Thread-59   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:25,921 [Thread-59   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 11:23:25,921 [Thread-59   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 11:23:25,921 [Thread-59   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:25,921 [Thread-59   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:26,294 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 11:23:10.455186
+2024-02-07 11:23:26,295 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-07 11:23:28,544 [Thread-60   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:28,544 [Thread-60   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:28,544 [Thread-60   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:28,544 [Thread-60   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:31,445 [Thread-61   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:31,445 [Thread-61   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:31,446 [Thread-61   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:31,446 [Thread-61   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:32,084 [Thread-62   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:32,084 [Thread-62   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:32,084 [Thread-62   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:32,084 [Thread-62   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:32,706 [Thread-63   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:32,707 [Thread-63   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:32,707 [Thread-63   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:32,707 [Thread-63   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:33,601 [Thread-64   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:33,602 [Thread-64   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:33,602 [Thread-64   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:33,602 [Thread-64   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:35,038 [Thread-65   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:35,038 [Thread-65   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:35,039 [Thread-65   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:35,039 [Thread-65   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:35,727 [Thread-66   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:35,728 [Thread-66   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:35,728 [Thread-66   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:35,728 [Thread-66   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:38,155 [Thread-67   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:38,155 [Thread-67   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:38,155 [Thread-67   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:38,155 [Thread-67   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:38,739 [Thread-68   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:38,739 [Thread-68   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:38,739 [Thread-68   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:38,739 [Thread-68   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:39,386 [Thread-69   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:39,387 [Thread-69   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:39,387 [Thread-69   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:39,387 [Thread-69   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:40,002 [Thread-70   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:40,003 [Thread-70   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:40,003 [Thread-70   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:40,003 [Thread-70   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:40,792 [Thread-71   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:40,792 [Thread-71   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:40,792 [Thread-71   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:40,792 [Thread-71   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:41,461 [Thread-72   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:41,461 [Thread-72   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:41,461 [Thread-72   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:41,461 [Thread-72   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:42,127 [Thread-73   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:42,127 [Thread-73   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:42,128 [Thread-73   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:42,128 [Thread-73   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:23:42,854 [Thread-74   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:42,854 [Thread-74   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:42,854 [Thread-74   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:42,855 [Thread-74   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:56,521 [Thread-75   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:56,521 [Thread-75   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:56,521 [Thread-75   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:56,521 [Thread-75   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:23:57,190 [Thread-76   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:23:57,190 [Thread-76   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:23:57,190 [Thread-76   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:23:57,190 [Thread-76   ] [INFO ]  Total(ms) request: 1
+2024-02-07 11:24:09,534 [Thread-77   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:24:09,534 [Thread-77   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:24:09,535 [Thread-77   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:24:09,535 [Thread-77   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:38:05,884 [Thread-78   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:38:05,884 [Thread-78   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:38:05,885 [Thread-78   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:38:05,885 [Thread-78   ] [INFO ]  Total(ms) request: 0
+2024-02-07 11:38:06,600 [Thread-79   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 11:38:06,601 [Thread-79   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 11:38:06,601 [Thread-79   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 11:38:06,601 [Thread-79   ] [INFO ]  Total(ms) request: 1
+2024-02-07 12:04:23,062 [Thread-80   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 12:04:23,062 [Thread-80   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 12:04:23,062 [Thread-80   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 12:04:23,062 [Thread-80   ] [INFO ]  Total(ms) request: 1
+2024-02-07 12:04:23,807 [Thread-81   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 12:04:23,807 [Thread-81   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 12:04:23,808 [Thread-81   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 12:04:23,808 [Thread-81   ] [INFO ]  Total(ms) request: 0
+2024-02-07 12:36:10,689 [Thread-82   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 12:36:10,689 [Thread-82   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'fcid', 'Resource': 'localhost/prueba' }
+2024-02-07 12:36:10,689 [Thread-82   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 12:36:10,690 [Thread-82   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 12:36:10,690 [Thread-82   ] [INFO ]  Total(ms) request: 0
+2024-02-07 12:36:10,691 [Thread-83   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 12:36:10,691 [Thread-83   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 12:36:10,691 [Thread-83   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 12:36:10,691 [Thread-83   ] [INFO ]  Total(ms) request: 0
+2024-02-07 13:15:13,455 [Thread-84   ] [INFO ]  POST '/pdp/verdict' Request (155.54.99.22)... 
+2024-02-07 13:15:13,455 [Thread-84   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 13:15:13,455 [Thread-84   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 13:15:13,455 [Thread-84   ] [INFO ]  Total(ms) request: 1
+2024-02-07 13:15:23,937 [Thread-85   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 13:15:23,938 [Thread-85   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:username', 'Subject': 'fcid', 'Resource': 'localhost/prueba' }
+2024-02-07 13:15:23,938 [Thread-85   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 13:15:23,939 [Thread-85   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 13:15:23,939 [Thread-85   ] [INFO ]  Total(ms) request: 2
+2024-02-07 13:15:23,942 [Thread-86   ] [INFO ]  POST '/XACMLServletPDP/' Request (172.18.0.1)... 
+2024-02-07 13:15:23,943 [Thread-86   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 13:15:23,944 [Thread-86   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 13:15:23,944 [Thread-86   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:00:51,895 [Thread-3    ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:00:51,895 [Thread-3    ] [INFO ]  Detected new domain 'prueba'.
+2024-02-07 18:00:51,896 [Thread-3    ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 11:23:10.455186
+2024-02-07 18:00:51,898 [Thread-3    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:00:51,899 [Thread-3    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:00:51,899 [Thread-3    ] [INFO ]  Total(ms) request: 3
+2024-02-07 18:00:54,732 [Thread-4    ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:00:54,733 [Thread-4    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:00:54,734 [Thread-4    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:00:54,734 [Thread-4    ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:00:55,558 [Thread-5    ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:00:55,559 [Thread-5    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:00:55,560 [Thread-5    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:00:55,560 [Thread-5    ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:00:56,316 [Thread-6    ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:00:56,317 [Thread-6    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:00:56,317 [Thread-6    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:00:56,317 [Thread-6    ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:00:57,276 [Thread-7    ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:00:57,277 [Thread-7    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:00:57,277 [Thread-7    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:00:57,277 [Thread-7    ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:00:58,111 [Thread-8    ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:00:58,112 [Thread-8    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:00:58,112 [Thread-8    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:00:58,112 [Thread-8    ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:00:58,899 [Thread-9    ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:00:58,900 [Thread-9    ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:00:58,901 [Thread-9    ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:00:58,901 [Thread-9    ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:01:04,517 [Thread-10   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:04,518 [Thread-10   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:04,519 [Thread-10   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:04,519 [Thread-10   ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:01:08,020 [Thread-11   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:08,021 [Thread-11   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:08,022 [Thread-11   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:08,022 [Thread-11   ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:01:09,615 [Thread-12   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:09,616 [Thread-12   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:09,616 [Thread-12   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:09,616 [Thread-12   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:10,264 [Thread-13   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:10,265 [Thread-13   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:10,265 [Thread-13   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:10,265 [Thread-13   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:10,998 [Thread-14   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:10,999 [Thread-14   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:10,999 [Thread-14   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:11,000 [Thread-14   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:32,465 [Thread-15   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:32,466 [Thread-15   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 18:01:32,467 [Thread-15   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 18:01:32,467 [Thread-15   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:32,467 [Thread-15   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:33,721 [Thread-16   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:33,722 [Thread-16   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 18:01:33,723 [Thread-16   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 18:01:33,723 [Thread-16   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:33,723 [Thread-16   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:34,491 [Thread-17   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:34,492 [Thread-17   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 18:01:34,493 [Thread-17   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 18:01:34,493 [Thread-17   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:34,493 [Thread-17   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:35,974 [Thread-18   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:35,975 [Thread-18   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 18:01:35,975 [Thread-18   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 18:01:35,975 [Thread-18   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:35,976 [Thread-18   ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:01:36,710 [Thread-19   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:36,711 [Thread-19   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 18:01:36,711 [Thread-19   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 18:01:36,711 [Thread-19   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:36,712 [Thread-19   ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:01:37,455 [Thread-20   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:37,456 [Thread-20   ] [INFO ]  { 'Action': 'GET', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 18:01:37,456 [Thread-20   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 18:01:37,457 [Thread-20   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:37,457 [Thread-20   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:45,917 [Thread-21   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:45,918 [Thread-21   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:45,919 [Thread-21   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:45,919 [Thread-21   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:47,130 [Thread-22   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:47,131 [Thread-22   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:47,132 [Thread-22   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:47,132 [Thread-22   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:47,800 [Thread-23   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:47,801 [Thread-23   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:47,802 [Thread-23   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:47,802 [Thread-23   ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:01:48,448 [Thread-24   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:48,449 [Thread-24   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:48,449 [Thread-24   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:48,450 [Thread-24   ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:01:49,321 [Thread-25   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:49,322 [Thread-25   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:49,323 [Thread-25   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:49,323 [Thread-25   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:51,854 [Thread-26   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:51,855 [Thread-26   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:51,855 [Thread-26   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:51,856 [Thread-26   ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:01:53,337 [Thread-27   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:53,338 [Thread-27   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:53,339 [Thread-27   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:53,339 [Thread-27   ] [INFO ]  Total(ms) request: 2
+2024-02-07 18:01:54,088 [Thread-28   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:01:54,089 [Thread-28   ] [INFO ]  POST Response: VERDICT: Permit.
+2024-02-07 18:01:54,089 [Thread-28   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:01:54,090 [Thread-28   ] [INFO ]  Total(ms) request: 1
+2024-02-07 18:02:54,066 [Daemon      ] [INFO ]  XACML Policies (prueba) changed: 2024-02-07 18:02:26.871804
+2024-02-07 18:02:54,072 [Daemon      ] [INFO ]  Refreshed XACML Policies (prueba)
+2024-02-07 18:04:05,275 [Thread-29   ] [INFO ]  POST '/pdp/verdict' Request (155.54.192.150)... 
+2024-02-07 18:04:05,277 [Thread-29   ] [INFO ]  { 'Action': 'PATCH', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:email', 'Subject': 'fcid@smart2b.com', 'Resource': 'localhost/prueba' }
+2024-02-07 18:04:05,278 [Thread-29   ] [INFO ]  POST Response: VERDICT: NotApplicable.
+2024-02-07 18:04:05,278 [Thread-29   ] [INFO ]  Response issued: Communication is closed.
+2024-02-07 18:04:05,278 [Thread-29   ] [INFO ]  Total(ms) request: 3

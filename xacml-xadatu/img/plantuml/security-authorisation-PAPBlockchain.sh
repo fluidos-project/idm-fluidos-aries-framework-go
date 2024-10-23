@@ -1,0 +1,21 @@
+#!/bin/sh
+
+cat <<EOF > security-authorisation-PAPBlockchain.pu
+@startuml
+
+skinparam monochrome false
+skinparam shadowing true
+skinparam roundcorner 10
+
+participant "XACML\n(PAP)"
+participant "Blockchain"
+
+group Authorisation DCapBAC - Access Control
+    
+    "XACML\n(PAP)" -> "Blockchain" : STORE_HASH(Domain)
+
+end
+
+@enduml
+EOF
+plantuml security-authorisation-PAPBlockchain.pu

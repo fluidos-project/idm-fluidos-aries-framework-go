@@ -1,0 +1,167 @@
+version: '3.1'
+services:
+  xacml-pap-frontend:
+    build: ./xacml-pap-frontend
+    image: odins/xacml-pap-frontend:pythonv1.0
+    container_name: xacml-pap-frontend
+    hostname: xacml-pap-frontend
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports:
+      - "${PAP_FRONTEND_EXPOSED_PORT}:80"
+    networks:
+      security_network:
+        ipv4_address: ${NETWORKID}.2
+    depends_on:
+      - xacml-pap-backend
+    restart: always
+  
+  xacml-pap-backend:
+    build: ./xacml-pap-backend
+    image: odins/xacml-pap-backend:pythonv1.0
+    container_name: xacml-pap-backend
+    hostname: xacml-pap-backend
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    expose:
+      - "8080"
+    ports:
+      - "${PAP_BACKEND_EXPOSED_PORT}:8080"
+    networks:
+      security_network:
+        ipv4_address: ${NETWORKID}.3    
+#    depends_on:
+#      - orion
+
+    restart: always
+
+    volumes:
+      - ./XACML_DATA/PAPConfigData/Policies/:/app/XACML_PAP/PAPConfigData/Policies/
+      - ./XACML_DATA/PAPConfigData/XACMLAtts/:/app/XACML_PAP/PAPConfigData/XACMLAtts/
+      - ./XACML_DATA/PAPConfigData/SubjectIdTypes.json:/app/XACML_PAP/PAPConfigData/SubjectIdTypes.json
+    environment:
+        - READ_ACCEPTED_VALUES=${PAP_BACKEND_READ_ACCEPTED_VALUES}
+        - READ=${PAP_BACKEND_READ}
+        - DLT_GET_DOMAINS=${PAP_BACKEND_DLT_GET_DOMAINS}
+        - DLT_POLICIES=${PAP_BACKEND_DLT_POLICIES}
+        - DLT_ATTRIBUTES=${PAP_BACKEND_DLT_ATTRIBUTES}
+        - DLT_POST=${PAP_BACKEND_DLT_POST}
+        - DEFAULT_POLICY_HEADER=${PAP_BACKEND_DEFAULT_POLICY_HEADER}
+        - DEFAULT_ATTRIBUTES_HEADER=${PAP_BACKEND_DEFAULT_ATTRIBUTES_HEADER}
+        - HASH_Integration=${PAP_BACKEND_HASH_INTEGRATION}
+        - HASH_Protocol=${PAP_BACKEND_HASH_PROTOCOL}
+        - HASH_Host=${PAP_BACKEND_HASH_HOST}
+        - HASH_Port=${PAP_BACKEND_HASH_PORT}
+        - HASH_Get_Resource=${PAP_BACKEND_HASH_GET_RESOURCE}
+        - HASH_Post_Resource=${PAP_BACKEND_HASH_POST_RESOURCE}
+        - HASH_Patch_Resource=${PAP_BACKEND_HASH_UPDATE_RESOURCE}
+
+#  orion:
+#    image: fiware/orion-ld:1.3.0
+#    hostname: orion
+#    container_name: fiware-orion
+#    networks:
+#      security_network:
+#        ipv4_address: ${NETWORKID}.4
+#    depends_on:
+#      - mongo-db
+#    expose:
+#      - "1026"
+#    ports:
+#      - "1026:1026" 
+#    command: -dbhost mongo-db -logLevel DEBUG
+#    healthcheck:
+#      test: curl --fail -s http://orion:1026/version || exit 1
+#      
+#    restart: always
+#  
+#  mongo-db:
+#    image: mongo:3.6
+#    hostname: mongo-db
+#    container_name: db-mongo
+#    networks:
+#      security_network:
+#        ipv4_address: ${NETWORKID}.5
+#    expose:
+#      - "27017"
+#    ports:
+#      - "27017:27017" 
+#    command: --nojournal
+#    volumes:
+#      - mongo-db:/data
+
+  xacml-pdp:
+    build: ./XACML_PDP_PYTHON
+    image: odins/xacml-pdp:pythonv1.0
+    container_name: xacml-pdp
+    hostname: xacml-pdp
+    networks:
+      security_network:
+        ipv4_address: ${NETWORKID}.6
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    ports:
+        - "${PDP_EXPOSED_PORT}:8080"
+    restart: always
+    volumes:
+      #- ./certs/fullchain.pem:/opt/PDP/certs/server-public-cert.pem  # volumes to import certificates to container
+      #- ./certs/privkey.pem:/opt/PDP/certs/server-priv-rsa.pem
+      - ./XACML_PDP_PYTHON/certs/server-public-cert.pem:/opt/PDP/certs/server-public-cert.pem  # volumes to import certificates to container
+      - ./XACML_PDP_PYTHON/certs/server-priv-rsa.pem:/opt/PDP/certs/server-priv-rsa.pem
+      - ./XACML_PDP_PYTHON/pdp.log:/opt/PDP/out.log
+      - ./XACML_DATA/PAPConfigData/Policies:/opt/PDP/Policies
+      - ./XACML_DATA/PAPConfigData/SubjectIdTypes.json:/opt/PDP/SubjectIdTypes.json
+
+    environment:
+        #PDP_Protocol: Admitted values: "http","https"
+        - PDP_Protocol=${PDP_PROTOCOL}
+
+        - XACML_Default_Domain=${XACML_DEFAULT_DOMAIN}
+
+        # XACML_LOCATION: To indicate if the XACML are located in local files or are accesible via API.
+        # file --> XACML Policies are located in local files
+        # api --> XACML Policies are accesible through an API
+        # NOTE: if "api" value is selected you can remove or comment "../XACML_PAP/PAPConfigData/Policies:/opt/PDP/Policies" in volumes section (WILL NOT BE USED)
+        - XACML_Location_Type=${XACML_LOCATION_TYPE}
+
+        # Variables used only if XACML_LOCATION_TYPE="api"
+        #XACML_API_Protocol: Admitted values: "http","https"
+        - XACML_API_Protocol=${XACML_API_PROTOCOL}
+        - XACML_API_Host=${XACML_API_HOST}
+        - XACML_API_Port=${XACML_API_PORT}
+        - XACML_API_Get_Resource=${XACML_API_GET_RESOURCE}
+
+        # HASH_VALIDATION to indicate if HASH if XACML Policies is considered or not.
+        # 0 --> HASH validation is not active.
+        # 1 --> HASH validation is active.
+        - HASH_Validation=${HASH_VALIDATION}
+        #HASH_Protocol: Admitted values: "http","https"
+        - HASH_Protocol=${HASH_PROTOCOL}
+        - HASH_Host=${HASH_HOST}
+        - HASH_Port=${HASH_PORT}
+        - HASH_Get_Resource=${HASH_GET_RESOURCE}
+
+        # PDP_CORS_ENABLED:
+        # 1 --> if you need to add CORS headers.
+        # 0 --> if you don't need to add CORS headers.
+        - PDP_CORS_ENABLED=${PDP_CORS_ENABLED}
+
+#volumes:
+#  mongo-db: ~
+
+networks:
+  security_network:
+    driver_opts:
+      com.docker.network.bridge.name: br_security
+    ipam:
+      config:
+        - subnet: ${NETWORKID}.0/16

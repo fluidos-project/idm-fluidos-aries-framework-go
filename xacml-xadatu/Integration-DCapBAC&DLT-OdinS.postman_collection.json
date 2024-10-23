@@ -1,0 +1,3030 @@
+{
+	"info": {
+		"_postman_id": "d33fb0c3-cfdc-4952-bcef-24f5f8cd911f",
+		"name": "Integration-DCapBAC&DLT-OdinS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "0-XACML",
+			"item": [
+				{
+					"name": "PAP",
+					"item": [
+						{
+							"name": "0-PAP CI/CD (test)",
+							"item": [
+								{
+									"name": "PAP Backend - Test",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:9090/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "9090",
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PAP Frontend - Test",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:9091/pap/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "9091",
+											"path": [
+												"pap",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "WEB URL PAP",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9091/pap/  (FROM WEB EXPLORER)",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9091",
+									"path": [
+										"pap",
+										"  (FROM WEB EXPLORER)"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PDP",
+					"item": [
+						{
+							"name": "0-PDP CI/CD (test)",
+							"item": [
+								{
+									"name": "PDP Request - Test",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:9092/pdp/test",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "9092",
+											"path": [
+												"pdp",
+												"test"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "XACML_LOCATION_TYPE=api tests",
+							"item": [
+								{
+									"name": "/ngsi-ld/v1/entities xacml:continue-a",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\":\"urn:ngsi-ld:xacml:continue-a\",\n    \"type\":\"xacml\",\n    \"version\":{\n        \"type\": \"Property\",\n        \"value\": \"1\"\n    },\n    \"attributes\":{\n        \"type\": \"Property\",\n        \"value\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?><PolicySet xmlns=\\\"urn:oasis:names:tc:xacml:2.0:policy:schema:os\\\" PolicyCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable\\\" PolicySetId=\\\"POLICY_SET\\\">  <Target />  <Policy PolicyId=\\\"test\\\" RuleCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\\\"> <Target /> <Rule Effect=\\\"Permit\\\" RuleId=\\\"Permit\\\"> <Target> <Subjects> <Subject> <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">admin@test.com</AttributeValue> <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </SubjectMatch> </Subject> </Subjects> <Resources> <Resource> <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*</AttributeValue> <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ResourceMatch> </Resource> </Resources> <Actions> <Action>  <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue> <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ActionMatch> </Action> </Actions> </Target> </Rule> <Rule Effect=\\\"Deny\\\" RuleId=\\\"Deny\\\"> <Target> <Subjects> <Subject> <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">admin@test.com</AttributeValue> <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </SubjectMatch> </Subject> </Subjects> <Resources> <Resource> <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:Other.*</AttributeValue> <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ResourceMatch> </Resource> </Resources> <Actions> <Action> <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue> <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ActionMatch> </Action> </Actions> </Target> </Rule> </Policy> </PolicySet>\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2023-02-16 22:34:00\"\n    }\n}\n"
+										},
+										"url": {
+											"raw": "http://localhost:1026/ngsi-ld/v1/entities",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1026",
+											"path": [
+												"ngsi-ld",
+												"v1",
+												"entities"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/ngsi-ld/v1/entities xacml:testdomain",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\":\"urn:ngsi-ld:xacml:testdomain\",\n    \"type\":\"xacml\",\n    \"version\":{\n        \"type\": \"Property\",\n        \"value\": \"1\"\n    },\n    \"attributes\":{\n        \"type\": \"Property\",\n        \"value\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?><PolicySet xmlns=\\\"urn:oasis:names:tc:xacml:2.0:policy:schema:os\\\" PolicyCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable\\\" PolicySetId=\\\"POLICY_SET\\\">  <Target />  <Policy PolicyId=\\\"test\\\" RuleCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\\\"> <Target /> <Rule Effect=\\\"Permit\\\" RuleId=\\\"Permit\\\"> <Target> <Subjects> <Subject> <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">admin@test.com</AttributeValue> <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </SubjectMatch> </Subject> </Subjects> <Resources> <Resource> <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*</AttributeValue> <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ResourceMatch> </Resource> </Resources> <Actions> <Action> <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">DELETE</AttributeValue> <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ActionMatch> </Action> <Action>  <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue> <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ActionMatch> </Action> </Actions> </Target> </Rule> <Rule Effect=\\\"Deny\\\" RuleId=\\\"Deny\\\"> <Target> <Subjects> <Subject> <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">admin@test.com</AttributeValue> <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </SubjectMatch> </Subject> </Subjects> <Resources> <Resource> <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:Other.*</AttributeValue> <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ResourceMatch> </Resource> </Resources> <Actions> <Action> <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue> <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ActionMatch> </Action> </Actions> </Target> </Rule> </Policy> </PolicySet>\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2023-02-16 22:34:00\"\n    }\n}\n"
+										},
+										"url": {
+											"raw": "http://localhost:1026/ngsi-ld/v1/entities",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1026",
+											"path": [
+												"ngsi-ld",
+												"v1",
+												"entities"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/ngsi-ld/v1/entities xacml:test2",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"id\":\"urn:ngsi-ld:xacml:test2\",\n    \"type\":\"xacml\",\n    \"version\":{\n        \"type\": \"Property\",\n        \"value\": \"1\"\n    },\n    \"attributes\":{\n        \"type\": \"Property\",\n        \"value\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?><PolicySet xmlns=\\\"urn:oasis:names:tc:xacml:2.0:policy:schema:os\\\" PolicyCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable\\\" PolicySetId=\\\"POLICY_SET\\\">  <Target />  <Policy PolicyId=\\\"test\\\" RuleCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\\\"> <Target /> <Rule Effect=\\\"Deny\\\" RuleId=\\\"Deny\\\"> <Target> <Subjects> <Subject> <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">admin@test.com</AttributeValue> <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </SubjectMatch> </Subject> </Subjects> <Resources> <Resource> <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*</AttributeValue> <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ResourceMatch> </Resource> </Resources> <Actions> <Action> <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">DELETE</AttributeValue> <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ActionMatch> </Action> <Action>  <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue> <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ActionMatch> </Action> </Actions> </Target> </Rule> <Rule Effect=\\\"Permit\\\" RuleId=\\\"Permit\\\"> <Target> <Subjects> <Subject> <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">admin@test.com</AttributeValue> <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </SubjectMatch> </Subject> </Subjects> <Resources> <Resource> <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:Other.*</AttributeValue> <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ResourceMatch> </Resource> </Resources> <Actions> <Action> <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\"> <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue> <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\" /> </ActionMatch> </Action> </Actions> </Target> </Rule> </Policy> </PolicySet>\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2023-02-16 22:34:00\"\n    }\n}\n"
+										},
+										"url": {
+											"raw": "http://localhost:1026/ngsi-ld/v1/entities",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1026",
+											"path": [
+												"ngsi-ld",
+												"v1",
+												"entities"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/ngsi-ld/v1/entities xacml:continue-a",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2023-02-17 22:34:00\"\n    }\n    \n}"
+										},
+										"url": {
+											"raw": "http://localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:xacml:continue-a/attrs",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1026",
+											"path": [
+												"ngsi-ld",
+												"v1",
+												"entities",
+												"urn:ngsi-ld:xacml:continue-a",
+												"attrs"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/ngsi-ld/v1/entities xacml:testdomain",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2023-02-17 22:34:00\"\n    }\n    \n}"
+										},
+										"url": {
+											"raw": "http://localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:xacml:testdomain/attrs",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1026",
+											"path": [
+												"ngsi-ld",
+												"v1",
+												"entities",
+												"urn:ngsi-ld:xacml:testdomain",
+												"attrs"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "/ngsi-ld/v1/entities xacml:test2",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2023-02-17 22:34:00\"\n    }\n    \n}"
+										},
+										"url": {
+											"raw": "http://localhost:1026/ngsi-ld/v1/entities/urn:ngsi-ld:xacml:test2/attrs",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "1026",
+											"path": [
+												"ngsi-ld",
+												"v1",
+												"entities",
+												"urn:ngsi-ld:xacml:test2",
+												"attrs"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "XACML_LOCATION_TYPE=file",
+							"item": [
+								{
+									"name": "/opt/PDP/Policies/{{domain}}.xml",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "Requires a /opt/PDP/Policies/{{domain}}.xml file with the access control policies ",
+											"host": [
+												"Requires a "
+											],
+											"path": [
+												"opt",
+												"PDP",
+												"Policies",
+												"{{domain}}.xml file with the access control policies "
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "JAVA API (DEPRECATED)",
+							"item": [
+								{
+									"name": "PDP Request - Obtain Verdict - Text/Plain",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "<Request xmlns=\"urn:oasis:names:tc:xacml:2.0:context:schema:os\">\n   <Subject SubjectCategory=\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\">\n       <Attribute AttributeId=\"urn:ietf:params:scim:schemas:core:2.0:email\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>admin@test.com</AttributeValue>\n       </Attribute>  \n   </Subject>\n   \n   <Resource>\n       <Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>https://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*</AttributeValue>\n       </Attribute>\n   </Resource> \n\n   <Action>\n       <Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:action:action-id\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>GET</AttributeValue>\n       </Attribute>  \n   </Action>\n\n   <Environment/>\n</Request>"
+										},
+										"url": {
+											"raw": "http://localhost:8080/XACMLServletPDP/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"XACMLServletPDP",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PDP Request - Obtain Verdict - JSON",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n{ \"body\":\"<Request xmlns=\\\"urn:oasis:names:tc:xacml:2.0:context:schema:os\\\"> <Subject SubjectCategory=\\\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\\\"><Attribute AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>admin@test.com</AttributeValue></Attribute></Subject><Resource><Attribute AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>https://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:Other.*</AttributeValue></Attribute></Resource><Action><Attribute AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>GET</AttributeValue></Attribute></Action><Environment/></Request>\"\n}\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/XACMLServletPDP/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"XACMLServletPDP",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PDP Request - AttributeList",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \n    \"re\":\"https://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*\",\n    \"ac\":\"GET\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/XACMLServletAttrList/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"XACMLServletAttrList",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PDP Request - Test",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "http://localhost:8080/XACMLServletPDP/",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"XACMLServletPDP",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "PYTHON API (domain header --> supports multidomain)",
+							"item": [
+								{
+									"name": "PDP Request - Obtain Verdict - Text/Plain (Py)",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "domain",
+												"value": "test2",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "domain",
+												"value": "testdomain",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "domain",
+												"value": "continue-a",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "domain",
+												"value": "prueba",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "<Request xmlns=\"urn:oasis:names:tc:xacml:2.0:context:schema:os\">\n   <Subject SubjectCategory=\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\">\n       <Attribute AttributeId=\"urn:ietf:params:scim:schemas:core:2.0:username\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>admin</AttributeValue>\n       </Attribute>  \n   </Subject>\n   \n   <Resource>\n       <Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>http://localhost:1040/ngsi-ld/v1/entities?type=Device&amp;q=containedIn==\".*\";description==\".*\"&amp;limit=2</AttributeValue>\n       </Attribute>\n   </Resource> \n\n   <Action>\n       <Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:action:action-id\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>GET</AttributeValue>\n       </Attribute>  \n   </Action>\n\n   <Environment/>\n</Request>"
+										},
+										"url": {
+											"raw": "http://localhost:9092/pdp/verdict",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "9092",
+											"path": [
+												"pdp",
+												"verdict"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PDP Request - Obtain Verdict - JSON (Py)",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "domain",
+												"value": "test2",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "domain",
+												"value": "testdomain",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "domain",
+												"value": "continue-a",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "domain",
+												"value": "prueba",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n{ \"body\":\"<Request xmlns=\\\"urn:oasis:names:tc:xacml:2.0:context:schema:os\\\"> <Subject SubjectCategory=\\\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\\\"><Attribute AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>admin@test.com</AttributeValue></Attribute></Subject><Resource><Attribute AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>http://localhost:1040/ngsi-ld/v1/entities?type=Device&amp;q=containedIn==\\\".*\\\";description==\\\".*\\\"&amp;limit=2</AttributeValue></Attribute></Resource><Action><Attribute AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>GET</AttributeValue></Attribute></Action><Environment/></Request>\"\n}\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:9092/pdp/verdict",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "9092",
+											"path": [
+												"pdp",
+												"verdict"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PDP Request - AttributeList (DEPRECATED)",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "domain",
+												"value": "testdomain",
+												"type": "text",
+												"disabled": true
+											},
+											{
+												"key": "domain",
+												"value": "continue-a",
+												"type": "text",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{ \n    \"re\":\"https://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*\",\n    \"ac\":\"GET\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:9092/pdp/attrlist",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "9092",
+											"path": [
+												"pdp",
+												"attrlist"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "1-Keyrock&DCapBAC",
+			"item": [
+				{
+					"name": "0-Keyrock CI/CD (test)",
+					"item": [
+						{
+							"name": "GET - Keyrock - Test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"userID\", jsonData.User.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Auth-token",
+										"name": "Content-Type",
+										"value": "{{idmToken}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Subject-token",
+										"value": "{{idmToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/v1/auth/tokens",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"v1",
+										"auth",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0-DCapBAC Components CI/CD (test)",
+					"item": [
+						{
+							"name": "PAP Backend - Test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9090/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PAP Frontend - Test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9091/pap/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9091",
+									"path": [
+										"pap",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PDP Request - Test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9092/pdp/test",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9092",
+									"path": [
+										"pdp",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Capability Manager - Get  (TEST)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3030/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3030",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PEP Proxy - Get  (TEST)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1040/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1040",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "1-DCapBAC Integration Flow",
+					"item": [
+						{
+							"name": "1-POST - IDM - Generate token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var token = postman.getResponseHeader(\"X-Subject-Token\")",
+											"pm.environment.set(\"idmToken\", token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"admin@test.com\",\n  \"password\": \"odins\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3005/v1/auth/tokens",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"v1",
+										"auth",
+										"tokens"
+									]
+								},
+								"description": "https://fiware-idm.readthedocs.io/en/latest/getting_started/index.html\n\nRequest using default user credentials.\n\nObtain API token from X-Subject-Header in response"
+							},
+							"response": []
+						},
+						{
+							"name": "Loop Refresh (POST - IDM - Refresh token)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var token = postman.getResponseHeader(\"X-Subject-Token\")",
+											"pm.environment.set(\"idmToken\", token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"token\": \"{{idmToken}}\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:3005/v1/auth/tokens",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"v1",
+										"auth",
+										"tokens"
+									]
+								},
+								"description": "https://fiware-idm.readthedocs.io/en/latest/getting_started/index.html\n\nRequest using default user credentials.\n\nObtain API token from X-Subject-Header in response"
+							},
+							"response": []
+						},
+						{
+							"name": "GET - IDM - Obtain IDM token information",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"userID\", jsonData.User.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Auth-token",
+										"name": "Content-Type",
+										"value": "{{idmToken}}",
+										"type": "text"
+									},
+									{
+										"key": "X-Subject-token",
+										"value": "{{idmToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/version",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"version"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET user info (by id)",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Auth-token",
+										"value": "{{idmToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/v1/users/{{userID}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"v1",
+										"users",
+										"{{userID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET - IdM User Organizations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{idmToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/v1/organizations",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"v1",
+										"organizations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET - IdM User Applications",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"applicationID\", jsonData.applications[0].id);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"value": "{{idmToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/v1/applications",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"v1",
+										"applications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET - IdM User Application/Role",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-auth-token",
+										"type": "text",
+										"value": "{{idmToken}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/v1/applications/f8bf5b3d-1438-4019-a99d-62dc4203cb1e/users/{{userID}}/roles",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"v1",
+										"applications",
+										"f8bf5b3d-1438-4019-a99d-62dc4203cb1e",
+										"users",
+										"{{userID}}",
+										"roles"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2-POST - Capability Manager - Obtain Capability token (using JWT)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"CapabilityToken\",  JSON.stringify(jsonData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "domain",
+										"value": "domain5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"token\": \"{{idmToken}}\",\"ac\": \"GET\", \"de\": \"http://localhost:1040\", \"re\": \"/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*\"}\n"
+								},
+								"url": {
+									"raw": "http://localhost:3030",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3030"
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3-GET - PEP_Proxy - Access to the resource",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/ld+json",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/ld+json",
+										"disabled": true
+									},
+									{
+										"key": "x-auth-token",
+										"value": "{{CapabilityToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1040",
+									"path": [
+										"ngsi-ld",
+										"v1",
+										"entities",
+										"urn:ngsi-ld:OdinS01"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "1-DCapBAC Integration Flow (oauth2 JWT)",
+					"item": [
+						{
+							"name": "1-POST - IDM - Get JWT. (needs the application id and secret for Authorization header)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"access_tokenJWT\", jsonData.access_token);",
+											"pm.environment.set(\"refresh_token\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{secret_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin@test.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "odins",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "jwt",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3005/oauth2/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"oauth2",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Loop refresh POST - IDM - Obtain Auth.Token from refresh_token (needs the application id and secret for Authorization header)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"access_tokenJWT\", jsonData.access_token);",
+											"pm.environment.set(\"refresh_token\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{secret_id}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "jwt",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3005/oauth2/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"oauth2",
+										"token"
+									]
+								},
+								"description": "https://fiware-idm.readthedocs.io/en/latest/oauth/oauth_documentation/index.html#introduction\n\nThe client can request for a new token using the refresh token obtained the first time through another grant type except the client credentials grant type."
+							},
+							"response": []
+						},
+						{
+							"name": "2-POST - Capability Manager - Obtain Capability token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"CapabilityToken\",  JSON.stringify(jsonData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "domain",
+										"value": "prueba",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"token\": \"{{access_tokenJWT}}\",\"ac\": \"GET\", \"de\": \"http://localhost:1040\", \"re\": \"/ngsi-ld/v1/entities?type=Device&q=containedIn==\\\".*\\\";description==\\\".*\\\"&limit=2\"}"
+								},
+								"url": {
+									"raw": "http://localhost:3030",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3030"
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3-GET - PEP_Proxy - Access to the resource",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/ld+json",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/ld+json",
+										"disabled": true
+									},
+									{
+										"key": "x-auth-token",
+										"value": "{{CapabilityToken}}",
+										"type": "text"
+									},
+									{
+										"key": "fiware-service",
+										"value": "phoenix",
+										"type": "text"
+									},
+									{
+										"key": "fiware-servicepath",
+										"value": "/",
+										"type": "text"
+									},
+									{
+										"key": "Link",
+										"value": "<http://phoenix.inf.um.es/data-models/phoenix.jsonld>; rel=\"https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld\"; type=\"application/ld+json\"",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1040/ngsi-ld/v1/entities?type=Device&q=containedIn==\"urn:PhoenixOntology:Zone:UMU-Pleiades-BlockB-B1.1.014\";description==\"Temperature sensor 2 for room B1.1.014\"&limit=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1040",
+									"path": [
+										"ngsi-ld",
+										"v1",
+										"entities"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "Device"
+										},
+										{
+											"key": "q",
+											"value": "containedIn==\"urn:PhoenixOntology:Zone:UMU-Pleiades-BlockB-B1.1.014\";description==\"Temperature sensor 2 for room B1.1.014\""
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "1-DCapBAC Integration Flow (oauth2 access_token) Copy",
+					"item": [
+						{
+							"name": "1-POST - IDM - Get access_token. (needs the application id and secret for Authorization header)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"access_token\", jsonData.access_token);",
+											"pm.environment.set(\"refresh_token\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "{{secret_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin@test.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "odins",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3005/oauth2/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"oauth2",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Loop refresh POST - IDM - Obtain Auth.Token from refresh_token (needs the application id and secret for Authorization header)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"access_token\", jsonData.access_token);",
+											"pm.environment.set(\"refresh_token\", jsonData.refresh_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "{{secret_id}}",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "{{client_id}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "grant_type",
+											"value": "refresh_token",
+											"type": "text"
+										},
+										{
+											"key": "refresh_token",
+											"value": "{{refresh_token}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:3005/oauth2/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"oauth2",
+										"token"
+									]
+								},
+								"description": "https://fiware-idm.readthedocs.io/en/latest/oauth/oauth_documentation/index.html#introduction\n\nThe client can request for a new token using the refresh token obtained the first time through another grant type except the client credentials grant type."
+							},
+							"response": []
+						},
+						{
+							"name": "Util - IDM User info",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3005/user?access_token={{access_token}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3005",
+									"path": [
+										"user"
+									],
+									"query": [
+										{
+											"key": "access_token",
+											"value": "{{access_token}}"
+										}
+									]
+								},
+								"description": "https://fiware-idm.readthedocs.io/en/latest/oauth/oauth_documentation/index.html#introduction\n\nThe client can request for a new token using the refresh token obtained the first time through another grant type except the client credentials grant type."
+							},
+							"response": []
+						},
+						{
+							"name": "2-POST - Capability Manager - Obtain Capability token (using JWT)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"CapabilityToken\",  JSON.stringify(jsonData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"token\": \"{{access_token}}\",\"ac\": \"GET\", \"de\": \"http://localhost:1040\", \"re\": \"/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*\"}\n"
+								},
+								"url": {
+									"raw": "http://localhost:3030",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3030"
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3-GET - PEP_Proxy - Access to the resource",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/ld+json",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/ld+json",
+										"disabled": true
+									},
+									{
+										"key": "x-auth-token",
+										"value": "{{CapabilityToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1040",
+									"path": [
+										"ngsi-ld",
+										"v1",
+										"entities",
+										"urn:ngsi-ld:OdinS01"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "1-Keycloak&IDManager&DCapBAC",
+			"item": [
+				{
+					"name": "0-IDManager Components CI/CD (test)",
+					"item": [
+						{
+							"name": "Keycloak - Get  (TEST)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/admin/master/console/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"master",
+										"console",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "KeycloakAdapter - Get  (TEST)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1027/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1027",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GenericAPI - Get  (TEST)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1028/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1028",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "MainLoop - Get (TEST)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1029/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1029",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0-DCapBAC Components CI/CD (test)",
+					"item": [
+						{
+							"name": "PAP Backend - Test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9090/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9090",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PAP Frontend - Test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9091/pap/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9091",
+									"path": [
+										"pap",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PDP Request - Test",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:9092/pdp/test",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9092",
+									"path": [
+										"pdp",
+										"test"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Capability Manager - Get  (TEST)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:3030/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3030",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PEP Proxy - Get  (TEST)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1040/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1040",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "1-IDManager Keycloak&KeycloakAdapter Integration (INTERNAL FLOW)",
+					"item": [
+						{
+							"name": "1. Keycloak - Validate credentials (exists?)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "admin-cli",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "testuser",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "testuser",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "openid",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/realms/master/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"realms",
+										"master",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. Keycloak - Get a valid admin token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"access_token\", jsonData.access_token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "client_id",
+											"value": "admin-cli",
+											"type": "text"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "openid",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/realms/master/protocol/openid-connect/token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"realms",
+										"master",
+										"protocol",
+										"openid-connect",
+										"token"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3. Keycloak - Get user information",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "bearer {{access_token}}"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/admin/realms/master/users?username=testuser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"admin",
+										"realms",
+										"master",
+										"users"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "testuser"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "2-IDManager Flow",
+					"item": [
+						{
+							"name": "1-Authentication: User --> MainLoop (JWT)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var token = postman.getResponseHeader(\"X-Subject-Token\")",
+											"pm.environment.set(\"AuthNToken\", token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"testuser\",\r\n    \"password\": \"testuser\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1029/v1/auth/tokens",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1029",
+									"path": [
+										"v1",
+										"auth",
+										"tokens"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post MainLoop -> GenericAPI (INTERNAL)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"testuser\",\r\n    \"password\": \"testuser\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1028/auth",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1028",
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post GenericAPI -> KeycloakAdapter (INTERNAL)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"testuser\",\r\n    \"password\": \"testuser\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1027/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1027",
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "3-DCapBAC Integration Flow",
+					"item": [
+						{
+							"name": "2-Authorisation: User --> CapManager (Cap.Token)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = pm.response.json();",
+											"pm.environment.set(\"CapabilityToken\",  JSON.stringify(jsonData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "domain",
+										"value": "domain5",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"token\": \"{{AuthNToken}}\",\"ac\": \"GET\", \"de\": \"http://localhost:1040\", \"re\": \"/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*\"}\n"
+								},
+								"url": {
+									"raw": "http://localhost:3030",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3030"
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post CapManager --> MainLoop (/statusToken) (INTERNAL)",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\": \"{{AuthNToken}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:1029/statusToken",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1029",
+									"path": [
+										"statusToken"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post CapManager --> PDP - Obtain Verdict (INTERNAL)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "domain",
+										"value": "prueba",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n{ \"body\":\"<Request xmlns=\\\"urn:oasis:names:tc:xacml:2.0:context:schema:os\\\"> <Subject SubjectCategory=\\\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\\\"><Attribute AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:username\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>admin</AttributeValue></Attribute></Subject><Resource><Attribute AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS01</AttributeValue></Attribute></Resource><Action><Attribute AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>GET</AttributeValue></Attribute></Action><Environment/></Request>\"\n}\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9092/pdp/verdict",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9092",
+									"path": [
+										"pdp",
+										"verdict"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3-GET - PEP_Proxy - Access to the resource Copy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/ld+json",
+										"disabled": true
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/ld+json",
+										"disabled": true
+									},
+									{
+										"key": "x-auth-token",
+										"value": "{{CapabilityToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:1040/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS01",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "1040",
+									"path": [
+										"ngsi-ld",
+										"v1",
+										"entities",
+										"urn:ngsi-ld:OdinS01"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "2-DLT",
+			"item": [
+				{
+					"name": "2-HASH Supported APIs (JAVA) (DEPRECATED)",
+					"item": [
+						{
+							"name": "NGSIv2/NGSI-LD",
+							"item": [
+								{
+									"name": "Manage Domains",
+									"item": [
+										{
+											"name": "POST/UPDATE (blockchaindomain) /chain/publish",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "",
+														"value": "",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"@context\": \"https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld\",\n    \"id\": \"urn:ngsi-ld:blockchaindomain:testdomain\",\n    \"type\": \"blockchaindomain\",\n    \"digest\": {\n        \"type\": \"Property\",\n        \"value\": \"1911118ccdede5e8281ca0bd5a8eb6c0805e48fa5ec498a8b6039744fcd30859\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2022-11-29T13:00:13.356887Z\"\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:3000/chain/publish",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "3000",
+													"path": [
+														"chain",
+														"publish"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "GET (blockchaindomain) /chain/events?entityid={{domain}}",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:3000/chain/events?entityid=urn:ngsi-ld:blockchaindomain:testdomain",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "3000",
+													"path": [
+														"chain",
+														"events"
+													],
+													"query": [
+														{
+															"key": "entityid",
+															"value": "urn:ngsi-ld:blockchaindomain:testdomain"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Manage Cap.Tokens",
+									"item": [
+										{
+											"name": "POST (blockchaincaptoken) /chain/publish",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "",
+														"value": "",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"@context\": \"https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld\",\n    \"id\": \"urn:ngsi-ld:blockchaincaptoken:gljtm42m61sck5sr1k3b8jkums\",\n    \"type\": \"blockchaincaptoken\",\n    \"host\": {\n        \"type\": \"Property\",\n        \"value\": \"172.19.0.1\"\n    },\n    \"state\": {\n        \"type\": \"Property\",\n        \"value\": \"1\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2022-11-28T15:46:50.672Z\"\n    },\n    \"token\": {\n        \"type\": \"Property\",\n        \"value\": \"{%22id%22: %22gljtm42m61sck5sr1k3b8jkums%22, %22ii%22: 1669649410, %22is%22: %22capabilitymanager@odins.es%22, %22su%22: %22admin%22, %22de%22: %22http://localhost:1027%22, %22si%22: %22MEQCICy3o1nsJF1qwfyP5Zzqv5MZPC3xFxT912mCfJrqJ/9pAiB0sYEHUTBOhop2nrTc1G0SLrKY7F2S7EdRAAwT/OnzLw%3D%3D%22, %22ar%22: [{%22ac%22: %22GET%22, %22re%22: %22/v2/entities.*%22}], %22nb%22: 1669650410, %22na%22: 1669660410}\"\n        }\n}\n",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:3000/chain/publish",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "3000",
+													"path": [
+														"chain",
+														"publish"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "GET (blockchaincaptoken) /chain/events?entityid={{capToken}}",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:3000/chain/events?entityid=urn:ngsi-ld:blockchaincaptoken:m8pii0gi5gkvo070pgjufvhejp",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "3000",
+													"path": [
+														"chain",
+														"events"
+													],
+													"query": [
+														{
+															"key": "entityid",
+															"value": "urn:ngsi-ld:blockchaincaptoken:m8pii0gi5gkvo070pgjufvhejp"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "POST REVOKE (blockchaincaptoken) /chain/publish",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "",
+														"value": "",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"@context\": \"https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld\",\n    \"id\": \"urn:ngsi-ld:blockchaincaptoken:m8pii0gi5gkvo070pgjufvhejp\",\n    \"type\": \"blockchaincaptoken\",\n    \"host\": {\n        \"type\": \"Property\",\n        \"value\": \"172.19.0.1\"\n    },\n    \"state\": {\n        \"type\": \"Property\",\n        \"value\": \"0\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2022-11-30T13:02:39.329Z\"\n    }\n}\n",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:3000/chain/publish",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "3000",
+													"path": [
+														"chain",
+														"publish"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "NativeAPI",
+							"item": [
+								{
+									"name": "Manage Domains",
+									"item": [
+										{
+											"name": "POST (blockchaindomain) /policy/register",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\"domain\":\"{{domain}}\",\"digest\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\"}"
+												},
+												"url": {
+													"raw": "http://localhost:8000/policy/register",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8000",
+													"path": [
+														"policy",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "GET (blockchaindomain) /policy/{{domain}}",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8000/policy/{{domain}}",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8000",
+													"path": [
+														"policy",
+														"{{domain}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "POST (blockchaindomain) /policy/update",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\"domain\":\"{{domain}}\",\"digest\":\"3101957758929f7bc82f47240981885ce8f4358c2a2ef277898fb98e3775d942\"}"
+												},
+												"url": {
+													"raw": "http://localhost:8000/policy/update",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8000",
+													"path": [
+														"policy",
+														"update"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Manage Cap.Tokens",
+									"item": [
+										{
+											"name": "POST /token/register",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\"id\":\"{{capToken}}\"}"
+												},
+												"url": {
+													"raw": "http://localhost:8000/token/register",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8000",
+													"path": [
+														"token",
+														"register"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "GET /token/{{capToken}}",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:8000/token/{{capToken}}",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8000",
+													"path": [
+														"token",
+														"{{capToken}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "POST /token/revoke",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\"id\":\"{{capToken}}\"}"
+												},
+												"url": {
+													"raw": "http://localhost:8000/token/revoke",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8000",
+													"path": [
+														"token",
+														"revoke"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "2-HASH Supported APIs (PYTHON)",
+					"item": [
+						{
+							"name": "NGSIv2/NGSI-LD",
+							"item": [
+								{
+									"name": "Manage Domains",
+									"item": [
+										{
+											"name": "POST/UPDATE (blockchaindomain) /chain/publish",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "",
+														"value": "",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"@context\": \"https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld\",\n    \"id\": \"urn:ngsi-ld:domain:testdomain\",\n    \"type\": \"domain\",\n    \"version\":{\n        \"type\": \"Property\",\n        \"value\": \"1\"\n    },\n    \"digest\": {\n        \"type\": \"Property\",\n        \"value\": \"1911118ccdede5e8281ca0bd5a8eb6c0805e48fa5ec498a8b6039744fcd30859\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2022-11-29T13:00:13.356887Z\"\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:1025/chain/publish",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "1025",
+													"path": [
+														"chain",
+														"publish"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "GET (blockchaindomain) /chain/events?entityid={{domain}}",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:1025/chain/events?entityid=urn:ngsi-ld:domain:testdomain",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "1025",
+													"path": [
+														"chain",
+														"events"
+													],
+													"query": [
+														{
+															"key": "entityid",
+															"value": "urn:ngsi-ld:domain:testdomain"
+														}
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								},
+								{
+									"name": "Manage Cap.Tokens",
+									"item": [
+										{
+											"name": "POST (blockchaincaptoken) /chain/publish",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "",
+														"value": "",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"urn:ngsi-ld:captoken:gljtm42m61sck5sr1k3b8jkums\",\n    \"type\": \"captoken\",\n    \"host\": {\n        \"type\": \"Property\",\n        \"value\": \"172.19.0.1\"\n    },\n    \"state\": {\n        \"type\": \"Property\",\n        \"value\": \"1\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2022-11-28T15:46:50.672Z\"\n    },\n    \"token\": {\n        \"type\": \"Property\",\n        \"value\": \"{%22id%22: %22gljtm42m61sck5sr1k3b8jkums%22, %22ii%22: 1669649410, %22is%22: %22capabilitymanager@odins.es%22, %22su%22: %22admin%22, %22de%22: %22http://localhost:1027%22, %22si%22: %22MEQCICy3o1nsJF1qwfyP5Zzqv5MZPC3xFxT912mCfJrqJ/9pAiB0sYEHUTBOhop2nrTc1G0SLrKY7F2S7EdRAAwT/OnzLw%3D%3D%22, %22ar%22: [{%22ac%22: %22GET%22, %22re%22: %22/v2/entities.*%22}], %22nb%22: 1669650410, %22na%22: 1669660410}\"\n        }\n}\n",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:1025/chain/publish",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "1025",
+													"path": [
+														"chain",
+														"publish"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "GET (blockchaincaptoken) /chain/events?entityid={{capToken}}",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "http://localhost:1025/chain/events?entityid=urn:ngsi-ld:captoken:gljtm42m61sck5sr1k3b8jkums",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "1025",
+													"path": [
+														"chain",
+														"events"
+													],
+													"query": [
+														{
+															"key": "entityid",
+															"value": "urn:ngsi-ld:captoken:gljtm42m61sck5sr1k3b8jkums"
+														}
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "POST REVOKE (blockchaincaptoken) /chain/publish",
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "",
+														"value": "",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"id\": \"urn:ngsi-ld:captoken:gljtm42m61sck5sr1k3b8jkums\",\n    \"type\": \"captoken\",\n    \"host\": {\n        \"type\": \"Property\",\n        \"value\": \"172.19.0.1\"\n    },\n    \"state\": {\n        \"type\": \"Property\",\n        \"value\": \"0\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2022-11-30T13:02:39.329Z\"\n    }\n}\n",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:3000/chain/publish",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "3000",
+													"path": [
+														"chain",
+														"publish"
+													]
+												}
+											},
+											"response": []
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
