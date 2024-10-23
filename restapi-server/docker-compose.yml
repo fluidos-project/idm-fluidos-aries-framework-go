@@ -7,5 +7,3 @@ services:
       - ./certs:/certs
     ports:
       - "3002:3002"
-    environment:
-      - ENV_VAR_NAME=value # Puedes añadir variables de entorno aquí

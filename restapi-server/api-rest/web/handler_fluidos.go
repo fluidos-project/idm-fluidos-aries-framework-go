@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 type AuthReqPayload struct {
@@ -69,13 +71,8 @@ func RegisterAuthReq(w http.ResponseWriter, r *http.Request) {
 func QueryAuthReq(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received request - QueryAuthReq")
 
-	//Verify if HTTP method is valid
-	if r.Method != http.MethodGet {
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
-		return
-	}
-
-	id := r.URL.Query().Get("id")
+	vars := mux.Vars(r)
+	id := vars["id"]
 	if id == "" {
 		http.Error(w, "Missing id query parameter", http.StatusBadRequest)
 		return

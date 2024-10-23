@@ -7,6 +7,8 @@ import (
 	"io"
 	"net/http"
 	"strings"
+
+	"github.com/gorilla/mux"
 )
 
 type TypeValue struct {
@@ -52,30 +54,6 @@ type TypeXACML struct {
 }
 
 // XACML
-func ManageEntities(w http.ResponseWriter, r *http.Request) {
-	//Verify if HTTP method is valid
-	switch r.Method {
-	case http.MethodPost:
-		RegisterXACMLEntities(w, r)
-	case http.MethodGet:
-		queryParamType := r.URL.Query().Get("type")
-		queryParamId := r.URL.Query().Get("id")
-		if queryParamType != "" {
-			QueryAllXACMLEntities(w, r, queryParamType)
-		} else if queryParamId != "" {
-			QueryXACMLEntity(w, r, queryParamId)
-		} else {
-			http.Error(w, "Invalid Query parameter", http.StatusBadRequest)
-			return
-		}
-	case http.MethodPatch:
-		UpdateXACMLEntity(w, r)
-	default:
-		http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
-		return
-	}
-}
-
 func RegisterXACMLEntities(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received request - RegisterXACMLEntities")
 	var policyPayload XACMLEntity
@@ -143,8 +121,19 @@ func RegisterXACMLEntities(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func QueryAllXACMLEntities(w http.ResponseWriter, r *http.Request, queryParamType string) {
+func QueryAllXACMLEntities(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received request - QueryAllEntities")
+
+	queryParamType := r.URL.Query().Get("type")
+	if queryParamType == "" {
+		http.Error(w, "Query parameter 'type' is missing", http.StatusBadRequest)
+		return
+	}
+
+	if queryParamType != "xacml" && queryParamType != "attributes" {
+		http.Error(w, "Invalid Query parameter", http.StatusBadRequest)
+		return
+	}
 
 	if queryParamType != "xacml" && queryParamType != "attributes" {
 		http.Error(w, fmt.Sprintf("Invalid type '%s' query parameter", queryParamType), http.StatusBadRequest)
@@ -181,8 +170,10 @@ func UpdateXACMLEntity(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	entityId := r.URL.Query().Get("id")
+	vars := mux.Vars(r)
+	entityId := vars["entity"]
 	parts := strings.Split(entityId, ":")
+	fmt.Println(entityId)
 	if len(parts) >= 3 {
 		entityType = parts[2]
 		if entityType == "xacml" {
@@ -260,15 +251,12 @@ func UpdateXACMLEntity(w http.ResponseWriter, r *http.Request) {
 		attributeEntity.Version = updateAttribute.Version
 		attributeEntity.Attributes = updateAttribute.Attributes
 		attributeEntity.Timestamp = updateAttribute.Timestamp
-
 		attributesEntityJson, err := json.Marshal(attributeEntity)
 		if err != nil {
 			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 			return
 		}
-
 		updated, err := application_gateway.UpdateEntity(attributeEntity.Id, string(attributesEntityJson))
-
 		if updated {
 			w.WriteHeader(http.StatusOK)
 			fmt.Fprintf(w, "XACML Entity %s successfully updated in Hyperledger Fabric\n", attributeEntity.Id)
@@ -280,17 +268,20 @@ func UpdateXACMLEntity(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func QueryXACMLEntity(w http.ResponseWriter, r *http.Request, queryParamId string) {
+func QueryXACMLEntity(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Received request - QueryAllEntities")
 	var entity string
 	var versionEntity VersionEntity
 	var policyEntity XACMLEntity
 	var attributesEntity AttributeEntity
 
+	vars := mux.Vars(r)
+	entityId := vars["entity"]
+
 	attrs := r.URL.Query().Get("attrs")
-	entity, err := application_gateway.GetXACMLEntity(queryParamId)
+	entity, err := application_gateway.GetXACMLEntity(entityId)
 	if err != nil {
-		http.Error(w, fmt.Sprintf("XACML Entity '%s' not found", queryParamId), http.StatusNotFound)
+		http.Error(w, fmt.Sprintf("XACML Entity '%s' not found", entityId), http.StatusNotFound)
 		return
 	}
 	if attrs == "" {

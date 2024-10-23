@@ -4,19 +4,27 @@ import (
 	"fabricrest-go/api-rest/web"
 	"fmt"
 	"net/http"
+
+	"github.com/gorilla/mux"
 )
 
 func main() {
+
+	router := mux.NewRouter()
+
 	//Fluidos
-	http.HandleFunc("/xadatu/auth/register", web.RegisterAuthReq)
-	http.HandleFunc("/xadatu/auth", web.QueryAuthReq)
-	http.HandleFunc("/xadatu/auth/queryByDate", web.QueryAuthReqByDate)
+	router.HandleFunc("/xadatu/auth/register", web.RegisterAuthReq).Methods("POST")
+	router.HandleFunc("/xadatu/auth/queryByDate", web.QueryAuthReqByDate).Methods("GET")
+	router.HandleFunc("/xadatu/auth/{id}", web.QueryAuthReq).Methods("GET")
 
 	//XACML
-	http.HandleFunc("/ngsi-ld/v1/entities", web.ManageEntities)
+	router.HandleFunc("/ngsi-ld/v1/entities/", web.QueryAllXACMLEntities).Methods("GET")
+	router.HandleFunc("/ngsi-ld/v1/entities/", web.RegisterXACMLEntities).Methods("POST")
+	router.HandleFunc("/ngsi-ld/v1/entities/{entity}/attrs", web.UpdateXACMLEntity).Methods("PATCH")
+	router.HandleFunc("/ngsi-ld/v1/entities/{entity}", web.QueryXACMLEntity).Methods("GET")
 
 	fmt.Println("Listening (http://localhost:3002/)...")
-	if err := http.ListenAndServe(":3002", nil); err != nil {
+	if err := http.ListenAndServe(":3002", router); err != nil {
 		fmt.Println(err)
 	}
 }
