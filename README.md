@@ -70,6 +70,14 @@ make stop-openapi-demo
 
 Open a browser and go to http://localhost:8089/openapi or http://localhost:9089/openapi to see API Swagger if you deploy in your local machine
 
+### Deploy REST API server
+
+To deploy the ``REST API server``, go to [restapi-server](./restapi-server/) and follow README instructions.
+
+### Deploy XACML
+
+To deploy the ``XACML``, go to [xacml-xadatu](./xacml-xadatu/) and follow README instructions.
+
 ### FLUIDOS iDM POC Calls
 
 ```
