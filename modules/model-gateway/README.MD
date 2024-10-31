@@ -86,23 +86,31 @@ If your Hyperledger Fabric deployment is on a different machine, you will have t
 
 # Run
 
-To run the REST-API server, execute:
+To run the REST-API server, you can use the provided Makefile with the following commands:
 
 ```bash
-$ docker-compose build; docker-compose up -d
+# To start the model treatment service (including building and running Docker containers)
+$ make run-model-treatment
+
+# To stop the model treatment service
+$ make stop-model-treatment
+
+# To clean up the environment (stop containers and remove volumes)
+$ make clean
 ```
 
-Example of ``docker-compose build`` output:
+The `run-model-treatment` command will:
+1. Run the `updateCerts.sh` script to update the certificates
+2. Build the Docker containers
+3. Start the Docker containers
 
-![docker-compose_build](./img/docker-compose_build.png)
+Example of successful execution:
 
-Example of ``docker-compose up -d`` ouput:
+![make_run_model_treatment](./img/make_run_model_treatment.png)
 
-![docker-compose_up-d](./img/docker-compose_up-d.png)
+This will launch the REST-API server on port 3005.
 
-This will launch the REST-API server on port 3002.
-
-To access the logs, execeute:
+To access the logs, execute:
 
 ```bash
 $ docker-compose logs -f api

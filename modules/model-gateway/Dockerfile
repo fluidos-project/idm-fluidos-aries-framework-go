@@ -9,6 +9,6 @@ COPY . .
 
 RUN go build -o /rest-api ./api-rest/app.go
 
-EXPOSE 3002
+EXPOSE 3005
 
 ENTRYPOINT ["/rest-api"]

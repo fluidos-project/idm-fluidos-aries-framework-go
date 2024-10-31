@@ -6,4 +6,4 @@ services:
     volumes:
       - ./certs:/certs
     ports:
-      - "3002:3002"
+      - "3005:3005"

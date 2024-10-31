@@ -1,27 +1,12 @@
 package application_gateway
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
-
-
-// DHT FEA
-
-
-func writeToDHT() {
-	if err := InitializeConnection(); err != nil {
-		return false, fmt.Errorf("failed to initialize blockchain connection: %v", err)
-	}
-	defer CloseConnection()
-	network := gateway.GetNetwork("mychannel")
-	contract := network.GetContract("model-treatment")
-	
-
-
-}
-
-func readFromDHT(key string) (string, error) {
+// CalculateAverageModelUpdate submits a transaction to calculate and store average model update
+func CalculateAverageModelUpdate(data []interface{}, baseModel string, baseModelVersion string, date string, nodeDID string, signedProof string) (string, error) {
     if err := InitializeConnection(); err != nil {
         return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
     }
@@ -30,66 +15,78 @@ func readFromDHT(key string) (string, error) {
     network := gateway.GetNetwork("mychannel")
     contract := network.GetContract("model-treatment")
 
-    // Call the ReadFromDHT function in the smart contract
-    result, err := contract.EvaluateTransaction("ReadFromDHT", key)
+    // Convert data to JSON string for chaincode
+    dataBytes, err := json.Marshal(data)
     if err != nil {
-        return "", fmt.Errorf("failed to read from DHT: %w", err)
+        return "", fmt.Errorf("failed to marshal data: %v", err)
+    }
+
+    result, err := contract.SubmitTransaction(
+        "CalculateAverageModelUpdate",
+        string(dataBytes),
+        baseModel,
+        baseModelVersion,
+        date,
+        nodeDID,
+        signedProof,
+    )
+    if err != nil {
+        return "", fmt.Errorf("failed to calculate average model update: %w", err)
     }
 
     return string(result), nil
 }
 
-// FLUIDOS
-func SetAuthReq(timestamp string, action string, resource string, id string, subject string, decision string) (bool, error) {
-	if err := InitializeConnection(); err != nil {
-		return false, fmt.Errorf("failed to initialize blockchain connection: %v", err)
-	}
-	defer CloseConnection()
+// ReadAverageModelUpdateTransaction retrieves a specific model update transaction
+func ReadAverageModelUpdateTransaction(id string) (string, error) {
+    if err := InitializeConnection(); err != nil {
+        return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
+    }
+    defer CloseConnection()
 
-	network := gateway.GetNetwork("mychannel")
-	contract := network.GetContract("fluidosAccessHist")
+    network := gateway.GetNetwork("mychannel")
+    contract := network.GetContract("model-treatment")
 
-	_, err := contract.SubmitTransaction("CreateAsset", timestamp, action, resource, id, subject, decision)
-	if err != nil {
-		return false, fmt.Errorf("failed to evaluate transaction: %w", err)
-	}
+    result, err := contract.EvaluateTransaction("ReadAverageModelUpdateTransaction", id)
+    if err != nil {
+        return "", fmt.Errorf("failed to read model update transaction: %w", err)
+    }
 
-	return true, nil
+    return string(result), nil
 }
 
-func GetAuthReq(key string) (string, error) {
-	if err := InitializeConnection(); err != nil {
-		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
-	}
-	defer CloseConnection()
+// GetAllAverageModelUpdateTransactions retrieves all model update transactions
+func GetAllAverageModelUpdateTransactions() (string, error) {
+    if err := InitializeConnection(); err != nil {
+        return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
+    }
+    defer CloseConnection()
 
-	network := gateway.GetNetwork("mychannel")
-	contract := network.GetContract("fluidosAccessHist")
+    network := gateway.GetNetwork("mychannel")
+    contract := network.GetContract("model-treatment")
 
-	// Evaluate transaction
-	authReq, err := contract.EvaluateTransaction("ReadAsset", key)
-	if err != nil {
-		return "", fmt.Errorf("failed to evaluate transaction: %w", err)
-	}
+    result, err := contract.EvaluateTransaction("GetAllAverageModelUpdateTransactions")
+    if err != nil {
+        return "", fmt.Errorf("failed to get all model update transactions: %w", err)
+    }
 
-	return string(authReq), nil
-
+    return string(result), nil
 }
 
-func GetAuthReqsByDate(startDate string, endDate string) (string, error) {
-	if err := InitializeConnection(); err != nil {
-		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
-	}
-	defer CloseConnection()
+// QueryAverageModelUpdateTransactionsByDateRange retrieves transactions within a date range
+func QueryAverageModelUpdateTransactionsByDateRange(startDate string, endDate string) (string, error) {
+    if err := InitializeConnection(); err != nil {
+        return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
+    }
+    defer CloseConnection()
 
-	network := gateway.GetNetwork("mychannel")
-	contract := network.GetContract("fluidosAccessHist")
+    network := gateway.GetNetwork("mychannel")
+    contract := network.GetContract("model-treatment")
 
-	// Evaluate transaction
-	authReqs, err := contract.EvaluateTransaction("QueryAssetsByDateRange", startDate, endDate)
-	if err != nil {
-		return "", fmt.Errorf("failed to evaluate transaction: %w", err)
-	}
+    result, err := contract.EvaluateTransaction("QueryAverageModelUpdateTransactionsByDateRange", startDate, endDate)
+    if err != nil {
+        return "", fmt.Errorf("failed to query model update transactions: %w", err)
+    }
 
-	return string(authReqs), nil
+    return string(result), nil
 }
