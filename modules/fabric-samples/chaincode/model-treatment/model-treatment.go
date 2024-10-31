@@ -12,8 +12,8 @@ type DHTDLTOperationsContract struct {
 	contractapi.Contract
 }
 
-// DLTTransaction represents a transaction in the blockchain (DLT)
-type AverageModelUpdateTransaction struct {
+// AggregateModelTransaction represents a transaction in the blockchain (DLT)
+type AggregateModelTransaction struct {
 	ID              string        `json:"id"`
 	Data            []interface{} `json:"data"`
 	BaseModel       string        `json:"baseModel"`
@@ -35,7 +35,7 @@ type CalculationResponse struct {
 
 // InitLedger adds a base set of modelUpdates to the ledger
 func (s *DHTDLTOperationsContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
-	modelUpdates := []AverageModelUpdateTransaction{}
+	modelUpdates := []AggregateModelTransaction{}
 
 	for _, modelUpdate := range modelUpdates {
 		modelUpdateJSON, err := json.Marshal(modelUpdate)
@@ -53,7 +53,7 @@ func (s *DHTDLTOperationsContract) InitLedger(ctx contractapi.TransactionContext
 }
 
 // Retrieve information from the DHT and calculate the average model update and push it to the DLT
-func (d *DHTDLTOperationsContract) CalculateAverageModelUpdate(ctx contractapi.TransactionContextInterface, data []interface{}, baseModel string, baseModelVersion string, date string, nodeDID string, signedProof string) (*CalculationResponse, error) {
+func (d *DHTDLTOperationsContract) AggregateModel(ctx contractapi.TransactionContextInterface, data []interface{}, baseModel string, baseModelVersion string, date string, nodeDID string, signedProof string) (*CalculationResponse, error) {
 	// Construct the ID
 	id := fmt.Sprintf("%s_%s:%s", baseModel, baseModelVersion, date)
 
@@ -62,7 +62,7 @@ func (d *DHTDLTOperationsContract) CalculateAverageModelUpdate(ctx contractapi.T
 		return nil, err
 	}
 	if exists {
-		return nil, fmt.Errorf("the model update %s already exists", id)
+		return nil, fmt.Errorf("the model aggregation %s already exists", id)
 	}
 
 	// Validate data structure
@@ -78,7 +78,7 @@ func (d *DHTDLTOperationsContract) CalculateAverageModelUpdate(ctx contractapi.T
 	}
 
 	// Record the transaction in the DLT (blockchain)
-	transaction := AverageModelUpdateTransaction{
+	transaction := AggregateModelTransaction{
 		ID:               id,
 		Data:             data,
 		BaseModel:        baseModel,
@@ -103,7 +103,7 @@ func (d *DHTDLTOperationsContract) CalculateAverageModelUpdate(ctx contractapi.T
 
 	response := &CalculationResponse{
 		Status:    "success",
-		Message:   fmt.Sprintf("Successfully stored model update with ID: %s", id),
+		Message:   fmt.Sprintf("Successfully stored aggregated model update with ID: %s", id),
 		TxID:      txID,
 		ID:        id,
 		ModelsRef: modelsRef,
@@ -112,17 +112,17 @@ func (d *DHTDLTOperationsContract) CalculateAverageModelUpdate(ctx contractapi.T
 	return response, nil
 }
 
-// ReadAverageModelUpdateTransaction returns the transaction stored in the world state with given id.
-func (s *DHTDLTOperationsContract) ReadAverageModelUpdateTransaction(ctx contractapi.TransactionContextInterface, id string) (*AverageModelUpdateTransaction, error) {
+// ReadAggregatedModel returns the transaction stored in the world state with given id.
+func (s *DHTDLTOperationsContract) ReadAggregatedModel(ctx contractapi.TransactionContextInterface, id string) (*AggregateModelTransaction, error) {
 	transactionJSON, err := ctx.GetStub().GetState(id)
 	if err != nil {
 		return nil, fmt.Errorf("failed to read from world state: %v", err)
 	}
 	if transactionJSON == nil {
-		return nil, fmt.Errorf("the transaction %s does not exist", id)	
+		return nil, fmt.Errorf("the aggregated model %s does not exist", id)	
 	}
 
-	var transaction AverageModelUpdateTransaction
+	var transaction AggregateModelTransaction
 	err = json.Unmarshal(transactionJSON, &transaction)
 	if err != nil {
 		return nil, err
@@ -130,22 +130,22 @@ func (s *DHTDLTOperationsContract) ReadAverageModelUpdateTransaction(ctx contrac
 	return &transaction, nil
 }
 
-// GetAllAverageModelUpdateTransactions returns all transactions found in world state
-func (s *DHTDLTOperationsContract) GetAllAverageModelUpdateTransactions(ctx contractapi.TransactionContextInterface) ([]*AverageModelUpdateTransaction, error) {
+// GetAllAggregatedModels returns all transactions found in world state
+func (s *DHTDLTOperationsContract) GetAllAggregatedModels(ctx contractapi.TransactionContextInterface) ([]*AggregateModelTransaction, error) {
 	resultsIterator, err := ctx.GetStub().GetStateByRange("", "")
 	if err != nil {
 		return nil, err
 	}
 	defer resultsIterator.Close()
 
-	var transactions []*AverageModelUpdateTransaction
+	var transactions []*AggregateModelTransaction
 	for resultsIterator.HasNext() {
 		queryResponse, err := resultsIterator.Next()
 		if err != nil {
 			return nil, err
 		}
 
-		var transaction AverageModelUpdateTransaction
+		var transaction AggregateModelTransaction
 		err = json.Unmarshal(queryResponse.Value, &transaction)
 		if err != nil {
 			return nil, err
@@ -156,8 +156,8 @@ func (s *DHTDLTOperationsContract) GetAllAverageModelUpdateTransactions(ctx cont
 	return transactions, nil
 }
 
-// QueryAverageModelUpdateTransactionsByDateRange returns all transactions created between two timestamps
-func (s *DHTDLTOperationsContract) QueryAverageModelUpdateTransactionsByDateRange(ctx contractapi.TransactionContextInterface, startDate string, endDate string) ([]*AverageModelUpdateTransaction, error) {
+// QueryAggregatedModelsByDateRange returns all transactions created between two timestamps
+func (s *DHTDLTOperationsContract) QueryAggregatedModelsByDateRange(ctx contractapi.TransactionContextInterface, startDate string, endDate string) ([]*AggregateModelTransaction, error) {
 	queryString := fmt.Sprintf(`{
 		"selector": {
 			"Timestamp": {
@@ -173,14 +173,14 @@ func (s *DHTDLTOperationsContract) QueryAverageModelUpdateTransactionsByDateRang
 	}
 	defer resultsIterator.Close()
 
-	var transactions []*AverageModelUpdateTransaction
+	var transactions []*AggregateModelTransaction
 	for resultsIterator.HasNext() {
 		queryResponse, err := resultsIterator.Next()
 		if err != nil {
 			return nil, err
 		}
 
-		var transaction AverageModelUpdateTransaction
+		var transaction AggregateModelTransaction
 		err = json.Unmarshal(queryResponse.Value, &transaction)
 		if err != nil {
 			return nil, err

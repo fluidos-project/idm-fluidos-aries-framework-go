@@ -8,7 +8,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type AverageModelUpdateRequest struct {
+type AggregateModelRequest struct {
 	Data             []interface{} `json:"data"`
 	BaseModel        string        `json:"baseModel"`
 	BaseModelVersion string        `json:"baseModelVersion"`
@@ -25,11 +25,11 @@ type CalculationResponse struct {
 	ModelsRef []string `json:"modelsRef"`
 }
 
-// CalculateAverageModelUpdate handles the calculation and storage of average model updates
-func CalculateAverageModelUpdate(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Received request - CalculateAverageModelUpdate")
+// AggregateModel handles the calculation and storage of aggregate model updates
+func AggregateModel(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Received request - AggregateModel")
 
-	var request AverageModelUpdateRequest
+	var request AggregateModelRequest
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		http.Error(w, "Invalid request body", http.StatusBadRequest)
 		return
@@ -50,7 +50,7 @@ func CalculateAverageModelUpdate(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	result, err := application_gateway.CalculateAverageModelUpdate(
+	result, err := application_gateway.AggregateModel(
 		request.Data,
 		request.BaseModel,
 		request.BaseModelVersion,
@@ -59,7 +59,7 @@ func CalculateAverageModelUpdate(w http.ResponseWriter, r *http.Request) {
 		request.SignedProof,
 	)
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Failed to calculate average model: %s", err), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Failed to calculate aggregate model: %s", err), http.StatusInternalServerError)
 		return
 	}
 
@@ -74,45 +74,35 @@ func CalculateAverageModelUpdate(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(response)
 }
 
-// ReadAverageModelUpdate retrieves a specific model update transaction
-func ReadAverageModelUpdate(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Received request - ReadAverageModelUpdate")
-
+// ReadAggregatedModel handles retrieving a specific aggregated model
+func ReadAggregatedModel(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id := vars["id"]
-	if id == "" {
-		http.Error(w, "Missing ID parameter", http.StatusBadRequest)
-		return
-	}
 
-	transaction, err := application_gateway.ReadAverageModelUpdateTransaction(id)
+	result, err := application_gateway.ReadAggregatedModel(id)
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Failed to read model update: %s", err), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Failed to read aggregated model: %s", err), http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(transaction))
+	w.Write([]byte(result))
 }
 
-// GetAllModelUpdates retrieves all model update transactions
-func GetAllModelUpdates(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Received request - GetAllModelUpdates")
-
-	transactions, err := application_gateway.GetAllAverageModelUpdateTransactions()
+// GetAllAggregatedModels handles retrieving all aggregated models
+func GetAllAggregatedModels(w http.ResponseWriter, r *http.Request) {
+	result, err := application_gateway.GetAllAggregatedModels()
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Failed to get all transactions: %s", err), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Failed to get all aggregated models: %s", err), http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(transactions))
+	w.Write([]byte(result))
 }
 
-// QueryModelUpdatesByDateRange retrieves transactions within a date range
-func QueryModelUpdatesByDateRange(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Received request - QueryModelUpdatesByDateRange")
-
+// QueryAggregatedModelsByDateRange handles retrieving models by date range
+func QueryAggregatedModelsByDateRange(w http.ResponseWriter, r *http.Request) {
 	startDate := r.URL.Query().Get("startDate")
 	endDate := r.URL.Query().Get("endDate")
 
@@ -121,12 +111,12 @@ func QueryModelUpdatesByDateRange(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	transactions, err := application_gateway.QueryAverageModelUpdateTransactionsByDateRange(startDate, endDate)
+	result, err := application_gateway.QueryAggregatedModelsByDateRange(startDate, endDate)
 	if err != nil {
-		http.Error(w, fmt.Sprintf("Failed to query transactions: %s", err), http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Failed to query aggregated models: %s", err), http.StatusInternalServerError)
 		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Write([]byte(transactions))
+	w.Write([]byte(result))
 }

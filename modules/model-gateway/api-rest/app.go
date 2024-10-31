@@ -11,10 +11,10 @@ func main() {
 	router := mux.NewRouter()
 
 	// Model Treatment endpoints
-	router.HandleFunc("/model/average", web.CalculateAverageModelUpdate).Methods("POST")
-	router.HandleFunc("/model/{id}", web.ReadAverageModelUpdate).Methods("GET")
-	router.HandleFunc("/models", web.GetAllModelUpdates).Methods("GET")
-	router.HandleFunc("/models/query", web.QueryModelUpdatesByDateRange).Methods("GET")
+	router.HandleFunc("/models/aggregate", web.AggregateModel).Methods("POST")
+	router.HandleFunc("/models/aggregate/{id}", web.ReadAggregatedModel).Methods("GET")
+	router.HandleFunc("/models/aggregate", web.GetAllAggregatedModels).Methods("GET")
+	router.HandleFunc("/models/aggregate/query", web.QueryAggregatedModelsByDateRange).Methods("GET")
 
 	fmt.Printf("Starting server on http://localhost:3005/\n")
 	if err := http.ListenAndServe(":3005", router); err != nil {
