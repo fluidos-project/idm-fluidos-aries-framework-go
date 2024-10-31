@@ -96,7 +96,7 @@ const (
 
 // constants for the XACML requests
 const (
-	XACML_PDP    = "http://172.16.10.118:8883/pdp/verdict"
+	XACML_PDP    = "http://172.16.10.118:9092/pdp/verdict"
 	XACML_DOMAIN = "fluidosOpencall"
 )
 
@@ -1297,9 +1297,15 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 		return nil
 	}
 
+	//Create Access Token
+	accessToken, err := generateAccessToken(o, token, resource, method, requester)
+	if err != nil {
+		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized, Error: err.Error()}, logger)
+	}
+
 	result = "verified"
 	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
-	command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized}, logger)
+	command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized, AccessToken: accessToken}, logger)
 	return nil
 
 }
@@ -1358,6 +1364,59 @@ func checkXACML(subject, resource, action string) (bool, error) {
 	}
 
 	return false, errors.New("not Applicable in XACML")
+}
+
+func generateAccessToken(o *Command, token, subject, action, resource string) (string, error) {
+	// Get actual time in Unix format
+	issuedAt := time.Now().Unix()
+
+	// Caclulate expiration time by adding the duration in seconds
+	expiresAt := issuedAt + 3600
+
+	// Create JWT content
+	content := map[string]interface{}{
+		"sub":      subject,
+		"resource": resource,
+		"method":   action,
+		"iat":      issuedAt,
+		"exp":      expiresAt,
+	}
+
+	// Create request to sign JWT
+	reqJWT := vcwalletc.SignJWTRequest{
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Headers:    nil,
+		Claims:     content,
+		KID:        o.currentDID + "#" + o.currentKeyPair.KeyID,
+	}
+
+	reqData, err := json.Marshal(reqJWT)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
+		return "", command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("failed to marshal request: %w", err))
+	}
+	requestFormatted := bytes.NewReader(reqData)
+
+	var signBuf bytes.Buffer
+
+	// Sign JWT
+	if err := o.vcwalletcommand.SignJWT(&signBuf, requestFormatted); err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
+		return "", command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("failed to sign JWT: %w", err))
+	}
+
+	var jwtResponse vcwalletc.SignJWTResponse
+
+	err = json.Unmarshal(signBuf.Bytes(), &jwtResponse)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
+		return "", command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("failed to unmarshal JWT: %w", err))
+	}
+
+	signedJWT := jwtResponse.JWT
+	fmt.Println("Signed JWT:", signedJWT)
+
+	return signedJWT, nil
 }
 
 // AcceptEnrolment Issuer exposes this method to acacept enrolment processes, ending in credential issuance

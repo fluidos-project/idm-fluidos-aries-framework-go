@@ -192,7 +192,8 @@ type VerifyCredentialArgs struct {
 
 // Model for VerifyCredential method output
 type VerifyCredentialResult struct {
-	Result bool `json:"result"`
+	Result      bool   `json:"result"`
+	AccessToken string `json:"accessToken"`
 
 	Error string `json:"error,omitempty"`
 }
