@@ -8,10 +8,13 @@ bash network.sh up createChannel -c mychannel
 
 bash network.sh deployCC -ccn sacc -ccp ../chaincode/sacc/ -ccv 1 -ccl go
 
-echo "Desplegado e instalado Hyperledger Fabric, desplegado canal \"mychannel\" y desplegado smartcontract \"sacc\""
-bash network.sh deployCC -ccn model-treatment -ccp ../chaincode/model-treatment/ -ccv 1 -ccl go
+echo "Deployed and installed Hyperledger Fabric, created channel \"mychannel\" and deployed smartcontract \"sacc\""
 
-echo "Deployed and installed model-treatment smart contract"
+bash network.sh deployCC -ccn model-aggregation -ccp ../chaincode/model-aggregation/ -ccv 1 -ccl go
+echo "Deployed and installed model-aggregation smart contract"
+
+bash network.sh deployCC -ccn model-updates -ccp ../chaincode/model-updates/ -ccv 1 -ccl go
+echo "Deployed and installed model-updates smart contract"
 
 privpath=./organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore
 certpath=./organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts

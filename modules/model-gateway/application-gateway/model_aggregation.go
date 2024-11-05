@@ -5,7 +5,6 @@ import (
 	"fmt"
 )
 
-// AggregateModel submits a transaction to aggregate model
 func AggregateModel(data []interface{}, baseModel string, baseModelVersion string, date string, nodeDID string, signedProof string) (string, error) {
 	if err := InitializeConnection(); err != nil {
 		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
@@ -13,7 +12,7 @@ func AggregateModel(data []interface{}, baseModel string, baseModelVersion strin
 	defer CloseConnection()
 
 	network := gateway.GetNetwork("mychannel")
-	contract := network.GetContract("model-treatment")
+	contract := network.GetContract("model-aggregation")
 
 	dataBytes, err := json.Marshal(data)
 	if err != nil {
@@ -36,7 +35,6 @@ func AggregateModel(data []interface{}, baseModel string, baseModelVersion strin
 	return string(result), nil
 }
 
-// ReadAggregatedModel retrieves a specific aggregated model
 func ReadAggregatedModel(id string) (string, error) {
 	if err := InitializeConnection(); err != nil {
 		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
@@ -44,7 +42,7 @@ func ReadAggregatedModel(id string) (string, error) {
 	defer CloseConnection()
 
 	network := gateway.GetNetwork("mychannel")
-	contract := network.GetContract("model-treatment")
+	contract := network.GetContract("model-aggregation")
 
 	result, err := contract.EvaluateTransaction("ReadAggregatedModel", id)
 	if err != nil {
@@ -54,7 +52,6 @@ func ReadAggregatedModel(id string) (string, error) {
 	return string(result), nil
 }
 
-// GetAllAggregatedModels retrieves all aggregated models
 func GetAllAggregatedModels() (string, error) {
 	if err := InitializeConnection(); err != nil {
 		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
@@ -62,7 +59,7 @@ func GetAllAggregatedModels() (string, error) {
 	defer CloseConnection()
 
 	network := gateway.GetNetwork("mychannel")
-	contract := network.GetContract("model-treatment")
+	contract := network.GetContract("model-aggregation")
 
 	result, err := contract.EvaluateTransaction("GetAllAggregatedModels")
 	if err != nil {
@@ -72,7 +69,6 @@ func GetAllAggregatedModels() (string, error) {
 	return string(result), nil
 }
 
-// QueryAggregatedModelsByDateRange retrieves models within a date range
 func QueryAggregatedModelsByDateRange(startDate string, endDate string) (string, error) {
 	if err := InitializeConnection(); err != nil {
 		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
@@ -80,7 +76,7 @@ func QueryAggregatedModelsByDateRange(startDate string, endDate string) (string,
 	defer CloseConnection()
 
 	network := gateway.GetNetwork("mychannel")
-	contract := network.GetContract("model-treatment")
+	contract := network.GetContract("model-aggregation")
 
 	result, err := contract.EvaluateTransaction("QueryAggregatedModelsByDateRange", startDate, endDate)
 	if err != nil {
@@ -88,4 +84,4 @@ func QueryAggregatedModelsByDateRange(startDate string, endDate string) (string,
 	}
 
 	return string(result), nil
-}
+} 

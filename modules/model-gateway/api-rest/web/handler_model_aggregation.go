@@ -18,10 +18,10 @@ type AggregateModelRequest struct {
 }
 
 type CalculationResponse struct {
-	Status  string `json:"status"`
-	Message string `json:"message"`
-	TxID    string `json:"transactionId"`
-	ID      string `json:"id"`
+	Status    string   `json:"status"`
+	Message   string   `json:"message"`
+	TxID      string   `json:"transactionId"`
+	ID        string   `json:"id"`
 	ModelsRef []string `json:"modelsRef"`
 }
 
@@ -119,4 +119,4 @@ func QueryAggregatedModelsByDateRange(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write([]byte(result))
-}
+} 
