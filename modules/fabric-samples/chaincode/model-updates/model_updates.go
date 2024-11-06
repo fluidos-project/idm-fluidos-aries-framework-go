@@ -70,6 +70,8 @@ func (s *ModelUpdatesContract) CreateBaseModelUpdate(ctx contractapi.Transaction
 		return nil, fmt.Errorf("base model update %s already exists", id)
 	}
 
+
+	// TODO: Here we are going to generate final data from the data matrix provided and the models of hugginface to create a model update, this data will be stores in the DHT, but in the ledger we will store the reference to the DHT, then we need to access the DHT to store the data
 	dhtID := fmt.Sprintf("dht_%s_%s", baseModel, date)
 
 	transaction := BaseModelUpdateTransaction{

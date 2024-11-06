@@ -33,6 +33,81 @@ type CalculationResponse struct {
 	ModelsRef []string `json:"modelsRef"`
 }
 
+// MockModelData represents a model from DHT with weights and ID
+type MockModelData struct {
+	Weights []interface{}
+	DHTID   string
+}
+
+// calculateModelUpdate computes the difference between two matrices
+func calculateModelUpdate(modelWeights, sourceWeights []interface{}) ([]float64, error) {
+	var update []float64
+	for i := 0; i < len(modelWeights); i++ {
+		weight1, ok1 := modelWeights[i].(float64)
+		weight2, ok2 := sourceWeights[i].(float64)
+		if !ok1 || !ok2 {
+			return nil, fmt.Errorf("invalid matrix value type at index %d", i)
+		}
+		update = append(update, weight1-weight2)
+	}
+	return update, nil
+}
+
+// calculateAveragedUpdate computes the average of multiple model updates
+func calculateAveragedUpdate(updates [][]float64) []float64 {
+	if len(updates) == 0 {
+		return nil
+	}
+	
+	resultLen := len(updates[0])
+	result := make([]float64, resultLen)
+	
+	for i := 0; i < resultLen; i++ {
+		sum := 0.0
+		for _, update := range updates {
+			sum += update[i]
+		}
+		result[i] = sum / float64(len(updates))
+	}
+	
+	return result
+}
+
+// calculateGlobalWeights computes final weights
+func calculateGlobalWeights(averagedUpdate []float64, sourceWeights []interface{}) ([]float64, error) {
+	var result []float64
+	for i := 0; i < len(sourceWeights); i++ {
+		sourceWeight, ok := sourceWeights[i].(float64)
+		if !ok {
+			return nil, fmt.Errorf("invalid source weight type at index %d", i)
+		}
+		result = append(result, sourceWeight+averagedUpdate[i])
+	}
+	return result, nil
+}
+
+// generateMockWeights creates mock weights for testing
+func generateMockWeights(length int) []interface{} {
+	weights := make([]interface{}, length)
+	for i := 0; i < length; i++ {
+		weights[i] = float64(i) * 0.1 // Mock values
+	}
+	return weights
+}
+
+// generateMockModelData creates mock weights and DHTID for testing
+func generateMockModelData(baseModel string, length int, index int) MockModelData {
+	weights := make([]interface{}, length)
+	for i := 0; i < length; i++ {
+		weights[i] = float64(i) * 0.1 // Mock values
+	}
+	
+	return MockModelData{
+		Weights: weights,
+		DHTID:   fmt.Sprintf("dht_%s_model_%d", baseModel, index),
+	}
+}
+
 // InitLedger adds a base set of model aggregations to the ledger
 func (s *ModelAggregationContract) InitLedger(ctx contractapi.TransactionContextInterface) error {
 	modelUpdates := []AggregateModelTransaction{
@@ -78,16 +153,46 @@ func (s *ModelAggregationContract) AggregateModel(ctx contractapi.TransactionCon
 		return nil, fmt.Errorf("data matrix cannot be nil")
 	}
 
-	modelsRef := []string{
-		fmt.Sprintf("model_%s_ref1", baseModel),
-		fmt.Sprintf("model_%s_ref2", baseModel),
-		fmt.Sprintf("model_%s_ref3", baseModel),
+	// Mock DHT retrieval of other model weights with their IDs
+	mockModels := []MockModelData{
+		generateMockModelData(baseModel, len(data), 1),
+		generateMockModelData(baseModel, len(data), 2),
+		generateMockModelData(baseModel, len(data), 3),
 	}
 
+	// Calculate updates for each model
+	var modelUpdates [][]float64
+	var modelsRef []string // Store DHT IDs of participating models
+
+	for _, model := range mockModels {
+		update, err := calculateModelUpdate(model.Weights, data)
+		if err != nil {
+			return nil, fmt.Errorf("error calculating model update for model %s: %v", model.DHTID, err)
+		}
+		modelUpdates = append(modelUpdates, update)
+		modelsRef = append(modelsRef, model.DHTID)
+	}
+
+	// Calculate averaged update
+	averagedUpdate := calculateAveragedUpdate(modelUpdates)
+
+	// Calculate global weights
+	globalWeights, err := calculateGlobalWeights(averagedUpdate, data)
+	if err != nil {
+		return nil, fmt.Errorf("error calculating global weights: %v", err)
+	}
+
+	// Convert global weights to interface{} slice for storage
+	var globalWeightsInterface []interface{}
+	for _, w := range globalWeights {
+		globalWeightsInterface = append(globalWeightsInterface, w)
+	}
+
+	// Create and store transaction
 	transaction := AggregateModelTransaction{
-		ID:               id,
-		Data:             data,
-		BaseModel:        baseModel,
+		ID:              id,
+		Data:            globalWeightsInterface,
+		BaseModel:       baseModel,
 		BaseModelVersion: baseModelVersion,
 		Date:            date,
 		NodeDID:         nodeDID,
@@ -105,17 +210,13 @@ func (s *ModelAggregationContract) AggregateModel(ctx contractapi.TransactionCon
 		return nil, err
 	}
 
-	txID := ctx.GetStub().GetTxID()
-
-	response := &CalculationResponse{
+	return &CalculationResponse{
 		Status:    "success",
-		Message:   fmt.Sprintf("Successfully stored aggregated model with ID: %s", id),
-		TxID:      txID,
+		Message:   fmt.Sprintf("Successfully aggregated model with ID: %s", id),
+		TxID:      ctx.GetStub().GetTxID(),
 		ID:        id,
 		ModelsRef: modelsRef,
-	}
-
-	return response, nil
+	}, nil
 }
 
 // ReadAggregatedModel retrieves a specific model by ID
