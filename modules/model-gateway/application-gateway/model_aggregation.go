@@ -5,7 +5,13 @@ import (
 	"fmt"
 )
 
-func AggregateModel(data []interface{}, baseModel string, baseModelVersion string, date string, nodeDID string, signedProof string) (string, error) {
+func AggregateModel(data [][]float64, baseModel string, baseModelVersion string, date string, nodeDID string, signedProof string) (string, error) {
+	// Convert [][]float64 to []interface{} for chaincode
+	dataInterface := make([]interface{}, len(data))
+	for i, row := range data {
+		dataInterface[i] = row
+	}
+
 	if err := InitializeConnection(); err != nil {
 		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
 	}
@@ -14,7 +20,7 @@ func AggregateModel(data []interface{}, baseModel string, baseModelVersion strin
 	network := gateway.GetNetwork("mychannel")
 	contract := network.GetContract("model-aggregation")
 
-	dataBytes, err := json.Marshal(data)
+	dataBytes, err := json.Marshal(dataInterface)
 	if err != nil {
 		return "", fmt.Errorf("failed to marshal data: %v", err)
 	}

@@ -9,12 +9,12 @@ import (
 )
 
 type AggregateModelRequest struct {
-	Data             []interface{} `json:"data"`
-	BaseModel        string        `json:"baseModel"`
-	BaseModelVersion string        `json:"baseModelVersion"`
-	Date            string        `json:"date"`
-	NodeDID         string        `json:"nodeDID"`
-	SignedProof     string        `json:"signedProof"`
+	Data             [][]float64 `json:"data"`
+	BaseModel        string      `json:"baseModel"`
+	BaseModelVersion string      `json:"baseModelVersion"`
+	Date             string      `json:"date"`
+	NodeDID          string      `json:"nodeDID"`
+	SignedProof      string      `json:"signedProof"`
 }
 
 type CalculationResponse struct {

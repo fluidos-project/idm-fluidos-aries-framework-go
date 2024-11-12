@@ -14,14 +14,14 @@ type ModelAggregationContract struct {
 
 // AggregateModelTransaction represents a transaction in the blockchain
 type AggregateModelTransaction struct {
-	ID              string        `json:"id"`
-	Data            []interface{} `json:"data"`
-	BaseModel       string        `json:"baseModel"`
-	BaseModelVersion string       `json:"baseModelVersion"`
-	Date            string        `json:"date"`
-	NodeDID         string        `json:"nodeDID"`
-	SignedProof     string        `json:"signedProof"`
-	ModelsRef       []string      `json:"modelsRef"`
+	ID               string        `json:"id"`
+	Data             []interface{} `json:"data"`
+	BaseModel        string        `json:"baseModel"`
+	BaseModelVersion string        `json:"baseModelVersion"`
+	Date             string        `json:"date"`
+	NodeDID          string        `json:"nodeDID"`
+	SignedProof      string        `json:"signedProof"`
+	ModelsRef        []string      `json:"modelsRef"`
 }
 
 // CalculationResponse represents the response for model aggregation
@@ -35,53 +35,61 @@ type CalculationResponse struct {
 
 // MockModelData represents a model from DHT with weights and ID
 type MockModelData struct {
-	Weights []interface{}
+	Weights [][]float64
 	DHTID   string
 }
 
 // calculateModelUpdate computes the difference between two matrices
-func calculateModelUpdate(modelWeights, sourceWeights []interface{}) ([]float64, error) {
-	var update []float64
-	for i := 0; i < len(modelWeights); i++ {
-		weight1, ok1 := modelWeights[i].(float64)
-		weight2, ok2 := sourceWeights[i].(float64)
-		if !ok1 || !ok2 {
-			return nil, fmt.Errorf("invalid matrix value type at index %d", i)
+func calculateModelUpdate(modelWeights, sourceWeights [][]float64) ([][]float64, error) {
+	if len(modelWeights) != len(sourceWeights) {
+		return nil, fmt.Errorf("mismatched matrix dimensions")
+	}
+
+	update := make([][]float64, len(modelWeights))
+	for i := range modelWeights {
+		if len(modelWeights[i]) != len(sourceWeights[i]) {
+			return nil, fmt.Errorf("mismatched row dimensions at index %d", i)
 		}
-		update = append(update, weight1-weight2)
+		update[i] = make([]float64, len(modelWeights[i]))
+		for j := range modelWeights[i] {
+			update[i][j] = modelWeights[i][j] - sourceWeights[i][j]
+		}
 	}
 	return update, nil
 }
 
 // calculateAveragedUpdate computes the average of multiple model updates
-func calculateAveragedUpdate(updates [][]float64) []float64 {
-	if len(updates) == 0 {
+func calculateAveragedUpdate(updates [][][]float64) [][]float64 {
+	if len(updates) == 0 || len(updates[0]) == 0 {
 		return nil
 	}
 	
-	resultLen := len(updates[0])
-	result := make([]float64, resultLen)
-	
-	for i := 0; i < resultLen; i++ {
-		sum := 0.0
-		for _, update := range updates {
-			sum += update[i]
+	rows, cols := len(updates[0]), len(updates[0][0])
+	result := make([][]float64, rows)
+	for i := range result {
+		result[i] = make([]float64, cols)
+		for j := range result[i] {
+			sum := 0.0
+			for _, update := range updates {
+				sum += update[i][j]
+			}
+			result[i][j] = sum / float64(len(updates))
 		}
-		result[i] = sum / float64(len(updates))
 	}
-	
 	return result
 }
 
 // calculateGlobalWeights computes final weights
-func calculateGlobalWeights(averagedUpdate []float64, sourceWeights []interface{}) ([]float64, error) {
-	var result []float64
-	for i := 0; i < len(sourceWeights); i++ {
-		sourceWeight, ok := sourceWeights[i].(float64)
-		if !ok {
-			return nil, fmt.Errorf("invalid source weight type at index %d", i)
+func calculateGlobalWeights(averagedUpdate [][]float64, sourceWeights [][]float64) ([][]float64, error) {
+	result := make([][]float64, len(sourceWeights))
+	for i := range sourceWeights {
+		if len(sourceWeights[i]) != len(averagedUpdate[i]) {
+			return nil, fmt.Errorf("mismatched row dimensions at index %d", i)
 		}
-		result = append(result, sourceWeight+averagedUpdate[i])
+		result[i] = make([]float64, len(sourceWeights[i]))
+		for j := range sourceWeights[i] {
+			result[i][j] = sourceWeights[i][j] + averagedUpdate[i][j]
+		}
 	}
 	return result, nil
 }
@@ -96,10 +104,14 @@ func generateMockWeights(length int) []interface{} {
 }
 
 // generateMockModelData creates mock weights and DHTID for testing
-func generateMockModelData(baseModel string, length int, index int) MockModelData {
-	weights := make([]interface{}, length)
-	for i := 0; i < length; i++ {
-		weights[i] = float64(i) * 0.1 // Mock values
+func generateMockModelData(baseModel string, sourceData [][]float64, index int) MockModelData {
+	rows, cols := len(sourceData), len(sourceData[0])
+	weights := make([][]float64, rows)
+	for i := range weights {
+		weights[i] = make([]float64, cols)
+		for j := range weights[i] {
+			weights[i][j] = float64(i*cols+j) * 0.1 * float64(index)
+		}
 	}
 	
 	return MockModelData{
@@ -137,6 +149,27 @@ func (s *ModelAggregationContract) InitLedger(ctx contractapi.TransactionContext
 	return nil
 }
 
+// Convert []interface{} to [][]float64
+func convertToFloat64Matrix(data []interface{}) ([][]float64, error) {
+	matrix := make([][]float64, len(data))
+	for i, row := range data {
+		floatRow, ok := row.([]interface{})
+		if !ok {
+			return nil, fmt.Errorf("row %d is not of type []interface{}", i)
+		}
+		floatRowConverted := make([]float64, len(floatRow))
+		for j, val := range floatRow {
+			floatVal, ok := val.(float64)
+			if !ok {
+				return nil, fmt.Errorf("value at row %d, column %d is not of type float64", i, j)
+			}
+			floatRowConverted[j] = floatVal
+		}
+		matrix[i] = floatRowConverted
+	}
+	return matrix, nil
+}
+
 // AggregateModel creates a new aggregated model in the ledger
 func (s *ModelAggregationContract) AggregateModel(ctx contractapi.TransactionContextInterface, data []interface{}, baseModel string, baseModelVersion string, date string, nodeDID string, signedProof string) (*CalculationResponse, error) {
 	id := fmt.Sprintf("%s_%s:%s", baseModel, baseModelVersion, date)
@@ -153,19 +186,25 @@ func (s *ModelAggregationContract) AggregateModel(ctx contractapi.TransactionCon
 		return nil, fmt.Errorf("data matrix cannot be nil")
 	}
 
+	// Convert data to [][]float64
+	floatData, err := convertToFloat64Matrix(data)
+	if err != nil {
+		return nil, err
+	}
+
 	// Mock DHT retrieval of other model weights with their IDs
 	mockModels := []MockModelData{
-		generateMockModelData(baseModel, len(data), 1),
-		generateMockModelData(baseModel, len(data), 2),
-		generateMockModelData(baseModel, len(data), 3),
+		generateMockModelData(baseModel, floatData, 1),
+		generateMockModelData(baseModel, floatData, 2),
+		generateMockModelData(baseModel, floatData, 3),
 	}
 
 	// Calculate updates for each model
-	var modelUpdates [][]float64
+	var modelUpdates [][][]float64
 	var modelsRef []string // Store DHT IDs of participating models
 
 	for _, model := range mockModels {
-		update, err := calculateModelUpdate(model.Weights, data)
+		update, err := calculateModelUpdate(model.Weights, floatData)
 		if err != nil {
 			return nil, fmt.Errorf("error calculating model update for model %s: %v", model.DHTID, err)
 		}
@@ -177,7 +216,7 @@ func (s *ModelAggregationContract) AggregateModel(ctx contractapi.TransactionCon
 	averagedUpdate := calculateAveragedUpdate(modelUpdates)
 
 	// Calculate global weights
-	globalWeights, err := calculateGlobalWeights(averagedUpdate, data)
+	globalWeights, err := calculateGlobalWeights(averagedUpdate, floatData)
 	if err != nil {
 		return nil, fmt.Errorf("error calculating global weights: %v", err)
 	}
@@ -190,14 +229,14 @@ func (s *ModelAggregationContract) AggregateModel(ctx contractapi.TransactionCon
 
 	// Create and store transaction
 	transaction := AggregateModelTransaction{
-		ID:              id,
-		Data:            globalWeightsInterface,
-		BaseModel:       baseModel,
+		ID:               id,
+		Data:             globalWeightsInterface,
+		BaseModel:        baseModel,
 		BaseModelVersion: baseModelVersion,
-		Date:            date,
-		NodeDID:         nodeDID,
-		SignedProof:     signedProof,
-		ModelsRef:       modelsRef,
+		Date:             date,
+		NodeDID:          nodeDID,
+		SignedProof:      signedProof,
+		ModelsRef:        modelsRef,
 	}
 
 	transactionJSON, err := json.Marshal(transaction)
