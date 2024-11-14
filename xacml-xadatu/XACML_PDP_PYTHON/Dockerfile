@@ -23,6 +23,9 @@ RUN apt-get update -y
 ##Install pip3
 #RUN apt-get install python3-pip -y
 
+## Install Requests
+RUN pip3 install requests
+
 #Install utils
 RUN apt-get install net-tools -y
 RUN apt-get install vim -y
