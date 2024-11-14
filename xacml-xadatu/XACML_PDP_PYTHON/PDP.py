@@ -17,6 +17,8 @@ import threading
 
 import time
 from datetime import datetime
+import hashlib
+import requests
 
 import xmltodict
 
@@ -543,16 +545,47 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                         result = obtainVerdict(indexDomain, actionValue, subjectTypeValue, subjectValue, resourceValue)
 
                         if ("<Decision>Permit</Decision>" in result):
+                            decision = "Permit"
                             logging.info("POST Response: VERDICT: Permit.")
                         else:
 
                             logging.info(messageLog)
 
                             if ("<Decision>Deny</Decision>" in result):
+                                decision = "Deny"
                                 logging.info("POST Response: VERDICT: Deny.")
                             else:
+                                decision = "NotApplicable"
                                 logging.info("POST Response: VERDICT: NotApplicable.")
 
+                        # Obtain actual date in ISO format
+                        date = datetime.now().isoformat()
+                        id_string = f"{actionValue}{subjectValue}{date}{decision}{resourceValue}"
+                        unique_id = hashlib.md5(id_string.encode()).hexdigest()
+
+                        subjectValue = jsonValue["Request"]["Subject"]["Attribute"]["AttributeValue"]
+                        resourceValue = jsonValue["Request"]["Resource"]["Attribute"]["AttributeValue"]
+                        actionValue = jsonValue["Request"]["Action"]["Attribute"]["AttributeValue"]
+
+                        json_data = {
+                            "Action": actionValue,
+                            "Subject": subjectValue,
+                            "Resource": resourceValue,
+                            "Timestamp": date,
+                            "Id": unique_id,
+                            "Decision": decision
+                        }
+
+                        json_paylaod = json.dumps(json_data)
+
+                        try:
+                            response = requests.post('http://172.16.10.118:3002/xadatu/auth/register', data=json_paylaod, headers={'Content-Type': 'application/json'})
+                            if response.status_code == 200:
+                                logging.info("Access request registered in blockchain")
+                            else:
+                                logging.error(f"There was an error sending the POST request: {response.status_code} {response}")
+                        except requests.exceptions.RequestException as e:
+                            logging.error(f"Connection error: {e}")
 
                         self.send_response(200)
                         # Send headers
