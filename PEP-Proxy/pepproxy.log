@@ -1,0 +1,727 @@
+2024-11-13 09:30:51,861 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 09:32:51,243 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 09:36:51,036 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 09:49:58,036 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 09:49:58,042 [Thread-5 (pr] [ERROR]  [Errno 111] Connection refused
+2024-11-13 09:49:58,042 [Thread-5 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 09:49:58,042 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 09:49:58,042 [Thread-5 (pr] [INFO ]  Total(ms) request: 3
+2024-11-13 09:54:08,142 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 09:54:27,158 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 09:54:27,160 [Thread-3 (pr] [ERROR]  [Errno 111] Connection refused
+2024-11-13 09:54:27,160 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 09:54:27,160 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 09:54:27,160 [Thread-3 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 09:56:07,869 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 09:56:07,870 [Thread-5 (pr] [ERROR]  [Errno 111] Connection refused
+2024-11-13 09:56:07,870 [Thread-5 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 09:56:07,870 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 09:56:07,870 [Thread-5 (pr] [INFO ]  Total(ms) request: 1
+2024-11-13 09:57:29,323 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 09:58:45,210 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 09:58:45,211 [Thread-3 (pr] [ERROR]  [Errno 111] Connection refused
+2024-11-13 09:58:45,211 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 09:58:45,211 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 09:58:45,211 [Thread-3 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 10:03:54,616 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 10:04:01,312 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:04:01,316 [Thread-3 (pr] [ERROR]  [Errno 2] No such file or directory
+2024-11-13 10:04:01,317 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 10:04:01,317 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:04:01,317 [Thread-3 (pr] [INFO ]  Total(ms) request: 4
+2024-11-13 10:32:49,855 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 10:34:10,851 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 10:34:21,992 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:34:21,993 [Thread-3 (pr] [ERROR]  [Errno 111] Connection refused
+2024-11-13 10:34:21,994 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 10:34:21,994 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:34:21,994 [Thread-3 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 10:36:12,578 [MainThread  ] [ERROR]  invalid literal for int() with base 10: '<specify target port>'
+2024-11-13 10:36:20,098 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:36:20,100 [Thread-3 (pr] [ERROR]  [Errno 111] Connection refused
+2024-11-13 10:36:20,101 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 10:36:20,101 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:36:20,101 [Thread-3 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 10:38:32,661 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:38:32,663 [Thread-3 (pr] [ERROR]  [Errno 111] Connection refused
+2024-11-13 10:38:32,663 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 10:38:32,663 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:38:32,663 [Thread-3 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 10:42:33,432 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:42:33,506 [Thread-3 (pr] [INFO ]  OIDC4VP VERIFIER RESPONSE CODE: 200
+2024-11-13 10:42:33,506 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:42:33,507 [Thread-3 (pr] [INFO ]  Total(ms) request: 74
+2024-11-13 10:44:24,964 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:44:25,068 [Thread-3 (pr] [INFO ]  OIDC4VP VERIFIER RESPONSE CODE: 200
+2024-11-13 10:44:25,069 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:44:25,069 [Thread-3 (pr] [INFO ]  Total(ms) request: 104
+2024-11-13 10:44:27,789 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:44:27,931 [Thread-5 (pr] [INFO ]  OIDC4VP VERIFIER RESPONSE CODE: 200
+2024-11-13 10:44:27,931 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:44:27,932 [Thread-5 (pr] [INFO ]  Total(ms) request: 142
+2024-11-13 10:46:05,027 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:46:05,029 [Thread-3 (pr] [ERROR]  [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:992)
+2024-11-13 10:46:05,030 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 10:46:05,030 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:46:05,030 [Thread-3 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 10:46:51,649 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:46:51,703 [Thread-3 (pr] [INFO ]  OIDC4VP VERIFIER RESPONSE CODE: 200
+2024-11-13 10:46:51,703 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:46:51,703 [Thread-3 (pr] [INFO ]  Total(ms) request: 55
+2024-11-13 10:48:06,032 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 10:48:06,090 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 10:48:06,090 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:48:06,090 [Thread-3 (pr] [INFO ]  Total(ms) request: 58
+2024-11-13 10:48:45,318 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 10:48:45,413 [Thread-5 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 10:48:45,414 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 10:48:45,414 [Thread-5 (pr] [INFO ]  Total(ms) request: 96
+2024-11-13 11:02:01,849 [Thread-7 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 11:02:01,903 [Thread-7 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 11:02:01,903 [Thread-7 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 11:02:01,903 [Thread-7 (pr] [INFO ]  Total(ms) request: 55
+2024-11-13 11:04:33,822 [Thread-9 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 11:04:35,984 [Thread-9 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 11:04:35,984 [Thread-9 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 11:04:35,985 [Thread-9 (pr] [INFO ]  Total(ms) request: 2163
+2024-11-13 12:07:33,009 [Thread-11 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 12:07:33,052 [Thread-11 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 12:07:33,053 [Thread-11 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:07:33,053 [Thread-11 (p] [INFO ]  Total(ms) request: 44
+2024-11-13 12:12:11,683 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 12:12:11,722 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 12:12:11,722 [Thread-3 (pr] [INFO ]  Verified is True
+2024-11-13 12:12:11,723 [Thread-3 (pr] [ERROR]  Error: Method is different: 
+		 - HTTP: ('POST')
+		 - TOKEN: ('GET')
+2024-11-13 12:12:11,723 [Thread-3 (pr] [INFO ]  Total(ms) Validacion process: 40
+2024-11-13 12:12:11,723 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 12:22:46,763 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:22:46,830 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 12:22:46,830 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:22:46,830 [Thread-3 (pr] [INFO ]  Total(ms) request: 68
+2024-11-13 12:41:06,991 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:41:06,997 [Thread-3 (pr] [ERROR]  [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:992)
+2024-11-13 12:41:06,997 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 12:41:06,997 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:41:06,997 [Thread-3 (pr] [INFO ]  Total(ms) request: 7
+2024-11-13 12:44:28,677 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:44:28,680 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 12:44:28,680 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:44:28,680 [Thread-3 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 12:44:42,899 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:44:42,961 [Thread-5 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 12:44:42,961 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:44:42,961 [Thread-5 (pr] [INFO ]  Total(ms) request: 62
+2024-11-13 12:49:51,476 [Thread-7 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:49:51,478 [Thread-7 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 12:49:51,478 [Thread-7 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:49:51,478 [Thread-7 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 12:51:40,264 [Thread-9 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:51:40,266 [Thread-9 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 12:51:40,266 [Thread-9 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:51:40,266 [Thread-9 (pr] [INFO ]  Total(ms) request: 2
+2024-11-13 12:52:22,475 [Thread-11 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:52:22,502 [Thread-11 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 12:52:22,502 [Thread-11 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:52:22,503 [Thread-11 (p] [INFO ]  Total(ms) request: 28
+2024-11-13 12:53:48,596 [Thread-13 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:53:48,597 [Thread-13 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 12:53:48,598 [Thread-13 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:53:48,598 [Thread-13 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 12:56:19,470 [Thread-15 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:56:19,472 [Thread-15 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 12:56:19,473 [Thread-15 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:56:19,473 [Thread-15 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 12:57:54,681 [Thread-17 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:57:54,683 [Thread-17 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 12:57:54,683 [Thread-17 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:57:54,683 [Thread-17 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 12:58:50,506 [Thread-19 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 12:58:50,508 [Thread-19 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 12:58:50,508 [Thread-19 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 12:58:50,508 [Thread-19 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 13:00:25,361 [Thread-21 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 13:00:25,363 [Thread-21 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 13:00:25,363 [Thread-21 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 13:00:25,363 [Thread-21 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 13:01:46,552 [Thread-23 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 13:01:46,554 [Thread-23 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 13:01:46,554 [Thread-23 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 13:01:46,554 [Thread-23 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 13:11:47,106 [Thread-25 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 13:11:47,109 [Thread-25 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 13:11:47,109 [Thread-25 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 13:11:47,109 [Thread-25 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 13:12:57,120 [Thread-27 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 13:12:57,122 [Thread-27 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 13:12:57,123 [Thread-27 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 13:12:57,123 [Thread-27 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 13:13:31,485 [Thread-29 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 13:13:31,487 [Thread-29 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-13 13:13:31,487 [Thread-29 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 13:13:31,487 [Thread-29 (p] [INFO ]  Total(ms) request: 2
+2024-11-13 13:59:56,736 [Thread-31 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 13:59:56,805 [Thread-31 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 13:59:56,806 [Thread-31 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 13:59:56,806 [Thread-31 (p] [INFO ]  Total(ms) request: 70
+2024-11-13 14:01:05,955 [Thread-33 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 14:01:06,110 [Thread-33 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:01:06,110 [Thread-33 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 14:01:06,111 [Thread-33 (p] [INFO ]  Total(ms) request: 155
+2024-11-13 14:01:30,702 [Thread-35 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 14:01:30,725 [Thread-35 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:01:30,726 [Thread-35 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 14:01:30,726 [Thread-35 (p] [INFO ]  Total(ms) request: 23
+2024-11-13 14:01:39,400 [Thread-37 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 14:01:39,444 [Thread-37 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:01:39,444 [Thread-37 (p] [INFO ]  Verified is True
+2024-11-13 14:01:39,444 [Thread-37 (p] [ERROR]  Error: Method is different: 
+		 - HTTP: ('POST')
+		 - TOKEN: ('GET')
+2024-11-13 14:01:39,444 [Thread-37 (p] [INFO ]  Total(ms) Validacion process: 45
+2024-11-13 14:01:39,444 [Thread-37 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 14:01:54,323 [Thread-39 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 14:01:54,349 [Thread-39 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:01:54,349 [Thread-39 (p] [INFO ]  Verified is True
+2024-11-13 14:01:54,349 [Thread-39 (p] [ERROR]  Error: Method is different: 
+		 - HTTP: ('POST')
+		 - TOKEN: ('GET')
+2024-11-13 14:01:54,349 [Thread-39 (p] [INFO ]  Total(ms) Validacion process: 27
+2024-11-13 14:01:54,350 [Thread-39 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 14:02:12,781 [Thread-41 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 14:02:12,813 [Thread-41 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:02:12,814 [Thread-41 (p] [INFO ]  Verified is True
+2024-11-13 14:02:12,814 [Thread-41 (p] [ERROR]  Error: Method is different: 
+		 - HTTP: ('POST')
+		 - TOKEN: ('GET')
+2024-11-13 14:02:12,814 [Thread-41 (p] [INFO ]  Total(ms) Validacion process: 33
+2024-11-13 14:02:12,814 [Thread-41 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 14:45:57,940 [Thread-43 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 14:45:58,005 [Thread-43 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:45:58,005 [Thread-43 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 14:45:58,006 [Thread-43 (p] [INFO ]  Total(ms) request: 65
+2024-11-13 14:46:16,887 [Thread-45 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 14:46:16,934 [Thread-45 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:46:16,934 [Thread-45 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 14:46:16,934 [Thread-45 (p] [INFO ]  Total(ms) request: 47
+2024-11-13 14:46:29,881 [Thread-47 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 14:46:29,922 [Thread-47 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:46:29,922 [Thread-47 (p] [ERROR]  Verified is False or not present
+2024-11-13 14:46:29,922 [Thread-47 (p] [INFO ]  Total(ms) Validacion process: 41
+2024-11-13 14:46:29,922 [Thread-47 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 14:46:51,822 [Thread-49 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 14:46:51,845 [Thread-49 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:46:51,845 [Thread-49 (p] [INFO ]  Verified is True
+2024-11-13 14:46:51,845 [Thread-49 (p] [ERROR]  'url'
+2024-11-13 14:46:51,845 [Thread-49 (p] [INFO ]  Total(ms) Validacion process: 23
+2024-11-13 14:46:51,845 [Thread-49 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 14:51:57,143 [Thread-51 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 14:51:57,143 [Thread-51 (p] [ERROR]  [Errno 111] Connection refused
+2024-11-13 14:51:57,143 [Thread-51 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 14:51:57,143 [Thread-51 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 14:51:57,143 [Thread-51 (p] [INFO ]  Total(ms) request: 1
+2024-11-13 14:56:09,663 [Thread-53 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 14:56:09,741 [Thread-53 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:56:09,741 [Thread-53 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 14:56:09,741 [Thread-53 (p] [INFO ]  Total(ms) request: 77
+2024-11-13 14:56:33,222 [Thread-55 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 14:56:33,306 [Thread-55 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:56:33,306 [Thread-55 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 14:56:33,306 [Thread-55 (p] [INFO ]  Total(ms) request: 85
+2024-11-13 14:56:49,878 [Thread-57 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 14:56:49,903 [Thread-57 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:56:49,904 [Thread-57 (p] [ERROR]  Verified is False or not present
+2024-11-13 14:56:49,904 [Thread-57 (p] [INFO ]  Total(ms) Validacion process: 26
+2024-11-13 14:56:49,904 [Thread-57 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 14:57:37,681 [Thread-59 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 14:57:37,720 [Thread-59 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:57:37,720 [Thread-59 (p] [INFO ]  Verified is True
+2024-11-13 14:57:37,720 [Thread-59 (p] [ERROR]  'url'
+2024-11-13 14:57:37,720 [Thread-59 (p] [INFO ]  Total(ms) Validacion process: 39
+2024-11-13 14:57:37,721 [Thread-59 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 14:58:45,130 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 14:58:45,198 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 14:58:45,198 [Thread-3 (pr] [INFO ]  Verified is True
+2024-11-13 14:58:45,198 [Thread-3 (pr] [ERROR]  Error: device/resource is different: 
+		 - HTTP: ('http://172.16.10.118:1027', '/fluidos/idm/signContract')
+		 - TOKEN: ('/fluidos/idm/signContract')
+2024-11-13 14:58:45,199 [Thread-3 (pr] [INFO ]  Total(ms) Validacion process: 68
+2024-11-13 14:58:45,199 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 15:10:04,037 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 15:10:04,097 [Thread-5 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 15:10:04,098 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 15:10:04,098 [Thread-5 (pr] [INFO ]  Total(ms) request: 57
+2024-11-13 15:35:29,500 [Thread-7 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 15:35:31,675 [Thread-7 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 15:35:31,675 [Thread-7 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 15:35:31,675 [Thread-7 (pr] [INFO ]  Total(ms) request: 2175
+2024-11-13 15:35:47,172 [Thread-9 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 15:35:47,226 [Thread-9 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 15:35:47,226 [Thread-9 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 15:35:47,226 [Thread-9 (pr] [INFO ]  Total(ms) request: 54
+2024-11-13 15:36:23,735 [Thread-11 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 15:36:23,778 [Thread-11 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 15:36:23,779 [Thread-11 (p] [INFO ]  Verified is True
+2024-11-13 15:36:23,779 [Thread-11 (p] [INFO ]  Total(ms) Validacion process: 43
+2024-11-13 15:36:23,779 [Thread-11 (p] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-13 15:36:23,780 [Thread-11 (p] [ERROR]  [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:992)
+2024-11-13 15:36:23,781 [Thread-11 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 15:36:23,781 [Thread-11 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 15:36:23,781 [Thread-11 (p] [INFO ]  Total(ms) request: 45
+2024-11-13 15:39:23,155 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 15:39:23,191 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 15:39:23,192 [Thread-3 (pr] [INFO ]  Verified is True
+2024-11-13 15:39:23,192 [Thread-3 (pr] [INFO ]  Total(ms) Validacion process: 36
+2024-11-13 15:39:23,192 [Thread-3 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-13 15:39:23,241 [Thread-3 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-13 15:39:23,242 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 15:39:23,242 [Thread-3 (pr] [INFO ]  Total(ms) request: 86
+2024-11-13 15:57:03,378 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 15:57:03,410 [Thread-5 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 15:57:03,410 [Thread-5 (pr] [INFO ]  Verified is True
+2024-11-13 15:57:03,410 [Thread-5 (pr] [INFO ]  Total(ms) Validacion process: 33
+2024-11-13 15:57:03,410 [Thread-5 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-13 15:57:03,442 [Thread-5 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-13 15:57:03,443 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 15:57:03,443 [Thread-5 (pr] [INFO ]  Total(ms) request: 65
+2024-11-13 15:59:45,603 [Thread-7 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-13 15:59:45,603 [Thread-7 (pr] [INFO ]  Total(ms) Validacion process: 0
+2024-11-13 15:59:45,603 [Thread-7 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 16:08:31,979 [Thread-9 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 16:08:34,118 [Thread-9 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 16:08:34,118 [Thread-9 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-13 16:08:34,118 [Thread-9 (pr] [INFO ]  Total(ms) request: 2140
+2024-11-13 16:08:57,682 [Thread-11 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 16:08:59,815 [Thread-11 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 16:08:59,816 [Thread-11 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 16:08:59,816 [Thread-11 (p] [INFO ]  Total(ms) request: 2133
+2024-11-13 16:09:09,086 [Thread-13 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 16:09:09,133 [Thread-13 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 16:09:09,134 [Thread-13 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 16:09:09,134 [Thread-13 (p] [INFO ]  Total(ms) request: 47
+2024-11-13 16:09:12,960 [Thread-15 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 16:09:12,998 [Thread-15 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 16:09:12,998 [Thread-15 (p] [INFO ]  Verified is True
+2024-11-13 16:09:12,999 [Thread-15 (p] [ERROR]  Error: device/resource is different: 
+		 - HTTP: ('http://172.16.10.118:1027', '/fluidos/idm/signContract')
+		 - TOKEN: ('http://172.16.10.118:1027/fluidos/idm/*')
+2024-11-13 16:09:12,999 [Thread-15 (p] [INFO ]  Total(ms) Validacion process: 38
+2024-11-13 16:09:12,999 [Thread-15 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-13 16:28:22,006 [Thread-17 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 16:28:24,157 [Thread-17 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 16:28:24,157 [Thread-17 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 16:28:24,158 [Thread-17 (p] [INFO ]  Total(ms) request: 2152
+2024-11-13 16:28:35,809 [Thread-19 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-13 16:28:38,036 [Thread-19 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 16:28:38,037 [Thread-19 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 16:28:38,037 [Thread-19 (p] [INFO ]  Total(ms) request: 2227
+2024-11-13 16:28:43,342 [Thread-21 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-13 16:28:43,399 [Thread-21 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 16:28:43,399 [Thread-21 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 16:28:43,399 [Thread-21 (p] [INFO ]  Total(ms) request: 58
+2024-11-13 16:28:49,280 [Thread-23 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-13 16:28:49,390 [Thread-23 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-13 16:28:49,390 [Thread-23 (p] [INFO ]  Verified is True
+2024-11-13 16:28:49,390 [Thread-23 (p] [INFO ]  Total(ms) Validacion process: 110
+2024-11-13 16:28:49,390 [Thread-23 (p] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-13 16:28:49,457 [Thread-23 (p] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-13 16:28:49,457 [Thread-23 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-13 16:28:49,457 [Thread-23 (p] [INFO ]  Total(ms) request: 177
+2024-11-14 07:36:55,139 [Thread-25 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-14 07:36:55,177 [Thread-25 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 07:36:55,178 [Thread-25 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-14 07:36:55,178 [Thread-25 (p] [INFO ]  Total(ms) request: 38
+2024-11-14 07:37:07,926 [Thread-27 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-14 07:37:07,999 [Thread-27 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 07:37:07,999 [Thread-27 (p] [INFO ]  Verified is True
+2024-11-14 07:37:07,999 [Thread-27 (p] [ERROR]  (Error: TOKEN : Expiration date exceeded.
+2024-11-14 07:37:07,999 [Thread-27 (p] [INFO ]  Total(ms) Validacion process: 73
+2024-11-14 07:37:08,000 [Thread-27 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-14 08:40:29,971 [Thread-29 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 08:40:29,971 [Thread-29 (p] [INFO ]  Total(ms) Validacion process: 0
+2024-11-14 08:40:29,971 [Thread-29 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-14 08:40:39,003 [Thread-31 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-14 08:40:41,179 [Thread-31 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 08:40:41,179 [Thread-31 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-14 08:40:41,179 [Thread-31 (p] [INFO ]  Total(ms) request: 2176
+2024-11-14 08:40:48,072 [Thread-33 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 08:40:48,072 [Thread-33 (p] [INFO ]  Total(ms) Validacion process: 0
+2024-11-14 08:40:48,072 [Thread-33 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-14 08:40:53,432 [Thread-35 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-14 08:40:53,475 [Thread-35 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 08:40:53,475 [Thread-35 (p] [INFO ]  Verified is True
+2024-11-14 08:40:53,476 [Thread-35 (p] [INFO ]  Total(ms) Validacion process: 43
+2024-11-14 08:40:53,476 [Thread-35 (p] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 08:40:53,511 [Thread-35 (p] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 08:40:53,512 [Thread-35 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-14 08:40:53,512 [Thread-35 (p] [INFO ]  Total(ms) request: 79
+2024-11-14 08:41:02,426 [Thread-37 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 08:41:02,426 [Thread-37 (p] [INFO ]  Total(ms) Validacion process: 0
+2024-11-14 08:41:02,426 [Thread-37 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-14 08:41:20,069 [Thread-39 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 08:41:20,069 [Thread-39 (p] [INFO ]  Total(ms) Validacion process: 0
+2024-11-14 08:41:20,069 [Thread-39 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-14 08:41:41,775 [Thread-41 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 08:41:41,802 [Thread-41 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 08:41:41,802 [Thread-41 (p] [INFO ]  Verified is True
+2024-11-14 08:41:41,803 [Thread-41 (p] [INFO ]  Total(ms) Validacion process: 27
+2024-11-14 08:41:41,803 [Thread-41 (p] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 08:41:41,848 [Thread-41 (p] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 08:41:41,848 [Thread-41 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-14 08:41:41,848 [Thread-41 (p] [INFO ]  Total(ms) request: 74
+2024-11-14 09:06:50,008 [Thread-2 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 09:06:50,049 [Thread-2 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:06:50,049 [Thread-2 (pr] [INFO ]  Verified is True
+2024-11-14 09:06:50,049 [Thread-2 (pr] [INFO ]  Total(ms) Validacion process: 41
+2024-11-14 09:06:50,049 [Thread-2 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:06:50,084 [Thread-2 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:06:50,085 [Thread-2 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:06:50,085 [Thread-2 (pr] [INFO ]  Total(ms) request: 76
+2024-11-14 09:07:28,336 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 09:07:28,374 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:07:28,374 [Thread-3 (pr] [INFO ]  Verified is True
+2024-11-14 09:07:28,375 [Thread-3 (pr] [INFO ]  Total(ms) Validacion process: 38
+2024-11-14 09:07:28,375 [Thread-3 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:07:28,413 [Thread-3 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:07:28,414 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:07:28,414 [Thread-3 (pr] [INFO ]  Total(ms) request: 77
+2024-11-14 09:08:07,979 [Thread-4 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 09:08:08,015 [Thread-4 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:08:08,015 [Thread-4 (pr] [INFO ]  Verified is True
+2024-11-14 09:08:08,016 [Thread-4 (pr] [INFO ]  Total(ms) Validacion process: 36
+2024-11-14 09:08:08,016 [Thread-4 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:08:08,051 [Thread-4 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:08:08,052 [Thread-4 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:08:08,052 [Thread-4 (pr] [INFO ]  Total(ms) request: 72
+2024-11-14 09:08:17,063 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 09:08:17,095 [Thread-5 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:08:17,095 [Thread-5 (pr] [INFO ]  Verified is True
+2024-11-14 09:08:17,096 [Thread-5 (pr] [INFO ]  Total(ms) Validacion process: 32
+2024-11-14 09:08:17,096 [Thread-5 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:08:17,138 [Thread-5 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:08:17,139 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:08:17,139 [Thread-5 (pr] [INFO ]  Total(ms) request: 75
+2024-11-14 09:13:32,308 [Thread-6 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 09:13:32,340 [Thread-6 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:13:32,341 [Thread-6 (pr] [INFO ]  Verified is True
+2024-11-14 09:13:32,341 [Thread-6 (pr] [INFO ]  Total(ms) Validacion process: 32
+2024-11-14 09:13:32,341 [Thread-6 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:13:32,380 [Thread-6 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:13:32,380 [Thread-6 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:13:32,380 [Thread-6 (pr] [INFO ]  Total(ms) request: 72
+2024-11-14 09:14:12,120 [Thread-7 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-14 09:14:12,154 [Thread-7 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:14:12,155 [Thread-7 (pr] [INFO ]  Verified is True
+2024-11-14 09:14:12,155 [Thread-7 (pr] [INFO ]  Total(ms) Validacion process: 34
+2024-11-14 09:14:12,155 [Thread-7 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:14:12,205 [Thread-7 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:14:12,205 [Thread-7 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:14:12,206 [Thread-7 (pr] [INFO ]  Total(ms) request: 85
+2024-11-14 09:14:19,794 [Thread-8 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 09:14:19,826 [Thread-8 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:14:19,826 [Thread-8 (pr] [INFO ]  Verified is True
+2024-11-14 09:14:19,826 [Thread-8 (pr] [INFO ]  Total(ms) Validacion process: 32
+2024-11-14 09:14:19,826 [Thread-8 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:14:19,865 [Thread-8 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:14:19,865 [Thread-8 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:14:19,865 [Thread-8 (pr] [INFO ]  Total(ms) request: 71
+2024-11-14 09:43:28,337 [Thread-2 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 09:43:28,366 [Thread-2 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:43:28,367 [Thread-2 (pr] [INFO ]  Verified is True
+2024-11-14 09:43:28,367 [Thread-2 (pr] [ERROR]  (Error: TOKEN : Expiration date exceeded.
+2024-11-14 09:43:28,367 [Thread-2 (pr] [INFO ]  Total(ms) Validacion process: 29
+2024-11-14 09:43:28,367 [Thread-2 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-14 09:43:45,532 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-14 09:43:45,566 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:43:45,566 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:43:45,566 [Thread-3 (pr] [INFO ]  Total(ms) request: 34
+2024-11-14 09:43:48,640 [Thread-4 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-14 09:43:48,674 [Thread-4 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:43:48,675 [Thread-4 (pr] [INFO ]  Verified is True
+2024-11-14 09:43:48,675 [Thread-4 (pr] [ERROR]  (Error: TOKEN : Expiration date exceeded.
+2024-11-14 09:43:48,675 [Thread-4 (pr] [INFO ]  Total(ms) Validacion process: 34
+2024-11-14 09:43:48,675 [Thread-4 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-14 09:44:04,274 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-14 09:44:06,449 [Thread-5 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:44:06,450 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:44:06,450 [Thread-5 (pr] [INFO ]  Total(ms) request: 2175
+2024-11-14 09:44:10,953 [Thread-6 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-14 09:44:11,001 [Thread-6 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:44:11,001 [Thread-6 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:44:11,001 [Thread-6 (pr] [INFO ]  Total(ms) request: 48
+2024-11-14 09:44:13,262 [Thread-7 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-14 09:44:13,297 [Thread-7 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:44:13,297 [Thread-7 (pr] [INFO ]  Verified is True
+2024-11-14 09:44:13,297 [Thread-7 (pr] [INFO ]  Total(ms) Validacion process: 36
+2024-11-14 09:44:13,297 [Thread-7 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:44:13,329 [Thread-7 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:44:13,330 [Thread-7 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:44:13,330 [Thread-7 (pr] [INFO ]  Total(ms) request: 68
+2024-11-14 09:44:18,960 [Thread-8 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 09:44:18,991 [Thread-8 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 09:44:18,992 [Thread-8 (pr] [INFO ]  Verified is True
+2024-11-14 09:44:18,992 [Thread-8 (pr] [INFO ]  Total(ms) Validacion process: 32
+2024-11-14 09:44:18,992 [Thread-8 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-14 09:44:19,030 [Thread-8 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-14 09:44:19,031 [Thread-8 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 09:44:19,031 [Thread-8 (pr] [INFO ]  Total(ms) request: 71
+2024-11-14 11:30:49,756 [Thread-9 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-14 11:30:49,795 [Thread-9 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 11:30:49,796 [Thread-9 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-14 11:30:49,796 [Thread-9 (pr] [INFO ]  Total(ms) request: 40
+2024-11-14 11:30:54,016 [Thread-10 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-14 11:30:54,045 [Thread-10 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-14 11:30:54,045 [Thread-10 (p] [INFO ]  Verified is True
+2024-11-14 11:30:54,045 [Thread-10 (p] [ERROR]  (Error: TOKEN : Expiration date exceeded.
+2024-11-14 11:30:54,045 [Thread-10 (p] [INFO ]  Total(ms) Validacion process: 29
+2024-11-14 11:30:54,046 [Thread-10 (p] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-15 08:44:40,376 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2024-11-15 08:46:34,988 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.16.10.118 - b'POST / HTTP/1.1\r\n' *******
+2024-11-15 08:46:34,988 [Thread-3 (pr] [INFO ]  Total(ms) Validacion process: 0
+2024-11-15 08:46:34,988 [Thread-3 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-15 08:46:45,668 [Thread-4 (pr] [INFO ]  ******* PEP-REQUEST : 172.16.10.118 - b'POST / HTTP/1.1\r\n' *******
+2024-11-15 08:46:45,668 [Thread-4 (pr] [INFO ]  Total(ms) Validacion process: 0
+2024-11-15 08:46:45,668 [Thread-4 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-15 09:18:30,247 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:18:32,393 [Thread-5 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:18:32,394 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:18:32,394 [Thread-5 (pr] [INFO ]  Total(ms) request: 2146
+2024-11-15 09:19:43,483 [Thread-6 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-15 09:19:43,531 [Thread-6 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:19:43,532 [Thread-6 (pr] [INFO ]  Verified is True
+2024-11-15 09:19:43,532 [Thread-6 (pr] [INFO ]  Total(ms) Validacion process: 49
+2024-11-15 09:19:43,532 [Thread-6 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:19:43,555 [Thread-6 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:19:43,555 [Thread-6 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:19:43,555 [Thread-6 (pr] [INFO ]  Total(ms) request: 73
+2024-11-15 09:20:31,568 [Thread-7 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 09:20:31,621 [Thread-7 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:20:31,622 [Thread-7 (pr] [INFO ]  Verified is True
+2024-11-15 09:20:31,622 [Thread-7 (pr] [INFO ]  Total(ms) Validacion process: 53
+2024-11-15 09:20:31,622 [Thread-7 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:20:31,657 [Thread-7 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:20:31,657 [Thread-7 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:20:31,657 [Thread-7 (pr] [INFO ]  Total(ms) request: 89
+2024-11-15 09:27:05,687 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2024-11-15 09:30:14,507 [Thread-2 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:30:16,729 [Thread-2 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:30:16,730 [Thread-2 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:30:16,730 [Thread-2 (pr] [INFO ]  Total(ms) request: 2222
+2024-11-15 09:30:47,266 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-15 09:30:47,307 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:30:47,308 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:30:47,308 [Thread-3 (pr] [INFO ]  Total(ms) request: 42
+2024-11-15 09:30:53,263 [Thread-4 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-15 09:30:53,294 [Thread-4 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:30:53,295 [Thread-4 (pr] [INFO ]  Verified is True
+2024-11-15 09:30:53,295 [Thread-4 (pr] [ERROR]  Error: device/resource is different: 
+		 - HTTP: ('http://172.16.10.118:1027', '/fluidos/idm/signContract')
+		 - TOKEN: ('https://172.16.10.118:1027/fluidos/idm/.*')
+2024-11-15 09:30:53,295 [Thread-4 (pr] [INFO ]  Total(ms) Validacion process: 33
+2024-11-15 09:30:53,295 [Thread-4 (pr] [ERROR]  Response issued (do_HandleError): Communication is closed.
+2024-11-15 09:32:35,500 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2024-11-15 09:32:44,384 [Thread-2 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-15 09:32:44,421 [Thread-2 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:32:44,422 [Thread-2 (pr] [INFO ]  Verified is True
+2024-11-15 09:32:44,422 [Thread-2 (pr] [INFO ]  Total(ms) Validacion process: 38
+2024-11-15 09:32:44,422 [Thread-2 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:32:44,463 [Thread-2 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:32:44,464 [Thread-2 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:32:44,464 [Thread-2 (pr] [INFO ]  Total(ms) request: 80
+2024-11-15 09:32:55,718 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 09:32:55,746 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:32:55,747 [Thread-3 (pr] [INFO ]  Verified is True
+2024-11-15 09:32:55,747 [Thread-3 (pr] [INFO ]  Total(ms) Validacion process: 29
+2024-11-15 09:32:55,747 [Thread-3 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:32:55,785 [Thread-3 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:32:55,785 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:32:55,785 [Thread-3 (pr] [INFO ]  Total(ms) request: 68
+2024-11-15 09:33:30,259 [Thread-4 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 09:33:30,309 [Thread-4 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:33:30,309 [Thread-4 (pr] [INFO ]  Verified is True
+2024-11-15 09:33:30,310 [Thread-4 (pr] [INFO ]  Total(ms) Validacion process: 51
+2024-11-15 09:33:30,310 [Thread-4 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:33:30,343 [Thread-4 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:33:30,343 [Thread-4 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:33:30,343 [Thread-4 (pr] [INFO ]  Total(ms) request: 85
+2024-11-15 09:33:42,728 [Thread-5 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:33:44,876 [Thread-5 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:33:44,876 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:33:44,876 [Thread-5 (pr] [INFO ]  Total(ms) request: 2149
+2024-11-15 09:34:59,691 [Thread-6 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:35:01,830 [Thread-6 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:35:01,830 [Thread-6 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:35:01,830 [Thread-6 (pr] [INFO ]  Total(ms) request: 2139
+2024-11-15 09:36:05,523 [Thread-7 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:36:07,679 [Thread-7 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:36:07,679 [Thread-7 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:36:07,679 [Thread-7 (pr] [INFO ]  Total(ms) request: 2156
+2024-11-15 09:36:23,182 [Thread-8 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 09:36:23,222 [Thread-8 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:36:23,222 [Thread-8 (pr] [INFO ]  Verified is True
+2024-11-15 09:36:23,222 [Thread-8 (pr] [INFO ]  Total(ms) Validacion process: 40
+2024-11-15 09:36:23,222 [Thread-8 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:36:23,266 [Thread-8 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:36:23,267 [Thread-8 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:36:23,267 [Thread-8 (pr] [INFO ]  Total(ms) request: 84
+2024-11-15 09:36:27,638 [Thread-9 (pr] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 09:36:27,669 [Thread-9 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:36:27,670 [Thread-9 (pr] [INFO ]  Verified is True
+2024-11-15 09:36:27,670 [Thread-9 (pr] [INFO ]  Total(ms) Validacion process: 31
+2024-11-15 09:36:27,670 [Thread-9 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:36:27,711 [Thread-9 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:36:27,711 [Thread-9 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:36:27,712 [Thread-9 (pr] [INFO ]  Total(ms) request: 73
+2024-11-15 09:36:35,775 [Thread-10 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 09:36:35,813 [Thread-10 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:36:35,814 [Thread-10 (p] [INFO ]  Verified is True
+2024-11-15 09:36:35,814 [Thread-10 (p] [INFO ]  Total(ms) Validacion process: 38
+2024-11-15 09:36:35,814 [Thread-10 (p] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:36:35,857 [Thread-10 (p] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:36:35,858 [Thread-10 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:36:35,858 [Thread-10 (p] [INFO ]  Total(ms) request: 82
+2024-11-15 09:36:38,109 [Thread-11 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 09:36:38,140 [Thread-11 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:36:38,140 [Thread-11 (p] [INFO ]  Verified is True
+2024-11-15 09:36:38,141 [Thread-11 (p] [INFO ]  Total(ms) Validacion process: 32
+2024-11-15 09:36:38,141 [Thread-11 (p] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 09:36:38,196 [Thread-11 (p] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 09:36:38,197 [Thread-11 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:36:38,197 [Thread-11 (p] [INFO ]  Total(ms) request: 88
+2024-11-15 09:38:11,357 [Thread-12 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:38:13,518 [Thread-12 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:38:13,519 [Thread-12 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:38:13,519 [Thread-12 (p] [INFO ]  Total(ms) request: 2161
+2024-11-15 09:41:55,440 [Thread-13 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:41:57,607 [Thread-13 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:41:57,607 [Thread-13 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:41:57,607 [Thread-13 (p] [INFO ]  Total(ms) request: 2167
+2024-11-15 09:42:06,601 [Thread-14 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:42:06,632 [Thread-14 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-15 09:42:06,633 [Thread-14 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:42:06,633 [Thread-14 (p] [INFO ]  Total(ms) request: 31
+2024-11-15 09:42:26,866 [Thread-15 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:42:26,890 [Thread-15 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-15 09:42:26,891 [Thread-15 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:42:26,891 [Thread-15 (p] [INFO ]  Total(ms) request: 24
+2024-11-15 09:42:31,533 [Thread-16 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:42:33,682 [Thread-16 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:42:33,682 [Thread-16 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:42:33,682 [Thread-16 (p] [INFO ]  Total(ms) request: 2149
+2024-11-15 09:45:45,468 [Thread-17 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:45:45,493 [Thread-17 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-15 09:45:45,493 [Thread-17 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:45:45,493 [Thread-17 (p] [INFO ]  Total(ms) request: 26
+2024-11-15 09:45:55,603 [Thread-18 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:45:55,677 [Thread-18 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:45:55,677 [Thread-18 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:45:55,677 [Thread-18 (p] [INFO ]  Total(ms) request: 75
+2024-11-15 09:46:53,782 [Thread-19 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:46:55,942 [Thread-19 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:46:55,943 [Thread-19 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:46:55,943 [Thread-19 (p] [INFO ]  Total(ms) request: 2161
+2024-11-15 09:49:41,373 [Thread-20 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:49:41,399 [Thread-20 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:49:41,399 [Thread-20 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:49:41,399 [Thread-20 (p] [INFO ]  Total(ms) request: 26
+2024-11-15 09:50:46,481 [Thread-21 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:50:46,504 [Thread-21 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:50:46,504 [Thread-21 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:50:46,504 [Thread-21 (p] [INFO ]  Total(ms) request: 23
+2024-11-15 09:51:19,886 [Thread-22 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:51:22,192 [Thread-22 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:51:22,193 [Thread-22 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:51:22,193 [Thread-22 (p] [INFO ]  Total(ms) request: 2307
+2024-11-15 09:51:46,560 [Thread-23 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:51:46,594 [Thread-23 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-15 09:51:46,595 [Thread-23 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:51:46,595 [Thread-23 (p] [INFO ]  Total(ms) request: 35
+2024-11-15 09:52:30,068 [Thread-24 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:52:30,116 [Thread-24 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:52:30,116 [Thread-24 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:52:30,116 [Thread-24 (p] [INFO ]  Total(ms) request: 48
+2024-11-15 09:53:29,333 [Thread-25 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:53:29,369 [Thread-25 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:53:29,369 [Thread-25 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:53:29,369 [Thread-25 (p] [INFO ]  Total(ms) request: 36
+2024-11-15 09:53:37,410 [Thread-26 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:53:39,548 [Thread-26 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:53:39,548 [Thread-26 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:53:39,548 [Thread-26 (p] [INFO ]  Total(ms) request: 2138
+2024-11-15 09:53:43,376 [Thread-27 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:53:45,478 [Thread-27 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:53:45,479 [Thread-27 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:53:45,479 [Thread-27 (p] [INFO ]  Total(ms) request: 2102
+2024-11-15 09:54:22,566 [Thread-28 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:54:22,568 [Thread-28 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-15 09:54:22,568 [Thread-28 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:54:22,568 [Thread-28 (p] [INFO ]  Total(ms) request: 2
+2024-11-15 09:54:25,715 [Thread-29 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:54:25,716 [Thread-29 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 400
+2024-11-15 09:54:25,716 [Thread-29 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:54:25,716 [Thread-29 (p] [INFO ]  Total(ms) request: 2
+2024-11-15 09:54:33,751 [Thread-30 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:54:35,880 [Thread-30 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:54:35,880 [Thread-30 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:54:35,880 [Thread-30 (p] [INFO ]  Total(ms) request: 2129
+2024-11-15 09:56:07,081 [Thread-31 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:56:09,232 [Thread-31 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:56:09,232 [Thread-31 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:56:09,232 [Thread-31 (p] [INFO ]  Total(ms) request: 2151
+2024-11-15 09:56:23,358 [Thread-32 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:56:25,527 [Thread-32 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:56:25,528 [Thread-32 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:56:25,528 [Thread-32 (p] [INFO ]  Total(ms) request: 2169
+2024-11-15 09:57:31,211 [Thread-33 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 09:57:33,339 [Thread-33 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 09:57:33,340 [Thread-33 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 09:57:33,340 [Thread-33 (p] [INFO ]  Total(ms) request: 2128
+2024-11-15 11:43:44,909 [Thread-34 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 11:43:47,087 [Thread-34 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 11:43:47,087 [Thread-34 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 11:43:47,087 [Thread-34 (p] [INFO ]  Total(ms) request: 2178
+2024-11-15 11:43:58,426 [Thread-35 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-15 11:43:58,477 [Thread-35 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 11:43:58,477 [Thread-35 (p] [INFO ]  Verified is True
+2024-11-15 11:43:58,477 [Thread-35 (p] [INFO ]  Total(ms) Validacion process: 51
+2024-11-15 11:43:58,477 [Thread-35 (p] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 11:43:58,503 [Thread-35 (p] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 11:43:58,503 [Thread-35 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 11:43:58,503 [Thread-35 (p] [INFO ]  Total(ms) request: 77
+2024-11-15 11:44:09,860 [Thread-36 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 11:44:09,889 [Thread-36 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 11:44:09,889 [Thread-36 (p] [INFO ]  Verified is True
+2024-11-15 11:44:09,889 [Thread-36 (p] [INFO ]  Total(ms) Validacion process: 29
+2024-11-15 11:44:09,889 [Thread-36 (p] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 11:44:09,932 [Thread-36 (p] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 11:44:09,932 [Thread-36 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 11:44:09,932 [Thread-36 (p] [INFO ]  Total(ms) request: 73
+2024-11-15 11:44:29,320 [Thread-37 (p] [INFO ]  ******* PEP-REQUEST : 172.21.0.1 - b'POST /fluidos/idm/verifyJWTContent HTTP/1.1\r\n' *******
+2024-11-15 11:44:29,353 [Thread-37 (p] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 11:44:29,353 [Thread-37 (p] [INFO ]  Response issued: Communication is closed.
+2024-11-15 11:44:29,354 [Thread-37 (p] [INFO ]  Total(ms) request: 33
+2024-11-15 12:03:49,760 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2024-11-15 12:04:28,493 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2024-11-15 12:05:22,939 [Thread-2 (pr] [INFO ]  ******* PEP-REQUEST : 172.24.0.1 - b'POST /fluidos/idm/verifyCredential HTTP/1.1\r\n' *******
+2024-11-15 12:05:23,021 [Thread-2 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 12:05:23,021 [Thread-2 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 12:05:23,021 [Thread-2 (pr] [INFO ]  Total(ms) request: 83
+2024-11-15 12:05:34,741 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 172.24.0.1 - b'POST /fluidos/idm/signContract HTTP/1.1\r\n' *******
+2024-11-15 12:05:34,783 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 12:05:34,784 [Thread-3 (pr] [INFO ]  Verified is True
+2024-11-15 12:05:34,784 [Thread-3 (pr] [INFO ]  Total(ms) Validacion process: 42
+2024-11-15 12:05:34,784 [Thread-3 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 12:05:34,815 [Thread-3 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 12:05:34,816 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 12:05:34,816 [Thread-3 (pr] [INFO ]  Total(ms) request: 74
+2024-11-15 12:05:44,422 [Thread-4 (pr] [INFO ]  ******* PEP-REQUEST : 172.24.0.1 - b'POST /fluidos/idm/verifyContract HTTP/1.1\r\n' *******
+2024-11-15 12:05:44,451 [Thread-4 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2024-11-15 12:05:44,451 [Thread-4 (pr] [INFO ]  Verified is True
+2024-11-15 12:05:44,451 [Thread-4 (pr] [INFO ]  Total(ms) Validacion process: 29
+2024-11-15 12:05:44,451 [Thread-4 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2024-11-15 12:05:44,510 [Thread-4 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2024-11-15 12:05:44,510 [Thread-4 (pr] [INFO ]  Response issued: Communication is closed.
+2024-11-15 12:05:44,510 [Thread-4 (pr] [INFO ]  Total(ms) request: 88
+2024-11-15 12:48:23,997 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2024-11-15 12:49:10,203 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''

@@ -1283,8 +1283,8 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 		}
 	}
 
-	method := "GET"
-	resource := "test"
+	method := "POST"
+	resource := "https://172.16.10.118:1027/fluidos/idm/.*"
 
 	result = "not verified"
 	var authorized bool
@@ -1366,7 +1366,7 @@ func checkXACML(subject, resource, action string) (bool, error) {
 	return false, errors.New("not Applicable in XACML")
 }
 
-func generateAccessToken(o *Command, token, subject, action, resource string) (string, error) {
+func generateAccessToken(o *Command, token, resource, action, subject string) (string, error) {
 	// Get actual time in Unix format
 	issuedAt := time.Now().Unix()
 

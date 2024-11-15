@@ -92,9 +92,9 @@ Once the domain is choosen or created, click “Manage Attributes” button (Adm
 
 For testing the 'fluidos-idm' functionality, create the following attributes:
 
-- **Resource**: create the resource ``test`` on the ``Type Resource Name`` field. Do not modify the ``Type Resource ID`` field.
+- **Resource**: create the resource ``https://<pepproxy_ip>:1027/fluidos/idm/.*`` on the ``Type Resource Name`` field. Do not modify the ``Type Resource ID`` field.
 
-- **Action**: create the action ``GET`` on the ``Type Action Name`` field. Do not modify the ``Type Action ID`` field.
+- **Action**: create the action ``POST`` on the ``Type Action Name`` field. Do not modify the ``Type Action ID`` field.
 
 - **Subject**: create the subject ``FluidosNode`` on the ``Type Subject Name`` field. Select ``urn:ietf:params:scim:schemas:core:2.0:id`` on the ``Type Subject ID`` field.
 
