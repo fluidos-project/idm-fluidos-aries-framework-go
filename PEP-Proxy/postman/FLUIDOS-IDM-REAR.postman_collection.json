@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6fe2c89e-0ec6-4f42-96ee-868d509ceaf7",
+		"_postman_id": "bf27f013-5c7b-4249-9707-3cc35d25b2db",
 		"name": "FLUIDOS-IDM-REAR",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32536869"
@@ -499,8 +499,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:1027/fluidos/idm/verifyCredential",
-							"protocol": "http",
+							"raw": "https://localhost:1027/fluidos/idm/verifyCredential",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -583,8 +583,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:1027/fluidos/idm/verifyJWTContent",
-							"protocol": "http",
+							"raw": "https://localhost:1027/fluidos/idm/verifyJWTContent",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],
@@ -633,8 +633,8 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:1027/fluidos/idm/signContract",
-							"protocol": "http",
+							"raw": "https://localhost:1027/fluidos/idm/signContract",
+							"protocol": "https",
 							"host": [
 								"localhost"
 							],

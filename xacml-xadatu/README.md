@@ -49,17 +49,11 @@ To run this component is neccessary to install the docker-compose tool.
 
 https://docs.docker.com/compose/install/
 
-## Configuration SujectIdTypes.json file
-
-Review the contain of [XACML_DATA/PAPConfigData/SujectIdTypes.json](./XACML_DATA/PAPConfigData/SujectIdTypes.json) to configure the execution the subject types that can be defined in the XACML authorization policies. 
-
-**NOTE:** This file contains pairs of elements that map the subject type that an external component can send (subjectIdCapMan) and the internal subject type defined in the XACML authorization policies (subjectIdPAP). 
-
 ## Configuration .env and docker-compose.yml files
 
 Review the contain of [.env](./.env) and [docker-compose.yml](./docker-compose.yml) to configure the execution. Focusing on [.env](./.env) file, which contains the environment variables of the different elements. 
 
-Replace ``<restapi-ip>`` with the ``IP`` where the REST API server is deployed in the ``.env`` file.
+Replace ``<rest-api_ip>`` with the ``IP`` where the REST API server is deployed in the ``.env`` file.
 
 # Installation / Execution.
 

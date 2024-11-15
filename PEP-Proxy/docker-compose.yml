@@ -26,7 +26,6 @@ services:
         - ./certs/server-public-cert.pem:/opt/PEP-Proxy/certs/server-public-cert.pem  # volumes to import certificates to container
         - ./certs/server-priv-rsa.pem:/opt/PEP-Proxy/certs/server-priv-rsa.pem
         - ./pepproxy.log:/opt/PEP-Proxy/out.log
-        - /home/alexariasj/OneDrive/Fluidos/idm-fluidos-aries-framework-go/test/bdd/fixtures/keys/tls/ec-pubCert.pem:/etc/ssl/certs/ec-pubCert.pem
     environment:
         - pep_protocol=${PEP_PROTOCOL}
 
