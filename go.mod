@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 
-module github.com/hyperledger/fabric-samples/chaincode/model-treatment
+module github.com/hyperledger/aries-framework-go
 
 // TODO (#2815): Remove circular dependency between the main module and component/storage/edv
 
