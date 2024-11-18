@@ -1,15 +1,24 @@
-# FabricRest-GO
+# Model Gateway
 
-# Overview
-This project contains the source code for a REST API server written in Go, designed to interact with Smart Contracts deployed on a Hyperledger Fabric network. The REST API facilitates seamless integration with the blockchain by leveraging Application Gateways—dedicated services that connect to Hyperledger Fabric and execute Smart Contract functions.
+## Overview
+This project implements a REST API server in Go that facilitates federated learning operations through Hyperledger Fabric blockchain. It manages two key aspects of federated learning:
 
-The Application Gateways establish secure SSL channels with a specific peer within the Hyperledger Fabric network and communicate via gRPC to invoke Smart Contract operations. This architecture ensures a secure, scalable, and reliable connection between the REST API and the blockchain.
+1. **Model Aggregation**: Combines model updates from multiple nodes into a consolidated model, ensuring secure and verifiable aggregation through blockchain-based validation.
 
-The Application Gateways are the exclusive means of communication with Hyperledger Fabric from outside the network, ensuring that the REST API server provides a robust interface for interacting with blockchain-based assets and logic.
+2. **Base Model Updates**: Handles individual model updates from participating nodes, tracking the evolution of the model across the federated learning network.
 
-# Prerequisites
-The following prerequisites are required to run a Docker-based REST-API for Hyperledger Fabric:
+The API uses Application Gateways to establish secure SSL channels with Hyperledger Fabric peers, ensuring reliable and authenticated communication for all federated learning operations.
 
+## Key Features
+- Secure model update submission and aggregation
+- Blockchain-based verification of model updates
+- Traceable model evolution history
+- Query capabilities for model updates and aggregations
+- Support for signed proofs from participating nodes
+
+## Prerequisites
+
+### Required Software
 * **Git**: install the latest version of Git if it is not already installed.
 
   ```bash
@@ -104,14 +113,6 @@ The `run-model-treatment` command will:
 2. Build the Docker containers
 3. Start the Docker containers
 
-Example of successful execution:
-
-![make_run_model_treatment](./img/make_run_model_treatment.png)
-
-This will launch the REST-API server on port 3005.
-
-To access the logs, execute:
-
 ```bash
 $ docker-compose logs -f api
 ```
@@ -119,61 +120,48 @@ $ docker-compose logs -f api
 # Endpoints
 Folder [postman](./postman/) contains a JSON file that can be exported to POSTMAN to test all endpoints described below:
 
-## 1. XACML
+### API Documentation
 
-### 1.1 **Register Policies or Attributes**
-- **Endpoint**: /ngsi-ld/v1/entities/
-- **Method**: POST
-- **Headers**:
-    - **Content-Type**: application/json
-- **Body**: ``<json>`` (where 'json' is the JSON of the policy or attribute that is going to be registered in Blockchain)
-- **Description**: Register Policies or Attributes indicated in the request body in Blockchain.
+#### Model Aggregation
+1. **Create Aggregated Model**
+   - **Endpoint**: `/model/aggregated`
+   - **Method**: POST
+   - **Headers**: Content-Type: application/json
+   - **Description**: Submit a model for aggregation
 
-### 1.2 **Get all Policies or Attributes from all domains**
-- **Endpoint**: /ngsi-ld/v1/entities/?type=``<type>``
-- **Method**: GET
-- **Query Parameters**:
-    - **type**: ``<type>`` (where 'type' can be 'xacml' for policies or 'attributes' for attributes')
-- **Description**: Retrieve all policies or attributes stored in Blockchain from all domains defined in XACML.
+2. **Get Aggregated Model**
+   - **Endpoint**: `/model/aggregated/{id}`
+   - **Method**: GET
+   - **Description**: Retrieve a specific aggregated model
 
-### 1.3 **Update Policies or Attributes**
-- **Endpoint**: /ngsi-ld/v1/entities/``<entity>``/attrs
-- **Method**: PATCH
-- **Query Parameters**:
-    - **entity**: ``<entity>`` (where 'entitiy' is the id of the policy or attribute, e.g., 'urn:ngsi-ld:xacml:test' can be the id of a policiy for the domain 'test' and 'urn:ngsi-ld:attribute:test' the id of the attributes for the domain 'test')
-- **Headers**:
-    - **Content-Type**: application/json
-- **Body**: ``<json>`` (where 'json' is the JSON of the policy or attribute that is going to be updated in Blockchain)
-- **Description**: Update Policies or Attributes indicated in the request body in Blockchain.
+3. **List All Aggregated Models**
+   - **Endpoint**: `/models/aggregated`
+   - **Method**: GET
+   - **Description**: Get all aggregated models
 
-### 1.4 **Get Policies or Attributes for a specific domain**
-- **Endpoint**: /ngsi-ld/v1/entities/``<entity>``
-- **Method**: GET
-- **Query Parameters**:
-    - **entity**: ``<entity>`` (where 'entitiy' is the id of the policiy or attribute to be retrieved from Blockchain, e.g., 'urn:ngsi-ld:xacml:test' to retrieve the policies for the domain 'test')
-- **Description**: Retrieve Policies or Attributes from a specific domain from Blockchain.
+4. **Query Aggregated Models by Date**
+   - **Endpoint**: `/models/aggregated/query`
+   - **Method**: GET
+   - **Description**: Query models within a date range
 
-## 2. FLUIDOS
+#### Base Model Updates
+1. **Create Base Model Update**
+   - **Endpoint**: `/basemodel/update`
+   - **Method**: POST
+   - **Headers**: Content-Type: application/json
+   - **Description**: Submit a base model update
 
-### 2.1 **Register authorization request**
-- **Endpoint**: /xadatu/auth/register
-- **Method**: POST
-- **Headers**:
-    - **Content-Type**: application/json
-- **Body**: ``<json>`` (where 'json' is the JSON of the authorization request to be registered in Blockchain)
-- **Description**: Register the authorization request received in XACML in the Blockchain. It includes the verdict from the XACML.
+2. **Get Base Model Update**
+   - **Endpoint**: `/basemodel/{id}`
+   - **Method**: GET
+   - **Description**: Retrieve a specific base model update
 
-### 2.2 **Query authorization request**
-- **Endpoint**: /xadatu/auth/``<id>``
-- **Method**: GET
-- **Query Parameters**:
-    - **id**: ``<id>`` (where 'id' is the ID of the authorization request to be retrieved from Blockchain)
-- **Description**: Query an authorization request from the Blockchain.
+3. **List All Base Model Updates**
+   - **Endpoint**: `/basemodels`
+   - **Method**: GET
+   - **Description**: Get all base model updates
 
-### 2.3 **Query authorization requests by date**
-- **Endpoint**: /xadatu/auth/queryByDate
-- **Method**: GET
-- **Headers**:
-    - **Content-Type**: application/json
-- **Body**: ``<json>`` (where 'json' is a JSON with two fields, 'startDate' to indicate the starting date in ISO format, and 'endDate' to indicate the end date in ISO format)
-- **Description**: Query all authorization requests between the two dates indicated in the request body.
+4. **Query Base Model Updates by Date**
+   - **Endpoint**: `/basemodels/query`
+   - **Method**: GET
+   - **Description**: Query updates within a date range
