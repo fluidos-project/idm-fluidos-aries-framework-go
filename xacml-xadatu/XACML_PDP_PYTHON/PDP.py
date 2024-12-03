@@ -579,7 +579,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                         json_paylaod = json.dumps(json_data)
 
                         try:
-                            response = requests.post('http://172.16.10.118:3002/xadatu/auth/register', data=json_paylaod, headers={'Content-Type': 'application/json'})
+                            response = requests.post('http://<REST-API_IP>:3002/xadatu/auth/register', data=json_paylaod, headers={'Content-Type': 'application/json'})
                             if response.status_code == 200:
                                 logging.info("Access request registered in blockchain")
                             else:

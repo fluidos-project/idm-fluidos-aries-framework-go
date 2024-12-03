@@ -62,6 +62,8 @@ Launch the following components before deploying the PEP-Proxy:
 
 Review the content of [.env](./.env) and [docker-compose.yml](./docker-compose.yml) to configure the instance.
 
+In the [PEP-Proxy.py](PEP-Proxy.py) file, change `<REST-API_IP>` with the IP where the REST-API server is deployed.
+
 **NOTE**: Please change all `<YOUR_IP>` occurrences in the `.env` file with your local IP.
 
 # Installation / Execution.

@@ -96,7 +96,7 @@ const (
 
 // constants for the XACML requests
 const (
-	XACML_PDP    = "http://172.16.10.118:9092/pdp/verdict"
+	XACML_PDP    = "http://<XACML_IP>:9092/pdp/verdict"
 	XACML_DOMAIN = "fluidosOpencall"
 )
 
@@ -1284,7 +1284,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	}
 
 	method := "POST"
-	resource := "https://172.16.10.118:1027/fluidos/idm/.*"
+	resource := "https://<PRODUCER_IP>:1027/fluidos/idm/.*"
 
 	result = "not verified"
 	var authorized bool

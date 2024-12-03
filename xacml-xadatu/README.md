@@ -51,9 +51,13 @@ https://docs.docker.com/compose/install/
 
 ## Configuration .env and docker-compose.yml files
 
-Review the contain of [.env](./.env) and [docker-compose.yml](./docker-compose.yml) to configure the execution. Focusing on [.env](./.env) file, which contains the environment variables of the different elements. 
+Review the contain of [.env](./.env) and [docker-compose.yml](./docker-compose.yml) to configure the execution. Focusing on [.env](./.env) file, which contains the environment variables of the different elements:
 
-Replace ``<rest-api_ip>`` with the ``IP`` where the REST API server is deployed in the ``.env`` file.
+- Replace ``<rest-api_ip>`` with the ``IP`` where the REST API server is deployed in the ``.env`` file.
+
+- Replace replace the IP in the 'XACML_PDP' environment variable of the [commando.go](../pkg/controller/command/poc/command.go) file with the IP where your XACML is deployed.
+
+- Replace `<PRODUCER_IP>` with the IP where the producer is deployed in the [commando.go](../pkg/controller/command/poc/command.go) file.
 
 # Installation / Execution.
 
