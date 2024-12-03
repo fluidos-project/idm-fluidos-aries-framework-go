@@ -53,6 +53,12 @@ To run this mod aries-framework-go which uses a basic vdr to connect with Hyperl
 
 ### Deploy agent
 
+Before deploying the agent, please update the [commando.go](pkg/controller/command/poc/command.go) file:
+
+- Replace `<PRODUCER_IP>` with the IP where the producer is deployed.
+
+- Replace `<XACML_IP>` in the `XACML_PDP` environment variable with the IP where your XACML is deployed.
+
 The new Fabric VDR is automatically added by default. Besides, the rules related to launching de Aries Demo `run-openapi-demo` were modified in order to run hyperledger fabric automatically with the necessary rules.
 
 ```

@@ -55,10 +55,6 @@ Review the contain of [.env](./.env) and [docker-compose.yml](./docker-compose.y
 
 - Replace ``<rest-api_ip>`` with the ``IP`` where the REST API server is deployed in the ``.env`` file.
 
-- Replace replace the IP in the 'XACML_PDP' environment variable of the [commando.go](../pkg/controller/command/poc/command.go) file with the IP where your XACML is deployed.
-
-- Replace `<PRODUCER_IP>` with the IP where the producer is deployed in the [commando.go](../pkg/controller/command/poc/command.go) file.
-
 # Installation / Execution.
 
 After the review of the configuration files of the `How to deploy` section, the next step is to obtain the docker images. To do this:
