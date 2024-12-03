@@ -55,7 +55,9 @@ Review the contain of [.env](./.env) and [docker-compose.yml](./docker-compose.y
 
 - Replace ``<rest-api_ip>`` with the ``IP`` where the REST API server is deployed in the ``.env`` file.
 
-# Installation / Execution.
+- Replace `<REST-API_IP>` in the [PDP.py](XACML_PDP_PYTHON/PDP.py) file with the IP where the REST-API server is deployed.
+
+ # Installation / Execution.
 
 After the review of the configuration files of the `How to deploy` section, the next step is to obtain the docker images. To do this:
 
