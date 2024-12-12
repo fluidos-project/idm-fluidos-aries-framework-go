@@ -77,10 +77,6 @@ $ ./updateCerts.sh
 
 This will automatically copy the certificates from Hyperledger Fabric into the REST-API.
 
-If everything works as expected, you should see the following ouput:
-
-![updateCerts_output](./img/updateCerts_ouput.png)
-
 ### Different machine
 
 If your Hyperledger Fabric deployment is on a different machine, you will have to manually copy the certificates:
@@ -94,6 +90,20 @@ If your Hyperledger Fabric deployment is on a different machine, you will have t
 **NOTE**: The directory ``FabricREST-Go/certs/key/`` should be empty before copying the key, so if it is not empty please delete all keys. If you are executing the script ``./updateCerts.sh`` you do not have to worry about this, as the script will delete all keys in the ``certs/key``directory.
 
 # Run
+
+Before running this service be sure that the privacy and security manager testbed is running. To do this, please refer to the [README](../../README.md) file in the privacy and security manager testbed.
+
+As shortcut, you can go to the root path of this repository and run the following command:
+
+```bash
+$ make run-openapi-demo
+```
+
+or
+
+```bash
+$ make run-fabric
+```
 
 To run the REST-API server, you can use the provided Makefile with the following commands:
 

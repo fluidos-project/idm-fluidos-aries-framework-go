@@ -195,6 +195,7 @@ async def list_flavors_with_vp():
     print("Available flavors:")
     pprint(flavors)
     
+    
     # Let user select a flavor
     if flavors.get("flavors"):
         print("\nSelect a flavor by number:")
