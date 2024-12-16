@@ -1,0 +1,10 @@
+.idea/
+venv/
+out.log
+API/__pycache__/
+*.pyc
+CapabilityEvaluator_old.jar
+CapabilityEvaluator_old1.jar
+test/nodejs/node_modules/
+test/nodejs/package-lock.json
+docker-compose_local.yml

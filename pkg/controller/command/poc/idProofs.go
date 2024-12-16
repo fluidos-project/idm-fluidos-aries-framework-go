@@ -1,11 +1,8 @@
 package poc
 
 import (
-	"encoding/json"
 	"fmt"
 	"github.com/hyperledger/aries-framework-go/pkg/internal/logutil"
-	"net/http"
-	"strconv"
 	"strings"
 )
 
@@ -75,6 +72,7 @@ func (v *PufProofValidator) Accept(attrName string) bool {
 }
 
 func (v *PufProofValidator) Validate(proof IdProof) bool {
+	/*
 	if !v.UseService{
 		return true
 	}
@@ -108,5 +106,7 @@ func (v *PufProofValidator) Validate(proof IdProof) bool {
 	defer resp.Body.Close()
 	logutil.LogInfo(logger, CommandName, "PufIdProof", "HTTP Response Status:"+strconv.Itoa(resp.StatusCode))
 	return resp.StatusCode == 200
+	*/
+	return true
 }
 

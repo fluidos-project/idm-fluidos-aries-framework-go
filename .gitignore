@@ -10,6 +10,6 @@ cmd/aries-agent-rest/go.sum
 pkg/crypto/primitive/psms12381g1pub/clib/libdpabc_psms_bundled.a
 build
 
-test/bdd/fixtures/agent-rest/data/connection-profile.json
-#modules/fabric-samples/
+test/bdd/fixtures/agent-rest/data/connection-profile.json|
+# modules/fabric-samples/
 .vscode/

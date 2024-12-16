@@ -246,6 +246,7 @@ type VerifyJWTResponse struct {
 	Verified bool `json:"verified"`
 	// Error contains the JWT verification error, if any.
 	Error string `json:"error,omitempty"`
+	Payload map[string]interface{} `json:"payload,omitempty"`
 }
 
 type verifyContractSignatureResponse struct {

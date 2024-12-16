@@ -98,9 +98,9 @@ type DoDeviceEnrolmentResult struct {
 
 // Model for idProof
 type IdProof struct {
-	AttrName  string          `json:"attrName,omitempty"`
-	AttrValue interface{}     `json:"attrValue,omitempty"`
-	ProofData json.RawMessage `json:"proofData,omitempty"`
+	AttrName  string      `json:"attrName,omitempty"`
+	AttrValue interface{} `json:"attrValue,omitempty"`
+	ProofData string      `json:"proofData,omitempty"`
 }
 
 // Model for GenerateVP method input
@@ -188,6 +188,8 @@ type AcceptEnrolmentResult struct {
 // Model for VerfyCredential method input
 type VerifyCredentialArgs struct {
 	CredentialString string `json:"credential,omitempty"`
+	Endpoint         string `json:"endpoint,omitempty"`
+	Method           string `json:"method,omitempty"`
 }
 
 // Model for VerifyCredential method output

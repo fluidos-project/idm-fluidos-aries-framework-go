@@ -1,0 +1,1174 @@
+{
+	"info": {
+		"_postman_id": "6d1a01ff-40a5-4f21-9b85-b5793ef20932",
+		"name": "ARIES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15077095"
+	},
+	"item": [
+		{
+			"name": "POC",
+			"item": [
+				{
+					"name": "node_gateway",
+					"item": [
+						{
+							"name": "Calculate Aggregated Model Update Copy 2",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": [\n        [0.3101812, -0.26208568, -0.020606756, 2.0910318, -0.4235036, 0.055277515, 0.93817544, 0.72396863],\n        [0.086348094, -0.7100528, 0.7000398, 1.4123782, -1.0177255, -1.9236972, -2.1370323, -0.8672288],\n        [-0.5721738, 0.454318, 0.4473479, -0.14246623, -1.3537282, -2.6071928, -0.09292064, 0.48212099],\n        [-0.34705058, -0.26893133, 0.27748218, -2.3547528, 0.44828332, 0.0004905084, 0.14157844, -1.2272682],\n        [0.8246383, -0.7355942, 1.1087044, -0.8707039, 0.6521766, 0.28336552, 0.572717, 0.32425499]\n    ],\n    \"baseModel\": \"modelname3\",\n    \"baseModelVersion\": \"v2\",\n    \"date\": \"2024-03-01\",\n    \"nodeDID\": \"did:example:123456789abcdefghi\",\n    \"signedProof\": \"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9...\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://10.208.99.115:3005/model/aggregated",
+									"protocol": "http",
+									"host": [
+										"10",
+										"208",
+										"99",
+										"115"
+									],
+									"port": "3005",
+									"path": [
+										"model",
+										"aggregated"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Read Model Update Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://10.208.99.115:3005/model/aggregated/modelname2_v2:2024-03-01",
+									"protocol": "http",
+									"host": [
+										"10",
+										"208",
+										"99",
+										"115"
+									],
+									"port": "3005",
+									"path": [
+										"model",
+										"aggregated",
+										"modelname2_v2:2024-03-01"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Model Updates Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://10.208.99.115:3005/models/aggregated",
+									"protocol": "http",
+									"host": [
+										"10",
+										"208",
+										"99",
+										"115"
+									],
+									"port": "3005",
+									"path": [
+										"models",
+										"aggregated"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Query Models by Date Range Copy",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://10.208.99.115:3005/models/aggregated/query?startDate=2024-01-01&endDate=2024-12-30",
+									"protocol": "http",
+									"host": [
+										"10",
+										"208",
+										"99",
+										"115"
+									],
+									"port": "3005",
+									"path": [
+										"models",
+										"aggregated",
+										"query"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-01-01"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-12-30"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Base Model Update",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"baseModel\": \"modelname1\",\n    \"baseModelVersion\": \"version2\",\n    \"date\": \"2024-03-01\",\n    \"nodeDID\": \"did:example:123456789abcdefghi\",\n    \"signedProof\": \"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"data\": [\n        [1.0, 2.0, 3.0, 4.0],\n        [5.0, 6.0, 7.0, 8.0],\n        [9.0, 10.0, 11.0, 12.0],\n        [13.0, 14.0, 15.0, 16.0]\n    ]\n}"
+								},
+								"url": {
+									"raw": "http://10.208.99.115:3005/basemodel/update",
+									"protocol": "http",
+									"host": [
+										"10",
+										"208",
+										"99",
+										"115"
+									],
+									"port": "3005",
+									"path": [
+										"basemodel",
+										"update"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success Response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"baseModel\": \"modelname\",\n    \"baseModelVersion\": \"version1\",\n    \"date\": \"2024-03-01\",\n    \"nodeDID\": \"did:example:123456789abcdefghi\",\n    \"signedProof\": \"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"data\": [[1.0, 2.0], [3.0, 4.0]]\n}"
+										},
+										"url": {
+											"raw": ""
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{\n    \"status\": \"success\",\n    \"message\": \"Successfully stored base model update in DHT with ID: dht_modelname_2024-03-01\",\n    \"dhtId\": \"dht_modelname_2024-03-01\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Get Base Model Update by ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://10.208.99.115:3005/basemodel/modelname1_version2:2024-03-01:did:example:123456789abcdefghi",
+									"protocol": "http",
+									"host": [
+										"10",
+										"208",
+										"99",
+										"115"
+									],
+									"port": "3005",
+									"path": [
+										"basemodel",
+										"modelname1_version2:2024-03-01:did:example:123456789abcdefghi"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": ""
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "{\n    \"id\": \"modelname_version1:2024-03-01:did:example:123456789abcdefghi\",\n    \"baseModel\": \"modelname\",\n    \"baseModelVersion\": \"version1\",\n    \"date\": \"2024-03-01\",\n    \"nodeDID\": \"did:example:123456789abcdefghi\",\n    \"signedProof\": \"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9...\",\n    \"dhtId\": \"dht_modelname_2024-03-01\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Get All Base Model Updates",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://10.208.99.115:3005/basemodels",
+									"protocol": "http",
+									"host": [
+										"10",
+										"208",
+										"99",
+										"115"
+									],
+									"port": "3005",
+									"path": [
+										"basemodels"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": ""
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"modelname_version1:2024-03-01:did:example:123456789abcdefghi\",\n        \"baseModel\": \"modelname\",\n        \"baseModelVersion\": \"version1\",\n        \"date\": \"2024-03-01\",\n        \"nodeDID\": \"did:example:123456789abcdefghi\",\n        \"signedProof\": \"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9...\",\n        \"dhtId\": \"dht_modelname_2024-03-01\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Query Base Model Updates by Date Range",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://10.208.99.115:3005/basemodels/query?startDate=2024-03-01&endDate=2024-03-15",
+									"protocol": "http",
+									"host": [
+										"10",
+										"208",
+										"99",
+										"115"
+									],
+									"port": "3005",
+									"path": [
+										"basemodels",
+										"query"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2024-03-01"
+										},
+										{
+											"key": "endDate",
+											"value": "2024-03-15"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success Response",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": ""
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": \"modelname_version1:2024-03-01:did:example:123456789abcdefghi\",\n        \"baseModel\": \"modelname\",\n        \"baseModelVersion\": \"version1\",\n        \"date\": \"2024-03-01\",\n        \"nodeDID\": \"did:example:123456789abcdefghi\",\n        \"signedProof\": \"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9...\",\n        \"dhtId\": \"dht_modelname_2024-03-01\"\n    }\n]"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Holder - GenerateDID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"DeviceDID\", jsonData.didDoc.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"keys\":[\r\n      {\r\n         \"keyType\":{\r\n             \"keytype\":\"Ed25519VerificationKey2018\"\r\n         },\r\n         \"purpose\":\"Authentication\"\r\n      }\r\n   ],\r\n   \"name\":\"holderDevice\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/fluidos/idm/generateDID",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"generateDID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Issuer - GenerateDID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"IssuerDID\", jsonData.didDoc.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"keys\":[\r\n      {\r\n         \"keyType\":{\r\n             \"keytype\":\"Ed25519VerificationKey2018\"\r\n         },\r\n         \"purpose\":\"Authentication\"\r\n      },\r\n            {\r\n         \"keyType\":{\r\n             \"keytype\":\"Bls12381G1Key2022\",\r\n             \"attrs\":[\"5\"]\r\n         },\r\n         \"purpose\":\"AssertionMethod\"\r\n      }\r\n   ],\r\n    \"name\":\"Fluidos Issuer Node\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{IssuerAgent}}/fluidos/idm/generateDID",
+							"host": [
+								"{{IssuerAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"generateDID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Third - GenerateDID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"DeviceDID\", jsonData.didDoc.id);",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"keys\":[\r\n      {\r\n         \"keyType\":{\r\n             \"keytype\":\"Ed25519VerificationKey2018\"\r\n         },\r\n         \"purpose\":\"Authentication\"\r\n      }\r\n   ],\r\n   \"name\":\"thirdPartyDevice\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ThirdPartyAgent}}/fluidos/idm/generateDID",
+							"host": [
+								"{{ThirdPartyAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"generateDID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Holder - GetTrustedIssuerList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"trustedIssuerAddress\", jsonData.trustedIssuers[0].issuerUrl);",
+									"console.log(jsonData.trustedIssuers[0].issuerUrl)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/fluidos/idm/trustedIssuers",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"trustedIssuers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Holder - DoEnrolment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"credStorageId\", jsonData.credStorageId);\r",
+									"//pm.collectionVariables.set(\"credStorageContent\", JSON.stringify(jsonData.credential).replaceAll('\"','\\\\\"'));\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"url\":\"https://issuer:9082\",\r\n   \"idProofs\":[\r\n      {\r\n         \"attrName\":\"holderName\",\r\n         \"attrValue\":\"FluidosNode\"\r\n      },\r\n      {\r\n         \"attrName\":\"fluidosRole\",\r\n         \"attrValue\":\"Customer\"\r\n      },\r\n      {\r\n         \"attrName\":\"deviceType\",\r\n         \"attrValue\": \"Server\"\r\n      },\r\n      {\r\n          \"attrName\": \"orgIdentifier\",\r\n          \"attrValue\": \"FLUIDOS_id_23241231412\"\r\n      },\r\n      {\r\n          \"attrName\": \"physicalAddress\",\r\n          \"attrValue\": \"50:80:61:82:ab:c9\"\r\n      }\r\n   ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/fluidos/idm/doEnrolment",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"doEnrolment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Holder - GetVCredential",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//var jsonData = JSON.parse(responseBody);",
+									"//pm.collectionVariables.set(\"trustedIssuerAddress\", jsonData.trustedIssuers[0].issuerUrl);",
+									"//console.log(jsonData.trustedIssuers[0].issuerUrl)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credId\": \"{{credStorageId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/fluidos/idm/getVCredential",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"getVCredential"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Holder - GenerateVerifiablePresentation ByFrame",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"credStorageContent\", JSON.stringify(jsonData.results[0]).replaceAll('\"','\\\\\"'));\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"credId\": \"{{credStorageId}}\",\r\n    \"querybyframe\": {\r\n        \"frame\": {\r\n            \"@context\": [\r\n                \"https://www.w3.org/2018/credentials/v1\",\r\n                \"https://www.w3.org/2018/credentials/examples/v1\",\r\n                \"https://ssiproject.inf.um.es/security/psms/v1\",\r\n                \"https://ssiproject.inf.um.es/poc/context/v1\"\r\n            ],\r\n            \"type\": [\r\n                \"VerifiableCredential\",\r\n                \"FluidosCredential\"\r\n            ],\r\n            \"@explicit\": true,\r\n            \"identifier\": {},\r\n            \"issuer\": {},\r\n            \"issuanceDate\": {},\r\n            \"credentialSubject\": {\r\n                \"@explicit\": true,\r\n                \"fluidosRole\": {},\r\n                \"holderName\": {}\r\n            }\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/fluidos/idm/generateVP",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"generateVP"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ThirdPNode  - Verify Credential",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"credential\":\"{{credStorageContent}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ThirdPartyAgent}}/fluidos/idm/verifyCredential",
+							"host": [
+								"{{ThirdPartyAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"verifyCredential"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Producer - SignContract",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"JWT\", JSON.stringify(jsonData.signedJWTContent))",
+									"console.log(jsonData.signedJWTContent)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contract\": {\r\n    \"apiVersion\": \"reservation.fluidos.eu/v1alpha1\",\r\n    \"kind\": \"Contract\",\r\n    \"metadata\": {\r\n      \"creationTimestamp\": \"2024-05-29T09:24:45Z\",\r\n      \"generation\": 1,\r\n      \"name\": \"contract-\\r\\nfluidos.eu-k8s-fluidos-ccbf29bb-b4a7\",\r\n      \"namespace\": \"fluidos\",\r\n      \"resourceVersion\": \"1578\",\r\n      \"uid\": \"22e1136c-98b9-4de3-a5e9-90af7d5aa021\"\r\n    },\r\n    \"spec\": {\r\n      \"buyer\": {\r\n        \"domain\": \"fluidos.eu\",\r\n        \"ip\": \"172.18.0.4:30000\",\r\n        \"nodeID\": \"lwuyt2dnxe\"\r\n      },\r\n      \"buyerClusterID\": \"c47fb461-5bff-4b64-a381-1058fa263235\",\r\n      \"expirationTime\": \"2025-05-29T09:24:45Z\",\r\n      \"flavour\": {\r\n        \"metadata\": {\r\n          \"name\": \"fluidos.eu-k8s-fluidos-\\r\\nccbf29bb\",\r\n          \"namespace\": \"fluidos\"\r\n        },\r\n        \"spec\": {\r\n          \"characteristics\": {\r\n            \"architecture\": \"amd64\",\r\n            \"cpu\": \"7985105637n\",\r\n            \"ephemeral-storage\": \"0\",\r\n            \"gpu\": \"0\",\r\n            \"memory\": \"32386980Ki\",\r\n            \"persistent-storage\": \"0\",\r\n            \"pods\": \"110\"\r\n          },\r\n          \"optionalFields\": {\r\n            \"availability\": true,\r\n            \"workerID\": \"fluidos-provider-1-worker2\"\r\n          },\r\n          \"owner\": {\r\n            \"domain\": \"fluidos.eu\",\r\n            \"ip\": \"172.18.0.2:30001\",\r\n            \"nodeID\": \"jgmewzljr9\"\r\n          },\r\n          \"policy\": {\r\n            \"aggregatable\": {\r\n              \"maxCount\": 0,\r\n              \"minCount\": 0\r\n            },\r\n            \"partitionable\": {\r\n              \"cpuMin\": \"0\",\r\n              \"cpuStep\": \"1\",\r\n              \"memoryMin\": \"0\",\r\n              \"memoryStep\": \"100Mi\",\r\n              \"podsMin\": \"0\",\r\n              \"podsStep\": \"0\"\r\n            }\r\n          },\r\n          \"price\": {\r\n            \"amount\": \"\",\r\n            \"currency\": \"\",\r\n            \"period\": \"\"\r\n          },\r\n          \"providerID\": \"jgmewzljr9\",\r\n          \"type\": \"k8s-fluidos\"\r\n        },\r\n        \"status\": {\r\n          \"creationTime\": \"\",\r\n          \"expirationTime\": \"\",\r\n          \"lastUpdateTime\": \"\"\r\n        }\r\n      },\r\n      \"partition\": {\r\n        \"architecture\": \"\",\r\n        \"cpu\": \"1\",\r\n        \"ephemeral-\\r\\nstorage\": \"0\",\r\n        \"gpu\": \"0\",\r\n        \"memory\": \"1Gi\",\r\n        \"pods\": \"50\",\r\n        \"storage\": \"0\"\r\n      },\r\n      \"seller\": {\r\n        \"domain\": \"fluidos.eu\",\r\n        \"ip\": \"172.18.0.2:30001\",\r\n        \"nodeID\": \"jgmewzljr9\"\r\n      },\r\n      \"sellerCredentials\": {\r\n        \"clusterID\": \"08fcbfd5-a76e-444d-a182-de3b25398e2a\",\r\n        \"clusterName\": \"fluidos-provider-1\",\r\n        \"endpoint\": \"https://172.18.0.2:32197\",\r\n        \"token\": \"98f13330f0973e2a5596dbcf0987c4db4049da0804f0af2a56f94a57f5ad7052bf90ed\\r\\nbf182da87577078dab48df7891187de763cb8dfb91451195cfbb3d29ea\"\r\n      },\r\n      \"transactionID\": \"b27a019255fa7748c004fb1116ae7281-1716974685039544567\"\r\n    }\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/fluidos/idm/signContract",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"signContract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer - SignContract Nested",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"JWT\", JSON.stringify(jsonData.signedJWTContent))",
+									"console.log(jsonData.signedJWTContent)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contract\": {\"JWTContract\":\"eyJhbGciOiJFZERTQSIsImNydiI6IkVkMjU1MTkiLCJraWQiOiJkaWQ6ZmFicmljOm1pdXFEN3JacVpuS2Itb0t5RnNrRDV3Q3JjUTAzVHFzV2dkU2JOVDNVQTgjZlVQeVI2QW9DMFZ4ZVBPLTBOUmlHUi1kMTRpV2VIRG4xZ09oQWlRSWx1RSIsInR5cCI6IkpXVCJ9.eyJhcGlWZXJzaW9uIjoicmVzZXJ2YXRpb24uZmx1aWRvcy5ldS92MWFscGhhMSIsImtpbmQiOiJDb250cmFjdCIsIm1ldGFkYXRhIjp7ImNyZWF0aW9uVGltZXN0YW1wIjoiMjAyNC0wNS0yOVQwOToyNDo0NVoiLCJnZW5lcmF0aW9uIjoxLCJuYW1lIjoiY29udHJhY3QtXHJcbmZsdWlkb3MuZXUtazhzLWZsdWlkb3MtY2NiZjI5YmItYjRhNyIsIm5hbWVzcGFjZSI6ImZsdWlkb3MiLCJyZXNvdXJjZVZlcnNpb24iOiIxNTc4IiwidWlkIjoiMjJlMTEzNmMtOThiOS00ZGUzLWE1ZTktOTBhZjdkNWFhMDIxIn0sInNwZWMiOnsiYnV5ZXIiOnsiZG9tYWluIjoiZmx1aWRvcy5ldSIsImlwIjoiMTcyLjE4LjAuNDozMDAwMCIsIm5vZGVJRCI6Imx3dXl0MmRueGUifSwiYnV5ZXJDbHVzdGVySUQiOiJjNDdmYjQ2MS01YmZmLTRiNjQtYTM4MS0xMDU4ZmEyNjMyMzUiLCJleHBpcmF0aW9uVGltZSI6IjIwMjUtMDUtMjlUMDk6MjQ6NDVaIiwiZmxhdm91ciI6eyJtZXRhZGF0YSI6eyJuYW1lIjoiZmx1aWRvcy5ldS1rOHMtZmx1aWRvcy1cclxuY2NiZjI5YmIiLCJuYW1lc3BhY2UiOiJmbHVpZG9zIn0sInNwZWMiOnsiY2hhcmFjdGVyaXN0aWNzIjp7ImFyY2hpdGVjdHVyZSI6ImFtZDY0IiwiY3B1IjoiNzk4NTEwNTYzN24iLCJlcGhlbWVyYWwtc3RvcmFnZSI6IjAiLCJncHUiOiIwIiwibWVtb3J5IjoiMzIzODY5ODBLaSIsInBlcnNpc3RlbnQtc3RvcmFnZSI6IjAiLCJwb2RzIjoiMTEwIn0sIm9wdGlvbmFsRmllbGRzIjp7ImF2YWlsYWJpbGl0eSI6dHJ1ZSwid29ya2VySUQiOiJmbHVpZG9zLXByb3ZpZGVyLTEtd29ya2VyMiJ9LCJvd25lciI6eyJkb21haW4iOiJmbHVpZG9zLmV1IiwiaXAiOiIxNzIuMTguMC4yOjMwMDAxIiwibm9kZUlEIjoiamdtZXd6bGpyOSJ9LCJwb2xpY3kiOnsiYWdncmVnYXRhYmxlIjp7Im1heENvdW50IjowLCJtaW5Db3VudCI6MH0sInBhcnRpdGlvbmFibGUiOnsiY3B1TWluIjoiMCIsImNwdVN0ZXAiOiIxIiwibWVtb3J5TWluIjoiMCIsIm1lbW9yeVN0ZXAiOiIxMDBNaSIsInBvZHNNaW4iOiIwIiwicG9kc1N0ZXAiOiIwIn19LCJwcmljZSI6eyJhbW91bnQiOiIiLCJjdXJyZW5jeSI6IiIsInBlcmlvZCI6IiJ9LCJwcm92aWRlcklEIjoiamdtZXd6bGpyOSIsInR5cGUiOiJrOHMtZmx1aWRvcyJ9LCJzdGF0dXMiOnsiY3JlYXRpb25UaW1lIjoiIiwiZXhwaXJhdGlvblRpbWUiOiIiLCJsYXN0VXBkYXRlVGltZSI6IiJ9fSwicGFydGl0aW9uIjp7ImFyY2hpdGVjdHVyZSI6IiIsImNwdSI6IjEiLCJlcGhlbWVyYWwtXHJcbnN0b3JhZ2UiOiIwIiwiZ3B1IjoiMCIsIm1lbW9yeSI6IjFHaSIsInBvZHMiOiI1MCIsInN0b3JhZ2UiOiIwIn0sInNlbGxlciI6eyJkb21haW4iOiJmbHVpZG9zLmV1IiwiaXAiOiIxNzIuMTguMC4yOjMwMDAxIiwibm9kZUlEIjoiamdtZXd6bGpyOSJ9LCJzZWxsZXJDcmVkZW50aWFscyI6eyJjbHVzdGVySUQiOiIwOGZjYmZkNS1hNzZlLTQ0NGQtYTE4Mi1kZTNiMjUzOThlMmEiLCJjbHVzdGVyTmFtZSI6ImZsdWlkb3MtcHJvdmlkZXItMSIsImVuZHBvaW50IjoiaHR0cHM6Ly8xNzIuMTguMC4yOjMyMTk3IiwidG9rZW4iOiI5OGYxMzMzMGYwOTczZTJhNTU5NmRiY2YwOTg3YzRkYjQwNDlkYTA4MDRmMGFmMmE1NmY5NGE1N2Y1YWQ3MDUyYmY5MGVkXHJcbmJmMTgyZGE4NzU3NzA3OGRhYjQ4ZGY3ODkxMTg3ZGU3NjNjYjhkZmI5MTQ1MTE5NWNmYmIzZDI5ZWEifSwidHJhbnNhY3Rpb25JRCI6ImIyN2EwMTkyNTVmYTc3NDhjMDA0ZmIxMTE2YWU3MjgxLTE3MTY5NzQ2ODUwMzk1NDQ1NjcifX0.UWvRQZn6wv7hzMo5Dc5Xh4efjcCZOq0la2ElbZwxC-4AT1saRH9uYEGMGEtZbfAl1spnJRuCynSP32CczU7OBg\"}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{IssuerAgent}}/fluidos/idm/signContract",
+							"host": [
+								"{{IssuerAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"signContract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Third - SignContract Nested",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"JWT\", JSON.stringify(jsonData.signedJWTContent))",
+									"console.log(jsonData.signedJWTContent)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contract\": {\"JWTContract\":\"eyJhbGciOiJFZERTQSIsImNydiI6IkVkMjU1MTkiLCJraWQiOiJkaWQ6ZmFicmljOmZxOFNfbGNqVkJGM1NXTmFydXVPcmhWX2JQNFZjYzBzcmlQSmYtM2wyZHMjajV2MXhtSGFJWDNBaVE1SUVweHp6OXczNkdxZlpMaF8wc0xhOVgwRExlQSIsInR5cCI6IkpXVCJ9.eyJKV1RDb250cmFjdCI6ImV5SmhiR2NpT2lKRlpFUlRRU0lzSW1OeWRpSTZJa1ZrTWpVMU1Ua2lMQ0pyYVdRaU9pSmthV1E2Wm1GaWNtbGpPbTFwZFhGRU4zSmFjVnB1UzJJdGIwdDVSbk5yUkRWM1EzSmpVVEF6VkhGelYyZGtVMkpPVkROVlFUZ2pabFZRZVZJMlFXOURNRlo0WlZCUExUQk9VbWxIVWkxa01UUnBWMlZJUkc0eFowOW9RV2xSU1d4MVJTSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmhjR2xXWlhKemFXOXVJam9pY21WelpYSjJZWFJwYjI0dVpteDFhV1J2Y3k1bGRTOTJNV0ZzY0doaE1TSXNJbXRwYm1RaU9pSkRiMjUwY21GamRDSXNJbTFsZEdGa1lYUmhJanA3SW1OeVpXRjBhVzl1VkdsdFpYTjBZVzF3SWpvaU1qQXlOQzB3TlMweU9WUXdPVG95TkRvME5Wb2lMQ0puWlc1bGNtRjBhVzl1SWpveExDSnVZVzFsSWpvaVkyOXVkSEpoWTNRdFhISmNibVpzZFdsa2IzTXVaWFV0YXpoekxXWnNkV2xrYjNNdFkyTmlaakk1WW1JdFlqUmhOeUlzSW01aGJXVnpjR0ZqWlNJNkltWnNkV2xrYjNNaUxDSnlaWE52ZFhKalpWWmxjbk5wYjI0aU9pSXhOVGM0SWl3aWRXbGtJam9pTWpKbE1URXpObU10T1RoaU9TMDBaR1V6TFdFMVpUa3RPVEJoWmpka05XRmhNREl4SW4wc0luTndaV01pT25zaVluVjVaWElpT25zaVpHOXRZV2x1SWpvaVpteDFhV1J2Y3k1bGRTSXNJbWx3SWpvaU1UY3lMakU0TGpBdU5Eb3pNREF3TUNJc0ltNXZaR1ZKUkNJNklteDNkWGwwTW1SdWVHVWlmU3dpWW5WNVpYSkRiSFZ6ZEdWeVNVUWlPaUpqTkRkbVlqUTJNUzAxWW1abUxUUmlOalF0WVRNNE1TMHhNRFU0Wm1FeU5qTXlNelVpTENKbGVIQnBjbUYwYVc5dVZHbHRaU0k2SWpJd01qVXRNRFV0TWpsVU1EazZNalE2TkRWYUlpd2labXhoZG05MWNpSTZleUp0WlhSaFpHRjBZU0k2ZXlKdVlXMWxJam9pWm14MWFXUnZjeTVsZFMxck9ITXRabXgxYVdSdmN5MWNjbHh1WTJOaVpqSTVZbUlpTENKdVlXMWxjM0JoWTJVaU9pSm1iSFZwWkc5ekluMHNJbk53WldNaU9uc2lZMmhoY21GamRHVnlhWE4wYVdOeklqcDdJbUZ5WTJocGRHVmpkSFZ5WlNJNkltRnRaRFkwSWl3aVkzQjFJam9pTnprNE5URXdOVFl6TjI0aUxDSmxjR2hsYldWeVlXd3RjM1J2Y21GblpTSTZJakFpTENKbmNIVWlPaUl3SWl3aWJXVnRiM0o1SWpvaU16SXpPRFk1T0RCTGFTSXNJbkJsY25OcGMzUmxiblF0YzNSdmNtRm5aU0k2SWpBaUxDSndiMlJ6SWpvaU1URXdJbjBzSW05d2RHbHZibUZzUm1sbGJHUnpJanA3SW1GMllXbHNZV0pwYkdsMGVTSTZkSEoxWlN3aWQyOXlhMlZ5U1VRaU9pSm1iSFZwWkc5ekxYQnliM1pwWkdWeUxURXRkMjl5YTJWeU1pSjlMQ0p2ZDI1bGNpSTZleUprYjIxaGFXNGlPaUptYkhWcFpHOXpMbVYxSWl3aWFYQWlPaUl4TnpJdU1UZ3VNQzR5T2pNd01EQXhJaXdpYm05a1pVbEVJam9pYW1kdFpYZDZiR3B5T1NKOUxDSndiMnhwWTNraU9uc2lZV2RuY21WbllYUmhZbXhsSWpwN0ltMWhlRU52ZFc1MElqb3dMQ0p0YVc1RGIzVnVkQ0k2TUgwc0luQmhjblJwZEdsdmJtRmliR1VpT25zaVkzQjFUV2x1SWpvaU1DSXNJbU53ZFZOMFpYQWlPaUl4SWl3aWJXVnRiM0o1VFdsdUlqb2lNQ0lzSW0xbGJXOXllVk4wWlhBaU9pSXhNREJOYVNJc0luQnZaSE5OYVc0aU9pSXdJaXdpY0c5a2MxTjBaWEFpT2lJd0luMTlMQ0p3Y21salpTSTZleUpoYlc5MWJuUWlPaUlpTENKamRYSnlaVzVqZVNJNklpSXNJbkJsY21sdlpDSTZJaUo5TENKd2NtOTJhV1JsY2tsRUlqb2lhbWR0WlhkNmJHcHlPU0lzSW5SNWNHVWlPaUpyT0hNdFpteDFhV1J2Y3lKOUxDSnpkR0YwZFhNaU9uc2lZM0psWVhScGIyNVVhVzFsSWpvaUlpd2laWGh3YVhKaGRHbHZibFJwYldVaU9pSWlMQ0pzWVhOMFZYQmtZWFJsVkdsdFpTSTZJaUo5ZlN3aWNHRnlkR2wwYVc5dUlqcDdJbUZ5WTJocGRHVmpkSFZ5WlNJNklpSXNJbU53ZFNJNklqRWlMQ0psY0dobGJXVnlZV3d0WEhKY2JuTjBiM0poWjJVaU9pSXdJaXdpWjNCMUlqb2lNQ0lzSW0xbGJXOXllU0k2SWpGSGFTSXNJbkJ2WkhNaU9pSTFNQ0lzSW5OMGIzSmhaMlVpT2lJd0luMHNJbk5sYkd4bGNpSTZleUprYjIxaGFXNGlPaUptYkhWcFpHOXpMbVYxSWl3aWFYQWlPaUl4TnpJdU1UZ3VNQzR5T2pNd01EQXhJaXdpYm05a1pVbEVJam9pYW1kdFpYZDZiR3B5T1NKOUxDSnpaV3hzWlhKRGNtVmtaVzUwYVdGc2N5STZleUpqYkhWemRHVnlTVVFpT2lJd09HWmpZbVprTlMxaE56WmxMVFEwTkdRdFlURTRNaTFrWlROaU1qVXpPVGhsTW1FaUxDSmpiSFZ6ZEdWeVRtRnRaU0k2SW1ac2RXbGtiM010Y0hKdmRtbGtaWEl0TVNJc0ltVnVaSEJ2YVc1MElqb2lhSFIwY0hNNkx5OHhOekl1TVRndU1DNHlPak15TVRrM0lpd2lkRzlyWlc0aU9pSTVPR1l4TXpNek1HWXdPVGN6WlRKaE5UVTVObVJpWTJZd09UZzNZelJrWWpRd05EbGtZVEE0TURSbU1HRm1NbUUxTm1ZNU5HRTFOMlkxWVdRM01EVXlZbVk1TUdWa1hISmNibUptTVRneVpHRTROelUzTnpBM09HUmhZalE0WkdZM09Ea3hNVGczWkdVM05qTmpZamhrWm1JNU1UUTFNVEU1TldObVltSXpaREk1WldFaWZTd2lkSEpoYm5OaFkzUnBiMjVKUkNJNkltSXlOMkV3TVRreU5UVm1ZVGMzTkRoak1EQTBabUl4TVRFMllXVTNNamd4TFRFM01UWTVOelEyT0RVd016azFORFExTmpjaWZYMC5VV3ZSUVpuNnd2N2h6TW81RGM1WGg0ZWZqY0NaT3EwbGEyRWxiWnd4Qy00QVQxc2FSSDl1WUVHTUdFdFpiZkFsMXNwbkpSdUN5blNQMzJDY3pVN09CZyJ9.ZGk4GbeLQcjA0vYllnTvdpY7lhkC3_eHhH80FPjjhkOfTG4zKnua0In-F4iNVoaJxhecRNHx47_xgAEmbHijDw\"}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ThirdPartyAgent}}/fluidos/idm/signContract",
+							"host": [
+								"{{ThirdPartyAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"signContract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ThirdPNode - VerifyContract",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contract\" : \"eyJhbGciOiJFZERTQSIsImNydiI6IkVkMjU1MTkiLCJraWQiOiJkaWQ6ZmFicmljOmZxOFNfbGNqVkJGM1NXTmFydXVPcmhWX2JQNFZjYzBzcmlQSmYtM2wyZHMjajV2MXhtSGFJWDNBaVE1SUVweHp6OXczNkdxZlpMaF8wc0xhOVgwRExlQSIsInR5cCI6IkpXVCJ9.eyJKV1RDb250cmFjdCI6ImV5SmhiR2NpT2lKRlpFUlRRU0lzSW1OeWRpSTZJa1ZrTWpVMU1Ua2lMQ0pyYVdRaU9pSmthV1E2Wm1GaWNtbGpPbTFwZFhGRU4zSmFjVnB1UzJJdGIwdDVSbk5yUkRWM1EzSmpVVEF6VkhGelYyZGtVMkpPVkROVlFUZ2pabFZRZVZJMlFXOURNRlo0WlZCUExUQk9VbWxIVWkxa01UUnBWMlZJUkc0eFowOW9RV2xSU1d4MVJTSXNJblI1Y0NJNklrcFhWQ0o5LmV5SmhjR2xXWlhKemFXOXVJam9pY21WelpYSjJZWFJwYjI0dVpteDFhV1J2Y3k1bGRTOTJNV0ZzY0doaE1TSXNJbXRwYm1RaU9pSkRiMjUwY21GamRDSXNJbTFsZEdGa1lYUmhJanA3SW1OeVpXRjBhVzl1VkdsdFpYTjBZVzF3SWpvaU1qQXlOQzB3TlMweU9WUXdPVG95TkRvME5Wb2lMQ0puWlc1bGNtRjBhVzl1SWpveExDSnVZVzFsSWpvaVkyOXVkSEpoWTNRdFhISmNibVpzZFdsa2IzTXVaWFV0YXpoekxXWnNkV2xrYjNNdFkyTmlaakk1WW1JdFlqUmhOeUlzSW01aGJXVnpjR0ZqWlNJNkltWnNkV2xrYjNNaUxDSnlaWE52ZFhKalpWWmxjbk5wYjI0aU9pSXhOVGM0SWl3aWRXbGtJam9pTWpKbE1URXpObU10T1RoaU9TMDBaR1V6TFdFMVpUa3RPVEJoWmpka05XRmhNREl4SW4wc0luTndaV01pT25zaVluVjVaWElpT25zaVpHOXRZV2x1SWpvaVpteDFhV1J2Y3k1bGRTSXNJbWx3SWpvaU1UY3lMakU0TGpBdU5Eb3pNREF3TUNJc0ltNXZaR1ZKUkNJNklteDNkWGwwTW1SdWVHVWlmU3dpWW5WNVpYSkRiSFZ6ZEdWeVNVUWlPaUpqTkRkbVlqUTJNUzAxWW1abUxUUmlOalF0WVRNNE1TMHhNRFU0Wm1FeU5qTXlNelVpTENKbGVIQnBjbUYwYVc5dVZHbHRaU0k2SWpJd01qVXRNRFV0TWpsVU1EazZNalE2TkRWYUlpd2labXhoZG05MWNpSTZleUp0WlhSaFpHRjBZU0k2ZXlKdVlXMWxJam9pWm14MWFXUnZjeTVsZFMxck9ITXRabXgxYVdSdmN5MWNjbHh1WTJOaVpqSTVZbUlpTENKdVlXMWxjM0JoWTJVaU9pSm1iSFZwWkc5ekluMHNJbk53WldNaU9uc2lZMmhoY21GamRHVnlhWE4wYVdOeklqcDdJbUZ5WTJocGRHVmpkSFZ5WlNJNkltRnRaRFkwSWl3aVkzQjFJam9pTnprNE5URXdOVFl6TjI0aUxDSmxjR2hsYldWeVlXd3RjM1J2Y21GblpTSTZJakFpTENKbmNIVWlPaUl3SWl3aWJXVnRiM0o1SWpvaU16SXpPRFk1T0RCTGFTSXNJbkJsY25OcGMzUmxiblF0YzNSdmNtRm5aU0k2SWpBaUxDSndiMlJ6SWpvaU1URXdJbjBzSW05d2RHbHZibUZzUm1sbGJHUnpJanA3SW1GMllXbHNZV0pwYkdsMGVTSTZkSEoxWlN3aWQyOXlhMlZ5U1VRaU9pSm1iSFZwWkc5ekxYQnliM1pwWkdWeUxURXRkMjl5YTJWeU1pSjlMQ0p2ZDI1bGNpSTZleUprYjIxaGFXNGlPaUptYkhWcFpHOXpMbVYxSWl3aWFYQWlPaUl4TnpJdU1UZ3VNQzR5T2pNd01EQXhJaXdpYm05a1pVbEVJam9pYW1kdFpYZDZiR3B5T1NKOUxDSndiMnhwWTNraU9uc2lZV2RuY21WbllYUmhZbXhsSWpwN0ltMWhlRU52ZFc1MElqb3dMQ0p0YVc1RGIzVnVkQ0k2TUgwc0luQmhjblJwZEdsdmJtRmliR1VpT25zaVkzQjFUV2x1SWpvaU1DSXNJbU53ZFZOMFpYQWlPaUl4SWl3aWJXVnRiM0o1VFdsdUlqb2lNQ0lzSW0xbGJXOXllVk4wWlhBaU9pSXhNREJOYVNJc0luQnZaSE5OYVc0aU9pSXdJaXdpY0c5a2MxTjBaWEFpT2lJd0luMTlMQ0p3Y21salpTSTZleUpoYlc5MWJuUWlPaUlpTENKamRYSnlaVzVqZVNJNklpSXNJbkJsY21sdlpDSTZJaUo5TENKd2NtOTJhV1JsY2tsRUlqb2lhbWR0WlhkNmJHcHlPU0lzSW5SNWNHVWlPaUpyT0hNdFpteDFhV1J2Y3lKOUxDSnpkR0YwZFhNaU9uc2lZM0psWVhScGIyNVVhVzFsSWpvaUlpd2laWGh3YVhKaGRHbHZibFJwYldVaU9pSWlMQ0pzWVhOMFZYQmtZWFJsVkdsdFpTSTZJaUo5ZlN3aWNHRnlkR2wwYVc5dUlqcDdJbUZ5WTJocGRHVmpkSFZ5WlNJNklpSXNJbU53ZFNJNklqRWlMQ0psY0dobGJXVnlZV3d0WEhKY2JuTjBiM0poWjJVaU9pSXdJaXdpWjNCMUlqb2lNQ0lzSW0xbGJXOXllU0k2SWpGSGFTSXNJbkJ2WkhNaU9pSTFNQ0lzSW5OMGIzSmhaMlVpT2lJd0luMHNJbk5sYkd4bGNpSTZleUprYjIxaGFXNGlPaUptYkhWcFpHOXpMbVYxSWl3aWFYQWlPaUl4TnpJdU1UZ3VNQzR5T2pNd01EQXhJaXdpYm05a1pVbEVJam9pYW1kdFpYZDZiR3B5T1NKOUxDSnpaV3hzWlhKRGNtVmtaVzUwYVdGc2N5STZleUpqYkhWemRHVnlTVVFpT2lJd09HWmpZbVprTlMxaE56WmxMVFEwTkdRdFlURTRNaTFrWlROaU1qVXpPVGhsTW1FaUxDSmpiSFZ6ZEdWeVRtRnRaU0k2SW1ac2RXbGtiM010Y0hKdmRtbGtaWEl0TVNJc0ltVnVaSEJ2YVc1MElqb2lhSFIwY0hNNkx5OHhOekl1TVRndU1DNHlPak15TVRrM0lpd2lkRzlyWlc0aU9pSTVPR1l4TXpNek1HWXdPVGN6WlRKaE5UVTVObVJpWTJZd09UZzNZelJrWWpRd05EbGtZVEE0TURSbU1HRm1NbUUxTm1ZNU5HRTFOMlkxWVdRM01EVXlZbVk1TUdWa1hISmNibUptTVRneVpHRTROelUzTnpBM09HUmhZalE0WkdZM09Ea3hNVGczWkdVM05qTmpZamhrWm1JNU1UUTFNVEU1TldObVltSXpaREk1WldFaWZTd2lkSEpoYm5OaFkzUnBiMjVKUkNJNkltSXlOMkV3TVRreU5UVm1ZVGMzTkRoak1EQTBabUl4TVRFMllXVTNNamd4TFRFM01UWTVOelEyT0RVd016azFORFExTmpjaWZYMC5VV3ZSUVpuNnd2N2h6TW81RGM1WGg0ZWZqY0NaT3EwbGEyRWxiWnd4Qy00QVQxc2FSSDl1WUVHTUdFdFpiZkFsMXNwbkpSdUN5blNQMzJDY3pVN09CZyJ9.ZGk4GbeLQcjA0vYllnTvdpY7lhkC3_eHhH80FPjjhkOfTG4zKnua0In-F4iNVoaJxhecRNHx47_xgAEmbHijDw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ThirdPartyAgent}}/fluidos/idm/verifyContract",
+							"host": [
+								"{{ThirdPartyAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"verifyContract"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Holder - SignJWTContent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.collectionVariables.set(\"JWT\", JSON.stringify(jsonData.signedJWTContent))",
+									"console.log(jsonData.signedJWTContent)",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": {\r\n        \"apiVersion\": \"reservation.fluidos.eu/v1alpha1\",\r\n        \"kind\": \"Contract\",\r\n        \"metadata\": {\r\n            \"creationTimestamp\": \"2024-05-29T09:24:45Z\",\r\n            \"generation\": 1,\r\n            \"name\": \"contract-\\r\\nfluidos.eu-k8s-fluidos-ccbf29bb-b4a7\",\r\n            \"namespace\": \"fluidos\",\r\n            \"resourceVersion\": \"1578\",\r\n            \"uid\": \"22e1136c-98b9-4de3-a5e9-90af7d5aa021\"\r\n        },\r\n        \"spec\": {\r\n            \"buyer\": {\r\n                \"domain\": \"fluidos.eu\",\r\n                \"ip\": \"172.18.0.4:30000\",\r\n                \"nodeID\": \"lwuyt2dnxe\"\r\n            },\r\n            \"buyerClusterID\": \"c47fb461-5bff-4b64-a381-1058fa263235\",\r\n            \"expirationTime\": \"2025-05-29T09:24:45Z\",\r\n            \"flavour\": {\r\n                \"metadata\": {\r\n                    \"name\": \"fluidos.eu-k8s-fluidos-\\r\\nccbf29bb\",\r\n                    \"namespace\": \"fluidos\"\r\n                },\r\n                \"spec\": {\r\n                    \"characteristics\": {\r\n                        \"architecture\": \"amd64\",\r\n                        \"cpu\": \"7985105637n\",\r\n                        \"ephemeral-storage\": \"0\",\r\n                        \"gpu\": \"0\",\r\n                        \"memory\": \"32386980Ki\",\r\n                        \"persistent-storage\": \"0\",\r\n                        \"pods\": \"110\"\r\n                    },\r\n                    \"optionalFields\": {\r\n                        \"availability\": true,\r\n                        \"workerID\": \"fluidos-provider-1-worker2\"\r\n                    },\r\n                    \"owner\": {\r\n                        \"domain\": \"fluidos.eu\",\r\n                        \"ip\": \"172.18.0.2:30001\",\r\n                        \"nodeID\": \"jgmewzljr9\"\r\n                    },\r\n                    \"policy\": {\r\n                        \"aggregatable\": {\r\n                            \"maxCount\": 0,\r\n                            \"minCount\": 0\r\n                        },\r\n                        \"partitionable\": {\r\n                            \"cpuMin\": \"0\",\r\n                            \"cpuStep\": \"1\",\r\n                            \"memoryMin\": \"0\",\r\n                            \"memoryStep\": \"100Mi\",\r\n                            \"podsMin\": \"0\",\r\n                            \"podsStep\": \"0\"\r\n                        }\r\n                    },\r\n                    \"price\": {\r\n                        \"amount\": \"\",\r\n                        \"currency\": \"\",\r\n                        \"period\": \"\"\r\n                    },\r\n                    \"providerID\": \"jgmewzljr9\",\r\n                    \"type\": \"k8s-fluidos\"\r\n                },\r\n                \"status\": {\r\n                    \"creationTime\": \"\",\r\n                    \"expirationTime\": \"\",\r\n                    \"lastUpdateTime\": \"\"\r\n                }\r\n            },\r\n            \"partition\": {\r\n                \"architecture\": \"\",\r\n                \"cpu\": \"1\",\r\n                \"ephemeral-\\r\\nstorage\": \"0\",\r\n                \"gpu\": \"0\",\r\n                \"memory\": \"1Gi\",\r\n                \"pods\": \"50\",\r\n                \"storage\": \"0\"\r\n            },\r\n            \"seller\": {\r\n                \"domain\": \"fluidos.eu\",\r\n                \"ip\": \"172.18.0.2:30001\",\r\n                \"nodeID\": \"jgmewzljr9\"\r\n            },\r\n            \"sellerCredentials\": {\r\n                \"clusterID\": \"08fcbfd5-a76e-444d-a182-de3b25398e2a\",\r\n                \"clusterName\": \"fluidos-provider-1\",\r\n                \"endpoint\": \"https://172.18.0.2:32197\",\r\n                \"token\": \"98f13330f0973e2a5596dbcf0987c4db4049da0804f0af2a56f94a57f5ad7052bf90ed\\r\\nbf182da87577078dab48df7891187de763cb8dfb91451195cfbb3d29ea\"\r\n            },\r\n            \"transactionID\": \"b27a019255fa7748c004fb1116ae7281-1716974685039544567\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/fluidos/idm/signJWTContent",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"signJWTContent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ThirdPNode - VerifyJWTContent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"jwt\" : \"eyJhbGciOiJFZERTQSIsImNydiI6IkVkMjU1MTkiLCJraWQiOiJkaWQ6ZmFicmljOkI2NnpHemJjcWJfWDRMU0ZsV3dIRnNFN0Y2aHVDcTJCWk1aN3FkT0poSlkjdlRlb3ZEc3p0Q0FsMjdtUE5WUjJ4bm11OV9Ud0FLYVFzUnowR0JQYVZpRSIsInR5cCI6IkpXVCJ9.eyJKV1RDb250cmFjdCI6ImV5SmhiR2NpT2lKRlpFUlRRU0lzSW1OeWRpSTZJa1ZrTWpVMU1Ua2lMQ0pyYVdRaU9pSmthV1E2Wm1GaWNtbGpPbFJ1WWxwYWIxQnZZMFkwVVRod2VqSnFRVTVsZFV4bFZFMU5TRlJNYVVGSmJtTnBlVnBtVUdsU1FWRWpiRGhNYW5VMlJsSkVUMEp2YzFOM2VHSkpPRU5NTmxCb1dXUmthMHM1WVVSNGMyY3dibXhVWTJRMGF5SXNJblI1Y0NJNklrcFhWQ0o5LmV5SmhjR2xXWlhKemFXOXVJam9pY21WelpYSjJZWFJwYjI0dVpteDFhV1J2Y3k1bGRTOTJNV0ZzY0doaE1TSXNJbXRwYm1RaU9pSkRiMjUwY21GamRDSXNJbTFsZEdGa1lYUmhJanA3SW1OeVpXRjBhVzl1VkdsdFpYTjBZVzF3SWpvaU1qQXlOQzB3TlMweU9WUXdPVG95TkRvME5Wb2lMQ0puWlc1bGNtRjBhVzl1SWpveExDSnVZVzFsSWpvaVkyOXVkSEpoWTNRdFhISmNibVpzZFdsa2IzTXVaWFV0YXpoekxXWnNkV2xrYjNNdFkyTmlaakk1WW1JdFlqUmhOeUlzSW01aGJXVnpjR0ZqWlNJNkltWnNkV2xrYjNNaUxDSnlaWE52ZFhKalpWWmxjbk5wYjI0aU9pSXhOVGM0SWl3aWRXbGtJam9pTWpKbE1URXpObU10T1RoaU9TMDBaR1V6TFdFMVpUa3RPVEJoWmpka05XRmhNREl4SW4wc0luTndaV01pT25zaVluVjVaWElpT25zaVpHOXRZV2x1SWpvaVpteDFhV1J2Y3k1bGRTSXNJbWx3SWpvaU1UY3lMakU0TGpBdU5Eb3pNREF3TUNJc0ltNXZaR1ZKUkNJNklteDNkWGwwTW1SdWVHVWlmU3dpWW5WNVpYSkRiSFZ6ZEdWeVNVUWlPaUpqTkRkbVlqUTJNUzAxWW1abUxUUmlOalF0WVRNNE1TMHhNRFU0Wm1FeU5qTXlNelVpTENKbGVIQnBjbUYwYVc5dVZHbHRaU0k2SWpJd01qVXRNRFV0TWpsVU1EazZNalE2TkRWYUlpd2labXhoZG05MWNpSTZleUp0WlhSaFpHRjBZU0k2ZXlKdVlXMWxJam9pWm14MWFXUnZjeTVsZFMxck9ITXRabXgxYVdSdmN5MWNjbHh1WTJOaVpqSTVZbUlpTENKdVlXMWxjM0JoWTJVaU9pSm1iSFZwWkc5ekluMHNJbk53WldNaU9uc2lZMmhoY21GamRHVnlhWE4wYVdOeklqcDdJbUZ5WTJocGRHVmpkSFZ5WlNJNkltRnRaRFkwSWl3aVkzQjFJam9pTnprNE5URXdOVFl6TjI0aUxDSmxjR2hsYldWeVlXd3RjM1J2Y21GblpTSTZJakFpTENKbmNIVWlPaUl3SWl3aWJXVnRiM0o1SWpvaU16SXpPRFk1T0RCTGFTSXNJbkJsY25OcGMzUmxiblF0YzNSdmNtRm5aU0k2SWpBaUxDSndiMlJ6SWpvaU1URXdJbjBzSW05d2RHbHZibUZzUm1sbGJHUnpJanA3SW1GMllXbHNZV0pwYkdsMGVTSTZkSEoxWlN3aWQyOXlhMlZ5U1VRaU9pSm1iSFZwWkc5ekxYQnliM1pwWkdWeUxURXRkMjl5YTJWeU1pSjlMQ0p2ZDI1bGNpSTZleUprYjIxaGFXNGlPaUptYkhWcFpHOXpMbVYxSWl3aWFYQWlPaUl4TnpJdU1UZ3VNQzR5T2pNd01EQXhJaXdpYm05a1pVbEVJam9pYW1kdFpYZDZiR3B5T1NKOUxDSndiMnhwWTNraU9uc2lZV2RuY21WbllYUmhZbXhsSWpwN0ltMWhlRU52ZFc1MElqb3dMQ0p0YVc1RGIzVnVkQ0k2TUgwc0luQmhjblJwZEdsdmJtRmliR1VpT25zaVkzQjFUV2x1SWpvaU1DSXNJbU53ZFZOMFpYQWlPaUl4SWl3aWJXVnRiM0o1VFdsdUlqb2lNQ0lzSW0xbGJXOXllVk4wWlhBaU9pSXhNREJOYVNJc0luQnZaSE5OYVc0aU9pSXdJaXdpY0c5a2MxTjBaWEFpT2lJd0luMTlMQ0p3Y21salpTSTZleUpoYlc5MWJuUWlPaUlpTENKamRYSnlaVzVqZVNJNklpSXNJbkJsY21sdlpDSTZJaUo5TENKd2NtOTJhV1JsY2tsRUlqb2lhbWR0WlhkNmJHcHlPU0lzSW5SNWNHVWlPaUpyT0hNdFpteDFhV1J2Y3lKOUxDSnpkR0YwZFhNaU9uc2lZM0psWVhScGIyNVVhVzFsSWpvaUlpd2laWGh3YVhKaGRHbHZibFJwYldVaU9pSWlMQ0pzWVhOMFZYQmtZWFJsVkdsdFpTSTZJaUo5ZlN3aWNHRnlkR2wwYVc5dUlqcDdJbUZ5WTJocGRHVmpkSFZ5WlNJNklpSXNJbU53ZFNJNklqRWlMQ0psY0dobGJXVnlZV3d0WEhKY2JuTjBiM0poWjJVaU9pSXdJaXdpWjNCMUlqb2lNQ0lzSW0xbGJXOXllU0k2SWpGSGFTSXNJbkJ2WkhNaU9pSTFNQ0lzSW5OMGIzSmhaMlVpT2lJd0luMHNJbk5sYkd4bGNpSTZleUprYjIxaGFXNGlPaUptYkhWcFpHOXpMbVYxSWl3aWFYQWlPaUl4TnpJdU1UZ3VNQzR5T2pNd01EQXhJaXdpYm05a1pVbEVJam9pYW1kdFpYZDZiR3B5T1NKOUxDSnpaV3hzWlhKRGNtVmtaVzUwYVdGc2N5STZleUpqYkhWemRHVnlTVVFpT2lJd09HWmpZbVprTlMxaE56WmxMVFEwTkdRdFlURTRNaTFrWlROaU1qVXpPVGhsTW1FaUxDSmpiSFZ6ZEdWeVRtRnRaU0k2SW1ac2RXbGtiM010Y0hKdmRtbGtaWEl0TVNJc0ltVnVaSEJ2YVc1MElqb2lhSFIwY0hNNkx5OHhOekl1TVRndU1DNHlPak15TVRrM0lpd2lkRzlyWlc0aU9pSTVPR1l4TXpNek1HWXdPVGN6WlRKaE5UVTVObVJpWTJZd09UZzNZelJrWWpRd05EbGtZVEE0TURSbU1HRm1NbUUxTm1ZNU5HRTFOMlkxWVdRM01EVXlZbVk1TUdWa1hISmNibUptTVRneVpHRTROelUzTnpBM09HUmhZalE0WkdZM09Ea3hNVGczWkdVM05qTmpZamhrWm1JNU1UUTFNVEU1TldObVltSXpaREk1WldFaWZTd2lkSEpoYm5OaFkzUnBiMjVKUkNJNkltSXlOMkV3TVRreU5UVm1ZVGMzTkRoak1EQTBabUl4TVRFMllXVTNNamd4TFRFM01UWTVOelEyT0RVd016azFORFExTmpjaWZYMC5Id210V3pUbF8zTGNfbFRVa1FNSWFqaXNEYVhaaVVadGVRZm1ndmhHUHBiTXJlWWtuaGJid2ctbFVueW9lNlQwSGRrU244UlA1QUZWX2J2WFpaeThDUSJ9.RRrY9XYY2Zrb_FW7Ih57gI4vICNdOWA9DMjs5d2hvIXzWcX9Qqxxy846aRUok-CPZLAiuSzTJDrCAQpcxuowAQ\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{ThirdPartyAgent}}/fluidos/idm/verifyJWTContent",
+							"host": [
+								"{{ThirdPartyAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"verifyJWTContent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "A - Wallet Open Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userID\":\"UgAaayXDkJfx\",\r\n    \"localKMSPassphrase\":\"MUfOcTPjhLuI\",\r\n    \"expiry\": 9000000000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/vcwallet/open",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"vcwallet",
+								"open"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removecontent",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"auth\": \"fd00959be88b54d88523fe1dbb3fd487173158c1a49927c0a3bfcb2b134453f3\",\r\n  \"contentID\": \"string\",\r\n  \"contentType\": \"credential\",\r\n  \"userID\": \"pzSHNdjyqhZo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/vcwallet/remove",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"vcwallet",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "walletclose",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"auth\": \"fd00959be88b54d88523fe1dbb3fd487173158c1a49927c0a3bfcb2b134453f3\",\r\n  \"contentID\": \"string\",\r\n  \"contentType\": \"credential\",\r\n  \"userID\": \"pzSHNdjyqhZo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/vcwallet/remove",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"vcwallet",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "A - Resolve did in VDR Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{DeviceAgent}}/vdr/did/resolve/ZGlkOmVyYXQ6OTgxNDdjNmEyYTBlNWFiOTJhMzA4MTI0YjVhZDdiNTU5ODZiN2ViZmJhMGU1ZTBkMGM5ZjJkNTZhOTM0MDdlODo4YmUwMWE0NDFmNTY2ZDE0MzUwMWE0NmVkZjQwY2Y4NjZiY2UyZDkxMzJjMjEwMmUzNjQ3ZTZlZmIyZjlkMmQ1",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"vdr",
+								"did",
+								"resolve",
+								"ZGlkOmVyYXQ6OTgxNDdjNmEyYTBlNWFiOTJhMzA4MTI0YjVhZDdiNTU5ODZiN2ViZmJhMGU1ZTBkMGM5ZjJkNTZhOTM0MDdlODo4YmUwMWE0NDFmNTY2ZDE0MzUwMWE0NmVkZjQwY2Y4NjZiY2UyZDkxMzJjMjEwMmUzNjQ3ZTZlZmIyZjlkMmQ1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ThirdPNode  - Verify Credential Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"credential\":\"{{credStorageContent}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DeviceAgent}}/fluidos/idm/testingCall",
+							"host": [
+								"{{DeviceAgent}}"
+							],
+							"path": [
+								"fluidos",
+								"idm",
+								"testingCall"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "2fd02be71ab8812cf681a500dfeb3e5524f5bda99aa56a07d59d03f716226946"
+		},
+		{
+			"key": "auth",
+			"value": "68de82c5f0526fff2c0349d13eeac65fac9cc88e8a8276dbcefc68c45a514f23"
+		},
+		{
+			"key": "GenesisHash",
+			"value": "98147c6a2a0e5ab92a308124b5ad7b55986b7ebfba0e5e0d0c9f2d56a93407e8"
+		},
+		{
+			"key": "wallet_key_id",
+			"value": "GyVy7bsjPiZkzPjobnzB9mvhqsNekkgHBc6MnmO5Gc4"
+		},
+		{
+			"key": "userid",
+			"value": "user3"
+		},
+		{
+			"key": "pass",
+			"value": "pass3"
+		},
+		{
+			"key": "psmspkbase58",
+			"value": "1crq8yr8YTTKfkxDefGsxJ9sT4UWifh69E925hCd8enx2x6eoAcaQMgsX3BCsZ8MhxYe27WSit6uizxUHwo1w64YrTJJdFzvza5ANAdFLq1pKSSD7kYsoBggtwJjRdV6HJDpS1fFpshwbGVTiM5KjTvRCHCUXsdPuSAkN3SafRXReUTcmKATUNfx9Wnj8vEBoWKcaXDM6oLLXM18JZpxD9PAgdiogVs2RYVGoJdKYFgVAQszmTydBQzxRKrVNUZmkJgJ7dGjQNkXZfjCZpKVyPLjVGFfmbrUyKjEVtGQqUsfWQvGuGartveZsSo6gsEJ15Fp7yK81Sxfo9ZQwBz2mryE2yGMZn6x9aQ1VMT6TAVWDZEPqMShJuRjpH8iLxjJJPPDHtDPhLdNJKRKFx4o7yZEgUMrmXN1cYz3w9tDA7Ae1nsHR1288dUXLE6NiGbnc4cNi9sc86cxKGnPBwXZo4RBCPG7do3d99C6fRrkminHD2UCnQ83b4ZVqZsET9sDHsDPyd6p4LB49go8Vv5YeksoquNSZRSyjJE9eHYP1pTVr7s5y3nMomQdmz6ichchAixht9Yk1CuTjGYACN4xio813WKmmyRZBEmStZWGw2JBqayk98QX88exGJ79Xq1uvjm1h7YJptpNk8Tha7acMW8tc"
+		},
+		{
+			"key": "DeviceAgent",
+			"value": "https://10.208.99.115:8082"
+		},
+		{
+			"key": "ThirdPartyAgent",
+			"value": "https://10.208.99.115:7082",
+			"type": "string"
+		},
+		{
+			"key": "IssuerAgent",
+			"value": "https://10.208.99.115:9082"
+		},
+		{
+			"key": "IssuerDID",
+			"value": "did:erat:dfbc6b108557a6df1d3bca6103e8d35099ea196c69e6f6691455cd66bc7d4c68:d7200d5e24d18d1ed2072054905dd28a17ccda8890f5929dc75b738fd3b56a1b"
+		},
+		{
+			"key": "credStorageId",
+			"value": "did:erat:dfbc6b108557a6df1d3bca6103e8d35099ea196c69e6f6691455cd66bc7d4c68:d7200d5e24d18d1ed2072054905dd28a17ccda8890f5929dc75b738fd3b56a1b5740167"
+		},
+		{
+			"key": "credStorageContent",
+			"value": "{\\n        \\\"@context\\\": [\\n            \\\"https://www.w3.org/2018/credentials/v1\\\",\\n            \\\"https://www.w3.org/2018/credentials/examples/v1\\\",\\n            \\\"https://ssiproject.inf.um.es/security/psms/v1\\\",\\n            \\\"https://ssiproject.inf.um.es/poc/context/v1\\\"\\n        ],\\n        \\\"credentialSubject\\\": {\\n            \\\"PufPK\\\": \\\"Cs2wqw8cJyV6xzM4SakCADYgBr1VVZCVunFYuS2UZLXQ\\\",\\n            \\\"deviceName\\\": \\\"Jason\\\"\\n        },\\n        \\\"expirationDate\\\": \\\"2022-11-03T13:15:26.7000399Z\\\",\\n        \\\"id\\\": \\\"did:erat:dfbc6b108557a6df1d3bca6103e8d35099ea196c69e6f6691455cd66bc7d4c68:d7200d5e24d18d1ed2072054905dd28a17ccda8890f5929dc75b738fd3b56a1b5740167\\\",\\n        \\\"issuanceDate\\\": \\\"2022-11-02T09:28:46.7000399Z\\\",\\n        \\\"issuer\\\": \\\"did:erat:dfbc6b108557a6df1d3bca6103e8d35099ea196c69e6f6691455cd66bc7d4c68:d7200d5e24d18d1ed2072054905dd28a17ccda8890f5929dc75b738fd3b56a1b\\\",\\n        \\\"proof\\\": {\\n            \\\"created\\\": \\\"2022-11-02T09:28:46.8529913Z\\\",\\n            \\\"proofPurpose\\\": \\\"assertionMethod\\\",\\n            \\\"proofValue\\\": \\\"BANp5NqZDUHugn0g2ypmlEEtDzG-pFCgdC4A-G00f_RcRFC7mUB35Tt81AvcI-QLKA4ns6i6pPd_YtWPfxMRetksXOqO_3cPCqzoeMUN6gPv29NfoWsuQ--hihyx-JObVwAAOGXqHxGz8H_EDVrYNuJpRkyN6rWSYtzYNJ3zr3xGRixNlzfe0P_dLo1KohPwPAbszwLdtx7BUpbGY4VzHEZ9wF8mNgbbl-wROnUiC3J3NfifwV_JReAYpaqLdijw6gQXAhjV0PKkg4W36irgbmyIIARrX2kNnTTMsywxOxpFaD607-W9HeoNtFo6Q0XQfPIAYDrt3iDsU7G_at_0wzaeWzNFyK-24O3VVAJfsMn6mNT8s7R-rg0WdVJknJncMvYJAhpBBRGfeIYvY-BF0ibqFgKaQuXJpaGg0sjes2naB0592rP5K3pW6kXn7uHKbe4MdhnNl-mWnxn9pQAyy9rbuNFV4NjdwYETxKIMQDOu48cMkZtgqTtjW08mUNrg3jTI2cuc4y7dNAvbhTidnSdAmhICOVwAfPR2upQ6Q1lxqIsESoMSKObdw-aDrtkNoFE\\\",\\n            \\\"type\\\": \\\"PsmsBlsSignature2022\\\",\\n            \\\"verificationMethod\\\": \\\"did:erat:dfbc6b108557a6df1d3bca6103e8d35099ea196c69e6f6691455cd66bc7d4c68:d7200d5e24d18d1ed2072054905dd28a17ccda8890f5929dc75b738fd3b56a1b#AUh_w4_w1KLSOtSdMIMMtvvpSOE65nkPPtW1q2prf0c\\\"\\n        },\\n        \\\"type\\\": \\\"VerifiableCredential\\\"\\n    }\n"
+		},
+		{
+			"key": "DeviceDID",
+			"value": "did:erat:dfbc6b108557a6df1d3bca6103e8d35099ea196c69e6f6691455cd66bc7d4c68:9209b3b585e2e0088511a04a5e7b29016edc7a35de456dd013c29e883a83b268"
+		},
+		{
+			"key": "credStorageContentBytes",
+			"value": ""
+		},
+		{
+			"key": "encodedDID",
+			"value": "enc"
+		},
+		{
+			"key": "trustedIssuerAddress",
+			"value": ""
+		},
+		{
+			"key": "jwt",
+			"value": ""
+		},
+		{
+			"key": "JWT",
+			"value": ""
+		}
+	]
+}
