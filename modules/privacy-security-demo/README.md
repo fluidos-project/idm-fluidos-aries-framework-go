@@ -35,7 +35,7 @@ If not, you have to run the services manually:
 
 ## Running the Demo
 
-1. Replace IPs in [commando.go](../../pkg/controller/command/poc/command.go) file:
+1. Replace IPs in [command.go](../../pkg/controller/command/poc/command.go) file:
 
     - Replace `<PRODUCER_IP>` with your local IP.
     - Replace `<XACML_IP>` with the IP where the XACML is going to be deployed (most probaly your local IP)
@@ -81,7 +81,7 @@ If not, you have to run the services manually:
     ```
 
     - In the [.env](../../PEP-Proxy-Demo/.env) file, replace all occurrence of `<YOUR_IP>` with your local IP.
-
+ 
     ```bash
     docker-compose up -d --build --remove-orphans
     ```
