@@ -56,6 +56,8 @@ If not, you have to run the services manually:
     ./updateCerts.sh
     ```
 
+    - In the [application_gateway.go](../../restapi-server/application-gateway/application_gateway.go) file, replace `<PEER_IP>` with the IP where the Blockchain is deployed (probably your local IP).
+
     ```bash
     docker-compose up -d --build --remove-orphans
     ```
@@ -94,12 +96,18 @@ If not, you have to run the services manually:
 
 7. Run the demo workflow:
 
+    - In the [demo_workflow.py](./examples/demo_workflow.py) file, replace `<YOUR_IP>` with your local IP.
+
     - Workflow 1:
+
     ```bash
     python3 demo_workflow.py
     ```
 
+    - In the [demo_workflow2.py](./examples/demo_workflow2.py) file, replace `<YOUR_IP>` with your local IP.
+
     - Workflow 2:
+    
     ```bash
     python3 demo_workflow2.py
     ```
@@ -110,16 +118,29 @@ The demo follows a sequential workflow. Available steps:
 
 ### Important Notes:
 1. Steps must be executed in order
-2. The VP token is required for steps 5-7
-3. Contract signing (steps 7-8) requires both parties
+2. The VP token and Access Token is required for steps 5-7 in `demo_workflow2.py`, and for steps 6-8 in `demo_workflow.py`.
+3. Contract signing (steps 7-8 or steps 8-9) requires both parties.
+4. To update the expiration time of the Access Token (acutal expiration time is 2 minutes, or 120 seconds), go to the [command.go](../../pkg/controller/command/poc/command.go) file and modify the time (in seconds) in the `expiresAt := issuedAt + 120` line.
 
-### Expected Flow:
+### Expected Flow for demo1:
 1. Generate Consumer DID
 2. Generate Producer DID
 3. Request Consumer Credential from Issuer
 4. Generate Verifiable Presentation
-5. List Flavors (requires VP)
-6. Create Reservation (requires VP)
-7. Perform Purchase (Producer signs)
+5. Obtain Access Token
+5. List Flavors (requires VP and Access Token)
+6. Create Reservation (requires VP and Access Token)
+7. Perform Purchase (requires VP and Access Token, Producer signs)
+8. Consumer Signs Contract
+9. Verify Contract Signatures
+
+### Expected Flow for demo2:
+1. Generate Consumer DID
+2. Generate Producer DID
+3. Request Consumer Credential from Issuer
+4. Generate Verifiable Presentation
+5. List Flavors (requires VP and Access Token)
+6. Create Reservation (requires VP and Access Token)
+7. Perform Purchase (requires VP and Access Token, Producer signs)
 8. Consumer Signs Contract
 9. Verify Contract Signatures

@@ -19,7 +19,7 @@ const (
 	certPath     = cryptoPath + "/cert.pem"
 	keyPath      = cryptoPath + "/key/"
 	tlsCertPath  = cryptoPath + "/ca.crt"
-	peerEndpoint = "172.16.10.118:7051"
+	peerEndpoint = "<PEER_IP>:7051"
 	gatewayPeer  = "peer0.org1.example.com"
 )
 
