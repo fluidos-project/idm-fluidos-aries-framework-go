@@ -5,7 +5,7 @@ import (
 )
 
 // FLUIDOS
-func SetAuthReq(timestamp string, action string, resource string, id string, subject string, decision string) (bool, error) {
+func SetAuthReq(timestamp string, action string, resource string, id string, did string, subject string, decision string) (bool, error) {
 	if err := InitializeConnection(); err != nil {
 		return false, fmt.Errorf("failed to initialize blockchain connection: %v", err)
 	}
@@ -14,7 +14,7 @@ func SetAuthReq(timestamp string, action string, resource string, id string, sub
 	network := gateway.GetNetwork("mychannel")
 	contract := network.GetContract("fluidosAccessHist")
 
-	_, err := contract.SubmitTransaction("CreateAsset", timestamp, action, resource, id, subject, decision)
+	_, err := contract.SubmitTransaction("CreateAsset", timestamp, action, resource, id, did, subject, decision)
 	if err != nil {
 		return false, fmt.Errorf("failed to evaluate transaction: %w", err)
 	}

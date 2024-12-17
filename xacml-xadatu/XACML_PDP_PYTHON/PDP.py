@@ -426,19 +426,21 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                             subjectTypeValue = jsonValue["Request"]["Subject"]["Attribute"]["@AttributeId"]
                             subjectValue = jsonValue["Request"]["Subject"]["Attribute"]["AttributeValue"]
                             resourceValue = jsonValue["Request"]["Resource"]["Attribute"]["AttributeValue"]
+                            subject = subjectValue.split("|")[0]
+                            did = subjectValue.split("|")[1]
                             
                             #logging.info("actionValue: " + actionValue)
                             #logging.info("subjectTypeValue: " + subjectTypeValue)
                             #logging.info("subjectValue: " + subjectValue)
                             #logging.info("resourceValue: " + resourceValue)
-
+                            
                             messageLog = "{ 'Action': '" + actionValue + "', " \
                                         "'SubjectType': '" + subjectTypeValue + "', " \
-                                        "'Subject': '" + subjectValue + "', " \
+                                        "'Subject': '" + subject + "', " \
                                         "'Resource': '" + resourceValue + "' }"
 
                             # To obtain the verdict.
-                            result = obtainVerdict(indexDomain, actionValue, subjectTypeValue, subjectValue, resourceValue)                        
+                            result = obtainVerdict(indexDomain, actionValue, subjectTypeValue, subject, resourceValue)                        
 
                             if ("<Decision>NotApplicable</Decision>" not in result):
 
@@ -454,7 +456,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                                 # Send headers
                                 self.send_header('Content-Type','text/plain; charset=utf-8')
                                 self.send_header('SubjectType',str(subjectTypeValue))
-                                self.send_header('Subject',str(subjectValue))
+                                self.send_header('Subject',str(subject))
                                 self.send_header('Content-Length', str(len(result)))
                                 self.send_headers()
                                 self.end_headers()
@@ -530,6 +532,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                         subjectTypeValue = jsonValue["Request"]["Subject"]["Attribute"]["@AttributeId"]
                         subjectValue = jsonValue["Request"]["Subject"]["Attribute"]["AttributeValue"]
                         resourceValue = jsonValue["Request"]["Resource"]["Attribute"]["AttributeValue"]
+                        subject = subjectValue.split("|")[0]
+                        did = subjectValue.split("|")[1]
                             
                         #logging.info("actionValue: " + actionValue)
                         #logging.info("subjectTypeValue: " + subjectTypeValue)
@@ -538,11 +542,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
                         messageLog = "{ 'Action': '" + actionValue + "', " \
                                             "'SubjectType': '" + subjectTypeValue + "', " \
-                                            "'Subject': '" + subjectValue + "', " \
+                                            "'Subject': '" + subject + "', " \
                                             "'Resource': '" + resourceValue + "' }"
 
                         # To obtain the verdict.
-                        result = obtainVerdict(indexDomain, actionValue, subjectTypeValue, subjectValue, resourceValue)
+                        result = obtainVerdict(indexDomain, actionValue, subjectTypeValue, subject, resourceValue)
 
                         if ("<Decision>Permit</Decision>" in result):
                             decision = "Permit"
@@ -560,19 +564,16 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
                         # Obtain actual date in ISO format
                         date = datetime.now().isoformat()
-                        id_string = f"{actionValue}{subjectValue}{date}{decision}{resourceValue}"
+                        id_string = f"{actionValue}{subject}{date}{decision}{resourceValue}"
                         unique_id = hashlib.md5(id_string.encode()).hexdigest()
-
-                        subjectValue = jsonValue["Request"]["Subject"]["Attribute"]["AttributeValue"]
-                        resourceValue = jsonValue["Request"]["Resource"]["Attribute"]["AttributeValue"]
-                        actionValue = jsonValue["Request"]["Action"]["Attribute"]["AttributeValue"]
 
                         json_data = {
                             "Action": actionValue,
-                            "Subject": subjectValue,
+                            "Subject": subject,
                             "Resource": resourceValue,
                             "Timestamp": date,
                             "Id": unique_id,
+                            "DID": did,
                             "Decision": decision
                         }
 
@@ -591,7 +592,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
                         # Send headers
                         self.send_header('Content-Type','text/plain; charset=utf-8')
                         self.send_header('SubjectType',str(subjectTypeValue))
-                        self.send_header('Subject',str(subjectValue))
+                        self.send_header('Subject',str(subject))
                         self.send_header('Content-Length', str(len(result)))
                         self.send_headers()
                         self.end_headers()

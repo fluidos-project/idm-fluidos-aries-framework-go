@@ -157,7 +157,8 @@ async def generate_verifiable_presentation():
         "credentialSubject": {
             "@explicit": True,
             "fluidosRole": {},
-            "holderName": {}
+            "holderName": {},
+            "DID": {}
         }
     }
     
@@ -178,16 +179,12 @@ async def generate_verifiable_presentation():
 
 async def obtain_access_token(endpoint, method):
     global access_tokens
-
-    if endpoint in access_tokens:
-        print(f"There is a token stored for the {endpoint} endpoint.")
-        return True
     
     print(f"Obtaining Access Token for {endpoint} endpoint...")
 
     first_result = verifiable_presentation["results"][0]
     result_string = json.dumps(first_result).replace('\'', '\"')
-    print(f"Sending Verifiable Presentation for verification...")
+    print(f"Sending Verifiable Presentation to Producer IDM for verification and authentication...")
 
     data = {
         "credential": f"{result_string}",
@@ -200,9 +197,14 @@ async def obtain_access_token(endpoint, method):
         verify=False
     )
 
+    if response.json()['result'] is False:
+        print("Unauthorized in XACML")
+        return False
+    
+    print("Credentials verified!")
     verificationResponse = response.json()
     access_token = verificationResponse.get('accessToken', '')
-    print(f"Access Token: {access_token}")
+    print(f"Access Token stored for {endpoint}: {access_token}")
     access_tokens[endpoint] = access_token
     return True
 
@@ -215,9 +217,15 @@ async def list_flavors_with_vp():
         return False
 
     endpoint = f"{PEP_PROXY}/producer/flavors"
-    await obtain_access_token(endpoint, "GET")
+    print(f"Checking if there is a token stored for {endpoint} ...")
+    if endpoint in access_tokens:
+        print(f"There is a token stored for {endpoint}")
+    else:
+        print(f"There is no token stored for {endpoint}")
+        if await obtain_access_token(endpoint, "GET") is False:
+            return False
        
-    print("Listing flavors with VP authentication...")
+    print("Listing flavors with VP authentication and Access Token...")
     
     # Get the first VP from results array
     vp = verifiable_presentation["results"][0]
@@ -237,7 +245,7 @@ async def list_flavors_with_vp():
         print(f"The Access Token for {endpoint} endpoint has expired. Requesting a new one...")
         access_tokens.pop(endpoint)
         await obtain_access_token(endpoint, "GET")
-        print(f"Repeating the request to the {endpoint} endpoint")
+        print(f"Repeating the request to {endpoint}")
         headers["x-auth-token"] = access_tokens[endpoint]
         response = requests.get(
             f"{PEP_PROXY}/producer/flavors",
@@ -245,7 +253,9 @@ async def list_flavors_with_vp():
             verify=False
         )
 
-    if response.status_code != 200:
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to list flavors.")
+    else:
         print("There is an error with the Access Token.")
         return False
     
@@ -267,12 +277,19 @@ async def list_flavors_with_vp():
 async def create_reservation():
     global reservation_data
     global access_tokens
+
     if not selected_flavor or not verifiable_presentation:
         print("Error: Select a flavor and generate VP first!")
         return False
     
     endpoint = f'{PEP_PROXY}/producer/reservations?flavor_id={selected_flavor["flavorId"]}'
-    await obtain_access_token(endpoint, "POST")
+    print(f"Checking if there is a token stored for {endpoint} ...")
+    if endpoint in access_tokens:
+        print(f"There is a token stored for {endpoint}")
+    else:
+        print(f"There is no token stored for {endpoint}")
+        if await obtain_access_token(endpoint, "POST") is False:
+            return False
         
     print("Creating reservation...")
     
@@ -289,7 +306,7 @@ async def create_reservation():
         verify=False
     )
 
-    # Check if the Access Token has expired. If it is expired, request a new one
+    # Check if the Access Token has expired. If it has expired expired, request a new one
     if response.status_code == 401:
         print(f"The Access Token for {endpoint} endpoint has expired. Requesting a new one...")
         access_tokens.pop(endpoint)
@@ -303,7 +320,9 @@ async def create_reservation():
             verify=False
         )
 
-    if response.status_code != 200:
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to reserve flavor '{selected_flavor['flavorId']}'")
+    else:
         print("There is an error with the Access Token.")
         return False
     
@@ -321,7 +340,13 @@ async def perform_purchase():
         return False
     
     endpoint = f"{PEP_PROXY}/producer/reservations/.*/purchase"
-    await obtain_access_token(endpoint, "POST")
+    print(f"Checking if there is a token stored for {endpoint} ...")
+    if endpoint in access_tokens:
+        print(f"There is a token stored for {endpoint}")
+    else:
+        print(f"There is no token stored for {endpoint}")
+        if await obtain_access_token(endpoint, "POST") is False:
+            return False
         
     print("Performing purchase...")
     
@@ -352,7 +377,9 @@ async def perform_purchase():
             verify=False
         )
 
-    if response.status_code != 200:
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to purchase reservation '{reservation_data['reservation']['id']}'.")
+    else:
         print("There is an error with the Access Token.")
         return False
     

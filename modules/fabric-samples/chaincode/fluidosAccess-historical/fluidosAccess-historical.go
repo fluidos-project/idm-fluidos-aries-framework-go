@@ -22,6 +22,7 @@ type Asset struct {
 	Action    string `json:"Action"`
 	Resource  string `json:"Resource"`
 	ID        string `json:"ID"`
+	DID       string `json:"DID"`
 	Subject   string `json:"Subject"`
 	Decision  string `json:"Decision"`
 }
@@ -46,7 +47,7 @@ func (s *SmartContract) InitLedger(ctx contractapi.TransactionContextInterface) 
 }
 
 // CreateAsset issues a new asset to the world state with given details.
-func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface, timestamp string, action string, resource string, id string, subject string, decision string) error {
+func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface, timestamp string, action string, resource string, id string, did string, subject string, decision string) error {
 	exists, err := s.AssetExists(ctx, id)
 	if err != nil {
 		return err
@@ -60,6 +61,7 @@ func (s *SmartContract) CreateAsset(ctx contractapi.TransactionContextInterface,
 		Timestamp: timestamp,
 		Action:    action,
 		Resource:  resource,
+		DID:       did,
 		Subject:   subject,
 		Decision:  decision,
 	}

@@ -150,7 +150,7 @@ type FrameFluidosVC struct {
 	Context           []string               `json:"@context,omitempty"`
 	Type              []string               `json:"type,omitempty"`
 	Explicit          bool                   `json:"@explicit,omitempty"`
-	Identifier        string                 `json:"identifier,omitempty"`
+	Identifier        string                 `json:"id,omitempty"`
 	Issuer            string                 `json:"issuer,omitempty"`
 	IssuanceDate      string                 `json:"issuanceDate,omitempty"`
 	CredentialSubject map[string]interface{} `json:"credentialSubject,omitempty"`

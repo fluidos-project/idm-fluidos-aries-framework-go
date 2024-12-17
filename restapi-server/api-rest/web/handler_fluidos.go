@@ -15,6 +15,7 @@ type AuthReqPayload struct {
 	Timestamp string `json:"timestamp"`
 	Subject   string `json:"subject"`
 	Action    string `json:"action"`
+	DID       string `json:"did"`
 	Resource  string `json:"resource"`
 	Decision  string `json:"decision"`
 }
@@ -50,13 +51,13 @@ func RegisterAuthReq(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//Validate the required fields
-	if payload.Id == "" || payload.Timestamp == "" || payload.Subject == "" ||
+	if payload.Id == "" || payload.Timestamp == "" || payload.Subject == "" || payload.DID == "" ||
 		payload.Action == "" || payload.Resource == "" || payload.Decision == "" {
 		http.Error(w, "Missing parameters in JSON", http.StatusBadRequest)
 		return
 	}
 
-	registered, err := application_gateway.SetAuthReq(payload.Timestamp, payload.Action, payload.Resource, payload.Id, payload.Subject, payload.Decision)
+	registered, err := application_gateway.SetAuthReq(payload.Timestamp, payload.Action, payload.Resource, payload.Id, payload.DID, payload.Subject, payload.Decision)
 
 	if registered {
 		w.WriteHeader(http.StatusOK)

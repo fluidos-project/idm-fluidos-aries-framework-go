@@ -158,7 +158,8 @@ async def generate_verifiable_presentation():
         "credentialSubject": {
             "@explicit": True,
             "fluidosRole": {},
-            "holderName": {}
+            "holderName": {},
+            "DID": {}
         }
     }
     
@@ -179,10 +180,11 @@ async def generate_verifiable_presentation():
 
 async def obtain_access_token():
     global access_token
+
     print("Obtaining Access Token...")
     first_result = verifiable_presentation["results"][0]
     result_string = json.dumps(first_result).replace('\'', '\"')
-    print(f"Sending Verifiable Presentation for verification...")
+    print(f"Sending Verifiable Presentation to Producer's IDM for verification and authentication...")
 
     data = {
         "credential": f"{result_string}"
@@ -194,6 +196,11 @@ async def obtain_access_token():
         verify=False
     )
 
+    if response.json()['result'] is False:
+        print("Unauthorized in XACML")
+        return False
+    
+    print("Credentials verified!")
     verificationResponse = response.json()
     access_token = verificationResponse.get('accessToken', '')
     print(f"Access Token: {access_token}")
@@ -224,6 +231,18 @@ async def list_flavors_with_vp():
         headers=headers,
         verify=False
     )
+
+    # Check if the Access Token has expired. If it is expired, request a new one
+    if response.status_code == 401:
+        print(f"The Access Token has expired. Request a new one...")
+        return False
+
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to list flavors.")
+    else:
+        print("There is an error with the Access Token.")
+        return False
+    
     flavors = response.json()
     print("Available flavors:")
     pprint(flavors)
@@ -259,6 +278,18 @@ async def create_reservation():
         headers=headers,
         verify=False
     )
+
+    # Check if the Access Token has expired. If it is expired, request a new one
+    if response.status_code == 401:
+        print(f"The Access Token has expired. Request a new one...")
+        return False
+
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to reserve flavor '{selected_flavor['flavorId']}'.")
+    else:
+        print("There is an error with the Access Token.")
+        return False
+    
     reservation_data = response.json()
     print("Reservation created:")
     pprint(reservation_data)
@@ -284,6 +315,18 @@ async def perform_purchase():
         headers=headers,
         verify=False
     )
+
+    # Check if the Access Token has expired. If it is expired, request a new one
+    if response.status_code == 401:
+        print(f"The Access Token has expired. Request a new one...")
+        return False
+
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to purchase reservation '{reservation_data['reservation']['id']}'.")
+    else:
+        print("There is an error with the Access Token.")
+        return False
+    
     contract_data = response.json()
     print("Purchase contract generated:")
     pprint(contract_data)

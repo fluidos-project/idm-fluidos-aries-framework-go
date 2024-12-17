@@ -1310,11 +1310,17 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 
 	// Get Attributes from VP
 	requester := "issuer"
+	requesterDid := "did"
+
 	if len(vp.VerifiableCredential) > 0 {
 		credential := vp.VerifiableCredential[0]
 
-		if fluidosRole, ok := credential.CredentialSubject["holderName"].(string); ok {
+		if fluidosRole, ok := credential.CredentialSubject["fluidosRole"].(string); ok {
 			requester = fluidosRole
+		}
+
+		if did, oke := credential.CredentialSubject["DID"].(string); oke {
+			requesterDid = did
 		}
 	}
 
@@ -1323,7 +1329,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	var resource string
 
 	if request.Endpoint == "" {
-		resource = "https://172.16.10.118:1027/producer/.*"
+		resource = "https://<PRODUCER_IP>:1027/producer/.*"
 	} else {
 		resource = request.Endpoint
 	}
@@ -1337,7 +1343,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	result = "not verified"
 	var authorized bool
 	authorized = false
-	authorized, err = checkXACML(requester, resource, method)
+	authorized, err = checkXACML(requester, resource, method, requesterDid)
 	if err != nil {
 		response.Verified = false
 		logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "Unauthorized in XACML")
@@ -1346,7 +1352,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	}
 
 	//Create Access Token
-	accessToken, err := generateAccessToken(o, token, resource, method, requester)
+	accessToken, err := generateAccessToken(o, token, resource, method, requester, requesterDid)
 	if err != nil {
 		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized, Error: err.Error()}, logger)
 	}
@@ -1358,8 +1364,9 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 
 }
 
-func checkXACML(subject, resource, action string) (bool, error) {
+func checkXACML(subject, resource, action, requesterDid string) (bool, error) {
 	// Build XML request fro XACML
+	subject = subject + "|" + requesterDid
 	reqBody := fmt.Sprintf(`
         <Request xmlns="urn:oasis:names:tc:xacml:2.0:context:schema:os">
             <Subject SubjectCategory="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
@@ -1414,7 +1421,7 @@ func checkXACML(subject, resource, action string) (bool, error) {
 	return false, errors.New("not Applicable in XACML")
 }
 
-func generateAccessToken(o *Command, token, resource, action, subject string) (string, error) {
+func generateAccessToken(o *Command, token, resource, action, subject, did string) (string, error) {
 	// Get actual time in Unix format
 	issuedAt := time.Now().Unix()
 
@@ -1423,6 +1430,7 @@ func generateAccessToken(o *Command, token, resource, action, subject string) (s
 
 	// Create JWT content
 	content := map[string]interface{}{
+		"did":      did,
 		"sub":      subject,
 		"resource": resource,
 		"method":   action,

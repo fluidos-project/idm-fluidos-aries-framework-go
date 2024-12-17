@@ -35,16 +35,73 @@ If not, you have to run the services manually:
 
 ## Running the Demo
 
-1. Navigate to the demo directory:
+1. Replace IPs in [commando.go](../../pkg/controller/command/poc/command.go) file:
+
+    - Replace `<PRODUCER_IP>` with your local IP.
+    - Replace `<XACML_IP>` with the IP where the XACML is going to be deployed (most probaly your local IP)
+
+2. Run the IDM scenario
+
+    ```bash
+    make run-openapi-demo 
+    ```
+
+3. Navigate to the API REST server direcetory and deploy the component:
+
+    ```bash
+    cd restapi-server
+    ```
+
+    ```bash
+    ./updateCerts.sh
+    ```
+
+    ```bash
+    docker-compose up -d --build --remove-orphans
+    ```
+
+4. Navigate to the XADATU XACML directory and deploy yhe component.
+
+    ```bash
+    cd xacml-xadatu
+    ```
+
+    - In the [.env](./../../xacml-xadatu/.env) file, replace `<rest-api_ip>` with the IP where the REST API server is deployed (probably your local IP).
+
+    - In the [PDP.py](./../../xacml-xadatu/XACML_PDP_PYTHON/PDP.py) file, replace `<REST-API_IP>` with the IP were the REST API server is deployed (probably your local IP).
+
+    ```bash
+    docker-compose up -d --build --remove-orphans
+    ```
+
+5. Navigate to the PEP-Proxy directory for the demo and deploy de component:
+
+    ```bash
+    cd PEP-Proxy-Demo
+    ```
+
+    - In the [.env](../../PEP-Proxy-Demo/.env) file, replace all occurrence of `<YOUR_IP>` with your local IP.
+
+    ```bash
+    docker-compose up -d --build --remove-orphans
+    ```
+
+6. Navigate to the demo directory:
 
     ```bash
     cd modules/privacy-security-demo/examples
     ```
 
-2. Run the demo workflow:
+7. Run the demo workflow:
 
+    - Workflow 1:
     ```bash
     python3 demo_workflow.py
+    ```
+
+    - Workflow 2:
+    ```bash
+    python3 demo_workflow2.py
     ```
 
 ## Demo Steps
