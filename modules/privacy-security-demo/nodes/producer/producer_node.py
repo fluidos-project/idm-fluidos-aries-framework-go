@@ -108,13 +108,9 @@ async def verify_credential(request: Dict[str, Any]) -> Dict[str, Any]:
             raise HTTPException(status_code=400, detail="Credential is required")
             
         return await security_manager.verify_credential(
-<<<<<<< HEAD
-            credential=request.get("credential")
-=======
             credential=request.get("credential"),
             endpoint=request.get("endpoint"),
             method=request.get("method")
->>>>>>> origin/opencall-XADATU
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -202,8 +198,4 @@ async def create_reservation(flavor_id: str) -> Dict[str, Any]:
         reservation = await rear_client.create_reservation(flavor_id, producer_info)
         return {"status": "success", "reservation": reservation}
     except Exception as e:
-<<<<<<< HEAD
         raise HTTPException(status_code=500, detail=str(e))
-=======
-        raise HTTPException(status_code=500, detail=str(e))
->>>>>>> origin/opencall-XADATU
