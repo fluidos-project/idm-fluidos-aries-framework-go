@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "9e60b3e5-d9b0-41c6-93c0-b6eefc727e63",
+		"name": "XACML-PAP-BACKEND-Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "obtainattributes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "domain",
+						"value": "domain1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9090/obtainattributes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"obtainattributes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveattributes",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "domain",
+						"value": "domain1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"prueba\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:ietf:params:scim:schemas:core:2.0:username\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"subject\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   },\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"prueba@email\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:ietf:params:scim:schemas:core:2.0:email\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"subject\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   },\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"prueba_id\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:ietf:params:scim:schemas:core:2.0:id\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"subject\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   },\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"GET\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"action\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   },\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"POST\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"action\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   },\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"DELETE\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"action\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   },\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"http:/resource1\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"resource\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   },\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"http:/resource2\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"resource\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   },\n   {\n      \"name\": {\"type\": \"Property\",\"value\": \"http:/resource3\"},\n      \"xacml_id\": {\"type\": \"Property\",\"value\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"},\n      \"sortedValue\": {\"type\": \"Property\",\"value\": \"resource\"},\n      \"xacml_DataType\": {\"type\": \"Property\",\"value\": \"#string\"}\n   }\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/saveattributes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"saveattributes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtainpolicies",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "domain",
+						"value": "domain1",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:9090/obtainpolicies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"obtainpolicies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "savepolicies",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "domain",
+						"value": "domain1",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n   {\n\t\"PolicyId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"pol1\"\n\t},\n\t\"RuleCombiningAlgId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\"\n\t},\n\t\"Rules\": [\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule1\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Deny\"\n\t\t\t}\n\t\t}\n\t]\n   },\n   {\n\t\"PolicyId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"pol2\"\n\t},\n\t\"RuleCombiningAlgId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\"\n\t},\n\t\"Rules\": [\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule2-1\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Permit\"\n\t\t\t},\n\t\t\t\"Resources\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource1\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule2-2\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Deny\"\n\t\t\t},\n\t\t\t\"Subjects\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:username\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule2-3\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Permit\"\n\t\t\t},\n\t\t\t\"Actions\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"POST\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n   },\n   {\n\t\"PolicyId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"pol3\"\n\t},\n\t\"RuleCombiningAlgId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\"\n\t},\n\t\"Rules\": [\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule3-1\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Deny\"\n\t\t\t},\n\t\t\t\"Resources\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource2\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource3\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule3-2\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Permit\"\n\t\t\t},\n\t\t\t\"Subjects\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba_id\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:username\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule3-3\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Deny\"\n\t\t\t},\n\t\t\t\"Actions\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"POST\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"GET\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n   },\n   {\n\t\"PolicyId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"pol4\"\n\t},\n\t\"RuleCombiningAlgId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\"\n\t},\n\t\"Rules\": [\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule4-1\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Permit\"\n\t\t\t},\n\t\t\t\"Subjects\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba@email\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:email\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Resources\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource2\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource3\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Actions\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"DELETE\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule4-2\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Deny\"\n\t\t\t},\n\t\t\t\"Subjects\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba_id\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba@email\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:email\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Resources\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource2\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Actions\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"DELETE\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule4-3\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Permit\"\n\t\t\t},\n\t\t\t\"Subjects\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba_id\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:id\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Resources\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource3\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Actions\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"DELETE\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"GET\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n   },\n   {\n\t\"PolicyId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"pol0\"\n\t},\n\t\"RuleCombiningAlgId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\"\n\t}\n   },\n   {\n\t\"PolicyId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"pol5\"\n\t},\n\t\"RuleCombiningAlgId\": {\n\t\t\"type\": \"Property\",\n\t\t\"value\": \"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\"\n\t},\n\t\"Rules\": [\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule5-1\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Deny\"\n\t\t\t},\n\t\t\t\"Subjects\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba_id\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba@email\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:email\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Resources\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource2\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource3\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Actions\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"DELETE\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule5-2\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Permit\"\n\t\t\t},\n\t\t\t\"Subjects\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba_id\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:id\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Resources\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource2\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource3\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Actions\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"POST\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"DELETE\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t},\n\t\t{\n\t\t\t\"RuleId\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"rule5-3\"\n\t\t\t},\n\t\t\t\"Effect\": {\n\t\t\t\t\"type\": \"Property\",\n\t\t\t\t\"value\": \"Deny\"\n\t\t\t},\n\t\t\t\"Subjects\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:username\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"prueba@email\",\n\t\t\t\t\"AttributeId\": \"urn:ietf:params:scim:schemas:core:2.0:email\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Resources\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"http:/resource3\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:resource:resource-id\"\n\t\t\t\t}\n\t\t\t],\n\t\t\t\"Actions\": [\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"POST\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t},\n\t\t\t\t{\n\t\t\t\t\"AttributeValue\": \"DELETE\",\n\t\t\t\t\"AttributeId\": \"urn:oasis:names:tc:xacml:1.0:action:action-id\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t]\n   }\n]\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/savepolicies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"savepolicies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtaindomains",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/obtaindomains",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"obtaindomains"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

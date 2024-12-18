@@ -9,10 +9,17 @@ class ConsumerSettings(BaseSettings):
     CONSUMER_IP: str = "localhost:8083"
     
     # Privacy Security Manager API
+<<<<<<< HEAD
     SECURITY_MANAGER_URL: str = "http://10.208.99.115:8082"
     
     # REAR API connection
     REAR_API_URL: str = "http://localhost:3002"
+=======
+    SECURITY_MANAGER_URL: str = "http://localhost:8082"
+    
+    # REAR API connection
+    REAR_API_URL: str = "http://localhost:3003"
+>>>>>>> origin/opencall-XADATU
     
     class Config:
         env_file = ".env"

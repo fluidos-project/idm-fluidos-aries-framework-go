@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PolicySet xmlns="urn:oasis:names:tc:xacml:2.0:policy:schema:os" PolicyCombiningAlgId="urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable" PolicySetId="POLICY_SET">
+  <Target />
+
+
+
+  <Policy PolicyId="policy0" RuleCombiningAlgId="urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable">
+    <Target />
+
+
+
+    <Rule Effect="Permit" RuleId="policy0rule1">
+      <Target />
+    </Rule>
+
+
+
+  </Policy>
+
+
+
+</PolicySet>

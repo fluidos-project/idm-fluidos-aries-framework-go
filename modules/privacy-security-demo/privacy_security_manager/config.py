@@ -2,14 +2,24 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # API Configurations
+<<<<<<< HEAD
     PRODUCER_AGENT_HOST: str = "10.208.99.115"
     PRODUCER_AGENT_PORT: int = 9082
     CONSUMER_AGENT_HOST: str = "10.208.99.115"
+=======
+    PRODUCER_AGENT_HOST: str = "localhost"
+    PRODUCER_AGENT_PORT: int = 9082
+    CONSUMER_AGENT_HOST: str = "localhost"
+>>>>>>> origin/opencall-XADATU
     CONSUMER_AGENT_PORT: int = 8082
     
     # REAR API Configuration
     REAR_API_HOST: str = "localhost"
+<<<<<<< HEAD
     REAR_API_PORT: int = 3002
+=======
+    REAR_API_PORT: int = 3003
+>>>>>>> origin/opencall-XADATU
 
     # API Endpoints
     GENERATE_DID_ENDPOINT: str = "/fluidos/idm/generateDID"

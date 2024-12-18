@@ -8,7 +8,11 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 PRODUCER_URL = "http://localhost:9083"
+<<<<<<< HEAD
 REAR_API_URL = "http://localhost:3002"
+=======
+REAR_API_URL = "http://localhost:3003"
+>>>>>>> origin/opencall-XADATU
 
 def print_separator():
     print("\n" + "="*80 + "\n")

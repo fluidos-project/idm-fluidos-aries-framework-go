@@ -5,7 +5,7 @@ from datetime import datetime
 # API endpoints
 PRODUCER_URL = "http://localhost:9083"
 CONSUMER_URL = "http://localhost:8083"
-REAR_API_URL = "http://localhost:3002"
+REAR_API_URL = "http://localhost:3003"
 
 async def run_workflow():
     # 1. Generate DIDs for both producer and consumer

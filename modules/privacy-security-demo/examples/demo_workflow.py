@@ -13,7 +13,12 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 CONSUMER_URL = "http://localhost:8083"
 PRODUCER_URL = "http://localhost:9083"
+<<<<<<< HEAD
 REAR_API_URL = "http://localhost:3002"
+=======
+REAR_API_URL = "http://localhost:3003"
+PEP_PROXY = "https://<YOUR_IP>:1027"
+>>>>>>> origin/opencall-XADATU
 
 # Global variables to store workflow state
 consumer_did = None
@@ -23,6 +28,10 @@ selected_flavor = None
 reservation_data = None
 contract_data = None
 cred_storage_id = None
+<<<<<<< HEAD
+=======
+access_token = None
+>>>>>>> origin/opencall-XADATU
 
 def print_separator():
     print("\n" + "="*80 + "\n")
@@ -39,11 +48,20 @@ def print_menu():
     print("2. Generate Producer DID")
     print("3. Request Consumer Credential")
     print("4. Generate Verifiable Presentation")
+<<<<<<< HEAD
     print("5. List Flavors (with VP auth)")
     print("6. Create Reservation (with VP auth)")
     print("7. Perform Purchase and Producer Signs")
     print("8. Consumer Signs Contract")
     print("9. Verify Contract Signatures")
+=======
+    print("5. Obtain Access Token")
+    print("6. List Flavors (with VP auth and Access Token)")
+    print("7. Create Reservation (with VP auth and Access Token)")
+    print("8. Perform Purchase and Producer Signs (with VP auth and Access Token)")
+    print("9. Consumer Signs Contract")
+    print("10. Verify Contract Signatures")
+>>>>>>> origin/opencall-XADATU
     print("0. Exit")
     print_separator()
 
@@ -143,7 +161,13 @@ async def generate_verifiable_presentation():
     frame = {
         "@context": [
             "https://www.w3.org/2018/credentials/v1",
+<<<<<<< HEAD
             "https://ssiproject.inf.um.es/security/psms/v1"
+=======
+            "https://www.w3.org/2018/credentials/examples/v1",
+            "https://ssiproject.inf.um.es/security/psms/v1",
+            "https://ssiproject.inf.um.es/poc/context/v1"
+>>>>>>> origin/opencall-XADATU
         ],
         "type": ["VerifiableCredential", "FluidosCredential"],
         "@explicit": True,
@@ -153,7 +177,12 @@ async def generate_verifiable_presentation():
         "credentialSubject": {
             "@explicit": True,
             "fluidosRole": {},
+<<<<<<< HEAD
             "holderName": {}
+=======
+            "holderName": {},
+            "DID": {}
+>>>>>>> origin/opencall-XADATU
         }
     }
     
@@ -172,10 +201,50 @@ async def generate_verifiable_presentation():
     pprint(verifiable_presentation)
     return True
 
+<<<<<<< HEAD
 async def list_flavors_with_vp():
     global selected_flavor
     if not verifiable_presentation:
         print("Error: Generate Verifiable Presentation first!")
+=======
+async def obtain_access_token():
+    global access_token
+
+    print("Obtaining Access Token...")
+    first_result = verifiable_presentation["results"][0]
+    result_string = json.dumps(first_result).replace('\'', '\"')
+    print(f"Sending Verifiable Presentation to Producer's IDM for verification and authentication...")
+
+    data = {
+        "credential": f"{result_string}"
+    }
+
+    response = requests.post(
+        f"{PRODUCER_URL}/fluidos/idm/verifyCredential",
+        json=data,
+        verify=False
+    )
+
+    if response.json()['result'] is False:
+        print("Unauthorized in XACML")
+        return False
+    
+    print("Credentials verified!")
+    verificationResponse = response.json()
+    access_token = verificationResponse.get('accessToken', '')
+    print(f"Access Token: {access_token}")
+    return True
+
+async def list_flavors_with_vp():
+    global selected_flavor
+    
+    #if not verifiable_presentation:
+    #    print("Error: Generate Verifiable Presentation first!")
+    #    return False
+    
+    if not access_token:
+        print("Error: Obtain an Access Token first!")
+>>>>>>> origin/opencall-XADATU
         return False
         
     print("Listing flavors with VP authentication...")
@@ -183,6 +252,7 @@ async def list_flavors_with_vp():
     # Get the first VP from results array
     vp = verifiable_presentation["results"][0]
     headers = {
+<<<<<<< HEAD
         "Authorization": f"Bearer {json.dumps(vp)}"
     }
     
@@ -191,6 +261,29 @@ async def list_flavors_with_vp():
         headers=headers,
         verify=False
     )
+=======
+        "Authorization": f"Bearer {json.dumps(vp)}",
+        "x-auth-token": access_token
+    }
+    
+    response = requests.get(
+        f"{PEP_PROXY}/producer/flavors",
+        headers=headers,
+        verify=False
+    )
+
+    # Check if the Access Token has expired. If it is expired, request a new one
+    if response.status_code == 401:
+        print(f"The Access Token has expired. Request a new one...")
+        return False
+
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to list flavors.")
+    else:
+        print("There is an error with the Access Token.")
+        return False
+    
+>>>>>>> origin/opencall-XADATU
     flavors = response.json()
     print("Available flavors:")
     pprint(flavors)
@@ -216,15 +309,39 @@ async def create_reservation():
     
     vp = verifiable_presentation["results"][0]
     headers = {
+<<<<<<< HEAD
         "Authorization": f"Bearer {json.dumps(vp)}"
     }
     
     response = requests.post(
         f"{PRODUCER_URL}/producer/reservations",
+=======
+        "Authorization": f"Bearer {json.dumps(vp)}",
+        "x-auth-token": access_token
+    }
+    
+    response = requests.post(
+        f"{PEP_PROXY}/producer/reservations",
+>>>>>>> origin/opencall-XADATU
         params={"flavor_id": selected_flavor["flavorId"]},
         headers=headers,
         verify=False
     )
+<<<<<<< HEAD
+=======
+
+    # Check if the Access Token has expired. If it is expired, request a new one
+    if response.status_code == 401:
+        print(f"The Access Token has expired. Request a new one...")
+        return False
+
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to reserve flavor '{selected_flavor['flavorId']}'.")
+    else:
+        print("There is an error with the Access Token.")
+        return False
+    
+>>>>>>> origin/opencall-XADATU
     reservation_data = response.json()
     print("Reservation created:")
     pprint(reservation_data)
@@ -240,15 +357,39 @@ async def perform_purchase():
     
     vp = verifiable_presentation["results"][0]
     headers = {
+<<<<<<< HEAD
         "Authorization": f"Bearer {json.dumps(vp)}"
+=======
+        "Authorization": f"Bearer {json.dumps(vp)}",
+        "x-auth-token": access_token
+>>>>>>> origin/opencall-XADATU
     }
     
     # Step 1: Generate contract through purchase
     response = requests.post(
+<<<<<<< HEAD
         f"{PRODUCER_URL}/producer/reservations/{reservation_data['reservation']['id']}/purchase",
         headers=headers,
         verify=False
     )
+=======
+        f"{PEP_PROXY}/producer/reservations/{reservation_data['reservation']['id']}/purchase",
+        headers=headers,
+        verify=False
+    )
+
+    # Check if the Access Token has expired. If it is expired, request a new one
+    if response.status_code == 401:
+        print(f"The Access Token has expired. Request a new one...")
+        return False
+
+    if response.status_code == 200:
+        print(f"Consumer with Did '{consumer_did['didDoc']['id']}' and role '{verifiable_presentation['results'][0]['verifiableCredential'][0]['credentialSubject']['fluidosRole']}' is authorized to purchase reservation '{reservation_data['reservation']['id']}'.")
+    else:
+        print("There is an error with the Access Token.")
+        return False
+    
+>>>>>>> origin/opencall-XADATU
     contract_data = response.json()
     print("Purchase contract generated:")
     pprint(contract_data)
@@ -312,7 +453,11 @@ async def verify_contract():
 async def main():
     while True:
         print_menu()
+<<<<<<< HEAD
         choice = input("Select step (0-9): ")
+=======
+        choice = input("Select step (0-10): ")
+>>>>>>> origin/opencall-XADATU
         print_separator()
         
         try:
@@ -327,6 +472,7 @@ async def main():
             elif choice == "4":
                 await generate_verifiable_presentation()
             elif choice == "5":
+<<<<<<< HEAD
                 await list_flavors_with_vp()
             elif choice == "6":
                 await create_reservation()
@@ -335,6 +481,18 @@ async def main():
             elif choice == "8":
                 await consumer_sign_contract()
             elif choice == "9":
+=======
+                await obtain_access_token()
+            elif choice == "6":
+                await list_flavors_with_vp()
+            elif choice == "7":
+                await create_reservation()
+            elif choice == "8":
+                await perform_purchase()
+            elif choice == "9":
+                await consumer_sign_contract()
+            elif choice == "10":
+>>>>>>> origin/opencall-XADATU
                 await verify_contract()
         except Exception as e:
             print(f"Error: {str(e)}")
@@ -344,3 +502,7 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/opencall-XADATU

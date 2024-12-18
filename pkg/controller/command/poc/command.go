@@ -5,10 +5,13 @@ import (
 	"crypto/tls"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"math/rand"
 	"net/http"
+	"regexp"
 	"runtime"
 	"strconv"
 	"strings"
@@ -57,30 +60,30 @@ const (
 	CommandName = "poc"
 
 	// command methods.
-	NewDIDCommandMethod            = "NewDID"
-	DoDeviceEnrolmentCommandMethod = "DoDeviceEnrolment"
-	GenerateVPCommandMethod        = "GenerateVP"
-	GetVCredentialCommandMethod    = "GetVCredential"
-	AcceptEnrolmentCommandMethod   = "AcceptEnrolment"
-	VerifyCredentialCommandMethod  = "ValidateVP" 
-	TestingCallMethod		       = "TestingCall"
-	GetTrustedIssuerListMethod     = "GetTrustedIssuerList"
-	SignJWTContentCommandMethod	= "SignJWTContent"
-	VerifyJWTContentCommandMethod	= "VerifyJWTContent"
-	SignContractCommandMethod		= "SignContract"
-	VerifyContractSignatureCommandMethod   = "VerifyContractSignature"
+	NewDIDCommandMethod                  = "NewDID"
+	DoDeviceEnrolmentCommandMethod       = "DoDeviceEnrolment"
+	GenerateVPCommandMethod              = "GenerateVP"
+	GetVCredentialCommandMethod          = "GetVCredential"
+	AcceptEnrolmentCommandMethod         = "AcceptEnrolment"
+	VerifyCredentialCommandMethod        = "ValidateVP"
+	TestingCallMethod                    = "TestingCall"
+	GetTrustedIssuerListMethod           = "GetTrustedIssuerList"
+	SignJWTContentCommandMethod          = "SignJWTContent"
+	VerifyJWTContentCommandMethod        = "VerifyJWTContent"
+	SignContractCommandMethod            = "SignContract"
+	VerifyContractSignatureCommandMethod = "VerifyContractSignature"
 
 	// error messages.
-	errEmptyNewDID   = "keys is mandatory"
-	errEmptyUrl      = "url is mandatory"
-	errEmptyDID      = "theirDid is mandatory"
-	errEmptyIdProofs = "idProofs is mandatory"
-	erremptyCredId   = "credId is mandatory"
-	errEmptyQueryByFrame    = "querybyframe is mandatory"
-	errEmptyContent = "Content is mandatory"
-	errEmptyJWT	= "JWT is mandatory"
-	errEmptyContract = "Contract is mandatory"
-	errEmptyContractJWT = "Empty contract: you have to provide a contract in json format or jwt format"
+	errEmptyNewDID       = "keys is mandatory"
+	errEmptyUrl          = "url is mandatory"
+	errEmptyDID          = "theirDid is mandatory"
+	errEmptyIdProofs     = "idProofs is mandatory"
+	erremptyCredId       = "credId is mandatory"
+	errEmptyQueryByFrame = "querybyframe is mandatory"
+	errEmptyContent      = "Content is mandatory"
+	errEmptyJWT          = "JWT is mandatory"
+	errEmptyContract     = "Contract is mandatory"
+	errEmptyContractJWT  = "Empty contract: you have to provide a contract in json format or jwt format"
 
 	// log constants.
 	didID = "did"
@@ -89,6 +92,12 @@ const (
 	letterIdxBits = 6                    // 6 bits to represent a letter index
 	letterIdxMask = 1<<letterIdxBits - 1 // All 1-bits, as many as letterIdxBits
 	letterIdxMax  = 63 / letterIdxBits   // # of letter indices fitting in 63 bits
+)
+
+// constants for the XACML requests
+const (
+	XACML_PDP    = "http://<XACML_IP>:9092/pdp/verdict"
+	XACML_DOMAIN = "fluidosOpencall"
 )
 
 // provider contains dependencies for the vdr controller command operations
@@ -103,6 +112,7 @@ type Provider interface {
 
 // Command contains command operations provided by vdr controller.
 type Command struct {
+<<<<<<< HEAD
 	vdrcommand      *vdrc.Command
 	vcwalletcommand *vcwalletc.Command
 	walletuid       string
@@ -110,34 +120,37 @@ type Command struct {
 	currentDID      string //TODO UMU For retrieval of device DIDdoc, think about better implementation
 	currentDIDName  string
 	currentKeyPair  vcwalletc.CreateKeyPairResponse
+=======
+	vdrcommand        *vdrc.Command
+	vcwalletcommand   *vcwalletc.Command
+	walletuid         string
+	walletpass        string
+	currentDID        string //TODO UMU For retrieval of device DIDdoc, think about better implementation
+	currentDIDName    string
+	currentKeyPair    vcwalletc.CreateKeyPairResponse
+>>>>>>> origin/opencall-XADATU
 	idProofValidators []IdProofValidator
-	ctx            Provider
-	
+	ctx               Provider
 }
 
-
-	var doenrolmentMem = uint64(0)
-	var generateVPMem = uint64(0)
-	var verifyMem = uint64(0)
-
-
-	
+var doenrolmentMem = uint64(0)
+var generateVPMem = uint64(0)
+var verifyMem = uint64(0)
 
 // New returns new poc client controller command instance.
 func New(vdrcommand *vdrc.Command, vcwalletcommand *vcwalletc.Command) (*Command, error) {
 	var idProofValidators []IdProofValidator
-	idProofValidators=append(idProofValidators)
+	idProofValidators = append(idProofValidators)
 
 	//TODO UMU Add array (ordered) of validators and add validators for PoC
-	idProofValidators=append(idProofValidators,&DefaultValidator{})
+	idProofValidators = append(idProofValidators, &DefaultValidator{})
 
 	src := rand.NewSource(time.Now().UnixNano())
 	n := 12
 	uid := randStringBytesMaskImprSrcUnsafe(n, src)
 	pass := randStringBytesMaskImprSrcUnsafe(n, src)
 
-
-	logutil.LogInfo(logger,"poc","New", "uid: "+uid+" pass: "+pass)
+	logutil.LogInfo(logger, "poc", "New", "uid: "+uid+" pass: "+pass)
 
 	var l bytes.Buffer
 	reader, err := getReader(&vcwalletc.CreateOrUpdateProfileRequest{
@@ -152,10 +165,10 @@ func New(vdrcommand *vdrc.Command, vcwalletcommand *vcwalletc.Command) (*Command
 		return nil, cmdErr
 	}
 	return &Command{
-		vdrcommand:      vdrcommand,
-		vcwalletcommand: vcwalletcommand,
-		walletuid:       uid,
-		walletpass:      pass,
+		vdrcommand:        vdrcommand,
+		vcwalletcommand:   vcwalletcommand,
+		walletuid:         uid,
+		walletpass:        pass,
 		idProofValidators: idProofValidators,
 	}, nil
 }
@@ -178,7 +191,6 @@ func (o *Command) TestingCall(rw io.Writer, req io.Reader) command.Error {
 
 	//command.WriteNillableResponse(rw, &NewDIDResult{DIDDoc: parsedResponse.DID}, logger)
 
-
 	//var err = o.vdrcommand.GetDID(&getResponse, reader)
 	// var request TestingCallResult
 	// err := json.NewDecoder(req).Decode(&request)
@@ -192,19 +204,22 @@ func (o *Command) TestingCall(rw io.Writer, req io.Reader) command.Error {
 	logutil.LogInfo(logger, CommandName, TestingCallMethod, "verifyMem: "+strconv.FormatUint(verifyMem, 10))
 	testingCallResult := TestingCallResult{
 		DoenrolmentMem: doenrolmentMem,
-		GenerateVPMem: generateVPMem,
-		VerifyMem: verifyMem,
+		GenerateVPMem:  generateVPMem,
+		VerifyMem:      verifyMem,
 	}
-	logutil.LogInfo(logger, CommandName, TestingCallMethod, "example : "+ strconv.FormatUint(testingCallResult.DoenrolmentMem, 10))
-	command.WriteNillableResponse(rw, &TestingCallResult{DoenrolmentMem: doenrolmentMem,GenerateVPMem: generateVPMem, VerifyMem: verifyMem}, logger)
+	logutil.LogInfo(logger, CommandName, TestingCallMethod, "example : "+strconv.FormatUint(testingCallResult.DoenrolmentMem, 10))
+	command.WriteNillableResponse(rw, &TestingCallResult{DoenrolmentMem: doenrolmentMem, GenerateVPMem: generateVPMem, VerifyMem: verifyMem}, logger)
 	logutil.LogInfo(logger, CommandName, TestingCallMethod, "success")
 	return nil
 }
 
-
 // NewDID Generate and register DID for a set of new keys
 func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> origin/opencall-XADATU
 	var request NewDIDArgs
 
 	err := json.NewDecoder(req).Decode(&request)
@@ -260,9 +275,9 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 			return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("invalid key type"))
 		}
 		//parse number of keypurpose.keytype.Attrs for increment in 1
-		if(len(keyPurpose.KeyType.Attrs)> 0){
+		if len(keyPurpose.KeyType.Attrs) > 0 {
 			nAttrs := keyPurpose.KeyType.Attrs[0]
-			nAug,err := strconv.Atoi(nAttrs)
+			nAug, err := strconv.Atoi(nAttrs)
 			if err != nil {
 				logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "parse number of key purpose key type attrs error")
 				return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("parse number of key purpose key type attrs error: %w", err))
@@ -274,7 +289,7 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 		reader, err = getReader(&vcwalletc.CreateKeyPairRequest{
 			KeyType:    kt,
 			WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-			Attrs: keyPurpose.KeyType.Attrs,
+			Attrs:      keyPurpose.KeyType.Attrs,
 		})
 		var getResponse bytes.Buffer
 		err = o.vcwalletcommand.CreateKeyPair(&getResponse, reader)
@@ -307,10 +322,7 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 			Value:      rawKey,
 		}
 
-
 		doc.VerificationMethod = append(doc.VerificationMethod, verificationMethod)
-
-
 
 		switch keyPurpose.Purpose {
 		case "AssertionMethod":
@@ -377,7 +389,11 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 	err = o.vdrcommand.SaveDID(&l11, reader)
 	if err != nil {
 		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("save did error: %w", err))
+<<<<<<< HEAD
 	}else{
+=======
+	} else {
+>>>>>>> origin/opencall-XADATU
 		o.currentDID = getDID(parsedResponse)
 		o.currentDIDName = request.Name
 		logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "current did after: "+o.currentDID)
@@ -386,7 +402,11 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 			return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("failed to parse id for future retrieval of document: %w", err))
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> origin/opencall-XADATU
 	// finished
 	command.WriteNillableResponse(rw, &NewDIDResult{DIDDoc: parsedResponse.DID}, logger)
 	logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "success")
@@ -394,8 +414,7 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 	return nil
 }
 
-
-func (o *Command) SignJWTContent(rw io.Writer, req io.Reader) command.Error{
+func (o *Command) SignJWTContent(rw io.Writer, req io.Reader) command.Error {
 	var request SignJWTContentArgs
 
 	err := json.NewDecoder(req).Decode(&request)
@@ -438,33 +457,32 @@ func (o *Command) SignJWTContent(rw io.Writer, req io.Reader) command.Error{
 
 	var content map[string]interface{}
 
-    // Unmarshal the json.RawMessage into the map
-    errUnmarshal := json.Unmarshal(request.Content, &content)
-    if errUnmarshal != nil {
-        fmt.Println("Error unmarshalling json.RawMessage:", err)
+	// Unmarshal the json.RawMessage into the map
+	errUnmarshal := json.Unmarshal(request.Content, &content)
+	if errUnmarshal != nil {
+		fmt.Println("Error unmarshalling json.RawMessage:", err)
 		return command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("error unmarshalling json.RawMessage: %w", err))
-    }
+	}
 
 	reqJWT := vcwalletc.SignJWTRequest{
-        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-        Headers: nil,
-        Claims: content,
-        KID: o.currentDID+"#"+o.currentKeyPair.KeyID,
-    }
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Headers:    nil,
+		Claims:     content,
+		KID:        o.currentDID + "#" + o.currentKeyPair.KeyID,
+	}
 
 	reqData, err := json.Marshal(reqJWT)
-    if err != nil {
-        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
-    }
-    requestFormatted:= bytes.NewReader(reqData)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
+	}
+	requestFormatted := bytes.NewReader(reqData)
 	// Capture the output
-    var signBuf bytes.Buffer
+	var signBuf bytes.Buffer
 
-    // Sign the JWT
-    if err := o.vcwalletcommand.SignJWT(&signBuf, requestFormatted); err != nil {
-        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
-    }
-
+	// Sign the JWT
+	if err := o.vcwalletcommand.SignJWT(&signBuf, requestFormatted); err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
+	}
 
 	var jwtResponse vcwalletc.SignJWTResponse
 
@@ -473,18 +491,13 @@ func (o *Command) SignJWTContent(rw io.Writer, req io.Reader) command.Error{
 		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
 	}
 
-
-
-
-   	signedJWT := jwtResponse.JWT
-    fmt.Println("Signed JWT:", signedJWT)
+	signedJWT := jwtResponse.JWT
+	fmt.Println("Signed JWT:", signedJWT)
 	//Write the signedJWT as response
 	command.WriteNillableResponse(rw, &SignJWTContentResult{SignedJWTContent: signedJWT}, logger)
 
 	return nil
 }
-
-
 
 func isJWT(token string) bool {
 	parts := strings.Split(token, ".")
@@ -501,7 +514,7 @@ func isJWT(token string) bool {
 	return true
 }
 
-func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
+func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error {
 	var request SignContractArgs
 
 	err := json.NewDecoder(req).Decode(&request)
@@ -512,10 +525,10 @@ func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
 
 	if request.Contract == nil && request.ContractJWT == "" {
 		logutil.LogInfo(logger, CommandName, SignContractCommandMethod, errEmptyContent)
-		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("Empty contract: you have to provide a contract in json format or jwt format")) 
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("Empty contract: you have to provide a contract in json format or jwt format"))
 	}
 
-	if request.Contract != nil && request.ContractJWT != ""{
+	if request.Contract != nil && request.ContractJWT != "" {
 		logutil.LogInfo(logger, CommandName, SignContractCommandMethod, "Contract and ContractJWT are both provided, only one should be provided")
 		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("Contract and ContractJWT are both provided, only one should be provided"))
 	}
@@ -549,13 +562,11 @@ func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
 
 	var contract map[string]interface{}
 
-	
 	errUnmarshal := json.Unmarshal(request.Contract, &contract)
-		if errUnmarshal != nil {
-			fmt.Println("Error unmarshalling json.RawMessage:", err)
-			return command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("error unmarshalling json.RawMessage: %w", err))
-		}
-
+	if errUnmarshal != nil {
+		fmt.Println("Error unmarshalling json.RawMessage:", err)
+		return command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("error unmarshalling json.RawMessage: %w", err))
+	}
 
 	contractJSON, err := json.Marshal(contract)
 	if err != nil {
@@ -566,28 +577,25 @@ func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
 	contractStr := string(contractJSON)
 	logutil.LogInfo(logger, CommandName, SignContractCommandMethod, "ContractMARSHALLEDASDFASDFAS: "+contractStr)
 
-
-
 	reqJWT := vcwalletc.SignJWTRequest{
-        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-        Headers: nil,
-        Claims: contract,
-        KID: o.currentDID+"#"+o.currentKeyPair.KeyID,
-    }
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Headers:    nil,
+		Claims:     contract,
+		KID:        o.currentDID + "#" + o.currentKeyPair.KeyID,
+	}
 
 	reqData, err := json.Marshal(reqJWT)
-    if err != nil {
-        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
-    }
-    requestFormatted:= bytes.NewReader(reqData)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
+	}
+	requestFormatted := bytes.NewReader(reqData)
 	// Capture the output
-    var signBuf bytes.Buffer
+	var signBuf bytes.Buffer
 
-    // Sign the JWT
-    if err := o.vcwalletcommand.SignJWT(&signBuf, requestFormatted); err != nil {
-        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
-    }
-
+	// Sign the JWT
+	if err := o.vcwalletcommand.SignJWT(&signBuf, requestFormatted); err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
+	}
 
 	var jwtResponse vcwalletc.SignJWTResponse
 
@@ -596,18 +604,16 @@ func (o *Command) SignContract(rw io.Writer, req io.Reader) command.Error{
 		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
 	}
 
-   	signedContract := jwtResponse.JWT
-    fmt.Println("Signed JWT:", signedContract)
+	signedContract := jwtResponse.JWT
+	fmt.Println("Signed JWT:", signedContract)
 	//Write the signedJWT as response
 	command.WriteNillableResponse(rw, &SignContractResult{SignedContract: signedContract}, logger)
 
 	return nil
 }
 
+func (o *Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.Error {
 
-
-func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.Error {
-	
 	var request VerifyContractSignatureArgs
 
 	err := json.NewDecoder(req).Decode(&request)
@@ -648,7 +654,6 @@ func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.
 		//TODO UMU See how to treat errors in this case
 	}()
 
-
 	var signatures []JWTSignature
 	var finalPayload map[string]interface{}
 
@@ -680,10 +685,9 @@ func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.
 
 		// Not another JWT, assume final contract payload
 		finalPayload = decoded.Payload
-		
+
 		break
 	}
-
 
 	//Check if all signatures are verified and construct the Verified property
 	allVerified := true
@@ -696,11 +700,9 @@ func (o * Command) VerifyContractSignature(rw io.Writer, req io.Reader) command.
 	// Construct the response as VerifyContractSignatureResult
 	command.WriteNillableResponse(rw, &VerifyContractSignatureResult{Signatures: signatures, VerifiedChain: allVerified, ContractContent: finalPayload}, logger)
 
-    return nil
+	return nil
 
 }
-
-
 
 func decodeJWT(tokenString string) (*decodeJWTResult, error) {
 	parts := strings.Split(tokenString, ".")
@@ -733,6 +735,7 @@ func decodeJWT(tokenString string) (*decodeJWTResult, error) {
 		Payload: payload,
 	}, nil
 }
+
 // decodeBase64 decodes a base64 URL encoded string.
 // func decodeBase64(s string) (string, error) {
 // 	s = strings.ReplaceAll(s, "-", "+") // Convert URL-safe base64 to regular
@@ -758,24 +761,22 @@ func decodeBase64(input string) (string, error) {
 	return string(decodedBytes), nil
 }
 
-
-
-func (o * Command) verifyContract(token string, signedJWT string) vcwalletc.VerifyJWTResponse {
+func (o *Command) verifyContract(token string, signedJWT string) vcwalletc.VerifyJWTResponse {
 	// Verify JWT
 	verifyReq := &vcwalletc.VerifyJWTRequest{
-        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-        JWT: signedJWT,
-    }
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		JWT:        signedJWT,
+	}
 
-    verifyReqBytes, _ := json.Marshal(verifyReq)
-    verifyReqReader := bytes.NewReader(verifyReqBytes)
-    var verifyBuf bytes.Buffer
+	verifyReqBytes, _ := json.Marshal(verifyReq)
+	verifyReqReader := bytes.NewReader(verifyReqBytes)
+	var verifyBuf bytes.Buffer
 
-    errVerify := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
-    if errVerify != nil {
-        logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+errVerify.Error())
-    }
-    fmt.Println("Verification result:", verifyBuf.String())
+	errVerify := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
+	if errVerify != nil {
+		logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+errVerify.Error())
+	}
+	fmt.Println("Verification result:", verifyBuf.String())
 	//wrapp verifyBuf in VerifyJWTResponse
 
 	var jwtVerifyResponse vcwalletc.VerifyJWTResponse
@@ -788,11 +789,8 @@ func (o * Command) verifyContract(token string, signedJWT string) vcwalletc.Veri
 	return jwtVerifyResponse
 }
 
+func (o *Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
 
-
-
-func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
-	
 	var request VerifyJWTContentArgs
 
 	err := json.NewDecoder(req).Decode(&request)
@@ -833,9 +831,9 @@ func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
 		//TODO UMU See how to treat errors in this case
 	}()
 
-
 	// Verify JWT
 	verifyReq := &vcwalletc.VerifyJWTRequest{
+<<<<<<< HEAD
         WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
         JWT: request.JWT,
     }
@@ -849,6 +847,21 @@ func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
         logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+err.Error())
     }
     
+=======
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		JWT:        request.JWT,
+	}
+
+	verifyReqBytes, _ := json.Marshal(verifyReq)
+	verifyReqReader := bytes.NewReader(verifyReqBytes)
+	var verifyBuf bytes.Buffer
+
+	errVerify := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
+	if errVerify != nil {
+		logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+err.Error())
+	}
+
+>>>>>>> origin/opencall-XADATU
 	//show jwt content decoding
 	decoded, err := decodeJWT(request.JWT)
 	if err != nil {
@@ -870,37 +883,40 @@ func (o * Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
 	//write the verifyjwtresponse as response
 	command.WriteNillableResponse(rw, jwtVerifyResponse, logger)
 
-    return nil
+	return nil
 
 }
 
+func (o *Command) signJWTProofData(token string) string {
 
+<<<<<<< HEAD
 
 func (o *Command) signJWTProofData(token string) string {
 	 
+=======
+>>>>>>> origin/opencall-XADATU
 	request := vcwalletc.SignJWTRequest{
-        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-        Headers: nil,
-        Claims: map[string]interface{}{
-            "attrName":   "DID",
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Headers:    nil,
+		Claims: map[string]interface{}{
+			"attrName":  "DID",
 			"attrValue": o.currentDID,
-        },
-        KID: o.currentDID+"#"+o.currentKeyPair.KeyID,
-    }
+		},
+		KID: o.currentDID + "#" + o.currentKeyPair.KeyID,
+	}
 
 	reqData, err := json.Marshal(request)
-    if err != nil {
-        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
-    }
-    req := bytes.NewReader(reqData)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
+	}
+	req := bytes.NewReader(reqData)
 	// Capture the output
-    var signBuf bytes.Buffer
+	var signBuf bytes.Buffer
 
-    // Sign the JWT
-    if err := o.vcwalletcommand.SignJWT(&signBuf, req); err != nil {
-        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
-    }
-
+	// Sign the JWT
+	if err := o.vcwalletcommand.SignJWT(&signBuf, req); err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
+	}
 
 	var jwtResponse vcwalletc.SignJWTResponse
 
@@ -909,29 +925,38 @@ func (o *Command) signJWTProofData(token string) string {
 		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
 	}
 
+<<<<<<< HEAD
    	signedJWT := jwtResponse.JWT
     fmt.Println("Signed JWT:", signedJWT)
 	return signedJWT
 }
 
 //verifyJWT
+=======
+	signedJWT := jwtResponse.JWT
+	fmt.Println("Signed JWT:", signedJWT)
+	return signedJWT
+}
+
+// verifyJWT
+>>>>>>> origin/opencall-XADATU
 func (o *Command) verifyJWT(token string, signedJWT string) vcwalletc.VerifyJWTResponse {
 
 	// Verify JWT
 	verifyReq := &vcwalletc.VerifyJWTRequest{
-        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-        JWT: signedJWT,
-    }
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		JWT:        signedJWT,
+	}
 
-    verifyReqBytes, _ := json.Marshal(verifyReq)
-    verifyReqReader := bytes.NewReader(verifyReqBytes)
-    var verifyBuf bytes.Buffer
+	verifyReqBytes, _ := json.Marshal(verifyReq)
+	verifyReqReader := bytes.NewReader(verifyReqBytes)
+	var verifyBuf bytes.Buffer
 
-    err := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
-    if err != nil {
-        logutil.LogInfo(logger, CommandName, "SignJWT", "failed to verify JWT: "+err.Error())
-    }
-    fmt.Println("Verification result:", verifyBuf.String())
+	err := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to verify JWT: "+err.Error())
+	}
+	fmt.Println("Verification result:", verifyBuf.String())
 	//wrapp verifyBuf in VerifyJWTResponse
 
 	var jwtVerifyResponse vcwalletc.VerifyJWTResponse
@@ -941,9 +966,12 @@ func (o *Command) verifyJWT(token string, signedJWT string) vcwalletc.VerifyJWTR
 		logutil.LogInfo(logger, CommandName, "VerifyJWT", "failed to unmarshal JWT Verify Response: "+err.Error())
 	}
 
+<<<<<<< HEAD
     return jwtVerifyResponse
+=======
+	return jwtVerifyResponse
+>>>>>>> origin/opencall-XADATU
 }
-
 
 // DoDeviceEnrolment Device completes an enrolment process against an issuer
 func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
@@ -1003,7 +1031,10 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 		//TODO UMU See how to treat errors in this case
 	}()
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/opencall-XADATU
 	//Sign with DID
 	proofData := o.signJWTProofData(token)
 	//log intercept of request to add proofdata in DID attribute
@@ -1041,12 +1072,11 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 		logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "could not parse AcceptEnrolment POST result")
 		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("could not parse AcceptEnrolment POST result: %w", err))
 	}
-	if len(res.Credential)==0{ //TODO UMU Better error message
+	if len(res.Credential) == 0 { //TODO UMU Better error message
 		logutil.LogInfo(logger, CommandName, DoDeviceEnrolmentCommandMethod, "credential issuance was not completed")
 		return command.NewValidationError(DoDeviceEnrolmentRequestErrorCode, fmt.Errorf("credential issuance was not completed: %s", res))
 	}
 
-	
 	//Store cred in wallet
 	serialCred, err := res.Credential.MarshalJSON()
 
@@ -1079,8 +1109,7 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 	return nil
 }
 
-
-func (o *Command) GetVCredential(rw io.Writer, req io.Reader) command.Error{
+func (o *Command) GetVCredential(rw io.Writer, req io.Reader) command.Error {
 	var request GetVCredentialArgs
 	err := json.NewDecoder(req).Decode(&request)
 	if err != nil {
@@ -1089,7 +1118,7 @@ func (o *Command) GetVCredential(rw io.Writer, req io.Reader) command.Error{
 	}
 	if request.CredId == "" {
 		logutil.LogInfo(logger, CommandName, GetVCredentialCommandMethod, erremptyCredId)
-		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(erremptyCredId ))
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf(erremptyCredId))
 	}
 	//Open wallet
 	var l bytes.Buffer
@@ -1125,7 +1154,6 @@ func (o *Command) GetVCredential(rw io.Writer, req io.Reader) command.Error{
 		WalletAuth:  vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
 	})
 
-
 	var getResponse bytes.Buffer
 	err = o.vcwalletcommand.Get(&getResponse, reader)
 	if err != nil {
@@ -1136,8 +1164,6 @@ func (o *Command) GetVCredential(rw io.Writer, req io.Reader) command.Error{
 	if err != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
 	}
-
-
 
 	if err != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("failed to decode stored credential: %w", err))
@@ -1201,7 +1227,6 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 		WalletAuth:  vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
 	})
 
-
 	var getResponse bytes.Buffer
 	err = o.vcwalletcommand.Get(&getResponse, reader)
 	if err != nil {
@@ -1212,8 +1237,6 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	if err != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("retrieve credential error: %w", err))
 	}
-
-
 
 	if err != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("failed to decode stored credential: %w", err))
@@ -1227,15 +1250,14 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	}
 	rawMessages = append(rawMessages, json.RawMessage(frameBytes))
 
-
 	reader, err = getReader(&vcwalletc.ContentQueryRequest{
-	WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-	Query: []*wallet.QueryParams{
-				{
-					Type:  "QueryByFrame",
-					Query: rawMessages,
-				},
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Query: []*wallet.QueryParams{
+			{
+				Type:  "QueryByFrame",
+				Query: rawMessages,
 			},
+		},
 	})
 
 	var queryResponse bytes.Buffer
@@ -1243,7 +1265,6 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	if queryErr != nil {
 		return command.NewValidationError(GenerateVPRequestErrorCode, fmt.Errorf("query response not working: %w", queryErr))
 	}
-	
 
 	var m runtime.MemStats
 	runtime.ReadMemStats(&m)
@@ -1257,12 +1278,9 @@ func (o *Command) GenerateVP(rw io.Writer, req io.Reader) command.Error {
 	}
 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "Verifiable Presentation result response without unmarshall: "+queryResponse.String())
 
-
-	
 	command.WriteNillableResponse(rw, &GenerateVPResultCustom{queryParsedResponse.Results}, logger)
-	
+
 	logutil.LogInfo(logger, CommandName, GenerateVPCommandMethod, "success")
-	
 
 	return nil
 }
@@ -1314,7 +1332,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	replaceAll := strings.ReplaceAll(request.CredentialString, "\\", "")
 	bytearray := []byte(replaceAll)
 	reader, err = getReader(&vcwalletc.VerifyRequest{ // TODO UMU: This should be ProveRequest?
-		WalletAuth:    vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		WalletAuth:   vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
 		Presentation: bytearray,
 	})
 	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "what am i verifying? "+replaceAll)
@@ -1336,17 +1354,186 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to decode verify response: %w", err))
 	}
 	var result string
-	if !response.Verified{
+	if !response.Verified {
 		result = "not verified"
 		//return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to verify credential: %s", response.Error))
 		logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
 		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: response.Verified, Error: response.Error}, logger)
 		return nil
 	}
+
+	// XACML Authorization
+	var vp VerifiablePresentation
+	err = json.Unmarshal(bytearray, &vp)
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to decode VP json: %w", err))
+	}
+
+	// Get Attributes from VP
+	requester := "issuer"
+	requesterDid := "did"
+
+	if len(vp.VerifiableCredential) > 0 {
+		credential := vp.VerifiableCredential[0]
+
+		if fluidosRole, ok := credential.CredentialSubject["fluidosRole"].(string); ok {
+			requester = fluidosRole
+		}
+
+		if did, oke := credential.CredentialSubject["DID"].(string); oke {
+			requesterDid = did
+		}
+	}
+
+	// Check if endpoint and method is included in the JSON from the request
+	var method string
+	var resource string
+
+	if request.Endpoint == "" {
+		resource = "https://<PRODUCER_IP>:1027/producer/.*"
+	} else {
+		resource = request.Endpoint
+	}
+
+	if request.Method == "" {
+		method = "GET/POST/PUT"
+	} else {
+		method = request.Method
+	}
+
+	result = "not verified"
+	var authorized bool
+	authorized = false
+	authorized, err = checkXACML(requester, resource, method, requesterDid)
+	if err != nil {
+		response.Verified = false
+		logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "Unauthorized in XACML")
+		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized, Error: err.Error()}, logger)
+		return nil
+	}
+
+	//Create Access Token
+	accessToken, err := generateAccessToken(o, token, resource, method, requester, requesterDid)
+	if err != nil {
+		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized, Error: err.Error()}, logger)
+	}
+
 	result = "verified"
 	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
-	command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: response.Verified}, logger)
+	command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized, AccessToken: accessToken}, logger)
 	return nil
+
+}
+
+func checkXACML(subject, resource, action, requesterDid string) (bool, error) {
+	// Build XML request fro XACML
+	subject = subject + "|" + requesterDid
+	reqBody := fmt.Sprintf(`
+        <Request xmlns="urn:oasis:names:tc:xacml:2.0:context:schema:os">
+            <Subject SubjectCategory="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject">
+                <Attribute AttributeId="urn:ietf:params:scim:schemas:core:2.0:id" DataType="http://www.w3.org/2001/XMLSchema#string">
+                    <AttributeValue>%s</AttributeValue>
+                </Attribute>
+            </Subject>
+            <Resource>
+                <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+                    <AttributeValue>%s</AttributeValue>
+                </Attribute>
+            </Resource>
+            <Action>
+                <Attribute AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id" DataType="http://www.w3.org/2001/XMLSchema#string">
+                    <AttributeValue>%s</AttributeValue>
+                </Attribute>
+            </Action>
+            <Environment/>
+        </Request>`, subject, resource, action)
+
+	// Create HTTP request for XACML
+	req, err := http.NewRequest("POST", XACML_PDP, bytes.NewBuffer([]byte(reqBody)))
+	if err != nil {
+		return false, err
+	}
+
+	req.Header.Set("Content-Type", "application/xml")
+	req.Header.Set("domain", XACML_DOMAIN)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return false, err
+	}
+
+	respBody, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return false, err
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return false, errors.New("unexpected status code from XACML server")
+	}
+
+	re := regexp.MustCompile(`<Decision>(.*?)</Decision>`)
+	match := re.FindStringSubmatch(string(respBody))
+	if len(match) > 1 && match[1] == "Permit" {
+		return true, nil
+	} else if len(match) > 1 && match[1] == "Deny" {
+		return false, errors.New("deny in XACML")
+	}
+
+	return false, errors.New("not Applicable in XACML")
+}
+
+func generateAccessToken(o *Command, token, resource, action, subject, did string) (string, error) {
+	// Get actual time in Unix format
+	issuedAt := time.Now().Unix()
+
+	// Caclulate expiration time by adding the duration in seconds
+	expiresAt := issuedAt + 120
+
+	// Create JWT content
+	content := map[string]interface{}{
+		"did":      did,
+		"sub":      subject,
+		"resource": resource,
+		"method":   action,
+		"iat":      issuedAt,
+		"exp":      expiresAt,
+	}
+
+	// Create request to sign JWT
+	reqJWT := vcwalletc.SignJWTRequest{
+		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Headers:    nil,
+		Claims:     content,
+		KID:        o.currentDID + "#" + o.currentKeyPair.KeyID,
+	}
+
+	reqData, err := json.Marshal(reqJWT)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to marshal request: "+err.Error())
+		return "", command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("failed to marshal request: %w", err))
+	}
+	requestFormatted := bytes.NewReader(reqData)
+
+	var signBuf bytes.Buffer
+
+	// Sign JWT
+	if err := o.vcwalletcommand.SignJWT(&signBuf, requestFormatted); err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to sign JWT: "+err.Error())
+		return "", command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("failed to sign JWT: %w", err))
+	}
+
+	var jwtResponse vcwalletc.SignJWTResponse
+
+	err = json.Unmarshal(signBuf.Bytes(), &jwtResponse)
+	if err != nil {
+		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
+		return "", command.NewValidationError(SignJWTContentErrorCode, fmt.Errorf("failed to unmarshal JWT: %w", err))
+	}
+
+	signedJWT := jwtResponse.JWT
+	fmt.Println("Signed JWT:", signedJWT)
+
+	return signedJWT, nil
 }
 
 // AcceptEnrolment Issuer exposes this method to acacept enrolment processes, ending in credential issuance
@@ -1390,8 +1577,11 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 		err = o.vcwalletcommand.Close(&l2, reader)
 	}()
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/opencall-XADATU
 	//get the DID proofData of the DID field in the IdProofs
 	var requesterDID string
 	var proofData string
@@ -1402,7 +1592,10 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 			break
 		}
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> origin/opencall-XADATU
 
 	//decode payload
 	decoded, err := decodeJWT(proofData)
@@ -1411,14 +1604,21 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 		return nil
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/opencall-XADATU
 	//Verify jwt
 	verification := o.verifyJWT(token, proofData)
 	if err != nil {
 		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to verify JWT content: "+err.Error())
 		return nil
 	}
+<<<<<<< HEAD
 	//if requester did and payload proofdata did are different return error 
+=======
+	//if requester did and payload proofdata did are different return error
+>>>>>>> origin/opencall-XADATU
 	//print all did
 	DIDinJWT, okValue := decoded.Payload["attrValue"].(string)
 	//use ok value
@@ -1436,16 +1636,24 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("JWT verification failed"))
 	}
 	//log for verification successful with info and did request is the same in the proofData
+<<<<<<< HEAD
 	
 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "JWT verification through DLT successful")	
 	
+=======
+
+	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "JWT verification through DLT successful")
+>>>>>>> origin/opencall-XADATU
 
 	if err != nil {
 		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "could not generate request body")
 		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("could not generate request body: %w", err))
 	}
+<<<<<<< HEAD
 	
 
+=======
+>>>>>>> origin/opencall-XADATU
 
 	//Initialize credential for issuance
 	baseCredString := "{\"@context\":[\"https://www.w3.org/2018/credentials/v1\",\"https://www.w3.org/2018/credentials/examples/v1\",\"https://ssiproject.inf.um.es/security/psms/v1\",\"https://ssiproject.inf.um.es/poc/context/v1\"],\"type\":[\"VerifiableCredential\",\"FluidosCredential\"]}"
@@ -1470,9 +1678,8 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 	baseCred["credentialSubject"] = make(map[string]string, len(credSubject))
 
 	for k, v := range credSubject {
-    	baseCred["credentialSubject"].(map[string]string)[k] = v.(string)
-    }
-
+		baseCred["credentialSubject"].(map[string]string)[k] = v.(string)
+	}
 
 	//Get DID/DIDDoc for specifying key, issuer...
 	reader, err = getReader(&vdrc.IDArg{
@@ -1545,15 +1752,14 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 func (o *Command) GetTrustedIssuerList(rw io.Writer, req io.Reader) command.Error {
 	//TODO UMU: Implement
 	trustedIssuer := TrustedIssuer{
-		DID : "did:fabric:zxdkpwDnu7ixBidF_I8sgMI6Q4St0t90HY-_JmlHZFI",
-		IssuerUrl : "https://issuer:9082",
+		DID:       "did:fabric:zxdkpwDnu7ixBidF_I8sgMI6Q4St0t90HY-_JmlHZFI",
+		IssuerUrl: "https://issuer:9082",
 	}
 	var trustedIssuerList []TrustedIssuer
 	trustedIssuerList = append(trustedIssuerList, trustedIssuer)
 
 	var trustedIssuerListResponse = GetTrustedIssuerListResult{
 		TrustedIssuers: trustedIssuerList,
-
 	}
 
 	command.WriteNillableResponse(rw, &trustedIssuerListResponse, logger)
