@@ -8,7 +8,7 @@ This demo showcases the privacy and security features of the FLUIDOS framework, 
 - Running instances of:
   - Consumer Node (port 8083)
   - Producer Node (port 9083)
-  - REAR API (port 3002)
+  - REAR API (port 3003)
   - Issuer Service (port 9082)
 
 ## Setup
@@ -30,7 +30,7 @@ If not, you have to run the services manually:
 ```bash
     python3 -m uvicorn nodes.consumer.consumer_node:app --host 0.0.0.0 --port 8083 --reload
     python3 -m uvicorn nodes.producer.producer_node:app --host 0.0.0.0 --port 9083 --reload
-    python3 -m uvicorn rear_api.api:app --host localhost --port 3002 --reload
+    python3 -m uvicorn rear_api.api:app --host localhost --port 3003 --reload
 ```
 
 ## Running the Demo
