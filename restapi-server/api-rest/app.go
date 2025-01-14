@@ -15,6 +15,8 @@ func main() {
 	//Fluidos
 	router.HandleFunc("/xadatu/auth/register", web.RegisterAuthReq).Methods("POST")
 	router.HandleFunc("/xadatu/auth/queryByDate", web.QueryAuthReqByDate).Methods("GET")
+	router.HandleFunc("/xadatu/auth/queryByDid", web.QueryAuthReqByDID).Methods("GET")
+	router.HandleFunc("/xadatu/auth/queryCustom", web.QueryAuthReqCustom).Methods("GET")
 	router.HandleFunc("/xadatu/auth/{id}", web.QueryAuthReq).Methods("GET")
 
 	//XACML
