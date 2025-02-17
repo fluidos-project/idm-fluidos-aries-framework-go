@@ -633,3 +633,60 @@
 2024-02-07 18:04:05,278 [Thread-29   ] [INFO ]  POST Response: VERDICT: NotApplicable.
 2024-02-07 18:04:05,278 [Thread-29   ] [INFO ]  Response issued: Communication is closed.
 2024-02-07 18:04:05,278 [Thread-29   ] [INFO ]  Total(ms) request: 3
+2025-01-05 19:57:24,795 [Thread-1 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-01-05 19:57:24,810 [Thread-1 (pr] [INFO ]  Detected new domain 'fluidosOpencall'.
+2025-01-05 19:57:24,812 [Thread-1 (pr] [ERROR]  [Errno 99] Cannot assign requested address
+2025-01-05 19:57:24,812 [Thread-1 (pr] [ERROR]  Can not connect to obtain the XACML timestamp.
+2025-01-05 19:57:24,812 [Thread-1 (pr] [ERROR]  Can not validate if the XACML policies changed.
+2025-01-05 20:14:16,121 [Thread-1 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-01-05 20:14:16,122 [Thread-1 (pr] [INFO ]  Detected new domain 'fluidosOpencall'.
+2025-01-05 20:14:16,127 [Thread-1 (pr] [ERROR]  Can not obtain the XACML timestamp (404)
+2025-01-05 20:14:16,128 [Thread-1 (pr] [ERROR]  Can not validate if the XACML policies changed.
+2025-01-05 20:14:17,120 [Thread-2 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-01-05 20:14:17,121 [Thread-2 (pr] [ERROR]  'PolicySet'
+2025-01-05 20:14:17,121 [Thread-2 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-01-05 20:14:17,121 [Thread-2 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-01-05 20:14:17,133 [Thread-2 (pr] [INFO ]  Access request registered in blockchain
+2025-01-05 20:14:17,134 [Thread-2 (pr] [INFO ]  Response issued: Communication is closed.
+2025-01-05 20:14:17,134 [Thread-2 (pr] [INFO ]  Total(ms) request: 13
+2025-01-05 20:14:19,442 [Thread-3 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-01-05 20:14:19,443 [Thread-3 (pr] [ERROR]  'PolicySet'
+2025-01-05 20:14:19,443 [Thread-3 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-01-05 20:14:19,443 [Thread-3 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-01-05 20:14:19,450 [Thread-3 (pr] [INFO ]  Access request registered in blockchain
+2025-01-05 20:14:19,450 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2025-01-05 20:14:19,450 [Thread-3 (pr] [INFO ]  Total(ms) request: 8
+2025-02-11 10:33:04,078 [Thread-1 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-02-11 10:33:04,078 [Thread-1 (pr] [INFO ]  Detected new domain 'fluidosOpencall'.
+2025-02-11 10:33:04,092 [Thread-1 (pr] [INFO ]  Datetime (fluidosOpencall) does not correspond with the stored one:
+2025-02-11 10:33:04,092 [Thread-1 (pr] [INFO ]  	 - Local Datetime: 0
+2025-02-11 10:33:04,092 [Thread-1 (pr] [INFO ]  	 - Remote Datetime: 2025-02-11 10:28:18
+2025-02-11 10:33:04,092 [Thread-1 (pr] [INFO ]  XACML Policies (fluidosOpencall) changed: 2025-02-11 10:28:18
+2025-02-11 10:33:04,106 [Thread-1 (pr] [ERROR]  mismatched tag: line 10, column 77
+2025-02-11 10:35:04,720 [Thread-2 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-02-11 10:35:04,721 [Thread-2 (pr] [INFO ]  POST Response: VERDICT: Permit.
+2025-02-11 10:35:06,886 [Thread-2 (pr] [INFO ]  Access request registered in blockchain
+2025-02-11 10:35:06,886 [Thread-2 (pr] [INFO ]  Response issued: Communication is closed.
+2025-02-11 10:35:06,886 [Thread-2 (pr] [INFO ]  Total(ms) request: 2166
+2025-02-11 10:36:03,363 [Thread-3 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-02-11 10:36:03,364 [Thread-3 (pr] [INFO ]  { 'Action': 'POST', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/reservations?flavor_id=flavor-001' }
+2025-02-11 10:36:03,364 [Thread-3 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-02-11 10:36:05,463 [Thread-3 (pr] [INFO ]  Access request registered in blockchain
+2025-02-11 10:36:05,464 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2025-02-11 10:36:05,465 [Thread-3 (pr] [INFO ]  Total(ms) request: 2101
+2025-02-11 10:38:53,613 [Daemon      ] [INFO ]  Datetime (fluidosOpencall) does not correspond with the stored one:
+2025-02-11 10:38:53,614 [Daemon      ] [INFO ]  	 - Local Datetime: 2025-02-11 10:28:18
+2025-02-11 10:38:53,614 [Daemon      ] [INFO ]  	 - Remote Datetime: 2025-02-11 10:38:42
+2025-02-11 10:38:53,614 [Daemon      ] [INFO ]  XACML Policies (fluidosOpencall) changed: 2025-02-11 10:38:42
+2025-02-11 10:38:53,626 [Daemon      ] [INFO ]  Refreshed XACML Policies (fluidosOpencall)
+2025-02-11 10:38:58,367 [Thread-4 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-02-11 10:38:58,367 [Thread-4 (pr] [INFO ]  POST Response: VERDICT: Permit.
+2025-02-11 10:39:00,450 [Thread-4 (pr] [INFO ]  Access request registered in blockchain
+2025-02-11 10:39:00,450 [Thread-4 (pr] [INFO ]  Response issued: Communication is closed.
+2025-02-11 10:39:00,451 [Thread-4 (pr] [INFO ]  Total(ms) request: 2084
+2025-02-11 10:39:10,128 [Thread-5 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-02-11 10:39:10,130 [Thread-5 (pr] [INFO ]  { 'Action': 'POST', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/reservations/.*/purchase' }
+2025-02-11 10:39:10,130 [Thread-5 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-02-11 10:39:12,218 [Thread-5 (pr] [INFO ]  Access request registered in blockchain
+2025-02-11 10:39:12,218 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2025-02-11 10:39:12,218 [Thread-5 (pr] [INFO ]  Total(ms) request: 2090

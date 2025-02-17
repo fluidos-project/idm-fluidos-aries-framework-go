@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attributes storingDate="2025-02-11T10:37:40.762037Z">
+  <attributes>
+    <attribute name="https://10.208.99.115:1027/producer/flavors" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+    <attribute name="https://10.208.99.115:1027/producer/reservations?flavor_id=flavor-001" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+    <attribute name="GET" xacml_id="urn:oasis:names:tc:xacml:1.0:action:action-id" sortedValue="action" xacml_DataType="#string"/>
+    <attribute name="POST" xacml_id="urn:oasis:names:tc:xacml:1.0:action:action-id" sortedValue="action" xacml_DataType="#string"/>
+    <attribute name="Customer" xacml_id="urn:ietf:params:scim:schemas:core:2.0:id" sortedValue="subject" xacml_DataType="#string"/>
+  </attributes>
+</attributes>

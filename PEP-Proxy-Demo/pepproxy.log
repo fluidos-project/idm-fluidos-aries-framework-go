@@ -2729,3 +2729,21 @@
 2024-12-16 16:05:12,154 [Thread-85 (p] [INFO ]  BROKER RESPONSE CODE: 200
 2024-12-16 16:05:12,155 [Thread-85 (p] [INFO ]  Response issued: Communication is closed.
 2024-12-16 16:05:12,155 [Thread-85 (p] [INFO ]  Total(ms) request: 31
+2025-01-05 16:38:56,490 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2025-01-05 20:11:44,612 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2025-01-06 15:47:55,550 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
+2025-02-11 10:35:06,929 [Thread-2 (pr] [INFO ]  ******* PEP-REQUEST : 10.208.99.115 - b'GET /producer/flavors HTTP/1.1\r\n' *******
+2025-02-11 10:35:06,974 [Thread-2 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2025-02-11 10:35:06,975 [Thread-2 (pr] [INFO ]  Verified is True
+2025-02-11 10:35:06,976 [Thread-2 (pr] [INFO ]  Total(ms) Validacion process: 45
+2025-02-11 10:35:06,983 [Thread-2 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2025-02-11 10:35:06,984 [Thread-2 (pr] [INFO ]  Response issued: Communication is closed.
+2025-02-11 10:35:06,984 [Thread-2 (pr] [INFO ]  Total(ms) request: 55
+2025-02-11 10:39:00,493 [Thread-3 (pr] [INFO ]  ******* PEP-REQUEST : 10.208.99.115 - b'POST /producer/reservations?flavor_id=flavor-001 HTTP/1.1\r\n' *******
+2025-02-11 10:39:00,537 [Thread-3 (pr] [INFO ]  NODE VERIFIER RESPONSE CODE: 200
+2025-02-11 10:39:00,538 [Thread-3 (pr] [INFO ]  Verified is True
+2025-02-11 10:39:00,539 [Thread-3 (pr] [INFO ]  Total(ms) Validacion process: 46
+2025-02-11 10:39:00,539 [Thread-3 (pr] [INFO ]  Total(ms) Encrypt process: 0
+2025-02-11 10:39:00,547 [Thread-3 (pr] [INFO ]  BROKER RESPONSE CODE: 200
+2025-02-11 10:39:00,548 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2025-02-11 10:39:00,548 [Thread-3 (pr] [INFO ]  Total(ms) request: 55

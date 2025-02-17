@@ -96,7 +96,7 @@ const (
 
 // constants for the XACML requests
 const (
-	XACML_PDP    = "http://<XACML_IP>:9092/pdp/verdict"
+	XACML_PDP    = "http://10.208.99.115:9092/pdp/verdict"
 	XACML_DOMAIN = "fluidosOpencall"
 )
 
@@ -1329,7 +1329,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	var resource string
 
 	if request.Endpoint == "" {
-		resource = "https://<PRODUCER_IP>:1027/producer/.*"
+		resource = "https://10.208.99.115:1027/producer/.*"
 	} else {
 		resource = request.Endpoint
 	}

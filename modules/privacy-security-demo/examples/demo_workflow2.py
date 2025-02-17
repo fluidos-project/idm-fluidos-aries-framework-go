@@ -14,7 +14,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 CONSUMER_URL = "http://localhost:8083"
 PRODUCER_URL = "http://localhost:9083"
 REAR_API_URL = "http://localhost:3003"
-PEP_PROXY = "https://<YOUR_IP>:1027"
+PEP_PROXY = "https://10.208.99.115:1027"
 
 # Global variables to store workflow state
 consumer_did = None
