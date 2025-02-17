@@ -143,11 +143,71 @@ func (s *SmartContract) QueryAssetsByDateRange(ctx contractapi.TransactionContex
 
 	resultsIterator, err := ctx.GetStub().GetQueryResult(queryString)
 	if err != nil {
-		return nil, fmt.Errorf("error exeecuting query: %v", err)
+		return nil, fmt.Errorf("error executing query: %v", err)
 	}
 	defer resultsIterator.Close()
 
 	var assets []*Asset
+	for resultsIterator.HasNext() {
+		queryResponse, err := resultsIterator.Next()
+		if err != nil {
+			return nil, err
+		}
+
+		var asset Asset
+		err = json.Unmarshal(queryResponse.Value, &asset)
+		if err != nil {
+			return nil, err
+		}
+		assets = append(assets, &asset)
+	}
+
+	return assets, nil
+
+}
+
+// QueryAssetsByDID returns all assets asociated with one DID
+func (s *SmartContract) QueryAssetsByDID(ctx contractapi.TransactionContextInterface, did string) ([]*Asset, error) {
+	var assets []*Asset
+
+	queryString := fmt.Sprintf(`{
+		"selector": {
+			"DID": "%s"
+		}
+	}`, did)
+
+	resultsIterator, err := ctx.GetStub().GetQueryResult(queryString)
+	if err != nil {
+		return nil, fmt.Errorf("error executing query: %v", err)
+	}
+	defer resultsIterator.Close()
+
+	for resultsIterator.HasNext() {
+		queryResponse, err := resultsIterator.Next()
+		if err != nil {
+			return nil, err
+		}
+
+		var asset Asset
+		err = json.Unmarshal(queryResponse.Value, &asset)
+		if err != nil {
+			return nil, err
+		}
+		assets = append(assets, &asset)
+	}
+
+	return assets, nil
+}
+
+func (s *SmartContract) QueryAssetsCustom(ctx contractapi.TransactionContextInterface, selector string) ([]*Asset, error) {
+	var assets []*Asset
+
+	resultsIterator, err := ctx.GetStub().GetQueryResult(selector)
+	if err != nil {
+		return nil, fmt.Errorf("error executing query: %v", err)
+	}
+	defer resultsIterator.Close()
+
 	for resultsIterator.HasNext() {
 		queryResponse, err := resultsIterator.Next()
 		if err != nil {

@@ -58,3 +58,39 @@ func GetAuthReqsByDate(startDate string, endDate string) (string, error) {
 
 	return string(authReqs), nil
 }
+
+func GetAuthReqsByDID(did string) (string, error) {
+	if err := InitializeConnection(); err != nil {
+		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
+	}
+	defer CloseConnection()
+
+	network := gateway.GetNetwork("mychannel")
+	contract := network.GetContract("fluidosAccessHist")
+
+	// Evaluate transaction
+	authReqs, err := contract.EvaluateTransaction("QueryAssetsByDID", did)
+	if err != nil {
+		return "", fmt.Errorf("failed to evaluate transaction: %w", err)
+	}
+
+	return string(authReqs), nil
+}
+
+func GetAuthReqsCustom(selector string) (string, error) {
+	if err := InitializeConnection(); err != nil {
+		return "", fmt.Errorf("failed to initialize blockchain connection: %v", err)
+	}
+	defer CloseConnection()
+
+	network := gateway.GetNetwork("mychannel")
+	contract := network.GetContract("fluidosAccessHist")
+
+	// Evaluate transaction
+	authReqs, err := contract.EvaluateTransaction("QueryAssetsCustom", selector)
+	if err != nil {
+		return "", fmt.Errorf("failed to evaluate transaction: %w", err)
+	}
+
+	return string(authReqs), nil
+}
