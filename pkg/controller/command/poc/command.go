@@ -112,7 +112,6 @@ type Provider interface {
 
 // Command contains command operations provided by vdr controller.
 type Command struct {
-<<<<<<< HEAD
 	vdrcommand        *vdrc.Command
 	vcwalletcommand   *vcwalletc.Command
 	walletuid         string
@@ -120,15 +119,6 @@ type Command struct {
 	currentDID        string //TODO UMU For retrieval of device DIDdoc, think about better implementation
 	currentDIDName    string
 	currentKeyPair    vcwalletc.CreateKeyPairResponse
-=======
-	vdrcommand      *vdrc.Command
-	vcwalletcommand *vcwalletc.Command
-	walletuid       string
-	walletpass      string
-	currentDID      string //TODO UMU For retrieval of device DIDdoc, think about better implementation
-	currentDIDName  string
-	currentKeyPair  vcwalletc.CreateKeyPairResponse
->>>>>>> dev
 	idProofValidators []IdProofValidator
 	ctx               Provider
 }
@@ -215,11 +205,6 @@ func (o *Command) TestingCall(rw io.Writer, req io.Reader) command.Error {
 
 // NewDID Generate and register DID for a set of new keys
 func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> dev
 	var request NewDIDArgs
 
 	err := json.NewDecoder(req).Decode(&request)
@@ -389,11 +374,7 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 	err = o.vdrcommand.SaveDID(&l11, reader)
 	if err != nil {
 		return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("save did error: %w", err))
-<<<<<<< HEAD
 	} else {
-=======
-	}else{
->>>>>>> dev
 		o.currentDID = getDID(parsedResponse)
 		o.currentDIDName = request.Name
 		logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "current did after: "+o.currentDID)
@@ -402,11 +383,6 @@ func (o *Command) NewDID(rw io.Writer, req io.Reader) command.Error {
 			return command.NewValidationError(NewDIDRequestErrorCode, fmt.Errorf("failed to parse id for future retrieval of document: %w", err))
 		}
 	}
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> dev
 	// finished
 	command.WriteNillableResponse(rw, &NewDIDResult{DIDDoc: parsedResponse.DID}, logger)
 	logutil.LogInfo(logger, CommandName, NewDIDCommandMethod, "success")
@@ -833,7 +809,6 @@ func (o *Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
 
 	// Verify JWT
 	verifyReq := &vcwalletc.VerifyJWTRequest{
-<<<<<<< HEAD
 		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
 		JWT:        request.JWT,
 	}
@@ -847,21 +822,6 @@ func (o *Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
 		logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+err.Error())
 	}
 
-=======
-        WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
-        JWT: request.JWT,
-    }
-
-    verifyReqBytes, _ := json.Marshal(verifyReq)
-    verifyReqReader := bytes.NewReader(verifyReqBytes)
-    var verifyBuf bytes.Buffer
-
-    errVerify := o.vcwalletcommand.VerifyJWT(&verifyBuf, verifyReqReader)
-    if errVerify != nil {
-        logutil.LogInfo(logger, CommandName, VerifyJWTContentCommandMethod, "failed to verify JWT: "+err.Error())
-    }
-    
->>>>>>> dev
 	//show jwt content decoding
 	decoded, err := decodeJWT(request.JWT)
 	if err != nil {
@@ -889,12 +849,6 @@ func (o *Command) VerifyJWTContent(rw io.Writer, req io.Reader) command.Error {
 
 func (o *Command) signJWTProofData(token string) string {
 
-<<<<<<< HEAD
-=======
-
-func (o *Command) signJWTProofData(token string) string {
-	 
->>>>>>> dev
 	request := vcwalletc.SignJWTRequest{
 		WalletAuth: vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
 		Headers:    nil,
@@ -925,21 +879,12 @@ func (o *Command) signJWTProofData(token string) string {
 		logutil.LogInfo(logger, CommandName, "SignJWT", "failed to unmarshal JWT: "+err.Error())
 	}
 
-<<<<<<< HEAD
 	signedJWT := jwtResponse.JWT
 	fmt.Println("Signed JWT:", signedJWT)
 	return signedJWT
 }
 
 // verifyJWT
-=======
-   	signedJWT := jwtResponse.JWT
-    fmt.Println("Signed JWT:", signedJWT)
-	return signedJWT
-}
-
-//verifyJWT
->>>>>>> dev
 func (o *Command) verifyJWT(token string, signedJWT string) vcwalletc.VerifyJWTResponse {
 
 	// Verify JWT
@@ -966,11 +911,7 @@ func (o *Command) verifyJWT(token string, signedJWT string) vcwalletc.VerifyJWTR
 		logutil.LogInfo(logger, CommandName, "VerifyJWT", "failed to unmarshal JWT Verify Response: "+err.Error())
 	}
 
-<<<<<<< HEAD
 	return jwtVerifyResponse
-=======
-    return jwtVerifyResponse
->>>>>>> dev
 }
 
 // DoDeviceEnrolment Device completes an enrolment process against an issuer
@@ -1031,10 +972,6 @@ func (o *Command) DoDeviceEnrolment(rw io.Writer, req io.Reader) command.Error {
 		//TODO UMU See how to treat errors in this case
 	}()
 
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
 	//Sign with DID
 	proofData := o.signJWTProofData(token)
 	//log intercept of request to add proofdata in DID attribute
@@ -1577,11 +1514,6 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 		err = o.vcwalletcommand.Close(&l2, reader)
 	}()
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> dev
 	//get the DID proofData of the DID field in the IdProofs
 	var requesterDID string
 	var proofData string
@@ -1592,10 +1524,6 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 			break
 		}
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> dev
 
 	//decode payload
 	decoded, err := decodeJWT(proofData)
@@ -1604,21 +1532,13 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 		return nil
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
 	//Verify jwt
 	verification := o.verifyJWT(token, proofData)
 	if err != nil {
 		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "failed to verify JWT content: "+err.Error())
 		return nil
 	}
-<<<<<<< HEAD
 	//if requester did and payload proofdata did are different return error
-=======
-	//if requester did and payload proofdata did are different return error 
->>>>>>> dev
 	//print all did
 	DIDinJWT, okValue := decoded.Payload["attrValue"].(string)
 	//use ok value
@@ -1636,24 +1556,13 @@ func (o *Command) AcceptEnrolment(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("JWT verification failed"))
 	}
 	//log for verification successful with info and did request is the same in the proofData
-<<<<<<< HEAD
 
 	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "JWT verification through DLT successful")
-=======
-	
-	logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "JWT verification through DLT successful")	
-	
->>>>>>> dev
 
 	if err != nil {
 		logutil.LogInfo(logger, CommandName, AcceptEnrolmentCommandMethod, "could not generate request body")
 		return command.NewValidationError(AcceptEnrolmentRequestErrorCode, fmt.Errorf("could not generate request body: %w", err))
 	}
-<<<<<<< HEAD
-=======
-	
-
->>>>>>> dev
 
 	//Initialize credential for issuance
 	baseCredString := "{\"@context\":[\"https://www.w3.org/2018/credentials/v1\",\"https://www.w3.org/2018/credentials/examples/v1\",\"https://ssiproject.inf.um.es/security/psms/v1\",\"https://ssiproject.inf.um.es/poc/context/v1\"],\"type\":[\"VerifiableCredential\",\"FluidosCredential\"]}"
