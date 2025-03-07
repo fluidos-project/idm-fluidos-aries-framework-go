@@ -98,9 +98,15 @@ type DoDeviceEnrolmentResult struct {
 
 // Model for idProof
 type IdProof struct {
+<<<<<<< HEAD
 	AttrName  string      `json:"attrName,omitempty"`
 	AttrValue interface{} `json:"attrValue,omitempty"`
 	ProofData string      `json:"proofData,omitempty"`
+=======
+	AttrName  string          `json:"attrName,omitempty"`
+	AttrValue interface{}     `json:"attrValue,omitempty"`
+	ProofData string `json:"proofData,omitempty"`
+>>>>>>> dev
 }
 
 // Model for GenerateVP method input

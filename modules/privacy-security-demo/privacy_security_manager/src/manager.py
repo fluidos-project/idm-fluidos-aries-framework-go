@@ -93,15 +93,23 @@ class PrivacySecurityManager:
         response.raise_for_status()
         return response.json()
 
+<<<<<<< HEAD
     async def verify_credential(self, credential: Dict[str, Any], endpoint, method) -> Dict[str, Any]:
+=======
+    async def verify_credential(self, credential: Dict[str, Any]) -> Dict[str, Any]:
+>>>>>>> dev
         """Verify a credential or verifiable presentation"""
         if not self.current_did:
             raise ValueError("No DID available. Generate one first.")
         
         payload = {
+<<<<<<< HEAD
             "credential": credential,
             "endpoint": endpoint,
             "method": method
+=======
+            "credential": credential
+>>>>>>> dev
         }
         
         response = requests.post(

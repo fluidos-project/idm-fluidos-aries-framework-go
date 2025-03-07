@@ -15,12 +15,15 @@ echo "Deployed and installed model-aggregation smart contract"
 
 bash network.sh deployCC -ccn model-updates -ccp ../chaincode/model-updates/ -ccv 1 -ccl go
 echo "Deployed and installed model-updates smart contract"
+<<<<<<< HEAD
 
 bash network.sh deployCC -ccn fluidosAccessHist -ccp ../chaincode/fluidosAccess-historical -ccv 1 -ccl go
 echo "Deployed and installed Hyperledger Fabric, created channel \"mychannel\" and deployed smartcontract \"fluidosAccessHist\""
 
 bash network.sh deployCC -ccn xacml -ccp ../chaincode/xacml -ccv 1 -ccl go
 echo "Deployed and installed Hyperledger Fabric, created channel \"mychannel\" and deployed smartcontract \"xacml\""
+=======
+>>>>>>> dev
 
 privpath=./organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/keystore
 certpath=./organizations/peerOrganizations/org1.example.com/users/User1@org1.example.com/msp/signcerts

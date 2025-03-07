@@ -1,0 +1,64 @@
+{
+  "name" : "umu.fabric",
+  "description" : "Connection profile for umu 2orgs-fabric-blockchain test",
+  "version" : "1.0.0",
+  "client" : {
+    "organization" : "Org1",
+    "connection" : {
+      "timeout" : {
+        "peer" : {
+          "endorser" : 3000
+        },
+        "orderer" : 3000
+      }
+    }
+  },
+  "channels" : {
+    "test" : {
+      "orderers" : [ "orderer.example.com" ],
+      "peers" : {
+        //"peer1.org1.example.com" : {
+        //  "endorsingPeer" : true,
+        //  "chaincodeQuery" : true,
+        //  "ledgerQuery" : true,
+        //  "eventSource" : true
+        //},
+        "peer0.org1.example.com" : {
+          "endorsingPeer" : true,
+          "chaincodeQuery" : true,
+          "ledgerQuery" : true,
+          "eventSource" : true,
+          "discover" : true
+        }
+      }
+    }
+  },
+  "organizations" : {
+    "Org1" : {
+      "mspid" : "Org1MSP",
+      "peers" : [ "peer0.org1.example.com", "peer1.org1.example.com" ],
+      "certificateAuthorities" : [ "ca.org1.example.com" ]
+  },
+  "orderers" : {
+    "orderer.example.com" : {
+      "url" : "grpcs://orderer.example.com:7050"
+    }
+  },
+  "peers" : {
+    "peer0.org1.example.com" : {
+      "url" : "grpcs://peer0.org1.example.com:7051"
+    },
+  },
+  "certificateAuthorities" : {
+    "ca.org1.example.com" : {
+      "url" : "https://ca.org1.example.com:7054",
+      "httpOptions" : {
+        "verify" : false
+      },
+      "registrar" : [ {
+        "enrollId" : "admin",
+        "enrollSecret" : "adminpw"
+      } ]
+    }
+  }
+}

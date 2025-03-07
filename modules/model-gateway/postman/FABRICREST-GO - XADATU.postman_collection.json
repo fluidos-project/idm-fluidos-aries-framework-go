@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "3fd893d3-7e0e-4aa6-aea1-c6d29d016aeb",
+		"name": "FABRICREST-GO - XADATU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32536869"
+	},
+	"item": [
+		{
+			"name": "FLUIDOS - Access Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"timestamp\": \"2024-09-06T15:30:00Z\",\n  \"id\": \"abc12345\",\n  \"subject\": \"user123\",\n  \"action\": \"POST\",\n  \"resource\": \"/api/resource\",\n  \"decision\": \"Permit\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/xadatu/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"xadatu",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FLUIDOS - Access Query",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/xadatu/auth/abc1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"xadatu",
+						"auth",
+						"abc1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FLUIDOS - Query by Date",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"startDate\": \"2024-09-05T15:30:00Z\",\n    \"endDate\": \"2024-09-30T15:30:00Z\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/xadatu/auth/queryByDate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"xadatu",
+						"auth",
+						"queryByDate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XACML - Register Policies/Attributes",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"urn:ngsi-ld:xacml:test\",\n    \"type\": \"xacml\",\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2024-05-07 08:02:43\"\n    },\n    \"version\": {\n        \"type\": \"Property\",\n        \"value\": \"8\"\n    },\n    \"xacml\": {\n        \"type\": \"Property\",\n        \"value\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?><PolicySet xmlns=\\\"urn:oasis:names:tc:xacml:2.0:policy:schema:os\\\" PolicyCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable\\\" PolicySetId=\\\"POLICY_SET\\\">  <Target/>  <Policy PolicyId=\\\"vo-wot\\\" RuleCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\\\">    <Target/>    <Rule Effect=\\\"Permit\\\" RuleId=\\\"rule0\\\">      <Target>        <Subjects>          <Subject>            <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">vo1</AttributeValue>              <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </SubjectMatch>          </Subject>        </Subjects>        <Resources>          <Resource>            <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://vo1:9090/vo1</AttributeValue>              <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ResourceMatch>          </Resource>        </Resources>        <Actions>          <Action>            <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue>              <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ActionMatch>          </Action>        </Actions>      </Target>    </Rule>    <Rule Effect=\\\"Permit\\\" RuleId=\\\"rule1\\\">      <Target>        <Subjects>          <Subject>            <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">vo1</AttributeValue>              <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </SubjectMatch>          </Subject>        </Subjects>        <Resources>          <Resource>            <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://vo1:8080/vo1/property/temperature</AttributeValue>              <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ResourceMatch>          </Resource>        </Resources>        <Actions>          <Action>            <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue>              <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ActionMatch>          </Action>        </Actions>      </Target>    </Rule>    <Rule Effect=\\\"Permit\\\" RuleId=\\\"humidity\\\">      <Target>        <Subjects>          <Subject>            <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">vo1</AttributeValue>              <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </SubjectMatch>          </Subject>        </Subjects>        <Resources>          <Resource>            <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://vo1:8080/vo1/property/humidity</AttributeValue>              <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ResourceMatch>          </Resource>        </Resources>        <Actions>          <Action>            <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue>              <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ActionMatch>          </Action>        </Actions>      </Target>    </Rule>    <Rule Effect=\\\"Deny\\\" RuleId=\\\"local\\\">      <Target>        <Subjects>          <Subject>            <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">vo1</AttributeValue>              <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </SubjectMatch>          </Subject>        </Subjects>        <Resources>          <Resource>            <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://oidc4vp-proxy:8080/ngsi-ld/v1/entities/urn:a.*</AttributeValue>              <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ResourceMatch>          </Resource>        </Resources>        <Actions>          <Action>            <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue>              <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ActionMatch>          </Action>        </Actions>      </Target>    </Rule>  </Policy></PolicySet>\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/ngsi-ld/v1/entities/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"ngsi-ld",
+						"v1",
+						"entities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XACML - Get All Policies/Attributes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/ngsi-ld/v1/entities/?type=xacml",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"ngsi-ld",
+						"v1",
+						"entities",
+						""
+					],
+					"query": [
+						{
+							"key": "type",
+							"value": "xacml"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XACML - Update Attributes/Policies",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"version\": {\n        \"type\": \"Property\",\n        \"value\": \"23\"\n    },\n    \"xacml\": {\n        \"type\": \"Property\",\n        \"value\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?><PolicySet xmlns=\\\"urn:oasis:names:tc:xacml:2.0:policy:schema:os\\\" PolicyCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:policy-combining-algorithm:first-applicable\\\" PolicySetId=\\\"POLICY_SET\\\">  <Target/>  <Policy PolicyId=\\\"vo-wot\\\" RuleCombiningAlgId=\\\"urn:oasis:names:tc:xacml:1.0:rule-combining-algorithm:first-applicable\\\">    <Target/>    <Rule Effect=\\\"Permit\\\" RuleId=\\\"rule0\\\">      <Target>        <Subjects>          <Subject>            <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">vo1</AttributeValue>              <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </SubjectMatch>          </Subject>        </Subjects>        <Resources>          <Resource>            <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://vo1:9090/vo1</AttributeValue>              <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ResourceMatch>          </Resource>        </Resources>        <Actions>          <Action>            <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue>              <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ActionMatch>          </Action>        </Actions>      </Target>    </Rule>    <Rule Effect=\\\"Permit\\\" RuleId=\\\"rule1\\\">      <Target>        <Subjects>          <Subject>            <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">vo1</AttributeValue>              <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </SubjectMatch>          </Subject>        </Subjects>        <Resources>          <Resource>            <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://vo1:8080/vo1/property/temperature</AttributeValue>              <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ResourceMatch>          </Resource>        </Resources>        <Actions>          <Action>            <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue>              <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ActionMatch>          </Action>        </Actions>      </Target>    </Rule>    <Rule Effect=\\\"Permit\\\" RuleId=\\\"humidity\\\">      <Target>        <Subjects>          <Subject>            <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">vo1</AttributeValue>              <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </SubjectMatch>          </Subject>        </Subjects>        <Resources>          <Resource>            <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://vo1:8080/vo1/property/humidity</AttributeValue>              <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ResourceMatch>          </Resource>        </Resources>        <Actions>          <Action>            <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue>              <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ActionMatch>          </Action>        </Actions>      </Target>    </Rule>    <Rule Effect=\\\"Deny\\\" RuleId=\\\"local\\\">      <Target>        <Subjects>          <Subject>            <SubjectMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">vo1</AttributeValue>              <SubjectAttributeDesignator AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </SubjectMatch>          </Subject>        </Subjects>        <Resources>          <Resource>            <ResourceMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">http://oidc4vp-proxy:8080/ngsi-ld/v1/entities/urn:a.*</AttributeValue>              <ResourceAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ResourceMatch>          </Resource>        </Resources>        <Actions>          <Action>            <ActionMatch MatchId=\\\"urn:oasis:names:tc:xacml:1.0:function:string-equal\\\">              <AttributeValue DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\">GET</AttributeValue>              <ActionAttributeDesignator AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"/>            </ActionMatch>          </Action>        </Actions>      </Target>    </Rule>  </Policy></PolicySet>\"\n    },\n    \"timestamp\": {\n        \"type\": \"Property\",\n        \"value\": \"2024-10-08 08:02:43\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3002/ngsi-ld/v1/entities/urn:ngsi-ld:xacml:test/attrs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"ngsi-ld",
+						"v1",
+						"entities",
+						"urn:ngsi-ld:xacml:test",
+						"attrs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "XACML - Get Policies/Attributes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3002/ngsi-ld/v1/entities/urn:ngsi-ld:xacml:fluidosOpencall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3002",
+					"path": [
+						"ngsi-ld",
+						"v1",
+						"entities",
+						"urn:ngsi-ld:xacml:fluidosOpencall"
+					],
+					"query": [
+						{
+							"key": "attrs",
+							"value": "version",
+							"disabled": true
+						},
+						{
+							"key": "attrs",
+							"value": "version",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
