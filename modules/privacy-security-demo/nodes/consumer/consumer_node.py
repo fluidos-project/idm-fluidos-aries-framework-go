@@ -12,7 +12,7 @@ from privacy_security_manager.src.manager import PrivacySecurityManager
 from .config import settings
 
 app = FastAPI()
-security_manager = PrivacySecurityManager(agent_type="consumer")
+security_manager = PrivacySecurityManager()
 
 # REAR API client for consumer operations
 class RearApiClient:

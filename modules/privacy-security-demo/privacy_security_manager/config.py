@@ -1,16 +1,10 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    # API Configurations
-    PRODUCER_AGENT_HOST: str = "localhost"
-    PRODUCER_AGENT_PORT: int = 9082
-    CONSUMER_AGENT_HOST: str = "localhost"
-    CONSUMER_AGENT_PORT: int = 8082
+    # API Configuration
+    NODE_HOST: str = "155.54.210.45"
+    NODE_PORT: int = 8082  # Default to holder port, can be changed in .env
     
-    # REAR API Configuration
-    REAR_API_HOST: str = "localhost"
-    REAR_API_PORT: int = 3003
-
     # API Endpoints
     GENERATE_DID_ENDPOINT: str = "/fluidos/idm/generateDID"
     DO_ENROLMENT_ENDPOINT: str = "/fluidos/idm/doEnrolment"

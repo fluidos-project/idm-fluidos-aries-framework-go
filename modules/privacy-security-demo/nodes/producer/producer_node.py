@@ -14,7 +14,7 @@ from privacy_security_manager.src.manager import PrivacySecurityManager
 from .config import settings
 
 app = FastAPI()
-security_manager = PrivacySecurityManager(agent_type="producer")
+security_manager = PrivacySecurityManager()
 
 def generate_random_string(length=8):
     """Generate a random string of fixed length"""
