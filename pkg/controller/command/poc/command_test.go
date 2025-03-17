@@ -28,6 +28,7 @@ import (
 	mockstore "github.com/hyperledger/aries-framework-go/pkg/mock/storage"
 	"github.com/square/go-jose/v3/json"
 	"github.com/stretchr/testify/require"
+	mockvdr "github.com/hyperledger/aries-framework-go/pkg/mock/vdr"
 
 	"testing"
 )
@@ -53,6 +54,7 @@ func TestNewDID(t *testing.T) {
 
 		vdrCommand, err := vdr.New(&mockprovider.Provider{
 			StorageProviderValue: mockstore.NewMockStoreProvider(),
+			VDRegistryValue: &mockvdr.MockVDRegistry{},
 		})
 		require.NotNil(t, vdrCommand)
 		require.NoError(t, err)
@@ -85,9 +87,32 @@ func TestNewDID(t *testing.T) {
 		require.Nil(t, cmd)
 	})*/
 }
+
+func TestCallOpteeGenerateKey(t *testing.T) {
+	t.Run("test CallOpteeGenerateKey - success", func(t *testing.T) {
+		// Command instance
+		cmd := Command{}
+
+		// Sample key_id
+		inputJSON := `{"key_id": "test_key_1234"}`
+		inputReader := bytes.NewBufferString(inputJSON)
+
+		// CallOpteeGenerateKey method
+		var responseBuffer bytes.Buffer
+		err := cmd.CallOpteeGenerateKey(&responseBuffer, inputReader)
+
+		require.NoError(t, err)
+
+		require.NotEmpty(t, responseBuffer.String())
+		
+		fmt.Println("CallOpteeGenerateKey response:", responseBuffer.String())
+	})
+}
+
 func readDIDtesting(t *testing.T){
 	
 }
+
 func newMockProvider(t *testing.T) *mockprovider.Provider {
 	t.Helper()
 

@@ -52,6 +52,7 @@ const (
 	VerifyJWTContentErrorCode
 	SignContractErrorCode
 	VerifyContractSignatureErrorCode
+	CallOpteeGenerateKeyErrorCode
 )
 
 // constants for the VDR controller's methods.
@@ -72,6 +73,7 @@ const (
 	VerifyJWTContentCommandMethod        = "VerifyJWTContent"
 	SignContractCommandMethod            = "SignContract"
 	VerifyContractSignatureCommandMethod = "VerifyContractSignature"
+	CallOpteeGenerateKeyMethod	     = "OPTEE-generate-key"
 
 	// error messages.
 	errEmptyNewDID       = "keys is mandatory"
@@ -173,6 +175,7 @@ func (o *Command) GetHandlers() []command.Handler {
 		cmdutil.NewCommandHandler(CommandName, TestingCallMethod, o.TestingCall),
 		cmdutil.NewCommandHandler(CommandName, VerifyCredentialCommandMethod, o.VerifyCredential),
 		cmdutil.NewCommandHandler(CommandName, GetTrustedIssuerListMethod, o.GetTrustedIssuerList),
+		cmdutil.NewCommandHandler(CommandName, CallOpteeGenerateKeyMethod, o.CallOpteeGenerateKey),
 	}
 }
 
@@ -1674,3 +1677,43 @@ func (o *Command) GetTrustedIssuerList(rw io.Writer, req io.Reader) command.Erro
 	command.WriteNillableResponse(rw, &trustedIssuerListResponse, logger)
 	return nil
 }
+
+// CallOpteeGenerateKey calls OP-TEE environment to generate a key (from a received key_id)
+func (o *Command) CallOpteeGenerateKey(rw io.Writer, req io.Reader) command.Error {
+	// Parse the input request
+	var request struct {
+		KeyID string `json:"key_id"`
+	}
+
+	// Decode JSON request
+	err := json.NewDecoder(req).Decode(&request)
+	if err != nil {
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("invalid request format: %w", err))
+	}
+
+	// Build the OP-TEE JSON request
+	requestBody, err := json.Marshal(map[string]string{
+		"key_id": request.KeyID,
+	})
+	if err != nil {
+		return command.NewValidationError(CallOpteeGenerateKeyErrorCode, fmt.Errorf("failed to create request body: %w", err))
+	}
+
+	// Create HTTP request (Check url)
+	resp, err := http.Post("http://localhost:5024/generate_key", "application/json", bytes.NewBuffer(requestBody))
+	if err != nil {
+		return command.NewValidationError(CallOpteeGenerateKeyErrorCode, fmt.Errorf("failed to send request to OP-TEE: %w", err))
+	}
+	defer resp.Body.Close()
+
+	// Read OP-TEE response
+	responseData, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return command.NewValidationError(CallOpteeGenerateKeyErrorCode, fmt.Errorf("failed to read OP-TEE response: %w", err))
+	}
+
+	// Return response
+	command.WriteNillableResponse(rw, json.RawMessage(responseData), logger)
+	return nil
+}
+
