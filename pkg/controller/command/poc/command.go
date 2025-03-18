@@ -1699,7 +1699,7 @@ func (o *Command) CallOpteeGenerateKey(rw io.Writer, req io.Reader) command.Erro
 		return command.NewValidationError(CallOpteeGenerateKeyErrorCode, fmt.Errorf("failed to create request body: %w", err))
 	}
 
-	// Create HTTP request (Check url)
+	// Create HTTP request
 	resp, err := http.Post("http://localhost:5024/generate_key", "application/json", bytes.NewBuffer(requestBody))
 	if err != nil {
 		return command.NewValidationError(CallOpteeGenerateKeyErrorCode, fmt.Errorf("failed to send request to OP-TEE: %w", err))
