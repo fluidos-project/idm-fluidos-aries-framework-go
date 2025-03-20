@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attributes storingDate="2024-05-16T11:28:22.145619Z">
+  <attributes>
+    <attribute name="http://oidc4vp-proxy:8080/ngsi-ld/v1/entities/urn:a.*" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+    <attribute name="http://vo1:9090/vo1" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+    <attribute name="http://vo1:8080/vo1/property/temperature" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+    <attribute name="http://vo1:8080/vo1/property/humidity" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+    <attribute name="GET" xacml_id="urn:oasis:names:tc:xacml:1.0:action:action-id" sortedValue="action" xacml_DataType="#string"/>
+    <attribute name="vo1" xacml_id="urn:ietf:params:scim:schemas:core:2.0:id" sortedValue="subject" xacml_DataType="#string"/>
+    <attribute name="vo2" xacml_id="urn:ietf:params:scim:schemas:core:2.0:id" sortedValue="subject" xacml_DataType="#string"/>
+  </attributes>
+</attributes>

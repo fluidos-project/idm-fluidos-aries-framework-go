@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "37e619ed-c7bc-4984-874d-ed0b6b3488be",
+		"name": "XACML-PDP-Endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PDP Request - Obtain Verdict - Text/Plain (Py)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "domain",
+						"value": "test2",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "domain",
+						"value": "testdomain",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "domain",
+						"value": "continue-a",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<Request xmlns=\"urn:oasis:names:tc:xacml:2.0:context:schema:os\">\n   <Subject SubjectCategory=\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\">\n       <Attribute AttributeId=\"urn:ietf:params:scim:schemas:core:2.0:email\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>admin@test.com</AttributeValue>\n       </Attribute>  \n   </Subject>\n   \n   <Resource>\n       <Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>https://155.54.99.253:1027/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*</AttributeValue>\n       </Attribute>\n   </Resource> \n\n   <Action>\n       <Attribute AttributeId=\"urn:oasis:names:tc:xacml:1.0:action:action-id\" DataType=\"http://www.w3.org/2001/XMLSchema#string\">\n           <AttributeValue>GET</AttributeValue>\n       </Attribute>  \n   </Action>\n\n   <Environment/>\n</Request>"
+				},
+				"url": {
+					"raw": "http://localhost:9090/pdp/verdict",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"pdp",
+						"verdict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PDP Request - Obtain Verdict - JSON (Py)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "domain",
+						"value": "test2",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "domain",
+						"value": "testdomain",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "domain",
+						"value": "continue-a",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n{ \"body\":\"<Request xmlns=\\\"urn:oasis:names:tc:xacml:2.0:context:schema:os\\\"> <Subject SubjectCategory=\\\"urn:oasis:names:tc:xacml:1.0:subject-category:access-subject\\\"><Attribute AttributeId=\\\"urn:ietf:params:scim:schemas:core:2.0:email\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>admin@test.com</AttributeValue></Attribute></Subject><Resource><Attribute AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:resource:resource-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>https://155.54.99.253:1027/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*</AttributeValue></Attribute></Resource><Action><Attribute AttributeId=\\\"urn:oasis:names:tc:xacml:1.0:action:action-id\\\" DataType=\\\"http://www.w3.org/2001/XMLSchema#string\\\"><AttributeValue>GET</AttributeValue></Attribute></Action><Environment/></Request>\"\n}\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/pdp/verdict",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"pdp",
+						"verdict"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PDP Request - AttributeList (DEPRECATED)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "domain",
+						"value": "testdomain",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "domain",
+						"value": "continue-a",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n    \"re\":\"https://155.54.99.253:1027/ngsi-ld/v1/entities/urn:ngsi-ld:OdinS.*\",\n    \"ac\":\"GET\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/pdp/attrlist",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"pdp",
+						"attrlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PDP Request - Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/pdp/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"pdp",
+						"test"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

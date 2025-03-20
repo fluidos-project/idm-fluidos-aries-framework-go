@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"net/http"
 
-	poc"github.com/hyperledger/aries-framework-go/pkg/controller/command/poc"
+	poc "github.com/hyperledger/aries-framework-go/pkg/controller/command/poc"
 	vcwalletc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vcwallet"
 	vdrc "github.com/hyperledger/aries-framework-go/pkg/controller/command/vdr"
 	"github.com/hyperledger/aries-framework-go/pkg/controller/internal/cmdutil"
@@ -30,6 +30,8 @@ const (
 	GetVCredentialPath        = FluidosOperationID + "/getVCredential"
 	SignJWTContentPath        = FluidosOperationID + "/signJWTContent"
 	VerifyJWTContentPath      = FluidosOperationID + "/verifyJWTContent"
+	SignContractPath          = FluidosOperationID + "/signContract"
+	VerifyContractPath        = FluidosOperationID + "/verifyContract"
 )
 
 
@@ -74,6 +76,8 @@ func (o *Operation) registerHandler() {
 		cmdutil.NewHTTPHandler(GetVCredentialPath, http.MethodPost, o.GetVCredential),
 		cmdutil.NewHTTPHandler(SignJWTContentPath, http.MethodPost, o.SignJWTContent),
 		cmdutil.NewHTTPHandler(VerifyJWTContentPath, http.MethodPost, o.VerifyJWTContent),
+		cmdutil.NewHTTPHandler(SignContractPath, http.MethodPost, o.SignContract),
+		cmdutil.NewHTTPHandler(VerifyContractPath, http.MethodPost, o.VerifyContractSignature),
 	}
 }
 
@@ -184,4 +188,26 @@ func (o *Operation) VerifyJWTContent(rw http.ResponseWriter, req *http.Request) 
 	rest.Execute(o.command.VerifyJWTContent, rw, req.Body)
 }
 
+
+// SignContract swagger:route POST /fluidos/idm/signContract poc SignContractReq
+//
+// Sign a contract
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) SignContract(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.SignContract, rw, req.Body)
+}
+
+// VerifyContractSignature swagger:route POST /fluidos/idm/verifyContractSignature poc VerifyContractSignatureReq
+//
+// Verify the signature or nested signatures of a contract
+//
+// Responses:
+//    default: genericError
+//        200: documentRes
+func (o *Operation) VerifyContractSignature(rw http.ResponseWriter, req *http.Request) {
+	rest.Execute(o.command.VerifyContractSignature, rw, req.Body)
+}
 

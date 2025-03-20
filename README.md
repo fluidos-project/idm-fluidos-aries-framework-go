@@ -53,6 +53,12 @@ To run this mod aries-framework-go which uses a basic vdr to connect with Hyperl
 
 ### Deploy agent
 
+Before deploying the agent, please update the [commando.go](pkg/controller/command/poc/command.go) file:
+
+- Replace `<PRODUCER_IP>` with the IP where the producer is deployed.
+
+- Replace `<XACML_IP>` in the `XACML_PDP` environment variable with the IP where your XACML is deployed.
+
 The new Fabric VDR is automatically added by default. Besides, the rules related to launching de Aries Demo `run-openapi-demo` were modified in order to run hyperledger fabric automatically with the necessary rules.
 
 ```
@@ -69,6 +75,18 @@ make stop-openapi-demo
 ```
 
 Open a browser and go to http://localhost:8089/openapi or http://localhost:9089/openapi to see API Swagger if you deploy in your local machine
+
+### Deploy REST API server
+
+To deploy the `REST API server`, go to [restapi-server](./restapi-server/) and follow README instructions.
+
+### Deploy XACML
+
+To deploy the `XACML`, go to [xacml-xadatu](./xacml-xadatu/) and follow README instructions.
+
+### Deploy PEP-Proxy
+
+To deploy the `PEP-Proxy`, go to [PEP-Proxy](./PEP-Proxy/) and follow README instructions.
 
 ### FLUIDOS iDM POC Calls
 

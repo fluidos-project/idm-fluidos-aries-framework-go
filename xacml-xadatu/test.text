@@ -1,0 +1,91 @@
+
+##################### PAP FRONTEND variables #####################
+
+PAP_FRONTEND_EXPOSED_PORT=9091
+
+
+##################### PAP BACKEND variables #####################
+
+PAP_BACKEND_EXPOSED_PORT=9090
+
+#Add an option using ':'
+PAP_BACKEND_READ_ACCEPTED_VALUES=file:DLT
+PAP_BACKEND_READ=DLT
+PAP_BACKEND_DLT_GET_DOMAINS=http://82.223.10.211:3000/ngsi-ld/v1/entities/?type=xacml
+PAP_BACKEND_DLT_POLICIES=http://82.223.10.211:3000/ngsi-ld/v1/entities/urn:ngsi-ld:xacml:
+PAP_BACKEND_DLT_ATTRIBUTES=http://82.223.10.211:3000/ngsi-ld/v1/entities/urn:ngsi-ld:attributes:
+PAP_BACKEND_DLT_POST=http://82.223.10.211:3000/ngsi-ld/v1/entities/
+PAP_BACKEND_DEFAULT_POLICY_HEADER=continue-a
+PAP_BACKEND_DEFAULT_ATTRIBUTES_HEADER=XACML_Attributes
+
+# PAP_BACKEND_HASH_INTEGRATION to indicate if hash integration is considered or not.
+# The rest of Hash_* variables are used if hash integration is considered. Admittable values:
+# 0-No integration
+# 1-Integration
+PAP_BACKEND_HASH_INTEGRATION=0
+
+# PAP_BACKEND_HASH_PROTOCOL: specify protocol. Admitted values: "http","https" (HASH protocol endpoint)
+PAP_BACKEND_HASH_PROTOCOL=http
+# PAP_BACKEND_HASH_HOST: specify Host address (HASH host endpoint)
+PAP_BACKEND_HASH_HOST=82.223.10.211
+# PAP_BACKEND_HASH_PORT: specify port (HASH port endpoint)
+PAP_BACKEND_HASH_PORT=3000
+
+# PAP_BACKEND_HASH_GET_RESOURCE: specify GET hash domain endpoint
+PAP_BACKEND_HASH_GET_RESOURCE=/ngsi-ld/v1/entities/urn:ngsi-ld:domain:
+# PAP_BACKEND_HASH_POST_RESOURCE: specify POST hash domain endpoint
+PAP_BACKEND_HASH_POST_RESOURCE=/ngsi-ld/v1/entities
+# PAP_BACKEND_HASH_UPDATE_RESOURCE: specify PATCH hash domain endpoint
+PAP_BACKEND_HASH_UPDATE_RESOURCE=/ngsi-ld/v1/entities/urn:ngsi-ld:domain:
+
+##################### PDP PYTHON variables #####################
+
+PDP_EXPOSED_PORT=9092
+#PDP_PROTOCOL: Admitted values: "http","https"
+PDP_PROTOCOL=http
+
+#XACML_DEFAULT_DOMAIN: specify default domain
+XACML_DEFAULT_DOMAIN=continue-a
+
+# XACML_LOCATION_TYPE: To indicate if the XACML are located in local files or are accesible via API.
+# file --> XACML Policies are located in local files
+# api --> XACML Policies are accesible through an API
+# NOTE: if "api" value is selected you can remove or comment "../XACML_PAP/PAPConfigData/Policies:/opt/PDP/Policies" in volumes section (WILL NOT BE USED)
+XACML_LOCATION_TYPE=api
+
+# Variables used only if XACML_LOCATION_TYPE="api"
+#XACML_API_PROTOCOL: Admitted values: "http","https"  (XACML domain endpoint)
+XACML_API_PROTOCOL=http
+#XACML_API_HOST: specify Public IP address (XACML API endpoint)
+XACML_API_HOST=82.223.10.211
+#XACML_API_PORT: specify port (XACML API endpoint)
+XACML_API_PORT=3000
+#XACML_API_GET_RESOURCE: specify GET path (XACML API endpoint)
+XACML_API_GET_RESOURCE=/ngsi-ld/v1/entities/urn:ngsi-ld:xacml:{{domain}}
+
+# HASH_VALIDATION to indicate if HASH if XACML Policies is considered or not.
+# 0 --> HASH validation is not active.
+# 1 --> HASH validation is active.
+HASH_VALIDATION=0
+#HASH_PROTOCOL: specify protocol. Admitted values: "http","https" (HASH protocol endpoint)
+HASH_PROTOCOL=http
+#HASH_HOST: specify Host address (HASH host endpoint)
+HASH_HOST=82.223.10.211
+#HASH_PORT: specify port (HASH port endpoint)
+HASH_PORT=3000
+#HASH_GET_RESOURCE: specify GET path (HASH domain endpoint)
+HASH_GET_RESOURCE=/ngsi-ld/v1/entities/urn:ngsi-ld:domain:{{domain}}
+
+# PDP_CORS_ENABLED:
+# 1 --> if you need to add CORS headers.
+# 0 --> if you don't need to add CORS headers.
+PDP_CORS_ENABLED=1
+
+
+######################################################################################################
+
+# Network variables 
+
+# Change it if the network identifier is being used.
+NETWORKID=172.23.0
+

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+<entry key="SUBJECTS_PATH">./PAPConfigData/Subjects/</entry>
+<entry key="XACMLATTS_PATH">./PAPConfigData/XACMLAtts/</entry>
+<entry key="POLICY_SET_PATH">./PAPConfigData/Policies/</entry>
+<entry key="RESOURCES_PATH">./PAPConfigData/Resources/</entry>
+</properties>

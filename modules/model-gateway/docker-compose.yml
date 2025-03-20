@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    volumes:
+      - ./certs:/certs
+    ports:
+      - "3005:3005"

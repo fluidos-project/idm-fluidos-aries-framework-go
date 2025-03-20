@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<attributes storingDate="2023-08-01T13:40:24.918319Z">
+  <attributes>
+    <attribute name="domain6" xacml_id="urn:ietf:params:scim:schemas:core:2.0:username" sortedValue="subject" xacml_DataType="#string"/>
+    <attribute name="prueba@email" xacml_id="urn:ietf:params:scim:schemas:core:2.0:email" sortedValue="subject" xacml_DataType="#string"/>
+    <attribute name="prueba_id" xacml_id="urn:ietf:params:scim:schemas:core:2.0:id" sortedValue="subject" xacml_DataType="#string"/>
+    <attribute name="GET" xacml_id="urn:oasis:names:tc:xacml:1.0:action:action-id" sortedValue="action" xacml_DataType="#string"/>
+    <attribute name="POST" xacml_id="urn:oasis:names:tc:xacml:1.0:action:action-id" sortedValue="action" xacml_DataType="#string"/>
+    <attribute name="DELETE" xacml_id="urn:oasis:names:tc:xacml:1.0:action:action-id" sortedValue="action" xacml_DataType="#string"/>
+    <attribute name="http:/resource1" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+    <attribute name="http:/resource2" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+    <attribute name="http:/resource3" xacml_id="urn:oasis:names:tc:xacml:1.0:resource:resource-id" sortedValue="resource" xacml_DataType="#string"/>
+  </attributes>
+</attributes>

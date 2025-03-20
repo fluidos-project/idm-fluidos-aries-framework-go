@@ -1,0 +1,14 @@
+[
+    {
+        "subjectIdCapMan": "urn:ietf:params:scim:schemas:core:2.0:id",
+        "subjectIdPAP": "urn:ietf:params:scim:schemas:core:2.0:id"
+    },
+    {
+        "subjectIdCapMan": "urn:ietf:params:scim:schemas:core:2.0:email",
+        "subjectIdPAP": "urn:ietf:params:scim:schemas:core:2.0:email"
+    },
+    {
+        "subjectIdCapMan": "urn:ietf:params:scim:schemas:core:2.0:username",
+        "subjectIdPAP": "urn:ietf:params:scim:schemas:core:2.0:username"
+    }
+]

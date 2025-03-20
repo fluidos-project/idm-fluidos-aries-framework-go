@@ -1,0 +1,10 @@
+{
+  "CAPATH": "./creds/ca.org1.example.com-cert.pem",
+  "NETCONFIGPATH": "./networkconfig.json",
+  "CAURL": "https://ca.org1.example.com:7054",
+  "DEFAULT_CHANNEL_NAME": "test",
+  "DEFAULT_CHAINCODE_NAME": "OlympusManager",
+  "DEFAULT_WALLET_ID": "appuser",
+  "DEFAULT_METHOD": "appuser",
+  "DEFAULT_PARAMETERS": "appuser"
+}
