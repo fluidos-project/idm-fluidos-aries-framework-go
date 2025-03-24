@@ -13,3 +13,5 @@ build
 test/bdd/fixtures/agent-rest/data/connection-profile.json|
 # modules/fabric-samples/
 .vscode/
+
+modules/optee/
