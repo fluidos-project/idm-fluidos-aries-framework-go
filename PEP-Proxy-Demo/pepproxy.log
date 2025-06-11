@@ -2747,3 +2747,4 @@
 2025-02-11 10:39:00,547 [Thread-3 (pr] [INFO ]  BROKER RESPONSE CODE: 200
 2025-02-11 10:39:00,548 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
 2025-02-11 10:39:00,548 [Thread-3 (pr] [INFO ]  Total(ms) request: 55
+2025-04-29 09:26:23,810 [MainThread  ] [ERROR]  invalid literal for int() with base 10: ''
