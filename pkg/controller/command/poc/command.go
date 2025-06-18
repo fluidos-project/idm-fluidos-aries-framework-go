@@ -45,6 +45,7 @@ const (
 	DoDeviceEnrolmentRequestErrorCode
 	GenerateVPRequestErrorCode
 	VerifyCredentialRequestErrorCode
+	VerifyCredentialXACMLRequestErrorCode
 	AcceptEnrolmentRequestErrorCode
 	TestingCallRequestErrorCode
 	GetTrustedIssuerListrRequestErrorCode
@@ -67,6 +68,7 @@ const (
 	GetVCredentialCommandMethod          = "GetVCredential"
 	AcceptEnrolmentCommandMethod         = "AcceptEnrolment"
 	VerifyCredentialCommandMethod        = "ValidateVP"
+	VerifyCredentialXACMLCommandMethod   = "ValidateVPXACML"
 	TestingCallMethod                    = "TestingCall"
 	GetTrustedIssuerListMethod           = "GetTrustedIssuerList"
 	SignJWTContentCommandMethod          = "SignJWTContent"
@@ -174,6 +176,7 @@ func (o *Command) GetHandlers() []command.Handler {
 		cmdutil.NewCommandHandler(CommandName, AcceptEnrolmentCommandMethod, o.AcceptEnrolment),
 		cmdutil.NewCommandHandler(CommandName, TestingCallMethod, o.TestingCall),
 		cmdutil.NewCommandHandler(CommandName, VerifyCredentialCommandMethod, o.VerifyCredential),
+		cmdutil.NewCommandHandler(CommandName, VerifyCredentialXACMLCommandMethod, o.VerifyCredentialXACML),
 		cmdutil.NewCommandHandler(CommandName, GetTrustedIssuerListMethod, o.GetTrustedIssuerList),
 		cmdutil.NewCommandHandler(CommandName, CallOpteeGenerateKeyMethod, o.CallOpteeGenerateKey),
 	}
@@ -1272,7 +1275,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	replaceAll := strings.ReplaceAll(request.CredentialString, "\\", "")
 	bytearray := []byte(replaceAll)
 	reader, err = getReader(&vcwalletc.VerifyRequest{ // TODO UMU: This should be ProveRequest?
-		WalletAuth:   vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		WalletAuth:    vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
 		Presentation: bytearray,
 	})
 	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "what am i verifying? "+replaceAll)
@@ -1294,20 +1297,107 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to decode verify response: %w", err))
 	}
 	var result string
-	if !response.Verified {
+	if !response.Verified{
 		result = "not verified"
 		//return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to verify credential: %s", response.Error))
 		logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
 		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: response.Verified, Error: response.Error}, logger)
 		return nil
 	}
+	result = "verified"
+	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
+	command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: response.Verified}, logger)
+	return nil
+}
+
+func (o *Command) VerifyCredentialXACML(rw io.Writer, req io.Reader) command.Error {
+	logutil.LogDebug(logger, CommandName, "validateCredential", "start")
+	//TODO UMU: create method for command and rest
+	var request VerifyCredentialArgs
+	err := json.NewDecoder(req).Decode(&request)
+	if err != nil {
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
+	}
+
+	//Open wallet
+	var l bytes.Buffer
+	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
+		UserID:             o.walletuid,
+		LocalKMSPassphrase: o.walletpass,
+	})
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	err = o.vcwalletcommand.Open(&l, reader)
+	if err != nil {
+		logutil.LogError(logger, CommandName, VerifyCredentialXACMLCommandMethod, "failed to open wallet: "+err.Error())
+		return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	//Defer close wallet
+	defer func() {
+		var l2 bytes.Buffer
+		reader, err = getReader(&vcwalletc.LockWalletRequest{
+			UserID: o.walletuid,
+		})
+		err = o.vcwalletcommand.Close(&l2, reader)
+	}()
+
+	token := getUnlockToken(l)
+	if token == "" {
+		logutil.LogInfo(logger, CommandName, VerifyCredentialXACMLCommandMethod, "failed to get unlock token (empty token)")
+		return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
+	}
+
+	if err != nil {
+		logutil.LogError(logger, CommandName, VerifyCredentialXACMLCommandMethod, "failed to marshal credential: "+err.Error())
+		return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("failed to marshal credential: %w", err))
+	}
+
+	var response vcwalletc.VerifyResponse
+	replaceAll := strings.ReplaceAll(request.CredentialString, "\\", "")
+	bytearray := []byte(replaceAll)
+	reader, err = getReader(&vcwalletc.VerifyRequest{ // TODO UMU: This should be ProveRequest?
+		WalletAuth:   vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Presentation: bytearray,
+	})
+	logutil.LogDebug(logger, CommandName, VerifyCredentialXACMLCommandMethod, "what am i verifying? "+replaceAll)
+
+	//golang find and replace char in string
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("failed to get Verify Request reader: %w", err))
+	}
+	var l2 bytes.Buffer
+	err = o.vcwalletcommand.Verify(&l2, reader)
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	verifyMem = m.Sys
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("failed to verify credential: %w", err))
+	}
+	err = json.NewDecoder(&l2).Decode(&response)
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("failed to decode verify response: %w", err))
+	}
+	var result string
+	if !response.Verified {
+		result = "not verified"
+		//return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("failed to verify credential: %s", response.Error))
+		logutil.LogDebug(logger, CommandName, VerifyCredentialXACMLCommandMethod, "credential verified response:"+result)
+		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: response.Verified, Error: response.Error}, logger)
+		return nil
+	}
+	
+	fmt.Println("HOLA")
+	fmt.Println(response.Verified)
+	fmt.Println(string(bytearray))
 
 	// XACML Authorization
 	var vp VerifiablePresentation
 	err = json.Unmarshal(bytearray, &vp)
 	if err != nil {
-		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to decode VP json: %w", err))
+		return command.NewValidationError(VerifyCredentialXACMLRequestErrorCode, fmt.Errorf("failed to decode VP json: %w", err))
 	}
+	fmt.Println("Error")
 
 	// Get Attributes from VP
 	requester := "issuer"
@@ -1347,7 +1437,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	authorized, err = checkXACML(requester, resource, method, requesterDid)
 	if err != nil {
 		response.Verified = false
-		logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "Unauthorized in XACML")
+		logutil.LogDebug(logger, CommandName, VerifyCredentialXACMLCommandMethod, "Unauthorized in XACML")
 		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized, Error: err.Error()}, logger)
 		return nil
 	}
@@ -1359,7 +1449,7 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 	}
 
 	result = "verified"
-	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
+	logutil.LogDebug(logger, CommandName, VerifyCredentialXACMLCommandMethod, "credential verified response:"+result)
 	command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: authorized, AccessToken: accessToken}, logger)
 	return nil
 

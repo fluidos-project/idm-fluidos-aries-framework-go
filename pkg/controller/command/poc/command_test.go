@@ -933,7 +933,7 @@ func TestGenerateVP(t *testing.T) {
 		require.NotEmpty(t, response)
 		require.NotEmpty(t, response.Results)
 
-		t.Log("Prueba de generación de VP exitosa con resultado:", response.Results)
+		t.Log("VP result:", response.Results)
 	})
 
 	// Error case: non-existent credential ID
@@ -1056,7 +1056,6 @@ func TestVerifyCredential(t *testing.T) {
 		require.NotEmpty(t, res.Results)
 
 		var l bytes.Buffer
-		fmt.Println(string(*res.Results[0]))
 		reader, err := getReader(VerifyCredentialArgs{CredentialString: string(*res.Results[0])})
 		require.NotNil(t, reader)
 		require.NoError(t, err)
