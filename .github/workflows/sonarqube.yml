@@ -1,32 +1,49 @@
-name: SonarQube Analysis
+name: SonarQube + CNES Report
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
 
 jobs:
-  sonarcloud:
+  sonar-analysis:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
           go-version: "1.21"
 
-      - name: Install sonar-scanner
-        run: |
-          curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-          unzip sonar-scanner.zip -d $HOME
-          echo "$HOME/sonar-scanner-5.0.1.3006-linux/bin" >> $GITHUB_PATH
-
-      - name: Run sonar-scanner
+      - name: SonarQube Analysis
+        uses: SonarSource/sonarqube-scan-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: https://sonarqube.k8s-ants.inf.um.es
+
+      #- name: Show SonarQube Dashboard URL
+      #  run: echo "See results: https://sonarqube.k8s-ants.inf.um.es/dashboard?id=idm-fluidos-aries-framework-go"
+
+      - name: Download CNES Report CLI
         run: |
-          sonar-scanner \
-            -Dsonar.login=$SONAR_TOKEN \
-            -Dsonar.host.url=https://sonarqube.k8s-ants.inf.um.es
+          curl -L -o sonar-cnes-report.jar https://github.com/cnescatlab/sonar-cnes-report/releases/latest/download/sonar-cnes-report.jar
+
+      - name: Generate CNES Report
+        run: |
+          mkdir report
+          java -jar sonar-cnes-report.jar \
+            -s https://sonarqube.k8s-ants.inf.um.es \
+            -t ${{ secrets.SONAR_TOKEN }} \
+            -p idm-fluidos-aries-framework-go \
+            -o ./report \
+            -f console,html,md
+
+      - name: Upload CNES Report Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sonarqube-cnes-report
+          path: ./report
