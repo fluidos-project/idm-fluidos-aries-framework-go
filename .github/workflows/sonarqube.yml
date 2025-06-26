@@ -19,15 +19,20 @@ jobs:
         with:
           go-version: "1.21"
 
+      - name: Prepare sonarqube.crt
+        run: |
+          echo "${{ secrets.SONAR_CERT }}" > sonarqube.crt
+
+      - name: Install certificate in the system
+        run: |
+          sudo cp sonarqube.crt /usr/local/share/ca-certificates/sonarqube.crt
+          sudo update-ca-certificates
+
       - name: SonarQube Analysis
         uses: SonarSource/sonarqube-scan-action@v2
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarqube.k8s-ants.inf.um.es
-        with:
-          args: >
-            -X
-            -Dsonar.ssl.disableCertValidation=true
 
       #- name: Show SonarQube Dashboard URL
       #  run: echo "See results: https://sonarqube.k8s-ants.inf.um.es/dashboard?id=idm-fluidos-aries-framework-go"
