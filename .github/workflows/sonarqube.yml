@@ -34,6 +34,28 @@ jobs:
       #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #    SONAR_HOST_URL: https://sonarqube.k8s-ants.inf.um.es
 
+      - name: Import certificate into Java keystore
+        run: |
+          sudo keytool -importcert \
+            -noprompt \
+            -trustcacerts \
+            -alias sonarqube-cert \
+            -file sonarqube.crt \
+            -keystore /usr/lib/jvm/java-17-adoptopenjdk/lib/security/cacerts \
+            -storepass changeit || \
+          sudo keytool -importcert \
+            -noprompt \
+            -trustcacerts \
+            -alias sonarqube-cert \
+            -file sonarqube.crt \
+            -keystore /usr/lib/jvm/java-17-openjdk-amd64/lib/security/cacerts \
+            -storepass changeit
+
+      - name: List trusted certs (optional debug)
+        run: |
+          keytool -list -keystore /usr/lib/jvm/java-17-*/lib/security/cacerts \
+            -storepass changeit | grep sonarqube-cert || true
+
       - name: Download SonarScanner CLI
         run: |
           curl -Lo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
