@@ -73,9 +73,16 @@ jobs:
           curl -Lo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
           unzip sonar-scanner.zip -d $HOME
           mv $HOME/sonar-scanner-* $HOME/sonar-scanner
-      
+
+      - name: Check Java version and JAVA_HOME
+        run: |
+          echo "JAVA_HOME=${JAVA_HOME}"
+          java -version
+
       - name: Run SonarScanner
         run: |
+          export JAVA_HOME=/usr/lib/jvm/temurin-17-jdk-amd64
+          export PATH=$JAVA_HOME/bin:$PATH
           $HOME/sonar-scanner/bin/sonar-scanner \
             -Dsonar.projectKey=idm-fluidos-aries-framework-go \
             -Dsonar.sources=. \
