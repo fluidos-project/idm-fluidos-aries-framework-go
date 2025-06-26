@@ -26,6 +26,7 @@ jobs:
           SONAR_HOST_URL: https://sonarqube.k8s-ants.inf.um.es
         with:
           args: >
+            -X
             -Dsonar.ssl.disableCertValidation=true
 
       #- name: Show SonarQube Dashboard URL
