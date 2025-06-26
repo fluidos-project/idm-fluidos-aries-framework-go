@@ -34,22 +34,34 @@ jobs:
       #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       #    SONAR_HOST_URL: https://sonarqube.k8s-ants.inf.um.es
 
+      - name: Debug Java path
+        run: |
+          readlink -f $(which java)
+
       - name: Import certificate into Java keystore
         run: |
-          sudo keytool -importcert \
-            -noprompt \
-            -trustcacerts \
-            -alias sonarqube-cert \
-            -file sonarqube.crt \
-            -keystore /usr/lib/jvm/java-17-adoptopenjdk/lib/security/cacerts \
-            -storepass changeit || \
-          sudo keytool -importcert \
-            -noprompt \
-            -trustcacerts \
-            -alias sonarqube-cert \
-            -file sonarqube.crt \
-            -keystore /usr/lib/jvm/java-17-openjdk-amd64/lib/security/cacerts \
-            -storepass changeit
+          for CACERTS in \
+            /usr/lib/jvm/java-17-adoptopenjdk/lib/security/cacerts \
+            /usr/lib/jvm/java-17-openjdk-amd64/lib/security/cacerts \
+            /usr/lib/jvm/temurin-17*/lib/security/cacerts \
+            /usr/lib/jvm/java-17-*/lib/security/cacerts
+          do
+            if [ -f "$CACERTS" ]; then
+              echo "Importing into: $CACERTS"
+              sudo keytool -importcert \
+                -noprompt \
+                -trustcacerts \
+                -alias sonarqube-cert \
+                -file sonarqube.crt \
+                -keystore "$CACERTS" \
+                -storepass changeit
+              exit 0
+            fi
+          done
+      
+          echo "ERROR: No valid Java cacerts found"
+          exit 1
+
 
       - name: List trusted certs (optional debug)
         run: |
