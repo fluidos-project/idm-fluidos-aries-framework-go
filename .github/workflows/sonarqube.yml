@@ -24,6 +24,9 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarqube.k8s-ants.inf.um.es
+        with:
+          args: >
+            -Dsonar.ssl.disableCertValidation=true
 
       #- name: Show SonarQube Dashboard URL
       #  run: echo "See results: https://sonarqube.k8s-ants.inf.um.es/dashboard?id=idm-fluidos-aries-framework-go"
