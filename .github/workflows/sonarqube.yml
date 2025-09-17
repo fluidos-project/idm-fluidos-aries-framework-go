@@ -39,12 +39,14 @@ jobs:
           ls -l sonar-cnes-report.jar
 
       - name: Generate CNES Report
+        env:
+          CNES_TOKEN: ${{ secrets.SONAR_USER_TOKEN }}
         run: |
           mkdir -p report
           java -version
           java -jar sonar-cnes-report.jar \
             -s https://sonarqube.k8s-ants.inf.um.es \
-            -t ${{ secrets.SONAR_TOKEN }} \
+            -t "$CNES_TOKEN" \
             -p idm-fluidos-aries-framework-go \
             -o ./report \
             -f console,html,md
