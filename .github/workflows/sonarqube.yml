@@ -48,4 +48,3 @@ jobs:
           name: sonarqube-cnes-report
           path: ./report
 
-
