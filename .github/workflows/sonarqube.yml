@@ -2,14 +2,12 @@ name: SonarQube + CNES Report
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
 
 jobs:
   sonar-analysis:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,17 +22,26 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarqube.k8s-ants.inf.um.es
-
+          
       #- name: Show SonarQube Dashboard URL
       #  run: echo "See results: https://sonarqube.k8s-ants.inf.um.es/dashboard?id=idm-fluidos-aries-framework-go"
+    
+      - name: Set up Java (for CNES CLI)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Download CNES Report CLI
         run: |
-          curl -L -o sonar-cnes-report.jar https://github.com/cnescatlab/sonar-cnes-report/releases/latest/download/sonar-cnes-report.jar
+          curl -fL -o sonar-cnes-report.jar \
+            https://github.com/cnescatlab/sonar-cnes-report/releases/download/5.0.2/sonar-cnes-report-5.0.2.jar
+          ls -l sonar-cnes-report.jar
 
       - name: Generate CNES Report
         run: |
-          mkdir report
+          mkdir -p report
+          java -version
           java -jar sonar-cnes-report.jar \
             -s https://sonarqube.k8s-ants.inf.um.es \
             -t ${{ secrets.SONAR_TOKEN }} \
@@ -47,4 +54,3 @@ jobs:
         with:
           name: sonarqube-cnes-report
           path: ./report
-
