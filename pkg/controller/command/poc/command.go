@@ -1306,6 +1306,104 @@ func (o *Command) VerifyCredential(rw io.Writer, req io.Reader) command.Error {
 		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to decode VP json: %w", err))
 	}
 
+	
+	result = "verified"
+	res := false
+	if result == "verified" {
+		res = true
+	} else {
+		res = false
+	}
+	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
+	command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: res}, logger)
+	return nil
+
+}
+
+func (o *Command) VerifyCredentialWithXACML(rw io.Writer, req io.Reader) command.Error {
+	logutil.LogDebug(logger, CommandName, "validateCredential", "start")
+	//TODO UMU: create method for command and rest
+	var request VerifyCredentialArgs
+	err := json.NewDecoder(req).Decode(&request)
+	if err != nil {
+		return command.NewValidationError(InvalidRequestErrorCode, fmt.Errorf("request decode : %w", err))
+	}
+
+	//Open wallet
+	var l bytes.Buffer
+	reader, err := getReader(&vcwalletc.UnlockWalletRequest{
+		UserID:             o.walletuid,
+		LocalKMSPassphrase: o.walletpass,
+	})
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	err = o.vcwalletcommand.Open(&l, reader)
+	if err != nil {
+		logutil.LogError(logger, CommandName, VerifyCredentialCommandMethod, "failed to open wallet: "+err.Error())
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("open wallet error: %w", err))
+	}
+	//Defer close wallet
+	defer func() {
+		var l2 bytes.Buffer
+		reader, err = getReader(&vcwalletc.LockWalletRequest{
+			UserID: o.walletuid,
+		})
+		err = o.vcwalletcommand.Close(&l2, reader)
+	}()
+
+	token := getUnlockToken(l)
+	if token == "" {
+		logutil.LogInfo(logger, CommandName, VerifyCredentialCommandMethod, "failed to get unlock token (empty token)")
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("open wallet error decoding token"))
+	}
+
+	if err != nil {
+		logutil.LogError(logger, CommandName, VerifyCredentialCommandMethod, "failed to marshal credential: "+err.Error())
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to marshal credential: %w", err))
+	}
+
+	var response vcwalletc.VerifyResponse
+	replaceAll := strings.ReplaceAll(request.CredentialString, "\\", "")
+	bytearray := []byte(replaceAll)
+	reader, err = getReader(&vcwalletc.VerifyRequest{ // TODO UMU: This should be ProveRequest?
+		WalletAuth:   vcwalletc.WalletAuth{UserID: o.walletuid, Auth: token},
+		Presentation: bytearray,
+	})
+	logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "what am i verifying? "+replaceAll)
+
+	//golang find and replace char in string
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to get Verify Request reader: %w", err))
+	}
+	var l2 bytes.Buffer
+	err = o.vcwalletcommand.Verify(&l2, reader)
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	verifyMem = m.Sys
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to verify credential: %w", err))
+	}
+	err = json.NewDecoder(&l2).Decode(&response)
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to decode verify response: %w", err))
+	}
+	var result string
+	if !response.Verified {
+		result = "not verified"
+		//return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to verify credential: %s", response.Error))
+		logutil.LogDebug(logger, CommandName, VerifyCredentialCommandMethod, "credential verified response:"+result)
+		command.WriteNillableResponse(rw, &VerifyCredentialResult{Result: response.Verified, Error: response.Error}, logger)
+		return nil
+	}
+
+	// XACML Authorization
+	var vp VerifiablePresentation
+	err = json.Unmarshal(bytearray, &vp)
+	if err != nil {
+		return command.NewValidationError(VerifyCredentialRequestErrorCode, fmt.Errorf("failed to decode VP json: %w", err))
+	}
+
 	// Get Attributes from VP
 	requester := "issuer"
 	requesterDid := "did"

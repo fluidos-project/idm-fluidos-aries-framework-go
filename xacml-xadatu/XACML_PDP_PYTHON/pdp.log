@@ -690,3 +690,71 @@
 2025-02-11 10:39:12,218 [Thread-5 (pr] [INFO ]  Access request registered in blockchain
 2025-02-11 10:39:12,218 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
 2025-02-11 10:39:12,218 [Thread-5 (pr] [INFO ]  Total(ms) request: 2090
+2025-06-17 11:21:09,810 [Thread-1 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-06-17 11:21:09,810 [Thread-1 (pr] [INFO ]  Detected new domain 'fluidosOpencall'.
+2025-06-17 11:21:09,811 [Thread-1 (pr] [ERROR]  [Errno 111] Connection refused
+2025-06-17 11:21:09,811 [Thread-1 (pr] [ERROR]  Can not connect to obtain the XACML timestamp.
+2025-06-17 11:21:09,811 [Thread-1 (pr] [ERROR]  Can not validate if the XACML policies changed.
+2025-09-18 08:43:26,303 [Thread-2 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 08:43:26,303 [Thread-2 (pr] [ERROR]  'PolicySet'
+2025-09-18 08:43:26,304 [Thread-2 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 08:43:26,304 [Thread-2 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 08:43:26,356 [Thread-2 (pr] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a82f090>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 08:43:26,357 [Thread-2 (pr] [INFO ]  Response issued: Communication is closed.
+2025-09-18 08:43:26,357 [Thread-2 (pr] [INFO ]  Total(ms) request: 54
+2025-09-18 08:43:32,300 [Thread-3 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 08:43:32,301 [Thread-3 (pr] [ERROR]  'PolicySet'
+2025-09-18 08:43:32,301 [Thread-3 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 08:43:32,301 [Thread-3 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 08:43:32,303 [Thread-3 (pr] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a836ad0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 08:43:32,303 [Thread-3 (pr] [INFO ]  Response issued: Communication is closed.
+2025-09-18 08:43:32,304 [Thread-3 (pr] [INFO ]  Total(ms) request: 3
+2025-09-18 08:44:15,612 [Thread-4 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 08:44:15,613 [Thread-4 (pr] [ERROR]  'PolicySet'
+2025-09-18 08:44:15,613 [Thread-4 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 08:44:15,613 [Thread-4 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 08:44:15,615 [Thread-4 (pr] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a84a590>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 08:44:15,615 [Thread-4 (pr] [INFO ]  Response issued: Communication is closed.
+2025-09-18 08:44:15,615 [Thread-4 (pr] [INFO ]  Total(ms) request: 3
+2025-09-18 08:44:27,821 [Thread-5 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 08:44:27,821 [Thread-5 (pr] [ERROR]  'PolicySet'
+2025-09-18 08:44:27,821 [Thread-5 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 08:44:27,822 [Thread-5 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 08:44:27,824 [Thread-5 (pr] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a84dcd0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 08:44:27,824 [Thread-5 (pr] [INFO ]  Response issued: Communication is closed.
+2025-09-18 08:44:27,824 [Thread-5 (pr] [INFO ]  Total(ms) request: 4
+2025-09-18 08:44:44,058 [Thread-6 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 08:44:44,059 [Thread-6 (pr] [ERROR]  'PolicySet'
+2025-09-18 08:44:44,059 [Thread-6 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 08:44:44,059 [Thread-6 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 08:44:44,061 [Thread-6 (pr] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a837890>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 08:44:44,062 [Thread-6 (pr] [INFO ]  Response issued: Communication is closed.
+2025-09-18 08:44:44,062 [Thread-6 (pr] [INFO ]  Total(ms) request: 3
+2025-09-18 08:53:06,839 [Thread-7 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 08:53:06,840 [Thread-7 (pr] [ERROR]  'PolicySet'
+2025-09-18 08:53:06,840 [Thread-7 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 08:53:06,840 [Thread-7 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 08:53:06,843 [Thread-7 (pr] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a7e13d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 08:53:06,844 [Thread-7 (pr] [INFO ]  Response issued: Communication is closed.
+2025-09-18 08:53:06,845 [Thread-7 (pr] [INFO ]  Total(ms) request: 5
+2025-09-18 08:53:50,309 [Thread-8 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 08:53:50,310 [Thread-8 (pr] [ERROR]  'PolicySet'
+2025-09-18 08:53:50,310 [Thread-8 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 08:53:50,310 [Thread-8 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 08:53:50,312 [Thread-8 (pr] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a84e010>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 08:53:50,313 [Thread-8 (pr] [INFO ]  Response issued: Communication is closed.
+2025-09-18 08:53:50,313 [Thread-8 (pr] [INFO ]  Total(ms) request: 3
+2025-09-18 09:13:52,651 [Thread-9 (pr] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 09:13:52,652 [Thread-9 (pr] [ERROR]  'PolicySet'
+2025-09-18 09:13:52,652 [Thread-9 (pr] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 09:13:52,652 [Thread-9 (pr] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 09:13:52,655 [Thread-9 (pr] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a8596d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 09:13:52,656 [Thread-9 (pr] [INFO ]  Response issued: Communication is closed.
+2025-09-18 09:13:52,656 [Thread-9 (pr] [INFO ]  Total(ms) request: 5
+2025-09-18 09:14:29,151 [Thread-10 (p] [INFO ]  POST '/pdp/verdict' Request (172.27.0.1)... 
+2025-09-18 09:14:29,151 [Thread-10 (p] [ERROR]  'PolicySet'
+2025-09-18 09:14:29,151 [Thread-10 (p] [INFO ]  { 'Action': 'GET/POST/PUT', 'SubjectType': 'urn:ietf:params:scim:schemas:core:2.0:id', 'Subject': 'Customer', 'Resource': 'https://10.208.99.115:1027/producer/.*' }
+2025-09-18 09:14:29,152 [Thread-10 (p] [INFO ]  POST Response: VERDICT: NotApplicable.
+2025-09-18 09:14:29,153 [Thread-10 (p] [ERROR]  Connection error: HTTPConnectionPool(host='10.208.99.115', port=3002): Max retries exceeded with url: /xadatu/auth/register (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f625a835210>: Failed to establish a new connection: [Errno 111] Connection refused'))
+2025-09-18 09:14:29,154 [Thread-10 (p] [INFO ]  Response issued: Communication is closed.
+2025-09-18 09:14:29,154 [Thread-10 (p] [INFO ]  Total(ms) request: 3
